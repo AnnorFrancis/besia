@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout — Xclusivehairdeals</title>
+  <meta name="description" content="Check out your Xclusivehairdeals order — pay with Mobile Money, card, or pay on pickup, and get an order number you can track live.">
+  <meta name="theme-color" content="#241812">
+  <meta name="robots" content="noindex">
+
+  <link rel="icon" type="image/svg+xml" href="./assets/icons/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,800;1,400;1,700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/animations.css">
+</head>
+<body class="page-checkout">
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- Navigation -->
+  <header class="site-nav">
+    <div class="container container--wide nav-inner">
+      <a class="nav-logo" href="./index.html" aria-label="Xclusivehairdeals — home">
+        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M15 9.5c-6.5 7-6.5 22 0 29.5" stroke-linecap="round"/>
+          <path d="M23.5 6c-8.5 8.5-8.5 27.5 0 36" stroke-linecap="round"/>
+          <path d="M32 10c-5.5 6.5-5.5 21 0 27.5" stroke-linecap="round"/>
+          <path d="M38.5 11l1.3 3.4 3.4 1.3-3.4 1.3-1.3 3.4-1.3-3.4-3.4-1.3 3.4-1.3z" fill="currentColor" stroke="none"/>
+        </svg>
+        <span class="nav-logo-text">
+          <span class="nav-logo-name">Xclusive</span>
+          <span class="nav-logo-tag">Hair Deals</span>
+        </span>
+      </a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="./index.html">Home</a>
+        <a href="./services.html">Services</a>
+        <a href="./shop.html" class="is-active">Shop</a>
+        <a href="./gallery.html">Gallery</a>
+        <a href="./about.html">About</a>
+        <a href="./packages.html">Packages</a>
+        <a href="./contact.html">Contact</a>
+      </nav>
+      <div class="nav-cta">
+        <a href="./contact.html" class="btn btn--gold btn--sm">Book Now</a>
+      </div>
+      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile overlay nav -->
+  <div class="nav-overlay">
+    <div>
+      <nav class="nav-overlay-links" aria-label="Mobile">
+        <a href="./index.html">Home</a>
+        <a href="./services.html">Services</a>
+        <a href="./shop.html" class="is-active">Shop</a>
+        <a href="./gallery.html">Gallery</a>
+        <a href="./about.html">About</a>
+        <a href="./packages.html">Packages</a>
+        <a href="./contact.html">Contact</a>
+      </nav>
+      <div class="nav-overlay-contact">
+        Greater Accra · <a href="tel:+233555747887">055 574 7887</a>
+      </div>
+    </div>
+  </div>
+
+  <main id="main">
+
+    <section class="section section--cream" style="padding-top: calc(var(--nav-height) + 2.5rem);">
+      <div class="container">
+
+        <nav class="breadcrumb breadcrumb--dark" aria-label="Breadcrumb" style="margin-bottom:1.2rem;">
+          <a href="./shop.html">Shop</a><span class="sep">·</span><span>Checkout</span>
+        </nav>
+        <div class="eyebrow">Checkout</div>
+        <h1 class="section-title" style="margin-bottom:2rem;"><span class="script">Almost yours —</span>Confirm Your Order</h1>
+
+        <!-- Empty state -->
+        <div id="empty-state" class="checkout-empty" style="display:none;">
+          <p>Your bag is empty. Everything in the shop is one tap away.</p>
+          <a href="./shop.html" class="btn btn--gold">Browse the Shop</a>
+          <a href="./track.html" class="text-link" style="margin-left:1.4rem;">Track an existing order</a>
+        </div>
+
+        <!-- Checkout -->
+        <div id="checkout-shell" class="checkout-shell">
+          <div class="checkout-main">
+
+            <div class="co-panel">
+              <h2 class="co-title">1 · Your bag</h2>
+              <ul class="co-items" id="co-items"></ul>
+            </div>
+
+            <div class="co-panel">
+              <h2 class="co-title">2 · Your details</h2>
+              <div class="form-grid">
+                <div class="field">
+                  <input type="text" id="co-name" required autocomplete="name">
+                  <label for="co-name">Full name *</label>
+                  <p class="error-msg">Please enter your name.</p>
+                </div>
+                <div class="field">
+                  <input type="tel" id="co-phone" required autocomplete="tel">
+                  <label for="co-phone">Phone / WhatsApp *</label>
+                  <p class="error-msg">Enter a valid phone number.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="co-panel">
+              <h2 class="co-title">3 · Pickup or delivery</h2>
+              <div class="co-choice" role="radiogroup" aria-label="Pickup or delivery">
+                <label class="co-chip is-active">
+                  <input type="radio" name="method" value="pickup" checked>
+                  <strong>Pickup — free</strong>
+                  <span>Collect from the shop, Greater Accra</span>
+                </label>
+                <label class="co-chip">
+                  <input type="radio" name="method" value="delivery">
+                  <strong>Delivery — GHS 30</strong>
+                  <span>Within Accra, same day where possible</span>
+                </label>
+              </div>
+              <div class="field" id="area-field" style="display:none; margin-top:1rem;">
+                <input type="text" id="co-area">
+                <label for="co-area">Delivery area (e.g. East Legon) *</label>
+                <p class="error-msg">Please tell us where to deliver.</p>
+              </div>
+            </div>
+
+            <div class="co-panel">
+              <h2 class="co-title">4 · Payment</h2>
+              <div class="co-choice" role="radiogroup" aria-label="Payment method">
+                <label class="co-chip is-active">
+                  <input type="radio" name="pay" value="momo" checked>
+                  <strong>Mobile Money</strong>
+                  <span>MTN MoMo · Telecel Cash · AT Money</span>
+                </label>
+                <label class="co-chip">
+                  <input type="radio" name="pay" value="card">
+                  <strong>Card</strong>
+                  <span>Visa or Mastercard</span>
+                </label>
+                <label class="co-chip">
+                  <input type="radio" name="pay" value="pickup">
+                  <strong>Pay on pickup</strong>
+                  <span>Cash or MoMo at the counter</span>
+                </label>
+              </div>
+
+              <div id="momo-fields" style="margin-top:1rem;">
+                <div class="form-grid">
+                  <div class="field">
+                    <select id="co-network">
+                      <option>MTN MoMo</option>
+                      <option>Telecel Cash</option>
+                      <option>AT Money</option>
+                    </select>
+                    <label for="co-network" class="is-fixed">Network</label>
+                    <svg class="select-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </div>
+                  <div class="field">
+                    <input type="tel" id="co-momo" inputmode="numeric">
+                    <label for="co-momo">MoMo number *</label>
+                    <p class="error-msg">Enter the number to bill.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div id="card-fields" style="display:none; margin-top:1rem;">
+                <div class="form-grid">
+                  <div class="field span-2">
+                    <input type="text" id="co-card" inputmode="numeric" placeholder=" ">
+                    <label for="co-card">Card number *</label>
+                    <p class="error-msg">Enter a card number.</p>
+                  </div>
+                  <div class="field">
+                    <input type="text" id="co-exp" placeholder=" ">
+                    <label for="co-exp">Expiry (MM/YY)</label>
+                  </div>
+                  <div class="field">
+                    <input type="text" id="co-cvv" inputmode="numeric" placeholder=" ">
+                    <label for="co-cvv">CVV</label>
+                  </div>
+                </div>
+              </div>
+
+              <p class="co-demo-note">Demo payment — no real money moves. The live site connects to Paystack / Hubtel for real MoMo and card charges.</p>
+            </div>
+          </div>
+
+          <aside class="co-summary">
+            <h3>Order Summary</h3>
+            <ul class="co-lines" id="co-lines"></ul>
+            <div class="co-line-total">
+              <span>Subtotal</span><span id="co-subtotal">GHS 0</span>
+            </div>
+            <div class="co-line-total">
+              <span>Delivery</span><span id="co-delivery">Free</span>
+            </div>
+            <div class="co-grand">
+              <span>Total</span><span id="co-total">GHS 0</span>
+            </div>
+            <button class="btn btn--gold" id="co-pay" style="width:100%;">Pay &amp; Place Order</button>
+            <p class="co-note">You will get an order number immediately and can track every step on the Track Order page.</p>
+          </aside>
+        </div>
+
+        <!-- Success -->
+        <div id="success-state" class="co-success" style="display:none;">
+          <div class="mark">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M4 12.5l5 5L20 6.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h2>Order placed — thank you!</h2>
+          <p>Your order number is</p>
+          <div class="co-order-id" id="success-id">XHD-000000</div>
+          <p id="success-sub">We have received your order and will confirm it shortly.</p>
+          <div class="btn-row" style="margin-top:1.8rem; justify-content:center;">
+            <a href="#" id="success-track" class="btn btn--gold">Track This Order
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <a href="./shop.html" class="btn btn--ghost-dark">Keep Shopping</a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- Payment processing modal -->
+  <div class="pay-modal" id="pay-modal" role="dialog" aria-label="Processing payment" aria-hidden="true">
+    <div class="pay-modal-box">
+      <div class="pay-spinner" aria-hidden="true"></div>
+      <h3 id="pay-step">Contacting your network…</h3>
+      <p id="pay-detail">Please wait</p>
+      <span class="pay-demo-tag">Demo — no real charge</span>
+    </div>
+  </div>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom" style="border-top:none; padding-top:0;">
+        <span>© <span data-year>2026</span> Xclusivehairdeals. All rights reserved.</span>
+        <span class="footer-credit">Designed &amp; Developed by <a href="https://perkins-swart.vercel.app" target="_blank" rel="noopener">Perkins Creative</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="./js/store.js" defer></script>
+  <script src="./js/main.js" defer></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var S = window.XHDStore;
+      var shell = document.getElementById('checkout-shell');
+      var empty = document.getElementById('empty-state');
+      var success = document.getElementById('success-state');
+
+      function money(n) { return S.money(n); }
+
+      function renderBag() {
+        var cart = S.getCart();
+        if (!cart.length && success.style.display === 'none') {
+          shell.style.display = 'none';
+          empty.style.display = 'block';
+          return;
+        }
+        var items = document.getElementById('co-items');
+        items.innerHTML = cart.map(function (it) {
+          return '<li class="co-item">' +
+            '<img src="' + it.img + '" alt="">' +
+            '<div class="co-item-info"><strong>' + it.name + '</strong><span>' + money(it.price) + ' each</span></div>' +
+            '<div class="co-qty">' +
+              '<button type="button" data-dec="' + it.name + '" aria-label="Reduce quantity">−</button>' +
+              '<span>' + it.qty + '</span>' +
+              '<button type="button" data-inc="' + it.name + '" aria-label="Increase quantity">+</button>' +
+            '</div>' +
+            '<div class="co-item-price">' + money(it.price * it.qty) + '</div>' +
+            '<button type="button" class="co-remove" data-del="' + it.name + '" aria-label="Remove ' + it.name + '">×</button>' +
+          '</li>';
+        }).join('');
+
+        items.querySelectorAll('[data-dec]').forEach(function (b) {
+          b.addEventListener('click', function () {
+            var it = S.getCart().find(function (x) { return x.name === b.getAttribute('data-dec'); });
+            if (it) S.setQty(it.name, it.qty - 1);
+          });
+        });
+        items.querySelectorAll('[data-inc]').forEach(function (b) {
+          b.addEventListener('click', function () {
+            var it = S.getCart().find(function (x) { return x.name === b.getAttribute('data-inc'); });
+            if (it) S.setQty(it.name, it.qty + 1);
+          });
+        });
+        items.querySelectorAll('[data-del]').forEach(function (b) {
+          b.addEventListener('click', function () { S.removeItem(b.getAttribute('data-del')); });
+        });
+        renderTotals();
+      }
+
+      function method() { return document.querySelector('[name="method"]:checked').value; }
+      function payType() { return document.querySelector('[name="pay"]:checked').value; }
+
+      function renderTotals() {
+        var sub = S.cartTotal();
+        var fee = method() === 'delivery' ? 30 : 0;
+        document.getElementById('co-lines').innerHTML = S.getCart().map(function (it) {
+          return '<li><span>' + it.name + (it.qty > 1 ? ' × ' + it.qty : '') + '</span><span>' + money(it.price * it.qty) + '</span></li>';
+        }).join('');
+        document.getElementById('co-subtotal').textContent = money(sub);
+        document.getElementById('co-delivery').textContent = fee ? money(fee) : 'Free';
+        document.getElementById('co-total').textContent = money(sub + fee);
+        var btn = document.getElementById('co-pay');
+        btn.textContent = payType() === 'pickup'
+          ? 'Place Order — ' + money(sub + fee)
+          : 'Pay ' + money(sub + fee) + ' & Place Order';
+      }
+
+      // choice chips
+      document.querySelectorAll('.co-choice').forEach(function (group) {
+        group.querySelectorAll('.co-chip').forEach(function (chip) {
+          chip.addEventListener('click', function () {
+            group.querySelectorAll('.co-chip').forEach(function (c) { c.classList.remove('is-active'); });
+            chip.classList.add('is-active');
+            chip.querySelector('input').checked = true;
+            document.getElementById('area-field').style.display = method() === 'delivery' ? 'block' : 'none';
+            document.getElementById('momo-fields').style.display = payType() === 'momo' ? 'block' : 'none';
+            document.getElementById('card-fields').style.display = payType() === 'card' ? 'block' : 'none';
+            renderTotals();
+          });
+        });
+      });
+
+      function fieldOk(id, test) {
+        var el = document.getElementById(id);
+        var ok = test(el.value.trim());
+        el.closest('.field').classList.toggle('has-error', !ok);
+        return ok;
+      }
+
+      var modal = document.getElementById('pay-modal');
+      function step(title, detail) {
+        document.getElementById('pay-step').textContent = title;
+        document.getElementById('pay-detail').textContent = detail;
+      }
+
+      document.getElementById('co-pay').addEventListener('click', function () {
+        var ok = fieldOk('co-name', function (v) { return v.length > 1; });
+        ok = fieldOk('co-phone', function (v) { return /^[\d\s+()-]{9,}$/.test(v); }) && ok;
+        if (method() === 'delivery') ok = fieldOk('co-area', function (v) { return v.length > 1; }) && ok;
+        if (payType() === 'momo') ok = fieldOk('co-momo', function (v) { return /^[\d\s+()-]{9,}$/.test(v); }) && ok;
+        if (payType() === 'card') ok = fieldOk('co-card', function (v) { return v.replace(/\D/g, '').length >= 12; }) && ok;
+        if (!ok) return;
+
+        var pay = payType();
+        var payment = pay === 'momo'
+          ? { type: 'momo', network: document.getElementById('co-network').value, number: document.getElementById('co-momo').value, status: 'Paid' }
+          : pay === 'card'
+            ? { type: 'card', network: 'Card', number: '•••• ' + document.getElementById('co-card').value.replace(/\D/g, '').slice(-4), status: 'Paid' }
+            : { type: 'pickup', network: '', number: '', status: 'Pay on pickup' };
+
+        var finish = function () {
+          var order = S.createOrder({
+            customer: document.getElementById('co-name').value.trim(),
+            phone: document.getElementById('co-phone').value.trim(),
+            method: method(),
+            area: (document.getElementById('co-area').value || '').trim(),
+            payment: payment
+          });
+          try { localStorage.setItem('xhd-last-order', order.id); } catch (e) {}
+          modal.classList.remove('is-open');
+          modal.setAttribute('aria-hidden', 'true');
+          shell.style.display = 'none';
+          empty.style.display = 'none';
+          success.style.display = 'block';
+          document.getElementById('success-id').textContent = order.id;
+          document.getElementById('success-sub').textContent = order.method === 'delivery'
+            ? 'We will confirm it shortly and deliver to ' + (order.area || 'your area') + '. Save your order number.'
+            : 'We will confirm it shortly and tell you when it is ready for pickup. Save your order number.';
+          document.getElementById('success-track').href = './track.html?order=' + encodeURIComponent(order.id);
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        };
+
+        if (pay === 'pickup') { finish(); return; }
+
+        // Simulated payment hand-off
+        modal.classList.add('is-open');
+        modal.setAttribute('aria-hidden', 'false');
+        if (pay === 'momo') {
+          step('Contacting ' + document.getElementById('co-network').value + '…', 'Sending a payment prompt to ' + document.getElementById('co-momo').value);
+          setTimeout(function () { step('Prompt sent to your phone', 'Approve the payment with your PIN — in this demo it approves itself'); }, 1400);
+          setTimeout(function () { step('Payment received ✓', 'Placing your order…'); }, 3000);
+          setTimeout(finish, 4000);
+        } else {
+          step('Securing your card…', 'Talking to the payment gateway');
+          setTimeout(function () { step('Payment approved ✓', 'Placing your order…'); }, 1800);
+          setTimeout(finish, 2800);
+        }
+      });
+
+      renderBag();
+      S.onChange(renderBag);
+    });
+  </script>
+</body>
+</html>

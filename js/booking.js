@@ -163,24 +163,43 @@
 
       // Save the request so it shows up automatically in the salon admin.
       // Frontend-only bridge via localStorage (same origin as the admin).
+      var bookingId = 'WEB-' + Date.now().toString().slice(-6);
+      var refEl = document.getElementById('booking-ref');
+      if (refEl) refEl.textContent = bookingId;
       try {
         var KEY = 'xhd-web-bookings';
         var list = JSON.parse(localStorage.getItem(KEY) || '[]');
         list.push({
-          id: 'WEB-' + Date.now().toString().slice(-6),
+          id: bookingId,
           name: name, phone: phone, service: evType || 'Appointment',
           date: date, notes: notes, status: 'Pending', ts: Date.now()
         });
         localStorage.setItem(KEY, JSON.stringify(list));
       } catch (err) {}
 
+      // The booking is already saved above — WhatsApp is only for a follow-up
+      // question, so the message quotes the reference rather than re-booking.
       var wa = document.getElementById('success-wa');
       if (wa) {
         wa.href = 'https://wa.me/233555747887?text=' + encodeURIComponent(
-          'Hello Xclusivehairdeals! I just requested an appointment. Name: ' + name +
-          ', Service: ' + evType + ', Date: ' + date + '. Looking forward to hearing from you!');
+          'Hello Xclusivehairdeals! I have a question about my booking ' + bookingId + '.');
       }
     });
+
+    // Selection carried over from the packages page builder
+    try {
+      var carried = JSON.parse(localStorage.getItem('xhd-builder') || '[]');
+      if (carried.length) {
+        var MAP = { 'Knotless braids': 'braids', 'Frontal install': 'frontal', 'Hair coloring': 'colour', 'Nail extensions, full set': 'nails', 'Manicure & pedicure': 'manipedi', 'Mink lash set': 'lashes', 'Ombré brows': 'brows', 'Make-up': 'makeup', 'Deep-cleansing facial': 'facial', 'Piercing': 'piercing', 'Wig revamp': 'revamp', 'Ready-made wig unit': 'frontal' };
+        form.querySelectorAll('.check-pill input').forEach(function (cb) { cb.checked = false; cb.closest('.check-pill').classList.remove('is-checked'); });
+        carried.forEach(function (name) {
+          var key = MAP[name];
+          var cb = key && form.querySelector('.check-pill input[value="' + key + '"]');
+          if (cb) { cb.checked = true; cb.closest('.check-pill').classList.add('is-checked'); }
+        });
+        localStorage.removeItem('xhd-builder');
+      }
+    } catch (e) {}
 
     showStep(0);
   }
@@ -193,7 +212,7 @@
     var opts = builder.querySelectorAll('.builder-opt');
     var linesEl = document.getElementById('builder-lines');
     var totalEl = document.getElementById('builder-total');
-    var waBtn = document.getElementById('builder-wa');
+    var goBtn = document.getElementById('builder-go');
     var displayed = 0;
 
     function refresh() {
@@ -231,14 +250,8 @@
       requestAnimationFrame(tick);
       window.setTimeout(function () { displayed = to; totalEl.textContent = fmtGHS(to); }, dur + 150);
 
-      if (waBtn) {
-        var msg = chosen.length
-          ? 'Hello Xclusivehairdeals! I built an appointment on your website: ' +
-            chosen.map(function (c) { return c.name; }).join(', ') +
-            '. Estimated total: ' + fmtGHS(to) + '. Can we discuss?'
-          : 'Hello Xclusivehairdeals! I would like to book an appointment.';
-        waBtn.href = 'https://wa.me/233555747887?text=' + encodeURIComponent(msg);
-      }
+      try { localStorage.setItem('xhd-builder', JSON.stringify(chosen.map(function (c) { return c.name; }))); } catch (e) {}
+      if (goBtn) goBtn.textContent = chosen.length ? 'Request This Appointment — ' + fmtGHS(to) : 'Request This Appointment';
     }
 
     // The options are <label> elements, so the browser toggles the

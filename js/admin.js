@@ -260,14 +260,17 @@
     var today = todaysAppts().length;
     var pend = pendingCount();
     var owed = totalOwed();
+    var newOrders = 0;
+    if (window.XHDStore) { window.XHDStore.seedOrders(); newOrders = window.XHDStore.getOrders().filter(function (o) { return o.status === 'Order placed'; }).length; }
 
     var sum = document.getElementById('dash-summary');
     if (sum) {
       sum.innerHTML = 'You have <strong>' + today + '</strong> appointment' + (today === 1 ? '' : 's') + ' today' +
         ' · <strong>' + pend + '</strong> waiting to confirm' +
-        ' · <strong>' + money(owed) + '</strong> still owed.';
+        ' · <strong>' + money(owed) + '</strong> still owed' + (newOrders ? ' · <strong>' + newOrders + '</strong> new shop order' + (newOrders === 1 ? '' : 's') : '') + '.';
     }
     var set = function (id, val) { var el = document.getElementById(id); if (el) el.textContent = val; };
+    set('tile-orders', newOrders + ' new');
     set('tile-today', today);
     set('tile-confirm', pend + ' to confirm');
     set('tile-customers', CLIENTS.length);
@@ -709,4 +712,156 @@
 
     renderStaff();
   }
+
+  /* ================================================================
+     SHOP ORDERS — reads the same store the website writes to.
+     Status changes here appear instantly on the customer's
+     Track Order page (same device / same browser in this demo).
+     ================================================================ */
+  if (page === 'orders' && window.XHDStore) {
+    var S = window.XHDStore;
+    S.seedOrders();
+    var orState = { q: '', chip: 'all' };
+
+    var OR_BADGE = {
+      'Order placed': 'badge--pending', 'Confirmed': 'badge--confirmed',
+      'Ready for pickup': 'badge--progress', 'Out for delivery': 'badge--progress',
+      'Picked up': 'badge--completed', 'Delivered': 'badge--completed', 'Cancelled': 'badge--cancelled'
+    };
+    function orBadge(st) { return '<span class="badge ' + (OR_BADGE[st] || 'badge--pending') + '">' + esc(st) + '</span>'; }
+    function isNew(o) { return o.status === 'Order placed'; }
+    function isActive(o) { return ['Confirmed', 'Ready for pickup', 'Out for delivery'].indexOf(o.status) !== -1; }
+    function isDone(o) { return ['Picked up', 'Delivered', 'Cancelled'].indexOf(o.status) !== -1; }
+
+    function orRows() {
+      return S.getOrders().filter(function (o) {
+        if (orState.chip === 'new' && !isNew(o)) return false;
+        if (orState.chip === 'active' && !isActive(o)) return false;
+        if (orState.chip === 'done' && !isDone(o)) return false;
+        if (orState.q) {
+          var hay = (o.id + ' ' + o.customer + ' ' + o.phone).toLowerCase();
+          if (hay.indexOf(orState.q.toLowerCase()) === -1) return false;
+        }
+        return true;
+      });
+    }
+
+    function renderOrders() {
+      var all = S.getOrders();
+      var newC = all.filter(isNew).length;
+      var activeC = all.filter(isActive).length;
+      var sold = all.filter(function (o) { return o.status === 'Picked up' || o.status === 'Delivered'; })
+        .reduce(function (t, o) { return t + o.total; }, 0);
+      var el;
+      if ((el = document.getElementById('os-new'))) el.textContent = newC;
+      if ((el = document.getElementById('os-active'))) el.textContent = activeC;
+      if ((el = document.getElementById('os-week'))) el.textContent = money(sold);
+      if ((el = document.getElementById('chip-new'))) el.textContent = newC;
+
+      var r = orRows();
+      if ((el = document.getElementById('orders-count'))) el.textContent = all.length + ' order' + (all.length === 1 ? '' : 's') + ' · ' + newC + ' new';
+
+      document.getElementById('orders-body').innerHTML = r.length ? r.map(function (o) {
+        var itemCount = o.items.reduce(function (t, it) { return t + it.qty; }, 0);
+        return '<tr data-oid="' + esc(o.id) + '">' +
+          '<td><span class="cell-strong">' + esc(o.id) + '</span><span class="cell-sub">' + esc(o.customer) + ' · ' + esc(o.phone) + '</span></td>' +
+          '<td>' + itemCount + ' item' + (itemCount === 1 ? '' : 's') + '<span class="cell-sub">' + esc(o.items[0].name) + (o.items.length > 1 ? ' +' + (o.items.length - 1) + ' more' : '') + '</span></td>' +
+          '<td>' + (o.method === 'delivery' ? 'Delivery<span class="cell-sub">' + esc(o.area || 'Accra') + '</span>' : 'Pickup') + '</td>' +
+          '<td class="num">' + money(o.total) + '</td>' +
+          '<td>' + (o.payment.status === 'Paid'
+            ? '<span class="badge badge--completed">Paid</span>'
+            : '<span class="badge badge--pending">On pickup</span>') + '</td>' +
+          '<td>' + orBadge(o.status) + '</td>' +
+          '</tr>';
+      }).join('') : '<tr class="empty-row"><td colspan="6">No orders here yet. New website orders land in this list by themselves.</td></tr>';
+
+      document.querySelectorAll('#orders-body tr[data-oid]').forEach(function (tr) {
+        tr.addEventListener('click', function () { openOrder(tr.getAttribute('data-oid')); });
+      });
+    }
+
+    function nextStep(o) {
+      var flow = S.statusFlow(o);
+      var i = flow.indexOf(o.status);
+      return (i > -1 && i < flow.length - 1) ? flow[i + 1] : null;
+    }
+    var STEP_LABEL = {
+      'Confirmed': 'Confirm this order',
+      'Ready for pickup': 'Mark ready for pickup',
+      'Out for delivery': 'Send out for delivery',
+      'Picked up': 'Mark picked up',
+      'Delivered': 'Mark delivered'
+    };
+
+    function openOrder(id) {
+      var o = S.getOrder(id);
+      if (!o) return;
+      var html =
+        '<ul class="detail-list">' +
+        '<li><span>Status</span><span>' + orBadge(o.status) + '</span></li>' +
+        '<li><span>Customer</span><span>' + esc(o.customer) + '</span></li>' +
+        '<li><span>Phone</span><span>' + esc(o.phone) + '</span></li>' +
+        '<li><span>Fulfilment</span><span>' + (o.method === 'delivery' ? 'Delivery — ' + esc(o.area || 'Accra') : 'Pickup in store') + '</span></li>' +
+        '<li><span>Payment</span><span>' + esc((o.payment.network || 'On pickup') + ' · ' + o.payment.status) + '</span></li>' +
+        '<li><span>Placed</span><span>' + pretty(new Date(o.placedAt)) + '</span></li>' +
+        '</ul>' +
+        '<div class="a-field"><label>Items</label><ul class="detail-list">' +
+        o.items.map(function (it) {
+          return '<li><span>' + esc(it.name) + (it.qty > 1 ? ' × ' + it.qty : '') + '</span><span>' + money(it.price * it.qty) + '</span></li>';
+        }).join('') +
+        (o.deliveryFee ? '<li><span>Delivery fee</span><span>' + money(o.deliveryFee) + '</span></li>' : '') +
+        '<li><span><strong>Total</strong></span><span><strong>' + money(o.total) + '</strong></span></li>' +
+        '</ul></div>';
+
+      var step = nextStep(o);
+      html += '<div class="drawer-actions">';
+      if (step && o.status !== 'Cancelled') {
+        html += '<button class="a-btn a-btn--green" id="or-advance"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12.5l4.5 4.5L19 7.5" stroke-linecap="round" stroke-linejoin="round"/></svg>' + (STEP_LABEL[step] || step) + '</button>';
+      }
+      if (o.payment.status !== 'Paid') {
+        html += '<button class="a-btn a-btn--gold" id="or-paid"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12.5l4.5 4.5L19 7.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Mark paid</button>';
+      }
+      html += '<button class="a-btn a-btn--ghost" id="or-msg"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.2-1.8-.9-2-1-.3-.1-.5-.2-.7.1-.2.3-.8 1-1 1.2-.2.2-.3.2-.6.1-.3-.2-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.4-.5c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-1-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1 2.9 1.2 3.1c.2.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.3-.7.3-1.3.2-1.4-.1-.1-.3-.2-.6-.3zM12 22h-.01a9.87 9.87 0 01-5-1.4l-.4-.2-3.7 1 1-3.7-.2-.4A9.9 9.9 0 1112 22z"/></svg>Message customer</button>';
+      if (!isDone(o)) {
+        html += '<button class="a-btn a-btn--soft-red" id="or-cancel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 6l12 12M18 6L6 18" stroke-linecap="round"/></svg>Cancel order</button>';
+      }
+      html += '</div>' +
+        '<p class="drawer-hint">Every change you make here shows up live on the customer’s Track Order page.</p>';
+
+      openDrawer(o.id, html);
+
+      var el;
+      if ((el = document.getElementById('or-advance'))) el.addEventListener('click', function () {
+        S.updateStatus(o.id, step);
+        toast(o.id + ' → ' + step); renderOrders(); openOrder(o.id);
+      });
+      if ((el = document.getElementById('or-paid'))) el.addEventListener('click', function () {
+        S.markPaid(o.id);
+        toast(o.id + ' marked paid'); renderOrders(); openOrder(o.id);
+      });
+      if ((el = document.getElementById('or-cancel'))) el.addEventListener('click', function () {
+        S.updateStatus(o.id, 'Cancelled');
+        toast(o.id + ' cancelled'); renderOrders(); openOrder(o.id);
+      });
+      if ((el = document.getElementById('or-msg'))) el.addEventListener('click', function () {
+        waSend(o.phone, 'Hi ' + firstName(o.customer) + ', this is Xclusivehairdeals about your order *' + o.id + '* (' + o.status + ').');
+        toast('Message ready in WhatsApp');
+      });
+    }
+
+    document.querySelectorAll('#or-chips [data-chip]').forEach(function (c) {
+      c.addEventListener('click', function () {
+        document.querySelectorAll('#or-chips [data-chip]').forEach(function (x) { x.classList.remove('is-active'); });
+        c.classList.add('is-active');
+        orState.chip = c.getAttribute('data-chip');
+        renderOrders();
+      });
+    });
+    var orSearch = document.getElementById('or-search');
+    if (orSearch) orSearch.addEventListener('input', function () { orState.q = orSearch.value; renderOrders(); });
+
+    S.onChange(renderOrders);
+    renderOrders();
+  }
+
 })();

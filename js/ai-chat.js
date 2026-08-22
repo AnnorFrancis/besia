@@ -164,7 +164,7 @@
       '\u2022 Extensions \u2014 from GHS 150<br>' +
       '\u2022 Hair care &amp; cosmetics \u2014 from GHS 60<br>' +
       '\u2022 Accessories \u2014 from GHS 25<br><br>' +
-      'Browse everything on the <a href="./shop.html" style="color:#A97142;font-weight:700;text-decoration:underline;">Shop page</a> and order straight to WhatsApp. Pickup in-store or delivery within Accra.',
+      'Browse the <a href="./shop.html" style="color:#A97142;font-weight:700;text-decoration:underline;">Shop page</a>, add to your bag and check out with Mobile Money or card. You get an order number instantly and can follow it on the <a href="./track.html" style="color:#A97142;font-weight:700;text-decoration:underline;">Track Order page</a>.',
     nails:
       'Nails start at <strong>GHS 120</strong> for a manicure and pedicure, and <strong>GHS 180</strong> for a full set of extensions. \uD83D\uDC85 Any shape, any length, plus art and chrome finishes. Refills welcome even if the set was done elsewhere.',
     lashes:
