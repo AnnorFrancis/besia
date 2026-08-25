@@ -66,17 +66,22 @@
        demo price list and the single place to tune the estimator — they
        match the builder on the packages page. */
     var SERVICE_PRICES = {
-      braids:   { label: 'Braids', price: 300 },
-      frontal:  { label: 'Wig / frontal install', price: 250 },
-      revamp:   { label: 'Wig revamp', price: 150 },
-      colour:   { label: 'Hair colouring', price: 220 },
-      nails:    { label: 'Nail extensions', price: 180 },
-      manipedi: { label: 'Manicure & pedicure', price: 120 },
-      lashes:   { label: 'Lashes', price: 150 },
-      brows:    { label: 'Ombre brows', price: 400 },
-      makeup:   { label: 'Make-up', price: 200 },
-      facial:   { label: 'Facial', price: 160 },
-      piercing: { label: 'Piercing', price: 80 }
+      braids:    { label: 'Braids', price: 300 },
+      frontal:   { label: 'Wig / frontal install', price: 250 },
+      revamp:    { label: 'Wig revamp', price: 150 },
+      colour:    { label: 'Hair colouring', price: 220 },
+      treatment: { label: 'Hair treatment', price: 90 },
+      locs:      { label: 'Locs / natural hair', price: 120 },
+      nails:     { label: 'Nail extensions', price: 180 },
+      manipedi:  { label: 'Manicure', price: 120 },
+      pedicure:  { label: 'Pedicure & foot spa', price: 140 },
+      lashes:    { label: 'Lashes', price: 150 },
+      brows:     { label: 'Ombre brows', price: 400 },
+      makeup:    { label: 'Make-up', price: 200 },
+      facial:    { label: 'Facial', price: 160 },
+      massage:   { label: 'Massage & body spa', price: 250 },
+      waxing:    { label: 'Waxing / threading', price: 60 },
+      piercing:  { label: 'Piercing', price: 80 }
     };
     var OCCASION_MULTIPLIER = {
       'Regular Appointment': 1, 'Bridal / Wedding Party': 1.35,
@@ -190,7 +195,7 @@
     try {
       var carried = JSON.parse(localStorage.getItem('xhd-builder') || '[]');
       if (carried.length) {
-        var MAP = { 'Knotless braids': 'braids', 'Frontal install': 'frontal', 'Hair coloring': 'colour', 'Nail extensions, full set': 'nails', 'Manicure & pedicure': 'manipedi', 'Mink lash set': 'lashes', 'Ombré brows': 'brows', 'Make-up': 'makeup', 'Deep-cleansing facial': 'facial', 'Piercing': 'piercing', 'Wig revamp': 'revamp', 'Ready-made wig unit': 'frontal' };
+        var MAP = { 'Knotless braids': 'braids', 'Frontal install': 'frontal', 'Hair coloring': 'colour', 'Nail extensions, full set': 'nails', 'Manicure & pedicure': 'manipedi', 'Mink lash set': 'lashes', 'Ombré brows': 'brows', 'Make-up': 'makeup', 'Deep-cleansing facial': 'facial', 'Piercing': 'piercing', 'Wig revamp': 'revamp', 'Ready-made wig unit': 'frontal', 'Spa pedicure': 'pedicure', 'Full body massage': 'massage', 'Hair treatment': 'treatment', 'Retwist & maintenance': 'locs', 'Waxing session': 'waxing' };
         form.querySelectorAll('.check-pill input').forEach(function (cb) { cb.checked = false; cb.closest('.check-pill').classList.remove('is-checked'); });
         carried.forEach(function (name) {
           var key = MAP[name];

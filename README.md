@@ -13,7 +13,7 @@ hair colouring, nails, lashes, brows, make-up, facials and hair care products.
 ```
 SALON2/
   index.html          Home — hero slideshow, services, shop teaser, stats, look book, packages, reviews
-  services.html       6 compact service tiles + full price list (42 prices) + before/after slider
+  services.html       12 service tiles + quick-jump bar + full price list (88 prices) + before/after slider
   shop.html           23 products across 6 categories, filterable, add-to-cart
   gallery.html        Filterable look book (8 categories, 32 photos) with FLIP animations + lightbox
   about.html          Story, timeline, values, "Inside the Lounge" photo strip, team
@@ -32,7 +32,7 @@ SALON2/
     staff.html        Staff — the team, workload, message them
   css/    style.css · animations.css · admin.css
   js/     main.js · animations.js · gallery.js · booking.js · ai-chat.js · admin.js · store.js
-  images/ Client photos, organised by category (see below)
+  images/ Client photos + licensed stock, organised by category (see CREDITS.md)
 ```
 
 ## How to run
@@ -54,6 +54,33 @@ Open it directly when demoing.
 - Email: **wehndieandy12@gmail.com**
 - Hours: **Mon–Sun, 9am–6pm** (the "Open now" pill and the chat assistant both follow this)
 
+## The service menu
+
+Twelve services, each with its own tile and price group — which is also what the
+site has always claimed in its "twelve signature services" badge:
+
+| # | Service | From |
+|---|---|---|
+| 01 | Braids & Protective Styles | GHS 80 |
+| 02 | Wigs, Frontals & Colour | GHS 90 |
+| 03 | Hair Treatment & Scalp Care | GHS 60 |
+| 04 | Locs & Natural Hair | GHS 120 |
+| 05 | Manicure & Nail Art | GHS 40 |
+| 06 | Pedicure & Foot Spa | GHS 60 |
+| 07 | Lashes & Brows | GHS 50 |
+| 08 | Make-Up | GHS 80 |
+| 09 | Facials & Skincare | GHS 90 |
+| 10 | Massage & Body Spa | GHS 100 |
+| 11 | Waxing & Threading | GHS 40 |
+| 12 | Piercing & Ear Styling | GHS 30 |
+
+**88 individual prices** are published across the twelve groups. Each tile's
+"From" figure equals the cheapest line in its own group — verified, so a client
+comparing the two never finds a contradiction.
+
+On phones the groups start collapsed (first one open) with a quick-jump chip bar
+above the tiles, so the page stays scannable instead of becoming a wall of numbers.
+
 ## The shop
 
 `shop.html` is the new half of the pitch — she sells product as well as service.
@@ -73,13 +100,16 @@ each card (`"Name|price"`), so changing one is a single-line edit.
 
 ## Images
 
-Client photography, organised so it is obvious where each shot is used:
+See `images/CREDITS.md` for full sourcing. Client photography, organised so it is
+obvious where each shot is used:
 
 - `images/hero-gallery/` — 16 client looks, the Studio Sessions filter in the look book
 - `images/salon-studio/` — interior, founder portrait, "Inside the Lounge" strip on About
 - `images/wigs/`, `bundles/`, `closures-frontals/`, `extensions/`,
   `hair-care-cosmetics/`, `accessories/` — the shop catalogue
-- `images/services/` — service photography plus the before/after revamp slider
+- `images/services/` — service photography, the before/after revamp slider, and seven
+  free-licence Unsplash photos covering the added services (pedicure, massage,
+  waxing, facial, locs, piercing, manicure). No watermarked Unsplash+ images.
 - The original sample photos remain at the top level of `images/` and are still in use
 
 ## Ordering — end to end, on the website

@@ -123,6 +123,11 @@
   /* ---------- Keyword intelligence (demo) ---------- */
   var RESPONSES = [
     { match: /(buy|shop|sell|purchase|bundle|in stock|ready.?made|take home|hair care|accessor)/i, intent: 'shop' },
+    { match: /(pedicure|foot|feet|toe|callus|heel)/i, intent: 'pedicure' },
+    { match: /(massage|body spa|hot stone|deep tissue|scrub|steam|relax)/i, intent: 'massage' },
+    { match: /(wax|waxing|thread|threading|bikini|brazilian|hair removal)/i, intent: 'waxing' },
+    { match: /(loc|locs|dread|retwist|starter loc|natural hair|silk press)/i, intent: 'locs' },
+    { match: /(treatment|scalp|dandruff|conditioning|protein|hair spa)/i, intent: 'treatment' },
     { match: /(price|pricing|cost|how much|charge|rate)/i, intent: 'packages' },
     { match: /(package|glow|radiance|icon)/i, intent: 'packages' },
     { match: /(book|appointment|slot|available|availability|free)/i, intent: 'consult' },
@@ -145,11 +150,17 @@
       'Here is the quick price list:<br><br>' +
       '\u2022 Braids \u2014 from GHS 300<br>' +
       '\u2022 Frontal install \u2014 from GHS 250<br>' +
+      '\u2022 Hair treatment \u2014 from GHS 60<br>' +
+      '\u2022 Locs / retwist \u2014 from GHS 120<br>' +
       '\u2022 Nail extensions \u2014 from GHS 180<br>' +
+      '\u2022 Pedicure \u2014 from GHS 80<br>' +
       '\u2022 Mink lashes \u2014 from GHS 150<br>' +
       '\u2022 Ombr\u00e9 brows \u2014 from GHS 400<br>' +
-      '\u2022 Make-up \u2014 from GHS 200<br><br>' +
-      'Booking two or more together always works out cheaper \u2014 build your own on the <a href="./packages.html" style="color:#A97142;font-weight:700;text-decoration:underline;">Packages page</a>.',
+      '\u2022 Make-up \u2014 from GHS 200<br>' +
+      '\u2022 Facial \u2014 from GHS 160<br>' +
+      '\u2022 Massage \u2014 from GHS 150<br>' +
+      '\u2022 Waxing \u2014 from GHS 40<br><br>' +
+      'All 88 prices are on the <a href="./services.html#prices" style="color:#A97142;font-weight:700;text-decoration:underline;">Services page</a>, and booking two or more together always works out cheaper.',
     consult:
       'Let\u2019s get you booked \uD83D\uDCC5 We are open <strong>Mon\u2013Sun, 9am\u20136pm</strong>. Saturdays fill up first, so midweek is easier for long appointments. Use our <a href="./contact.html" style="color:#A97142;font-weight:700;text-decoration:underline;">booking form</a> or WhatsApp <strong>055 574 7887</strong> \u2014 which do you prefer?',
     braids:
@@ -175,6 +186,16 @@
       'Make-up from <strong>GHS 200</strong> for soft glam. \uD83D\uDC84 Bridal is from GHS 800 and includes a trial beforehand. We shade-match at your jaw in daylight, so you never go grey in photos. What is the occasion?',
     skin:
       'Facials from <strong>GHS 160</strong> \u2014 deep cleansing, hydrating and acne treatments built for Accra heat and dust. \uD83E\uDDF4 Piercing is from <strong>GHS 80</strong> with a sterile single-use needle and full aftercare.',
+    pedicure:
+      'Feet first \uD83D\uDC63 Classic pedicure <strong>GHS 80</strong>, spa pedicure <strong>GHS 140</strong> (soak, scrub, callus work and a foot massage), gel pedicure <strong>GHS 160</strong>. Mani + pedi booked together is <strong>GHS 190</strong>.',
+    massage:
+      'Our body room is the best-kept secret here \u2728 Back, neck &amp; shoulder 30 min <strong>GHS 150</strong>; full body 60 min <strong>GHS 250</strong>, 90 min <strong>GHS 350</strong>. Hot stone <strong>GHS 320</strong>, deep tissue <strong>GHS 300</strong>, body scrub <strong>GHS 280</strong>. Private room, always.',
+    waxing:
+      'Waxing and threading, done discreetly in a private room with fresh strips every time. Brows <strong>GHS 40</strong>, underarm <strong>GHS 60</strong>, half leg <strong>GHS 90</strong>, full leg <strong>GHS 160</strong>, bikini <strong>GHS 120</strong>, Brazilian <strong>GHS 200</strong>.',
+    locs:
+      'We love a loc journey \u2728 Starter locs <strong>GHS 350</strong>, retwist &amp; maintenance <strong>GHS 120</strong> (with styling <strong>GHS 180</strong>), faux locs <strong>GHS 400</strong>, loc detox <strong>GHS 160</strong>. Silk press is <strong>GHS 180</strong>.',
+    treatment:
+      'Healthy hair first \u2728 Wash &amp; blow-dry <strong>GHS 60</strong>, deep conditioning <strong>GHS 90</strong>, protein treatment <strong>GHS 130</strong>, steam therapy <strong>GHS 110</strong>, scalp detox <strong>GHS 120</strong>, dandruff treatment <strong>GHS 140</strong>. Full hair spa session <strong>GHS 220</strong>.',
     availability:
       'Rough timings so you can plan your day \u23F1\uFE0F<br><br>\u2022 Braids \u2014 3 to 6 hours<br>\u2022 Frontal install \u2014 2 to 3 hours<br>\u2022 Nail extensions \u2014 about 90 minutes<br>\u2022 Lashes \u2014 90 minutes to 2 hours<br>\u2022 Make-up \u2014 about an hour<br><br>We book realistic slots, so you are not left waiting.',
     team:
@@ -182,7 +203,7 @@
     location:
       'We are in <strong>Greater Accra</strong> \uD83D\uDCCD and open <strong>Mon\u2013Sun, 9am\u20136pm</strong>. Walk-ins are welcome whenever a chair is free, but booking guarantees your slot. Map is on our <a href="./contact.html" style="color:#A97142;font-weight:700;text-decoration:underline;">contact page</a>.',
     greet:
-      'Hey love \u2728 So glad you are here. Ask me anything about braids, wigs, nails, lashes, brows, make-up or facials \u2014 or tap a quick option below.',
+      'Hey love \u2728 So glad you are here. Ask me anything \u2014 braids, wigs, locs, nails, pedicure, lashes, brows, make-up, facials, massage or waxing. Or tap a quick option below.',
     thanks:
       'You are so welcome! \uD83D\uDC95 We cannot wait to have you in the chair. Anything else I can help with?',
     fallback:

@@ -408,7 +408,7 @@
       openDrawer('New appointment',
         '<div class="a-field"><label>Customer name</label><input class="a-input" id="nb-client" placeholder="e.g. Ama Owusu"></div>' +
         '<div class="a-field"><label>Phone / WhatsApp</label><input class="a-input" id="nb-phone" type="tel" placeholder="024 000 0000"></div>' +
-        '<div class="a-field"><label>Service</label><select class="a-select" id="nb-type"><option>Braids</option><option>Wigs</option><option>Wig Purchase</option><option>Wig Revamp</option><option>Nails</option><option>Lashes</option><option>Brows</option><option>Make-Up</option><option>Facial</option><option>Piercing</option></select></div>' +
+        '<div class="a-field"><label>Service</label><select class="a-select" id="nb-type"><option>Braids</option><option>Wigs</option><option>Wig Purchase</option><option>Wig Revamp</option><option>Hair Treatment</option><option>Locs</option><option>Nails</option><option>Pedicure</option><option>Lashes</option><option>Brows</option><option>Make-Up</option><option>Facial</option><option>Massage</option><option>Waxing</option><option>Piercing</option></select></div>' +
         '<div class="a-field"><label>Date</label><input class="a-input" type="date" id="nb-date" value="' + iso(d(2)) + '"></div>' +
         '<div class="a-field"><label>Stylist</label><select class="a-select" id="nb-venue">' + STAFF.map(function (s) { return '<option>' + s.name + '</option>'; }).join('') + '</select></div>' +
         '<div class="a-field"><label>Price (GHS)</label><input class="a-input" type="number" id="nb-amount" inputmode="numeric" placeholder="e.g. 250"></div>' +
