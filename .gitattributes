@@ -1,0 +1,14 @@
+# Normalise line endings. The repo was checked out with core.autocrlf=true,
+# which produced a mix of CRLF and LF and made diffs noisy across machines.
+* text=auto eol=lf
+
+# Binary assets — never touch these.
+*.jpg  binary
+*.jpeg binary
+*.png  binary
+*.webp binary
+*.gif  binary
+*.ico  binary
+*.woff binary
+*.woff2 binary
+*.mp4  binary

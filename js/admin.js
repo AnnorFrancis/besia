@@ -1,5 +1,5 @@
 /* ============================================================
-   XCLUSIVEHAIRDEALS — admin.js
+   BĒSIA BEAUTY STUDIO — admin.js
    Simple salon manager: appointments, walk-ins, customers,
    payments, reports and staff. No charts, no jargon.
    Everything is frontend-only (demo) and talks to the client
@@ -10,7 +10,7 @@
 
   /* ================= THEME ================= */
   try {
-    var savedTheme = localStorage.getItem('xhd-admin-theme');
+    var savedTheme = localStorage.getItem('besia-admin-theme');
     if (savedTheme) document.documentElement.setAttribute('data-theme', savedTheme);
   } catch (e) {}
   function isDark() { return document.documentElement.getAttribute('data-theme') === 'dark'; }
@@ -19,7 +19,7 @@
     themeToggle.addEventListener('click', function () {
       var next = isDark() ? 'light' : 'dark';
       document.documentElement.setAttribute('data-theme', next);
-      try { localStorage.setItem('xhd-admin-theme', next); } catch (e) {}
+      try { localStorage.setItem('besia-admin-theme', next); } catch (e) {}
     });
   }
 
@@ -98,8 +98,8 @@
   }
 
   /* ================= WHATSAPP ================= */
-  var SALON_NAME = 'XCLUSIVEHAIRDEALS';
-  var SALON_LINE = 'Greater Accra  |  055 574 7887';
+  var SALON_NAME = 'BĒSIA BEAUTY STUDIO';
+  var SALON_LINE = '54 Fifth Circular Road, Cantonments, Accra  |  024 078 7993';
   function waNumber(phone) {
     var n = String(phone || '').replace(/[^0-9]/g, '');
     if (n.indexOf('233') === 0) return n;
@@ -123,34 +123,34 @@
       'Total:    ' + money(b.amount) + '\n' + 'Paid:     ' + money(b.deposit) + '\n' +
       (balance > 0 ? 'Balance:  ' + money(balance) + '\n' : '*PAID IN FULL*\n') +
       '--------------------------------\n' +
-      'Thank you for choosing Xclusivehairdeals.\nWe cannot wait to see you again.';
+      'Thank you for choosing Bēsia Beauty Studio.\nWe cannot wait to see you again.';
   }
   function reminderText(b) {
     var balance = b.amount - b.deposit;
     return 'Hi ' + firstName(b.client) + ',\n\n' +
-      'A friendly reminder of your appointment at *Xclusivehairdeals*:\n\n' +
+      'A friendly reminder of your appointment at *Bēsia Beauty Studio*:\n\n' +
       'Date:    ' + pretty(b.date) + '\nService: ' + b.type + '\nStylist: ' + b.venue + '\n' +
       (balance > 0 ? 'Balance due: ' + money(balance) + '\n' : '') +
       '\nPlease come with clean, detangled hair if you are booked for braids or an install.\nReply here if you need to move your time.';
   }
   function confirmText(b) {
     return 'Hi ' + firstName(b.client) + ',\n\n' +
-      'Good news — your appointment at *Xclusivehairdeals* is *CONFIRMED*. ✅\n\n' +
+      'Good news — your appointment at *Bēsia Beauty Studio* is *CONFIRMED*. ✅\n\n' +
       'Date:    ' + pretty(b.date) + '\nService: ' + b.type + '\n\n' +
       'Please arrive 10 minutes early. Reply here if anything changes. See you soon!';
   }
   function rejectText(b) {
     return 'Hi ' + firstName(b.client) + ',\n\n' +
-      'Thank you for booking *' + b.type + '* with Xclusivehairdeals.\n\n' +
+      'Thank you for booking *' + b.type + '* with Bēsia Beauty Studio.\n\n' +
       'Unfortunately that time (' + pretty(b.date) + ') is fully booked. \uD83D\uDE4F\n' +
       'Please reply with another day or time that suits you and we will lock it in right away.\n\n' +
-      'We really do not want to miss you. — Xclusivehairdeals';
+      'We really do not want to miss you. — Bēsia Beauty Studio';
   }
 
   /* ================= WEBSITE BOOKINGS BRIDGE =================
      The public booking form saves each request into localStorage.
      Here we read them so they appear in Appointments automatically. */
-  var WEB_KEY = 'xhd-web-bookings';
+  var WEB_KEY = 'besia-web-bookings';
   function loadWeb() { try { return JSON.parse(localStorage.getItem(WEB_KEY) || '[]'); } catch (e) { return []; } }
   function saveWeb(arr) { try { localStorage.setItem(WEB_KEY, JSON.stringify(arr)); } catch (e) {} }
   function setWebStatus(webId, status) {
@@ -160,41 +160,45 @@
   }
 
   /* ================= MOCK DATA ================= */
+  /* Appointments. Service names and amounts come from the published
+     menu in js/besia-data.js, so nothing in the manager can quote a
+     price the website does not show. */
   var BOOKINGS = [
-    { id: 'APT-2041', client: 'Akosua Danso', phone: '024 555 1201', type: 'Braids', date: d(0), venue: 'Xclusive', pkg: 'Radiance', amount: 680, deposit: 200, status: 'Confirmed', source: 'Instagram', notes: 'Knotless, waist length. Bringing her own hair. Allow 5 hours.' },
-    { id: 'APT-2040', client: 'Naa Adjeley Tetteh', phone: '020 441 8890', type: 'Lashes', date: d(0), venue: 'Selina', pkg: 'Single Service', amount: 150, deposit: 0, status: 'Confirmed', source: 'TikTok', notes: 'Hybrid refill. Lunch break slot — must finish by 2pm.' },
-    { id: 'APT-2039', client: 'Priscilla Amoah', phone: '027 660 3321', type: 'Make-Up', date: d(1), venue: 'Maame', pkg: 'Icon', amount: 1800, deposit: 900, status: 'Confirmed', source: 'Referral', notes: 'Bridal. Trial already done. Opening early at 6am for the party.' },
-    { id: 'APT-2038', client: 'Efua Boakye', phone: '030 277 4410', type: 'Brows', date: d(2), venue: 'Selina', pkg: 'Single Service', amount: 400, deposit: 100, status: 'Confirmed', source: 'Instagram', notes: 'Ombré brows, first session. Patch test done last week.' },
-    { id: 'APT-2037', client: 'Adjoa Serwaa', phone: '024 118 7745', type: 'Nails', date: d(2), venue: 'Abena', pkg: 'Glow', amount: 300, deposit: 0, status: 'Pending', source: 'Phone', notes: 'Full set plus pedicure. Waiting for her to confirm the time.' },
-    { id: 'APT-2036', client: 'Ama Owusu', phone: '026 909 2288', type: 'Wigs', date: d(3), venue: 'Xclusive', pkg: 'Single Service', amount: 250, deposit: 100, status: 'Confirmed', source: 'Instagram', notes: 'Frontal install + styling. Wig already dropped off.' },
-    { id: 'APT-2035', client: 'Linda Mensah', phone: '055 302 6614', type: 'Braids', date: d(-1), venue: 'Xclusive', pkg: 'Radiance', amount: 720, deposit: 720, status: 'Completed', source: 'Walk-in', notes: 'Loved the result — ask for a photo and a review.' },
-    { id: 'APT-2034', client: 'Gifty Asare', phone: '024 700 5512', type: 'Facial', date: d(4), venue: 'Maame', pkg: 'Single Service', amount: 160, deposit: 0, status: 'Confirmed', source: 'Instagram', notes: 'Deep cleanse. Sensitive skin — no strong exfoliant.' },
-    { id: 'APT-2033', client: 'Sandra Nyarko', phone: '020 655 0091', type: 'Nails', date: d(-3), venue: 'Abena', pkg: 'Single Service', amount: 180, deposit: 180, status: 'Completed', source: 'Walk-in', notes: 'Almond set, nude. Refill due in about 3 weeks.' },
-    { id: 'APT-2032', client: 'Yaa Pokuaa', phone: '027 233 8181', type: 'Make-Up', date: d(6), venue: 'Maame', pkg: 'Single Service', amount: 200, deposit: 0, status: 'Pending', source: 'TikTok', notes: 'Birthday glam. Awaiting deposit to hold the slot.' },
-    { id: 'APT-2031', client: 'Rita Agyeman', phone: '024 866 2299', type: 'Wigs', date: d(-6), venue: 'Xclusive', pkg: 'Single Service', amount: 470, deposit: 470, status: 'Completed', source: 'Referral', notes: 'Colour + install. Honey blonde came out beautifully.' },
-    { id: 'APT-2030', client: 'Josephine Larbi', phone: '055 121 7648', type: 'Lashes', date: d(-9), venue: 'Selina', pkg: 'Glow', amount: 270, deposit: 270, status: 'Completed', source: 'Walk-in', notes: 'Volume set plus brow tint. Very happy.' },
-    { id: 'APT-2029', client: 'Comfort Adjei', phone: '030 290 1177', type: 'Braids', date: d(-14), venue: 'Xclusive', pkg: 'Single Service', amount: 380, deposit: 380, status: 'Completed', source: 'Walk-in', notes: 'Cornrows. Third visit this year — regular client.' },
-    { id: 'APT-2028', client: 'Vida Ansah', phone: '026 480 3350', type: 'Nails', date: d(8), venue: 'Abena', pkg: 'Single Service', amount: 180, deposit: 50, status: 'Cancelled', source: 'Phone', notes: 'Travelling — will rebook when back. Deposit carried forward.' }
+    { id: 'APT-2041', client: 'Akosua Danso', phone: '024 555 1201', type: '150 grams - KTips', date: d(0), venue: 'Dana', pkg: 'Fusion Extensions', amount: 3000, deposit: 1000, status: 'Confirmed', source: 'Instagram', notes: 'First KTip install. Consultation done — density is good. Allow 4 hours.' },
+    { id: 'APT-2040', client: 'Naa Adjeley Tetteh', phone: '020 441 8890', type: 'Curl Revive | Wash + Go', date: d(0), venue: 'Hair Club', pkg: 'Naturals, Curls & Coils', amount: 550, deposit: 0, status: 'Confirmed', source: 'TikTok', notes: 'Lunch-break slot — must finish by 2pm. Wash and go, no heat.' },
+    { id: 'APT-2039', client: 'Priscilla Amoah', phone: '027 660 3321', type: 'Vegan Keratin Treatment - Nanoplasty', date: d(1), venue: 'Dana', pkg: 'Texture Systems', amount: 4650, deposit: 2000, status: 'Confirmed', source: 'Referral', notes: 'Wedding in three weeks. Patch test done. Block out 4 hr 30 min.' },
+    { id: 'APT-2038', client: 'Efua Boakye', phone: '030 277 4410', type: 'Olaplex Treatment', date: d(2), venue: 'Francis', pkg: 'Scalp + Bond Repair', amount: 850, deposit: 200, status: 'Confirmed', source: 'Instagram', notes: 'Post-colour bond repair. Second of three sessions.' },
+    { id: 'APT-2037', client: 'Adjoa Serwaa', phone: '024 118 7745', type: 'All Over Color - Medium', date: d(2), venue: 'Francis', pkg: 'Colour', amount: 950, deposit: 0, status: 'Pending', source: 'Phone', notes: 'Wants to go two shades lighter. Waiting for her to confirm the time.' },
+    { id: 'APT-2036', client: 'Ama Owusu', phone: '026 909 2288', type: 'Frontal Installation', date: d(3), venue: 'Dana', pkg: 'Wig Service', amount: 500, deposit: 200, status: 'Confirmed', source: 'Instagram', notes: 'Unit already dropped off. Wants a middle parting.' },
+    { id: 'APT-2035', client: 'Linda Mensah', phone: '055 302 6614', type: 'Curl Revive with FlaxGRO', date: d(-1), venue: 'Hair Club', pkg: 'Scalp + Bond Repair', amount: 1250, deposit: 1250, status: 'Completed', source: 'Walk-in', notes: 'Shedding has improved noticeably. Ask for a photo and a review.' },
+    { id: 'APT-2034', client: 'Gifty Asare', phone: '024 700 5512', type: 'Scalp + Dandruff Intensive Detox', date: d(4), venue: 'Hair Club', pkg: 'Scalp + Bond Repair', amount: 550, deposit: 0, status: 'Confirmed', source: 'Instagram', notes: 'Sensitive scalp — go gentle on the exfoliating step.' },
+    { id: 'APT-2033', client: 'Sandra Nyarko', phone: '020 655 0091', type: 'Silkpress Xpress', date: d(-3), venue: 'Francis', pkg: 'Styling', amount: 550, deposit: 550, status: 'Completed', source: 'Walk-in', notes: 'Silk press held all week. Rebook in about four weeks.' },
+    { id: 'APT-2032', client: 'Yaa Pokuaa', phone: '027 233 8181', type: 'Texture Release - Hair Botox', date: d(6), venue: 'Dana', pkg: 'Texture Systems', amount: 3850, deposit: 0, status: 'Pending', source: 'TikTok', notes: 'Birthday treat. Awaiting deposit to hold the slot.' },
+    { id: 'APT-2031', client: 'Rita Agyeman', phone: '024 866 2299', type: 'Balayage - Medium', date: d(-6), venue: 'Francis', pkg: 'Colour', amount: 1250, deposit: 1250, status: 'Completed', source: 'Referral', notes: 'Honey balayage came out beautifully. Books a change every season.' },
+    { id: 'APT-2030', client: 'Josephine Larbi', phone: '055 121 7648', type: 'Flax Seed + Aloe Treatment', date: d(-9), venue: 'Hair Club', pkg: 'Scalp + Bond Repair', amount: 450, deposit: 450, status: 'Completed', source: 'Walk-in', notes: 'Loved the flaxseed mask — sold her the take-home jar.' },
+    { id: 'APT-2029', client: 'Comfort Adjei', phone: '030 290 1177', type: 'Seamless Tape-Ins', date: d(-14), venue: 'Dana', pkg: 'Fusion Extensions', amount: 1500, deposit: 1500, status: 'Completed', source: 'Walk-in', notes: 'Move-up due in 6 to 8 weeks. Third visit this year.' },
+    { id: 'APT-2028', client: 'Vida Ansah', phone: '026 480 3350', type: 'Precision Cut', date: d(8), venue: 'Francis', pkg: 'Cutting', amount: 300, deposit: 50, status: 'Cancelled', source: 'Phone', notes: 'Travelling — will rebook when back. Deposit carried forward.' },
+    { id: 'APT-2027', client: 'Abena Mensimah', phone: '024 330 7781', type: 'Free Hair Consultation', date: d(0), venue: 'Dana', pkg: 'Consultations & Basics', amount: 0, deposit: 0, status: 'Confirmed', source: 'Website', notes: 'First visit. Wants KTips but has never worn extensions — assess density.' }
   ];
 
   var CLIENTS = [
-    { name: 'Akosua Danso', phone: '024 555 1201', email: 'akosua.d@gmail.com', events: 6, spent: 3400, last: d(0), src: 'Instagram', notes: 'Braids every 6–7 weeks. Prefers knotless, waist length. Always on time.' },
-    { name: 'Priscilla Amoah', phone: '027 660 3321', email: 'priscilla.a@gmail.com', events: 3, spent: 2900, last: d(1), src: 'Referral', notes: 'Bride. Trial done. Bringing 4 bridesmaids on the day.' },
-    { name: 'Linda Mensah', phone: '055 302 6614', email: 'lindam@yahoo.com', events: 8, spent: 4100, last: d(-1), src: 'Walk-in', notes: 'One of our longest clients. Happy to give a testimonial.' },
-    { name: 'Naa Adjeley Tetteh', phone: '020 441 8890', email: 'naa.tetteh@gmail.com', events: 11, spent: 1850, last: d(0), src: 'TikTok', notes: 'Lash refills every 3 weeks, always on her lunch break. Keep slots short.' },
-    { name: 'Efua Boakye', phone: '030 277 4410', email: 'efua.b@gmail.com', events: 2, spent: 560, last: d(2), src: 'Instagram', notes: 'Ombré brows in progress. Touch-up due in 6 weeks — remind her.' },
-    { name: 'Rita Agyeman', phone: '024 866 2299', email: 'rita.agyeman@gmail.com', events: 5, spent: 2300, last: d(-6), src: 'Referral', notes: 'Loves colour. Books a change every season.' },
-    { name: 'Adjoa Serwaa', phone: '024 118 7745', email: 'adjoaserwaa@icloud.com', events: 4, spent: 980, last: d(2), src: 'Facebook', notes: 'Nails regular. Sometimes reschedules — confirm the day before.' },
-    { name: 'Ama Owusu', phone: '026 909 2288', email: 'ama.owusu@gmail.com', events: 3, spent: 890, last: d(3), src: 'Instagram', notes: 'Drops her wig off ahead of time. Very easy client.' },
-    { name: 'Yaa Pokuaa', phone: '027 233 8181', email: 'yaa.p@gmail.com', events: 1, spent: 200, last: d(6), src: 'TikTok', notes: 'First time. Birthday glam — deposit still pending.' },
-    { name: 'Josephine Larbi', phone: '055 121 7648', email: 'jlarbi@outlook.com', events: 7, spent: 1620, last: d(-9), src: 'Walk-in', notes: 'Lashes and brows together. Great photos — ask before posting.' }
+    { name: 'Akosua Danso', phone: '024 555 1201', email: 'akosua.d@gmail.com', events: 6, spent: 9400, last: d(0), src: 'Instagram', notes: 'KTip client. Move-up every 8 weeks. Bond condition is excellent.' },
+    { name: 'Priscilla Amoah', phone: '027 660 3321', email: 'priscilla.a@gmail.com', events: 3, spent: 7300, last: d(1), src: 'Referral', notes: 'Nanoplasty before the wedding. Bringing two bridesmaids for silk press.' },
+    { name: 'Linda Mensah', phone: '055 302 6614', email: 'lindam@yahoo.com', events: 8, spent: 6100, last: d(-1), src: 'Walk-in', notes: 'Longest-standing client. Shedding much improved. Happy to give a testimonial.' },
+    { name: 'Naa Adjeley Tetteh', phone: '020 441 8890', email: 'naa.tetteh@gmail.com', events: 11, spent: 4850, last: d(0), src: 'TikTok', notes: 'Curl Revive every 3 weeks, always on her lunch break. Keep slots short.' },
+    { name: 'Efua Boakye', phone: '030 277 4410', email: 'efua.b@gmail.com', events: 4, spent: 2560, last: d(2), src: 'Instagram', notes: 'Bond repair course, session 2 of 3. Third due in 4 weeks — remind her.' },
+    { name: 'Rita Agyeman', phone: '024 866 2299', email: 'rita.agyeman@gmail.com', events: 5, spent: 5300, last: d(-6), src: 'Referral', notes: 'Loves colour. Books a change every season. Always pairs it with Olaplex.' },
+    { name: 'Adjoa Serwaa', phone: '024 118 7745', email: 'adjoaserwaa@icloud.com', events: 4, spent: 2980, last: d(2), src: 'Facebook', notes: 'Colour regular. Sometimes reschedules — confirm the day before.' },
+    { name: 'Ama Owusu', phone: '026 909 2288', email: 'ama.owusu@gmail.com', events: 3, spent: 1890, last: d(3), src: 'Instagram', notes: 'Drops her unit off ahead of time. Very easy client.' },
+    { name: 'Yaa Pokuaa', phone: '027 233 8181', email: 'yaa.p@gmail.com', events: 1, spent: 460, last: d(6), src: 'TikTok', notes: 'First time. Hair Botox booked — deposit still pending.' },
+    { name: 'Josephine Larbi', phone: '055 121 7648', email: 'jlarbi@outlook.com', events: 7, spent: 3620, last: d(-9), src: 'Walk-in', notes: 'Treatment client. Buys the flaxseed mask every visit. Ask before posting photos.' }
   ];
 
   var STAFF = [
-    { name: 'Xclusive', role: 'Owner · Lead Stylist', phone: '055 574 7887', since: 2019, skills: 'Braids, Wigs, Frontals, Colour' },
-    { name: 'Selina', role: 'Lash & Brow Artist', phone: '024 700 1180', since: 2021, skills: 'Mink lashes, Ombré brows' },
-    { name: 'Abena', role: 'Nail Technician', phone: '020 553 9924', since: 2022, skills: 'Manicure, Pedicure, Nail art' },
-    { name: 'Maame', role: 'Make-Up Artist', phone: '026 118 4472', since: 2020, skills: 'Bridal & event make-up, Facials' }
+    { name: 'Dana', role: 'Founder · Fusion Extension Specialist', phone: '024 078 7993', since: 2023, skills: 'KTips, microlinks, Nanoplasty, Hair Botox' },
+    { name: 'Francis', role: 'Senior Stylist', phone: '024 078 7993', since: 2024, skills: 'Silk press, colour, precision cutting' },
+    { name: 'Rabs', role: 'Lash, Brow & Hair Artist', phone: '024 078 7993', since: 2024, skills: 'Lash sets, brows, styling' },
+    { name: 'Hair Club', role: 'The Hair Club at Bēsia', phone: '024 078 7993', since: 2025, skills: 'Scalp care, treatments, naturals' }
   ];
 
   // Payments received log — seeded from real deposits plus a few of today's cash sales.
@@ -202,7 +206,7 @@
   BOOKINGS.forEach(function (b) {
     if (b.deposit > 0 && b.status !== 'Cancelled') PAYMENTS.push({ client: b.client, service: b.type, amount: b.deposit, when: b.date });
   });
-  PAYMENTS.push({ client: 'Akua Sarpong', service: 'Nails', amount: 180, when: d(0) });
+  PAYMENTS.push({ client: 'Akua Sarpong', service: 'Basic Wash + Blowdry', amount: 350, when: d(0) });
   PAYMENTS.push({ client: 'Esi Quaye', service: 'Braids', amount: 400, when: d(0) });
   PAYMENTS.push({ client: 'Mavis Boateng', service: 'Lashes', amount: 250, when: d(0) });
 
@@ -261,7 +265,7 @@
     var pend = pendingCount();
     var owed = totalOwed();
     var newOrders = 0;
-    if (window.XHDStore) { window.XHDStore.seedOrders(); newOrders = window.XHDStore.getOrders().filter(function (o) { return o.status === 'Order placed'; }).length; }
+    if (window.BesiaStore) { window.BesiaStore.seedOrders(); newOrders = window.BesiaStore.getOrders().filter(function (o) { return o.status === 'Order placed'; }).length; }
 
     var sum = document.getElementById('dash-summary');
     if (sum) {
@@ -528,7 +532,7 @@
         }).join('') + '</ul>' : '<p style="font-size:0.85rem;color:var(--a-ink-soft);font-style:italic;">No visits recorded yet.</p>') +
         '</div>');
       document.getElementById('cl-msg').addEventListener('click', function () {
-        waSend(c.phone, 'Hi ' + firstName(c.name) + ', it’s Xclusivehairdeals ❤️ Just checking in — would you like to book your next appointment?');
+        waSend(c.phone, 'Hi ' + firstName(c.name) + ', it’s Bēsia Beauty Studio ❤️ Just checking in — would you like to book your next appointment?');
         toast('Message ready in WhatsApp');
       });
     }
@@ -688,7 +692,7 @@
       }).join('');
       document.querySelectorAll('.staff-msg').forEach(function (btn) {
         btn.addEventListener('click', function () {
-          waSend(btn.getAttribute('data-phone'), 'Hi ' + firstName(btn.getAttribute('data-name')) + ', quick note from Xclusivehairdeals about today’s schedule:');
+          waSend(btn.getAttribute('data-phone'), 'Hi ' + firstName(btn.getAttribute('data-name')) + ', quick note from Bēsia Beauty Studio about today’s schedule:');
           toast('Message ready in WhatsApp');
         });
       });
@@ -718,8 +722,8 @@
      Status changes here appear instantly on the customer's
      Track Order page (same device / same browser in this demo).
      ================================================================ */
-  if (page === 'orders' && window.XHDStore) {
-    var S = window.XHDStore;
+  if (page === 'orders' && window.BesiaStore) {
+    var S = window.BesiaStore;
     S.seedOrders();
     var orState = { q: '', chip: 'all' };
 
@@ -844,7 +848,7 @@
         toast(o.id + ' cancelled'); renderOrders(); openOrder(o.id);
       });
       if ((el = document.getElementById('or-msg'))) el.addEventListener('click', function () {
-        waSend(o.phone, 'Hi ' + firstName(o.customer) + ', this is Xclusivehairdeals about your order *' + o.id + '* (' + o.status + ').');
+        waSend(o.phone, 'Hi ' + firstName(o.customer) + ', this is Bēsia Beauty Studio about your order *' + o.id + '* (' + o.status + ').');
         toast('Message ready in WhatsApp');
       });
     }

@@ -1,182 +1,214 @@
-# Xclusivehairdeals — Website & Business Manager
+# Bēsia Beauty Studio — Website & Studio Manager
 
-A production-grade sample for **Xclusivehairdeals** — a hair salon, wig store and beauty
-store in Greater Accra, Ghana. Braids, wigs, bundles, closures and frontals, extensions,
-hair colouring, nails, lashes, brows, make-up, facials and hair care products.
+A customised sample for **Bēsia Beauty Studio** — Ghana's home of fusion extensions,
+at 54 Fifth Circular Road, Cantonments, Accra. One system: a public website and a
+back-office studio manager, sharing the same data and the same order book.
 
 > Designed & Developed by [Perkins Creative](https://perkins-swart.vercel.app)
 
 ---
 
-## What's inside
-
-```
-SALON2/
-  index.html          Home — hero slideshow, services, shop teaser, stats, look book, packages, reviews
-  services.html       12 service tiles + quick-jump bar + full price list (88 prices) + before/after slider
-  shop.html           23 products across 6 categories, filterable, add-to-cart
-  gallery.html        Filterable look book (8 categories, 32 photos) with FLIP animations + lightbox
-  about.html          Story, timeline, values, "Inside the Lounge" photo strip, team
-  packages.html       3 packages + interactive service builder (live total -> booking form)
-  checkout.html       NEW — bag, delivery/pickup, simulated MoMo & card payment, order number
-  track.html          NEW — live order tracking by order number, status timeline
-  contact.html        4-step booking form with instant estimate + map + contact channels
-  admin/
-    dashboard.html    Today — appointments, money owed, quick launcher
-    bookings.html     Appointments — search / filter, detail drawer, confirm & reject
-    orders.html       NEW — Shop Orders: confirm, advance status, mark paid, cancel
-    walkin.html       Walk-In — record someone who came in without booking
-    clients.html      Customers — visit history and notes
-    payments.html     Payments — who owes what, record a payment
-    reports.html      Reports — week / month / year in plain numbers
-    staff.html        Staff — the team, workload, message them
-  css/    style.css · animations.css · admin.css
-  js/     main.js · animations.js · gallery.js · booking.js · ai-chat.js · admin.js · store.js
-  images/ Client photos + licensed stock, organised by category (see CREDITS.md)
-```
-
-## How to run
+## Run it
 
 No build step. No install. Plain HTML/CSS/JS with relative paths.
 
-- **Quickest:** double-click `index.html`.
-- **Recommended:** serve the folder — `npx http-server . -p 8899`, or VS Code Live Server.
-- **Hosting:** upload the folder as-is to any static host (Netlify, Vercel, cPanel, GitHub Pages).
+```bash
+npx http-server . -p 8899
+```
 
-Admin is at `/admin/dashboard.html` — deliberately not linked from the public site.
-Open it directly when demoing.
+Then open <http://localhost:8899>. The studio manager is at
+`/admin/dashboard.html` — deliberately unlinked from the public site.
 
-## Business details baked in
+**Serve the folder; do not double-click the files.** The website ↔ manager handoff
+runs through `localStorage`, which is scoped per origin — both halves must be opened
+from the same address for the demo to connect.
 
-- **Xclusivehairdeals** — Hair Salon · Wig Store · Beauty Store
-- Greater Accra, Ghana
-- Phone / WhatsApp: **055 574 7887**
-- Email: **wehndieandy12@gmail.com**
-- Hours: **Mon–Sun, 9am–6pm** (the "Open now" pill and the chat assistant both follow this)
+---
 
-## The service menu
+## The one file that matters
 
-Twelve services, each with its own tile and price group — which is also what the
-site has always claimed in its "twelve signature services" badge:
+Everything — every price, every product, the phone number, the opening hours —
+lives in **`js/besia-data.js`**. Nothing else needs editing.
 
-| # | Service | From |
+```
+js/besia-data.js
+  BUSINESS            name, phone, email, address, hours, socials, storage namespace
+  SERVICE_CATEGORIES  the 10 disciplines
+  SERVICES            all 47 services: price, duration, description
+  PRODUCTS            23 retail items across 5 categories
+  TEAM / REVIEWS      the collaborative, and the real 5.0 reviews
+```
+
+The pages are then **generated** from it:
+
+```bash
+node tools/build-services.js     # service tiles + the 47-line price list
+node tools/build-shop.js         # the 23 product cards + filters
+node tools/build-home.js         # home page service and shop teasers
+node tools/build-packages.js     # the three bundles + the price builder
+node tools/build-seo.js          # titles, canonicals, OG, JSON-LD, sitemap, robots
+```
+
+Each writes only between `<!--BUILD:x-->` markers, so hand-written copy around
+them is never touched. Re-running them is safe and idempotent.
+
+`js/booking.js`, `js/ai-chat.js`, `js/store.js` and `js/admin.js` read the same file
+at runtime. **A price cannot drift** — the estimator, the chat assistant, the admin
+and the printed price list are all reading one number.
+
+### Checks
+
+```bash
+node tools/check-assets.js       # every local asset resolves, with exact case
+node tools/add-image-dims.js     # stamps width/height on any new <img>
+```
+
+`check-assets.js` matters more than it looks: Windows is case-insensitive and
+GitHub Pages is not, so a wrong-case path works locally and 404s in production.
+
+---
+
+## The studio, as published
+
+| | |
+|---|---|
+| **Bēsia Beauty Studio** | Hair salon · beauty collaborative |
+| Address | 54 Fifth Circular Road, Cantonments, Accra |
+| Phone / WhatsApp | **024 078 7993** |
+| Email | hello@besia.co |
+| Hours | **Mon–Sat, 9am – 7pm** · closed Sunday |
+| Rating | 5.0 from 16 reviews |
+| Instagram / TikTok | [@besia.hq](https://instagram.com/besia.hq) · [@besiahq](https://www.tiktok.com/@besiahq) |
+
+Positioning, in her own words: *Ghana's home of fusion extensions, specialising in
+seamless KTips and microlinks. The first salon in Ghana to offer a safe, vegan,
+formaldehyde-free straightening and texturising system.*
+
+---
+
+## The service menu — 47 services, 10 disciplines
+
+Real, published prices and durations.
+
+| Discipline | Services | From |
 |---|---|---|
-| 01 | Braids & Protective Styles | GHS 80 |
-| 02 | Wigs, Frontals & Colour | GHS 90 |
-| 03 | Hair Treatment & Scalp Care | GHS 60 |
-| 04 | Locs & Natural Hair | GHS 120 |
-| 05 | Manicure & Nail Art | GHS 40 |
-| 06 | Pedicure & Foot Spa | GHS 60 |
-| 07 | Lashes & Brows | GHS 50 |
-| 08 | Make-Up | GHS 80 |
-| 09 | Facials & Skincare | GHS 90 |
-| 10 | Massage & Body Spa | GHS 100 |
-| 11 | Waxing & Threading | GHS 40 |
-| 12 | Piercing & Ear Styling | GHS 30 |
+| Fusion Extensions | 12 | GHS 680 |
+| Texture Systems (Nanoplasty, Hair Botox) | 3 | GHS 850 |
+| Scalp + Bond Repair | 12 | GHS 350 |
+| Colour | 7 | GHS 650 |
+| Naturals, Curls & Coils | 2 | GHS 550 |
+| Cutting | 4 | GHS 165 |
+| Braids & Cornrows | 2 | GHS 550 |
+| Styling | 1 | GHS 550 |
+| Wig Service | 1 | GHS 500 |
+| Consultations & Basics | 3 | GHS 200 (first consultation free) |
 
-**88 individual prices** are published across the twelve groups. Each tile's
-"From" figure equals the cheapest line in its own group — verified, so a client
-comparing the two never finds a contradiction.
+Every tile's "From" figure is **computed** from the cheapest line in its own group,
+and `build-services.js` fails loudly if the two ever disagree. A client comparing
+the tile to the list can never find a contradiction.
 
-On phones the groups start collapsed (first one open) with a quick-jump chip bar
-above the tiles, so the page stays scannable instead of becoming a wall of numbers.
+Brows, lashes, waxing and facials are offered too. They are not on the online
+booking menu, so the site presents them as booked with the artist and priced at
+consultation, rather than inventing figures.
 
-## The shop
+---
 
-`shop.html` is the new half of the pitch — she sells product as well as service.
-23 items across six filterable categories:
+## Ordering — end to end, on the site
 
-| Category | Items | From |
-|---|---|---|
-| Wigs | 6 | GHS 850 |
-| Bundles | 2 | GHS 950 |
-| Closures & Frontals | 3 | GHS 720 |
-| Extensions | 2 | GHS 520 |
-| Hair Care & Cosmetics | 5 | GHS 85 |
-| Accessories | 5 | GHS 30 |
+**Shop → Bag → Checkout → Payment → Order number → Tracking → Studio Manager**
 
-Every product has an **Add to Cart** button. Prices live in the `data-add` attribute on
-each card (`"Name|price"`), so changing one is a single-line edit.
+1. `shop.html` — 23 products; the Moringa line shows as **Pre-order / Launching soon**.
+2. `checkout.html` — quantities, pickup (free) or delivery (GHS 30), then Mobile Money
+   (MTN / Telecel / AT), card, or pay on pickup.
+3. A simulated gateway runs, then an order number like `BES-260902-630`.
+4. `track.html` — live status timeline; orders placed on that device appear as chips.
+5. `admin/orders.html` — the order is already waiting. Confirm it, advance it, mark it paid.
+6. **The customer's tracking page moves**, with a timestamp against each step.
 
-## Images
+*Verified end to end in this build:* order `BES-260902-630` placed for GHS 2,210,
+confirmed in the manager, and the tracker updated with both timestamps.
 
-See `images/CREDITS.md` for full sourcing. Client photography, organised so it is
-obvious where each shot is used:
-
-- `images/hero-gallery/` — 16 client looks, the Studio Sessions filter in the look book
-- `images/salon-studio/` — interior, founder portrait, "Inside the Lounge" strip on About
-- `images/wigs/`, `bundles/`, `closures-frontals/`, `extensions/`,
-  `hair-care-cosmetics/`, `accessories/` — the shop catalogue
-- `images/services/` — service photography, the before/after revamp slider, and seven
-  free-licence Unsplash photos covering the added services (pedicure, massage,
-  waxing, facial, locs, piercing, manicure). No watermarked Unsplash+ images.
-- The original sample photos remain at the top level of `images/` and are still in use
-
-## Ordering — end to end, on the website
-
-Nothing is ordered or booked through WhatsApp. WhatsApp is only a contact channel.
-
-**Shop → Cart → Checkout → Payment → Order number → Tracking → Admin**
-
-1. `shop.html` — Add to Cart; a floating bag bar shows count and total.
-2. `checkout.html` — review the bag (change quantities), enter name and phone,
-   choose **pickup (free)** or **delivery (GHS 30)**, then pay by
-   **Mobile Money** (MTN / Telecel / AT), **card**, or **on pickup**.
-3. A simulated gateway runs (MoMo shows a prompt-approval sequence), then the customer
-   gets an order number like `XHD-260822-596`.
-4. `track.html` — enter that number to see a live status timeline. Orders placed on
-   the device appear as one-tap chips.
-5. `admin/orders.html` — the order is waiting. Confirm it, advance it
-   (Ready for pickup / Out for delivery / Delivered), mark it paid, or cancel it.
-6. **The customer's tracking page updates instantly** with a timestamp for each step.
-
-Appointments work the same way: the booking form saves the request and shows a
-reference like `WEB-290451`, and it lands in `admin/bookings.html`.
+Appointments work the same way: the booking form saves a request with a reference
+like `APT-260902`, and it lands in `admin/bookings.html`.
 
 ### Payment — what is real and what is not
 
-The payment flow is a **working simulation**, clearly labelled on-screen. No money moves
-and **no card numbers are stored or transmitted**. For production, swap the simulated
-step in `checkout.html` for **Paystack** or **Hubtel** (both handle Ghanaian MoMo and
-cards) — the surrounding cart, order and tracking logic stays exactly as it is.
+The payment flow is a **working simulation**, labelled on screen. No money moves and
+**no card details are stored or transmitted**. For production, swap the simulated step
+in `checkout.html` for **Paystack** or **Hubtel** — both handle Ghanaian MoMo and
+cards, and the cart, order and tracking logic around it stays exactly as it is.
 
-## Admin — built for a non-technical owner
+---
 
-Plain-English labels throughout: *Dashboard*, *Appointments*, *Shop Orders*, *Walk-In*,
-*Customers*, *Payments*, *Reports*, *Staff*. Every page answers one question.
+## The studio manager
 
-**The feature to demo:** place an order on the website, then open
-`admin/orders.html`. It is already there. Press *Confirm this order*, go back to
-`track.html`, and the customer's timeline has moved — with a timestamp.
+Plain-English labels: *Dashboard, Appointments, Shop Orders, Walk-In, Customers,
+Payments, Reports, Staff*. Every page answers one question. Dark mode included.
 
-## Demo notes (for the pitch)
+Seeded with Bēsia's real service names, real prices and the real team
+(Dana, Francis, Rabs, The Hair Club). Every seeded appointment amount is
+cross-checked against the published menu.
 
-- **Everything is frontend-only.** Orders, bookings, payments, chat and admin data are
-  mock. Production adds a backend (database, real payment gateway, WhatsApp Business API).
-- The website ↔ admin handoff runs through `localStorage`, so both must be opened from
-  the same address — serve the folder rather than double-clicking the files.
-- Four demo orders are seeded so the admin never looks empty.
-- Dark mode (admin sidebar toggle) persists via localStorage.
-- Prices live in four places that must stay in step: the price list in `services.html`,
-  `SERVICE_PRICES` in `js/booking.js`, `data-price` in `packages.html`,
-  and `data-add` in `shop.html`.
+**The moment to demo:** place an order on the site, open `admin/orders.html` —
+it is already there — press *Confirm this order*, then go back to `track.html`.
 
-## Mobile
+---
 
-Verified at 375px and 1280px across all **17 pages**: zero horizontal overflow, zero JS
-errors, every form input ≥16px so iOS never auto-zooms, and every tap target ≥44px.
+## Engineering notes
 
-On phones the heavy grids collapse to a **two-up layout** rather than one tall column —
-the services page dropped from 12.8 to 11.5 screens while carrying twice the content
-(6 service tiles *and* a 42-line price list), and shop cards went from 559px to 327px.
+- **One source of truth.** Prices live in `js/besia-data.js` only. The sample this was
+  forked from kept them in four places that had to be edited in step by hand.
+- **Storage namespace.** All keys are prefixed `besia-` via `BESIA.key()`.
+  `localStorage` is scoped per *origin*, not per path — without this, two demos on
+  one GitHub Pages account would silently share a cart and an order book.
+- **Subresource Integrity.** All 18 third-party script and stylesheet tags are pinned
+  with `sha384` hashes and `crossorigin`, so a compromised CDN cannot execute on the
+  client's site.
+- **Accessibility.** The whole palette is contrast-checked; a dedicated `--gold-ink`
+  token carries accent text at 6.25:1 because the original bronze failed AA at 3.7:1.
+  Pointer targets meet WCAG 2.5.8. All inputs are ≥16px so iOS never auto-zooms.
+- **Performance.** Images recompressed 19 MB → 13 MB; every `<img>` carries intrinsic
+  `width`/`height`, so nothing reflows as the page loads.
+- **SEO.** Canonical URLs, Open Graph and Twitter cards on all 9 public pages,
+  `sitemap.xml`, `robots.txt` (disallowing `/admin/`), a 404 page, and JSON-LD
+  `HairSalon` structured data carrying all 47 offers, the address, the hours and the rating.
+- **Line endings.** Normalised to LF and pinned with `.gitattributes`; the fork
+  arrived with a CRLF/LF mix that made diffs unreadable.
 
-## Customising
+### Before going live
 
-- Colours/typography: CSS variables at the top of `css/style.css` and `css/admin.css`.
-- Copy: all text is plain HTML in each page.
-- Look book: add/remove `.gallery-item` blocks in `gallery.html` (`data-cat`, `data-title`, `data-full`).
-- Shop: add/remove `.product-card` blocks in `shop.html` (`data-cat`, `data-add`).
-- Service prices: the `.price-row` blocks in `services.html`.
-- Order statuses / delivery fee / seeded demo orders: `js/store.js`.
-- Mock admin data: arrays at the top of `js/admin.js`.
-- Chat answers: `INTENT_REPLIES` in `js/ai-chat.js`.
+1. `tools/build-seo.js` → change `SITE_URL` to the real domain, then re-run it.
+2. Confirm the **retail prices** with the owner — service prices are her real
+   published menu, but the 23 shop prices are indicative placeholders.
+3. Confirm the **email address**; `hello@besia.co` is taken from her link-in-bio.
+4. Replace the simulated payment step with Paystack or Hubtel.
+5. Put the studio manager behind real authentication — see below.
+
+---
+
+## Known limits (say these out loud in the pitch)
+
+- **Everything is frontend-only.** Orders, bookings, payments, chat and manager data
+  are held in the browser. Production needs a backend: database, real payment
+  gateway, WhatsApp Business API.
+- **The studio manager has no authentication.** It is unlinked, and `robots.txt`
+  disallows it, but that is not a security control. Anyone with the URL can open it.
+  Real auth is a backend task and must be scoped before launch.
+- **Four demo orders are seeded** so the manager never looks empty.
+- **The chat assistant is scripted**, not a language model. It matches keywords and
+  answers from the live price list.
+- Reviews shown are her real public Fresha reviews. Get her sign-off before publishing.
+
+---
+
+## Images
+
+- `images/studio/` — **five photographs of the actual studio** (reception, styling nook,
+  wash room, consultation corner, the wordmark on fluted oak). These carry the hero,
+  the About page, the look book and the Open Graph card.
+- `images/` — the licensed library carried over from the base sample, used for
+  service and product photography. See `images/CREDITS.md`.
+
+The palette is sampled from her own studio: fluted oak, cream plaster, black signage,
+brass and monstera green. Design tokens sit at the top of `css/style.css` and
+`css/admin.css`.

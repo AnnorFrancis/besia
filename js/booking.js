@@ -1,5 +1,5 @@
 /* ============================================================
-   XCLUSIVEHAIRDEALS — booking.js
+   BĒSIA BEAUTY STUDIO — booking.js
    Multi-step appointment form with validation, instant price
    estimator, and the interactive service builder (packages page).
    Frontend demo — no data leaves the page.
@@ -8,7 +8,7 @@
   'use strict';
 
   function fmtGHS(n) {
-    return 'GHS ' + Math.round(n).toLocaleString();
+    return window.BESIA ? BESIA.money(n) : ('GHS ' + Math.round(n).toLocaleString());
   }
 
   /* ============================================================
@@ -62,27 +62,18 @@
     });
 
     /* ---------- Instant Price Estimator ----------
-       Salon pricing is per service, not per hour. The rates below are the
-       demo price list and the single place to tune the estimator — they
-       match the builder on the packages page. */
-    var SERVICE_PRICES = {
-      braids:    { label: 'Braids', price: 300 },
-      frontal:   { label: 'Wig / frontal install', price: 250 },
-      revamp:    { label: 'Wig revamp', price: 150 },
-      colour:    { label: 'Hair colouring', price: 220 },
-      treatment: { label: 'Hair treatment', price: 90 },
-      locs:      { label: 'Locs / natural hair', price: 120 },
-      nails:     { label: 'Nail extensions', price: 180 },
-      manipedi:  { label: 'Manicure', price: 120 },
-      pedicure:  { label: 'Pedicure & foot spa', price: 140 },
-      lashes:    { label: 'Lashes', price: 150 },
-      brows:     { label: 'Ombre brows', price: 400 },
-      makeup:    { label: 'Make-up', price: 200 },
-      facial:    { label: 'Facial', price: 160 },
-      massage:   { label: 'Massage & body spa', price: 250 },
-      waxing:    { label: 'Waxing / threading', price: 60 },
-      piercing:  { label: 'Piercing', price: 80 }
-    };
+       Every figure comes from js/besia-data.js — the same file that
+       prints the price list on services.html. One source, so the
+       estimator can never quote a price the menu does not publish. */
+    var SERVICE_PRICES = (function () {
+      var out = {};
+      if (!window.BESIA) return out;
+      BESIA.serviceCategories.forEach(function (c) {
+        out[c.slug] = { label: c.label, price: BESIA.fromPrice(c.key), cat: c.key };
+      });
+      return out;
+    })();
+
     var OCCASION_MULTIPLIER = {
       'Regular Appointment': 1, 'Bridal / Wedding Party': 1.35,
       'Birthday or Event Glam': 1.1, 'Photoshoot / Content': 1.15,
@@ -168,11 +159,11 @@
 
       // Save the request so it shows up automatically in the salon admin.
       // Frontend-only bridge via localStorage (same origin as the admin).
-      var bookingId = 'WEB-' + Date.now().toString().slice(-6);
+      var bookingId = 'APT-' + Date.now().toString().slice(-6);
       var refEl = document.getElementById('booking-ref');
       if (refEl) refEl.textContent = bookingId;
       try {
-        var KEY = 'xhd-web-bookings';
+        var KEY = 'besia-web-bookings';
         var list = JSON.parse(localStorage.getItem(KEY) || '[]');
         list.push({
           id: bookingId,
@@ -186,14 +177,14 @@
       // question, so the message quotes the reference rather than re-booking.
       var wa = document.getElementById('success-wa');
       if (wa) {
-        wa.href = 'https://wa.me/233555747887?text=' + encodeURIComponent(
-          'Hello Xclusivehairdeals! I have a question about my booking ' + bookingId + '.');
+        wa.href = 'https://wa.me/233240787993?text=' + encodeURIComponent(
+          'Hello Bēsia Beauty Studio! I have a question about my booking ' + bookingId + '.');
       }
     });
 
     // Selection carried over from the packages page builder
     try {
-      var carried = JSON.parse(localStorage.getItem('xhd-builder') || '[]');
+      var carried = JSON.parse(localStorage.getItem('besia-builder') || '[]');
       if (carried.length) {
         var MAP = { 'Knotless braids': 'braids', 'Frontal install': 'frontal', 'Hair coloring': 'colour', 'Nail extensions, full set': 'nails', 'Manicure & pedicure': 'manipedi', 'Mink lash set': 'lashes', 'Ombré brows': 'brows', 'Make-up': 'makeup', 'Deep-cleansing facial': 'facial', 'Piercing': 'piercing', 'Wig revamp': 'revamp', 'Ready-made wig unit': 'frontal', 'Spa pedicure': 'pedicure', 'Full body massage': 'massage', 'Hair treatment': 'treatment', 'Retwist & maintenance': 'locs', 'Waxing session': 'waxing' };
         form.querySelectorAll('.check-pill input').forEach(function (cb) { cb.checked = false; cb.closest('.check-pill').classList.remove('is-checked'); });
@@ -202,7 +193,7 @@
           var cb = key && form.querySelector('.check-pill input[value="' + key + '"]');
           if (cb) { cb.checked = true; cb.closest('.check-pill').classList.add('is-checked'); }
         });
-        localStorage.removeItem('xhd-builder');
+        localStorage.removeItem('besia-builder');
       }
     } catch (e) {}
 
@@ -255,7 +246,7 @@
       requestAnimationFrame(tick);
       window.setTimeout(function () { displayed = to; totalEl.textContent = fmtGHS(to); }, dur + 150);
 
-      try { localStorage.setItem('xhd-builder', JSON.stringify(chosen.map(function (c) { return c.name; }))); } catch (e) {}
+      try { localStorage.setItem('besia-builder', JSON.stringify(chosen.map(function (c) { return c.name; }))); } catch (e) {}
       if (goBtn) goBtn.textContent = chosen.length ? 'Request This Appointment — ' + fmtGHS(to) : 'Request This Appointment';
     }
 

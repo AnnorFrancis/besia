@@ -1,37 +1,41 @@
 /* ============================================================
-   XCLUSIVEHAIRDEALS — Core Stylesheet
-   Hair · Nails · Lashes · Brows · Make-Up · Skin
-   Greater Accra, Ghana
+   BĒSIA BEAUTY STUDIO — Core Stylesheet
+   Fusion Extensions · Texture Systems · Scalp & Bond Repair · Colour
+   54 Fifth Circular Road, Cantonments, Accra
+   Palette sampled from the studio itself: fluted oak, cream
+   plaster, black signage, brass and monstera green.
    Designed & Developed by Perkins Creative
    ============================================================ */
 
 /* ---------- Design Tokens ---------- */
 :root {
-  /* Palette — bronze, espresso, cream, stone grey, powder blue, onyx */
-  --gold: #A97142;
-  --gold-light: #C89B6A;
-  --gold-pale: #E5CDB2;
-  --champagne: #F5E7D8;
-  --espresso: #3B2A21;
-  --espresso-deep: #241812;
-  --espresso-soft: #5A4335;
-  --stone: #C0AFA1;
-  --taupe: #6B5B50;
-  --powder: #DCE8F0;
-  --powder-deep: #A9C6D8;
-  --powder-ink: #5B8FB0;
-  --onyx: #14100D;
-  --cream: #FFF8F0;
-  --charcoal: #26201C;
-  --warm-white: #FFFAF5;
-  --glass: rgba(255, 248, 240, 0.12);
-  --glass-border: rgba(245, 231, 216, 0.28);
-  --ink-soft: rgba(38, 32, 28, 0.72);
-  --cream-soft: rgba(255, 248, 240, 0.78);
+  /* Palette — oak, brass, cream plaster, black signage, sage, onyx.
+     Contrast-checked: every pairing used for text meets WCAG AA. */
+  --gold: #9C6B33;          /* white text on this: 4.60:1 AA */
+  --gold-ink: #7E5323;      /* accent TEXT on cream: 6.25:1 AA */
+  --gold-light: #C79A5E;
+  --gold-pale: #E3CBA9;
+  --champagne: #F2E6D6;
+  --espresso: #2E2822;
+  --espresso-deep: #17140F;
+  --espresso-soft: #4A4038;
+  --stone: #BCAB98;
+  --taupe: #6E6154;
+  --powder: #DFE5D6;
+  --powder-deep: #AEBB9D;
+  --powder-ink: #5C6B4E;
+  --onyx: #12100D;
+  --cream: #FBF7F1;
+  --charcoal: #221F1A;
+  --warm-white: #FDFAF6;
+  --glass: rgba(251, 247, 241, 0.12);
+  --glass-border: rgba(242, 230, 214, 0.28);
+  --ink-soft: rgba(34, 31, 26, 0.72);
+  --cream-soft: rgba(251, 247, 241, 0.78);
 
   /* Type */
   --font-display: 'Playfair Display', Georgia, serif;
-  --font-body: 'Lato', 'Segoe UI', sans-serif;
+  --font-body: 'Inter', 'Segoe UI', system-ui, sans-serif;
   --font-script: 'Playfair Display', Georgia, serif;
 
   /* Scale */
@@ -51,8 +55,8 @@
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-luxe: cubic-bezier(0.65, 0, 0.35, 1);
 
-  --shadow-soft: 0 18px 50px -18px rgba(59, 42, 33, 0.22);
-  --shadow-lift: 0 28px 70px -20px rgba(59, 42, 33, 0.34);
+  --shadow-soft: 0 18px 50px -18px rgba(46, 40, 34, 0.20);
+  --shadow-lift: 0 28px 70px -20px rgba(46, 40, 34, 0.30);
   --nav-height: 84px;
 }
 
@@ -112,7 +116,7 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 700; line-height
   display: flex; align-items: center; gap: 0.9rem;
   margin-bottom: 1.1rem;
   font-size: 0.78rem; font-weight: 700; letter-spacing: 0.32em;
-  text-transform: uppercase; color: var(--gold);
+  text-transform: uppercase; color: var(--gold-ink);
 }
 .eyebrow::before {
   content: ''; width: 42px; height: 1px; background: var(--gold);
@@ -204,7 +208,7 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 700; line-height
 .text-link {
   display: inline-flex; align-items: center; gap: 0.5rem;
   font-weight: 700; font-size: 0.82rem; letter-spacing: 0.16em; text-transform: uppercase;
-  color: var(--gold); position: relative; padding-bottom: 4px;
+  color: var(--gold-ink); position: relative; padding-bottom: 4px;
 }
 .text-link::after {
   content: ''; position: absolute; left: 0; bottom: 0; height: 1.5px; width: 100%;
@@ -577,7 +581,7 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 700; line-height
 .pkg-card--featured .pkg-price .from { color: var(--stone); }
 .pkg-price .amount { font-family: var(--font-display); font-size: 2.5rem; font-weight: 800; color: var(--charcoal); }
 .pkg-card--featured .pkg-price .amount { color: var(--gold-pale); }
-.pkg-price .cur { font-size: 0.95rem; font-weight: 700; color: var(--gold); }
+.pkg-price .cur { font-size: 0.95rem; font-weight: 700; color: var(--gold-ink); }
 .pkg-features { flex: 1; display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 2rem; }
 .pkg-features li { display: flex; gap: 0.7rem; font-size: 0.95rem; line-height: 1.5; }
 .pkg-features li::before {
@@ -680,7 +684,7 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 700; line-height
 }
 .field.is-filled label, .field input:focus ~ label, .field select:focus ~ label, .field textarea:focus ~ label,
 .field input[type="date"] ~ label, .field input[type="number"] ~ label {
-  transform: translateY(-0.55rem) scale(0.72); color: var(--gold); font-weight: 700; letter-spacing: 0.06em;
+  transform: translateY(-0.55rem) scale(0.72); color: var(--gold-ink); font-weight: 700; letter-spacing: 0.06em;
 }
 .field select { padding-top: 1.3rem; cursor: pointer; }
 .field .select-arrow {
@@ -746,7 +750,7 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 700; line-height
 .progress-step.is-current .progress-dot { border-color: var(--gold); background: var(--gold); color: var(--warm-white); transform: scale(1.12); box-shadow: 0 0 0 6px rgba(169, 113, 66, 0.15); }
 .progress-step.is-done .progress-dot { border-color: var(--gold); background: var(--gold); color: var(--warm-white); }
 .progress-label { margin-top: 0.5rem; font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-soft); font-weight: 700; }
-.progress-step.is-current .progress-label { color: var(--gold); }
+.progress-step.is-current .progress-label { color: var(--gold-ink); }
 
 .form-step { display: none; animation: fade-rise 0.55s var(--ease-out); }
 .form-step.is-active { display: block; }
@@ -816,7 +820,7 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 700; line-height
 .contact-card .icon svg { width: 22px; height: 22px; }
 .contact-card h3 { font-size: 1.1rem; color: var(--espresso); margin-bottom: 0.4rem; }
 .contact-card p, .contact-card a { font-size: 0.92rem; color: var(--ink-soft); display: block; line-height: 1.6; }
-.contact-card a:hover { color: var(--gold); }
+.contact-card a:hover { color: var(--gold-ink); }
 
 .map-frame {
   border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-lift);
@@ -993,7 +997,7 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 700; line-height
 .chat-msg { max-width: 82%; padding: 0.8rem 1.05rem; border-radius: 16px; font-size: 0.9rem; line-height: 1.55; animation: msg-in 0.45s var(--ease-out); }
 .chat-msg--bot { align-self: flex-start; background: var(--warm-white); border: 1px solid rgba(169, 113, 66, 0.2); border-bottom-left-radius: 5px; color: var(--charcoal); box-shadow: 0 6px 18px -8px rgba(59, 42, 33, 0.15); }
 .chat-msg--user { align-self: flex-end; background: linear-gradient(135deg, var(--espresso), var(--espresso-soft)); color: var(--cream); border-bottom-right-radius: 5px; }
-.chat-msg strong { color: var(--gold); }
+.chat-msg strong { color: var(--gold-ink); }
 .chat-msg--user strong { color: var(--gold-pale); }
 .chat-typing { align-self: flex-start; display: inline-flex; gap: 5px; padding: 0.9rem 1.1rem; background: var(--warm-white); border: 1px solid rgba(169, 113, 66, 0.2); border-radius: 16px; border-bottom-left-radius: 5px; }
 .chat-typing i { width: 7px; height: 7px; border-radius: 50%; background: var(--gold); animation: typing-bounce 1.2s infinite; }
@@ -1087,7 +1091,7 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 700; line-height
 .team-photo img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.9s var(--ease-luxe); }
 .team-card:hover .team-photo img { transform: scale(1.06); }
 .team-name { font-size: 1.2rem; color: var(--espresso); }
-.team-role { font-size: 0.72rem; letter-spacing: 0.26em; text-transform: uppercase; color: var(--gold); margin-top: 0.25rem; }
+.team-role { font-size: 0.72rem; letter-spacing: 0.26em; text-transform: uppercase; color: var(--gold-ink); margin-top: 0.25rem; }
 
 /* Timeline (about story) */
 .timeline { position: relative; max-width: 760px; margin-inline: auto; padding-left: 2.2rem; }
@@ -1098,7 +1102,7 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 700; line-height
   content: ''; position: absolute; left: -2.2rem; top: 8px; width: 15px; height: 15px;
   border-radius: 50%; background: var(--warm-white); border: 3px solid var(--gold);
 }
-.timeline-year { font-family: var(--font-display); font-weight: 800; color: var(--gold); font-size: 1.1rem; }
+.timeline-year { font-family: var(--font-display); font-weight: 800; color: var(--gold-ink); font-size: 1.1rem; }
 .timeline-item h3 { color: var(--espresso); font-size: 1.25rem; margin: 0.25rem 0 0.4rem; }
 .timeline-item p { color: var(--ink-soft); font-size: 0.96rem; }
 
@@ -1670,7 +1674,7 @@ details.price-group[open] > summary::after { transform: rotate(-135deg); }
 }
 
 /* ============================================================
-   XCLUSIVE AURA LAYER — added for the salon build.
+   AURA LAYER — ambient light wash behind dark sections.
    Ambient motion that reads as luxury, not decoration.
    Every effect is GPU-composited (transform/opacity only) and
    switched off under 640px and prefers-reduced-motion.
@@ -1882,3 +1886,69 @@ details.price-group[open] > summary::after { transform: rotate(-135deg); }
   .testimonial-quote { font-size: 1rem; }
   .breadcrumb { font-size: 0.72rem; }
 }
+
+/* ---------- Price list additions (Bēsia: durations + group counts) ---------- */
+.price-row .name { display: flex; flex-direction: column; gap: 0.1rem; }
+.price-dur {
+  font-style: normal; font-size: 0.72rem; letter-spacing: 0.08em;
+  color: var(--taupe); opacity: 0.85;
+}
+.price-group summary { display: flex; align-items: center; gap: 0.75rem; }
+.price-count {
+  margin-left: auto; flex: none;
+  min-width: 1.6rem; height: 1.6rem; padding: 0 0.45rem;
+  display: inline-grid; place-items: center;
+  border-radius: 999px; background: rgba(156, 107, 51, 0.12);
+  color: var(--gold-ink); font-size: 0.72rem; font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- Shop card additions (Bēsia: blurbs + launch flags) ---------- */
+.product-blurb {
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  margin: 0.35rem 0 0.7rem;
+}
+.product-flag {
+  position: absolute; left: 0.75rem; top: 0.75rem;
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  background: var(--espresso-deep);
+  color: var(--champagne);
+  font-size: 0.62rem; font-weight: 700;
+  letter-spacing: 0.16em; text-transform: uppercase;
+}
+.product-img { position: relative; }
+
+/* ---------- Team cards (Bēsia: monograms, not stock portraits) ---------- */
+.team-monogram {
+  width: 92px; height: 92px; margin: 0 auto 1.1rem;
+  display: grid; place-items: center;
+  border-radius: 50%;
+  background: linear-gradient(150deg, var(--champagne), var(--gold-pale));
+  border: 1px solid rgba(156, 107, 51, 0.28);
+  color: var(--espresso);
+  font-family: var(--font-display);
+  font-size: 2.1rem; font-weight: 700; line-height: 1;
+}
+.team-skills {
+  margin-top: 0.5rem;
+  font-size: 0.8rem; line-height: 1.5;
+  color: var(--ink-soft);
+}
+.step-hint { font-size: 0.85rem; color: var(--ink-soft); margin: -0.4rem 0 1rem; }
+
+/* ---------- Pointer target sizes (WCAG 2.5.8) ----------
+   `.text-link` renders at ~21px tall, below the 24px minimum and well
+   under the 44px comfortable target. These rules extend the hit area
+   without moving a single pixel of the visible design. */
+.text-link::before {
+  content: '';
+  position: absolute;
+  left: 0; right: 0;
+  top: 50%;
+  height: 44px;
+  transform: translateY(-50%);
+}
+.nav-logo { min-height: 44px; }

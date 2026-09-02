@@ -1,40 +1,40 @@
 /* ============================================================
-   XCLUSIVEHAIRDEALS — Admin Dashboard Stylesheet
+   BĒSIA BEAUTY STUDIO — Admin Dashboard Stylesheet
    Clean, modern management UI · dark sidebar · gold accent
    ============================================================ */
 
 :root {
-  --a-sidebar: #2E211B;
-  --a-sidebar-deep: #1D1410;
-  --a-bg: #F6F4F0;
+  --a-sidebar: #221D18;
+  --a-sidebar-deep: #14110D;
+  --a-bg: #F5F2EC;
   --a-surface: #FFFFFF;
-  --a-border: #E8E2D8;
-  --a-ink: #26201C;
-  --a-ink-soft: #6B7280;
-  --a-gold: #A97142;
-  --a-gold-light: #C89B6A;
-  --a-espresso: #3B2A21;
-  --a-stone: #C0AFA1;
-  --a-taupe: #6B5B50;
-  --a-powder: #DCE8F0;
+  --a-border: #E6DFD3;
+  --a-ink: #221F1A;
+  --a-ink-soft: #6E6154;
+  --a-gold: #9C6B33;
+  --a-gold-light: #C79A5E;
+  --a-espresso: #2E2822;
+  --a-stone: #BCAB98;
+  --a-taupe: #6E6154;
+  --a-powder: #DFE5D6;
   --a-green: #2E9E6B;
   --a-amber: #D97706;
   --a-red: #C0394B;
-  --a-blue: #5B8FB0;
+  --a-blue: #5C6B4E;
   --a-radius: 14px;
-  --a-shadow: 0 8px 30px -12px rgba(46, 33, 27, 0.14);
-  --a-font: 'Lato', 'Segoe UI', sans-serif;
+  --a-shadow: 0 8px 30px -12px rgba(34, 29, 24, 0.13);
+  --a-font: 'Inter', 'Segoe UI', system-ui, sans-serif;
   --a-display: 'Playfair Display', Georgia, serif;
 }
 
 [data-theme="dark"] {
-  --a-bg: #17120F;
-  --a-surface: #221B17;
-  --a-border: #382D26;
-  --a-ink: #EDEAE2;
-  --a-ink-soft: #A89A8E;
+  --a-bg: #14110D;
+  --a-surface: #1F1B16;
+  --a-border: #342C24;
+  --a-ink: #EDE8DF;
+  --a-ink-soft: #A99C8D;
   --a-shadow: 0 8px 30px -12px rgba(0, 0, 0, 0.5);
-  --a-powder: #33261F;
+  --a-powder: #2A2A20;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -422,7 +422,7 @@ input, select, textarea { font-family: inherit; font-size: 0.92rem; }
 }
 
 /* ============================================================
-   SIMPLE SALON MANAGER — dashboard tiles, chips, staff cards,
+   SIMPLE STUDIO MANAGER — dashboard tiles, chips, staff cards,
    forms and money colours. Built for one-tap, plain-language use.
    ============================================================ */
 

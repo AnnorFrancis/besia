@@ -3,17 +3,34 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Checkout — Xclusivehairdeals</title>
-  <meta name="description" content="Check out your Xclusivehairdeals order — pay with Mobile Money, card, or pay on pickup, and get an order number you can track live.">
-  <meta name="theme-color" content="#241812">
+  <title>Checkout — Bēsia Beauty Studio</title>
+  <meta name="description" content="Review your bag, choose pickup or delivery, and pay by Mobile Money, card or on collection.">
+  <meta name="theme-color" content="#17140F">
   <meta name="robots" content="noindex">
 
   <link rel="icon" type="image/svg+xml" href="./assets/icons/favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,800;1,400;1,700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,800;1,400;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./css/style.css">
   <link rel="stylesheet" href="./css/animations.css">
+  <!-- BUILD:seo -->
+  <link rel="canonical" href="https://annorfrancis.github.io/besia/checkout.html">
+  <meta name="robots" content="noindex,follow">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Bēsia Beauty Studio">
+  <meta property="og:title" content="Checkout — Bēsia Beauty Studio">
+  <meta property="og:description" content="Review your bag, choose pickup or delivery, and pay by Mobile Money, card or on collection.">
+  <meta property="og:url" content="https://annorfrancis.github.io/besia/checkout.html">
+  <meta property="og:image" content="https://annorfrancis.github.io/besia/images/studio/studio-reception.jpg">
+  <meta property="og:image:width" content="1920">
+  <meta property="og:image:height" content="1080">
+  <meta property="og:locale" content="en_GH">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Checkout — Bēsia Beauty Studio">
+  <meta name="twitter:description" content="Review your bag, choose pickup or delivery, and pay by Mobile Money, card or on collection.">
+  <meta name="twitter:image" content="https://annorfrancis.github.io/besia/images/studio/studio-reception.jpg">
+  <!-- /BUILD:seo -->
 </head>
 <body class="page-checkout">
 
@@ -22,7 +39,7 @@
   <!-- Navigation -->
   <header class="site-nav">
     <div class="container container--wide nav-inner">
-      <a class="nav-logo" href="./index.html" aria-label="Xclusivehairdeals — home">
+      <a class="nav-logo" href="./index.html" aria-label="Bēsia Beauty Studio — home">
         <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
           <path d="M15 9.5c-6.5 7-6.5 22 0 29.5" stroke-linecap="round"/>
           <path d="M23.5 6c-8.5 8.5-8.5 27.5 0 36" stroke-linecap="round"/>
@@ -30,8 +47,8 @@
           <path d="M38.5 11l1.3 3.4 3.4 1.3-3.4 1.3-1.3 3.4-1.3-3.4-3.4-1.3 3.4-1.3z" fill="currentColor" stroke="none"/>
         </svg>
         <span class="nav-logo-text">
-          <span class="nav-logo-name">Xclusive</span>
-          <span class="nav-logo-tag">Hair Deals</span>
+          <span class="nav-logo-name">Bēsia</span>
+          <span class="nav-logo-tag">Beauty Studio</span>
         </span>
       </a>
       <nav class="nav-links" aria-label="Primary">
@@ -65,7 +82,7 @@
         <a href="./contact.html">Contact</a>
       </nav>
       <div class="nav-overlay-contact">
-        Greater Accra · <a href="tel:+233555747887">055 574 7887</a>
+        Cantonments, Accra · <a href="tel:+233240787993">024 078 7993</a>
       </div>
     </div>
   </div>
@@ -119,7 +136,7 @@
                 <label class="co-chip is-active">
                   <input type="radio" name="method" value="pickup" checked>
                   <strong>Pickup — free</strong>
-                  <span>Collect from the shop, Greater Accra</span>
+                  <span>Collect from the shop, Cantonments, Accra</span>
                 </label>
                 <label class="co-chip">
                   <input type="radio" name="method" value="delivery">
@@ -219,7 +236,7 @@
           </div>
           <h2>Order placed — thank you!</h2>
           <p>Your order number is</p>
-          <div class="co-order-id" id="success-id">XHD-000000</div>
+          <div class="co-order-id" id="success-id">BES-000000</div>
           <p id="success-sub">We have received your order and will confirm it shortly.</p>
           <div class="btn-row" style="margin-top:1.8rem; justify-content:center;">
             <a href="#" id="success-track" class="btn btn--gold">Track This Order
@@ -247,18 +264,20 @@
   <footer class="site-footer">
     <div class="container">
       <div class="footer-bottom" style="border-top:none; padding-top:0;">
-        <span>© <span data-year>2026</span> Xclusivehairdeals. All rights reserved.</span>
+        <span>© <span data-year>2026</span> Bēsia Beauty Studio. All rights reserved.</span>
         <span class="footer-credit">Designed &amp; Developed by <a href="https://perkins-swart.vercel.app" target="_blank" rel="noopener">Perkins Creative</a></span>
       </div>
     </div>
   </footer>
 
   <!-- Scripts -->
+  <!-- data first: every other script reads from it -->
+  <script src="./js/besia-data.js" defer></script>
   <script src="./js/store.js" defer></script>
   <script src="./js/main.js" defer></script>
   <script>
     document.addEventListener('DOMContentLoaded', function () {
-      var S = window.XHDStore;
+      var S = window.BesiaStore;
       var shell = document.getElementById('checkout-shell');
       var empty = document.getElementById('empty-state');
       var success = document.getElementById('success-state');
@@ -275,7 +294,7 @@
         var items = document.getElementById('co-items');
         items.innerHTML = cart.map(function (it) {
           return '<li class="co-item">' +
-            '<img src="' + it.img + '" alt="">' +
+            '<img src="' + it.img + '" alt="" width="120" height="150" loading="lazy" decoding="async">' +
             '<div class="co-item-info"><strong>' + it.name + '</strong><span>' + money(it.price) + ' each</span></div>' +
             '<div class="co-qty">' +
               '<button type="button" data-dec="' + it.name + '" aria-label="Reduce quantity">−</button>' +
@@ -374,7 +393,7 @@
             area: (document.getElementById('co-area').value || '').trim(),
             payment: payment
           });
-          try { localStorage.setItem('xhd-last-order', order.id); } catch (e) {}
+          try { localStorage.setItem('besia-last-order', order.id); } catch (e) {}
           modal.classList.remove('is-open');
           modal.setAttribute('aria-hidden', 'true');
           shell.style.display = 'none';

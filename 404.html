@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Page not found — Bēsia Beauty Studio</title>
+  <meta name="description" content="That page has moved or never existed. Head back to Bēsia Beauty Studio — fusion extensions, texture systems and treatment-led hair care in Cantonments, Accra.">
+  <meta name="robots" content="noindex,follow">
+  <meta name="theme-color" content="#17140F">
+  <link rel="icon" type="image/svg+xml" href="./assets/icons/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,800;1,400&family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/style.css">
+  <style>
+    .nf-wrap {
+      min-height: 100svh;
+      display: grid; place-items: center;
+      padding: 2rem 1.25rem;
+      background:
+        radial-gradient(900px 500px at 50% -10%, rgba(156, 107, 51, 0.22), transparent 62%),
+        linear-gradient(160deg, var(--espresso) 0%, var(--espresso-deep) 100%);
+      color: var(--cream);
+      text-align: center;
+    }
+    .nf-inner { max-width: 620px; }
+    .nf-mark { width: 62px; height: 62px; margin: 0 auto 1.6rem; color: var(--gold-light); }
+    .nf-code {
+      font-family: var(--font-display); font-style: italic;
+      font-size: clamp(3.2rem, 12vw, 5.5rem); line-height: 1;
+      color: var(--gold-light); margin-bottom: 0.4rem;
+    }
+    .nf-wrap h1 {
+      font-family: var(--font-display);
+      font-size: clamp(1.7rem, 5vw, 2.6rem);
+      margin-bottom: 1rem; color: var(--cream);
+    }
+    .nf-wrap p { color: var(--cream-soft); margin-bottom: 2rem; font-weight: 300; }
+    .nf-links { display: flex; gap: 0.7rem; flex-wrap: wrap; justify-content: center; }
+    .nf-links a {
+      padding: 0.85rem 1.5rem; border-radius: 999px;
+      border: 1px solid var(--glass-border);
+      font-size: 0.78rem; font-weight: 700;
+      letter-spacing: 0.16em; text-transform: uppercase;
+      transition: background 0.2s var(--ease-out), color 0.2s var(--ease-out), border-color 0.2s var(--ease-out);
+    }
+    .nf-links a:hover, .nf-links a:focus-visible { background: var(--cream); color: var(--espresso); border-color: var(--cream); }
+    .nf-links a.is-primary { background: var(--gold); border-color: var(--gold); color: #fff; }
+    .nf-links a.is-primary:hover { background: var(--gold-light); border-color: var(--gold-light); color: var(--espresso-deep); }
+    .nf-foot { margin-top: 2.4rem; font-size: 0.82rem; color: var(--stone); }
+    .nf-foot a { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <main class="nf-wrap">
+    <div class="nf-inner">
+      <svg class="nf-mark" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true">
+        <path d="M12 41V26a12 12 0 0 1 24 0v15"/>
+        <path d="M18.5 41V30.5" opacity=".6"/><path d="M24 41V27.5" opacity=".6"/><path d="M29.5 41V30.5" opacity=".6"/>
+        <path d="M18.5 9h11"/>
+      </svg>
+      <div class="nf-code">404</div>
+      <h1>This page has moved on</h1>
+      <p>The link you followed does not lead anywhere any more. Everything else is where you left it — the full menu, the shop and the booking form.</p>
+      <nav class="nf-links" aria-label="Where to next">
+        <a class="is-primary" href="./index.html">Home</a>
+        <a href="./services.html">Services &amp; Prices</a>
+        <a href="./shop.html">Shop</a>
+        <a href="./contact.html">Book</a>
+        <a href="./track.html">Track an Order</a>
+      </nav>
+      <p class="nf-foot">
+        Or call us on <a href="tel:+233240787993">024 078 7993</a> —
+        open Mon–Sat, 9am – 7pm.
+      </p>
+    </div>
+  </main>
+</body>
+</html>

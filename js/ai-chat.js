@@ -1,6 +1,6 @@
 /* ============================================================
-   XCLUSIVEHAIRDEALS — ai-chat.js
-   "Xclusive Beauty Assistant" — frontend-simulated concierge chat.
+   BĒSIA BEAUTY STUDIO — ai-chat.js
+   "Bēsia Beauty Assistant" — frontend-simulated concierge chat.
    Injects its own markup, so a single script tag enables it
    on any page. Responses are scripted/keyword-matched (demo).
    ============================================================ */
@@ -10,18 +10,18 @@
   /* ---------- Markup ---------- */
   var root = document.createElement('div');
   root.innerHTML =
-    '<button class="chat-fab" aria-label="Open Xclusive Beauty Assistant" aria-expanded="false">' +
+    '<button class="chat-fab" aria-label="Open Bēsia Beauty Assistant" aria-expanded="false">' +
       '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">' +
         '<path d="M12 3C7 3 3 6.6 3 11c0 2.2 1 4.1 2.6 5.5-.2 1.2-.8 2.3-1.6 3.1 1.7 0 3.2-.6 4.4-1.4 1.1.4 2.3.7 3.6.7 5 0 9-3.6 9-7.9S17 3 12 3z"/>' +
         '<path d="M8.5 11h.01M12 11h.01M15.5 11h.01" stroke-linecap="round" stroke-width="2.4"/>' +
       '</svg>' +
       '<span class="chat-dot"></span>' +
     '</button>' +
-    '<div class="chat-window" role="dialog" aria-label="Xclusive Beauty Assistant chat">' +
+    '<div class="chat-window" role="dialog" aria-label="Bēsia Beauty Assistant chat">' +
       '<div class="chat-header">' +
         '<div class="chat-avatar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 2c1.8 2.5 1.8 5.5 0 8-1.8-2.5-1.8-5.5 0-8zM12 10c2.5-1.8 5.5-1.8 8 0-2.5 1.8-5.5 1.8-8 0zM12 10c-2.5-1.8-5.5-1.8-8 0 2.5 1.8 5.5 1.8 8 0zM12 10v10" stroke-linecap="round"/></svg></div>' +
         '<div class="chat-header-info">' +
-          '<div class="chat-header-name">Xclusive Beauty Assistant</div>' +
+          '<div class="chat-header-name">Bēsia Beauty Assistant</div>' +
           '<div class="chat-header-status">Online — replies instantly</div>' +
         '</div>' +
         '<button class="chat-close" aria-label="Close chat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke-linecap="round"/></svg></button>' +
@@ -32,7 +32,7 @@
         '<input type="text" placeholder="Ask about pricing, dates, services…" aria-label="Type your message">' +
         '<button type="submit" aria-label="Send message"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 12l16-7-6 16-2.5-6.5L4 12z" stroke-linejoin="round"/></svg></button>' +
       '</form>' +
-      '<div class="chat-powered">Powered by Xclusive AI · Demo</div>' +
+      '<div class="chat-powered">Powered by Bēsia AI · Demo</div>' +
     '</div>';
   while (root.firstChild) document.body.appendChild(root.firstChild);
 
@@ -84,36 +84,51 @@
   }
 
   var DEFAULT_QUICK = [
-    { label: 'View Packages', intent: 'packages' },
-    { label: 'Book Appointment', intent: 'consult' },
-    { label: 'Shop Wigs & Bundles', intent: 'shop' },
-    { label: 'Speak to Team', intent: 'team' }
+    { label: 'Fusion extensions', intent: 'ext' },
+    { label: 'Book a free consult', intent: 'consult' },
+    { label: 'Shop the shelf', intent: 'shop' },
+    { label: 'Speak to the team', intent: 'team' }
   ];
+
+  /* ---------- Live pricing ----------
+     Every figure the assistant quotes is read from js/besia-data.js at
+     runtime, so the chat can never contradict the published menu. */
+  function P(catKey) {
+    return (window.BESIA && BESIA.fromPrice(catKey) != null)
+      ? BESIA.money(BESIA.fromPrice(catKey)) : '';
+  }
+  function S(name) {
+    if (!window.BESIA) return '';
+    var svc = BESIA.services.filter(function (x) { return x.name === name; })[0];
+    return svc ? BESIA.priceLabel(svc) : '';
+  }
+  var LINK = 'style="color:var(--gold-ink);font-weight:700;text-decoration:underline;"';
 
   /* ---------- Scripted opening conversation ---------- */
   function playIntro() {
-    botSay('Hey love \u2728 Welcome to <strong>Xclusivehairdeals</strong>. I can help with prices, availability or what to book. What are you thinking of getting done?', 900)
+    botSay('Hi \u2728 Welcome to <strong>B\u0113sia Beauty Studio</strong> \u2014 Ghana\u2019s home of fusion extensions. I can help with prices, timings or what to book. What are you thinking of getting done?', 900)
       .then(function () {
         return new Promise(function (r) { window.setTimeout(r, 1400); });
       })
       .then(function () {
-        addMsg('How much for knotless braids?', 'user');
+        addMsg('How much are the KTip extensions?', 'user');
         return botSay(
-          'Great choice \uD83D\uDCAB Knotless braids start from <strong>GHS 300</strong>, and the final price depends on length and size.<br><br>' +
-          '\u2022 Shoulder length \u2014 from GHS 300<br>' +
-          '\u2022 Mid-back \u2014 from GHS 380<br>' +
-          '\u2022 Waist length \u2014 from GHS 450<br><br>' +
-          'Are you bringing your own hair, or would you like us to supply it?', 1500);
+          'Great choice \uD83D\uDCAB KTips are what we are known for. Price goes by weight, and we work out what your hair can carry at the consultation.<br><br>' +
+          '\u2022 100 grams \u2014 ' + S('100 grams - KTips') + ' \u00B7 4 hr<br>' +
+          '\u2022 150 grams \u2014 ' + S('150 grams - KTips') + ' \u00B7 4 hr<br>' +
+          '\u2022 200 grams \u2014 ' + S('200 grams - KTips') + ' \u00B7 5 hr 30 min<br><br>' +
+          'Have you worn fusion extensions before?', 1500);
       })
       .then(function () {
         return new Promise(function (r) { window.setTimeout(r, 1600); });
       })
       .then(function () {
-        addMsg('Bringing my own. Can I add lashes too?', 'user');
+        addMsg('No, first time. Is it safe for my hair?', 'user');
         return botSay(
-          'Absolutely \u2014 and booking them together saves you money. \uD83D\uDC95<br><br>' +
-          'Braids + a <strong>mink lash set</strong> in one visit comes to about <strong>GHS 420</strong> after our bundle discount, and takes roughly 4\u20135 hours.<br><br>' +
-          'Shall I check which days we have free this week?', 1700);
+          'That is exactly why we start with a consultation \u2014 and the first one is <strong>free</strong>. \uD83D\uDC95<br><br>' +
+          'Our specialists are <strong>UK-certified</strong>, and we check your density and scalp before we fit anything. If your hair is not ready, we will say so and start you on a ' +
+          '<a href="./services.html#scalp" ' + LINK + '>bond repair treatment</a> instead.<br><br>' +
+          'Shall I show you this week\u2019s free slots?', 1700);
       })
       .then(function () {
         setQuickReplies(DEFAULT_QUICK);
@@ -122,93 +137,167 @@
 
   /* ---------- Keyword intelligence (demo) ---------- */
   var RESPONSES = [
-    { match: /(buy|shop|sell|purchase|bundle|in stock|ready.?made|take home|hair care|accessor)/i, intent: 'shop' },
-    { match: /(pedicure|foot|feet|toe|callus|heel)/i, intent: 'pedicure' },
-    { match: /(massage|body spa|hot stone|deep tissue|scrub|steam|relax)/i, intent: 'massage' },
-    { match: /(wax|waxing|thread|threading|bikini|brazilian|hair removal)/i, intent: 'waxing' },
-    { match: /(loc|locs|dread|retwist|starter loc|natural hair|silk press)/i, intent: 'locs' },
-    { match: /(treatment|scalp|dandruff|conditioning|protein|hair spa)/i, intent: 'treatment' },
-    { match: /(price|pricing|cost|how much|charge|rate)/i, intent: 'packages' },
-    { match: /(package|glow|radiance|icon)/i, intent: 'packages' },
-    { match: /(book|appointment|slot|available|availability|free)/i, intent: 'consult' },
-    { match: /(braid|knotless|cornrow|twist|ghana weaving)/i, intent: 'braids' },
-    { match: /(wig|frontal|closure|install|colour|color|dye|highlight)/i, intent: 'wigs' },
-    { match: /(nail|manicure|pedicure|acrylic|gel|extension)/i, intent: 'nails' },
-    { match: /(lash|mink|volume|hybrid)/i, intent: 'lashes' },
-    { match: /(brow|ombre|ombr\u00e9|lamination|microblading)/i, intent: 'brows' },
-    { match: /(make.?up|glam|bridal|wedding|beat)/i, intent: 'makeup' },
-    { match: /(facial|skin|acne|piercing|pierce)/i, intent: 'skin' },
-    { match: /(long|duration|how many hours|take)/i, intent: 'availability' },
-    { match: /(team|human|person|call|speak|talk)/i, intent: 'team' },
-    { match: /(where|location|accra|address|find you|open)/i, intent: 'location' },
+    { match: /(buy|shop|sell|purchase|bundle|in stock|ready.?made|take home|hair care|accessor|bonnet|tote)/i, intent: 'shop' },
+    { match: /(moringa|beard oil|product line|launch)/i, intent: 'moringa' },
+    { match: /(ktip|k.tip|fusion|microlink|micro.link|tape.?in|v.?light|invisible|weave|crochet|extension)/i, intent: 'ext' },
+    { match: /(nanoplasty|keratin|botox|texture|straighten|perm|formaldehyde|vegan)/i, intent: 'tex' },
+    { match: /(olaplex|k18|bond|scalp|dandruff|treatment|flax|gro|hot oil|hair loss|growth|cpr|moisture)/i, intent: 'scalp' },
+    { match: /(colour|color|dye|balayage|highlight|blonde|root)/i, intent: 'color' },
+    { match: /(curl|coil|natural|wash.?and.?go|wash \+ go|revive|silk ?press|silkpress|blow ?dry)/i, intent: 'nat' },
+    { match: /(cut|trim|layer|precision|bob)/i, intent: 'cut' },
+    { match: /(braid|cornrow|updo)/i, intent: 'braid' },
+    { match: /(wig|frontal|closure|install)/i, intent: 'wig' },
+    { match: /(lash|brow|wax|facial|threading)/i, intent: 'beauty' },
+    { match: /(price|pricing|cost|how much|charge|rate|menu)/i, intent: 'prices' },
+    { match: /(package|bundle deal|combo|save|discount|offer)/i, intent: 'packages' },
+    { match: /(book|appointment|slot|available|availability|free|consult)/i, intent: 'consult' },
+    { match: /(long|duration|how many hours|how long|take)/i, intent: 'availability' },
+    { match: /(team|human|person|call|speak|talk|dana|rabs|francis)/i, intent: 'team' },
+    { match: /(where|location|accra|address|find you|open|cantonments|park)/i, intent: 'location' },
     { match: /(hello|hi|hey|good (morning|afternoon|evening)|akwaaba)/i, intent: 'greet' },
     { match: /(thank|medaase)/i, intent: 'thanks' }
   ];
 
-  var INTENT_REPLIES = {
-    packages:
-      'Here is the quick price list:<br><br>' +
-      '\u2022 Braids \u2014 from GHS 300<br>' +
-      '\u2022 Frontal install \u2014 from GHS 250<br>' +
-      '\u2022 Hair treatment \u2014 from GHS 60<br>' +
-      '\u2022 Locs / retwist \u2014 from GHS 120<br>' +
-      '\u2022 Nail extensions \u2014 from GHS 180<br>' +
-      '\u2022 Pedicure \u2014 from GHS 80<br>' +
-      '\u2022 Mink lashes \u2014 from GHS 150<br>' +
-      '\u2022 Ombr\u00e9 brows \u2014 from GHS 400<br>' +
-      '\u2022 Make-up \u2014 from GHS 200<br>' +
-      '\u2022 Facial \u2014 from GHS 160<br>' +
-      '\u2022 Massage \u2014 from GHS 150<br>' +
-      '\u2022 Waxing \u2014 from GHS 40<br><br>' +
-      'All 88 prices are on the <a href="./services.html#prices" style="color:#A97142;font-weight:700;text-decoration:underline;">Services page</a>, and booking two or more together always works out cheaper.',
-    consult:
-      'Let\u2019s get you booked \uD83D\uDCC5 We are open <strong>Mon\u2013Sun, 9am\u20136pm</strong>. Saturdays fill up first, so midweek is easier for long appointments. Use our <a href="./contact.html" style="color:#A97142;font-weight:700;text-decoration:underline;">booking form</a> or WhatsApp <strong>055 574 7887</strong> \u2014 which do you prefer?',
-    braids:
-      'Braids are our signature \uD83D\uDCAB Knotless, box braids, cornrows, twists and Ghana weaving \u2014 from <strong>GHS 300</strong> depending on length and size. We braid gently so your edges survive the style. Are you bringing your own hair?',
-    wigs:
-      'We do wig caps, custom wigs, frontal and closure installs, revamps and full colouring. \u2728 Installs start from <strong>GHS 250</strong>, colouring from <strong>GHS 220</strong>. We bleach and pluck properly so the hairline actually looks like yours.<br><br>We also sell <strong>ready-made units, bundles and closures</strong> \u2014 browse the <a href="./shop.html" style="color:#A97142;font-weight:700;text-decoration:underline;">Shop page</a>.',
-    shop:
-      'Yes \u2014 we are a wig store and beauty store too! \uD83D\uDECD\ufe0f In stock right now:<br><br>' +
-      '\u2022 Ready-made lace wigs \u2014 from GHS 650<br>' +
-      '\u2022 Human-hair bundles \u2014 from GHS 450<br>' +
-      '\u2022 Closures &amp; frontals \u2014 from GHS 300<br>' +
-      '\u2022 Extensions \u2014 from GHS 150<br>' +
-      '\u2022 Hair care &amp; cosmetics \u2014 from GHS 60<br>' +
-      '\u2022 Accessories \u2014 from GHS 25<br><br>' +
-      'Browse the <a href="./shop.html" style="color:#A97142;font-weight:700;text-decoration:underline;">Shop page</a>, add to your bag and check out with Mobile Money or card. You get an order number instantly and can follow it on the <a href="./track.html" style="color:#A97142;font-weight:700;text-decoration:underline;">Track Order page</a>.',
-    nails:
-      'Nails start at <strong>GHS 120</strong> for a manicure and pedicure, and <strong>GHS 180</strong> for a full set of extensions. \uD83D\uDC85 Any shape, any length, plus art and chrome finishes. Refills welcome even if the set was done elsewhere.',
-    lashes:
-      'Lashes from <strong>GHS 150</strong> \u2014 classic, hybrid, mink volume and mega volume. \uD83D\uDC41\uFE0F We map every set to your eye shape first, so it opens the eye instead of dragging it down. Refills are cheaper than a fresh set.',
-    brows:
-      'Ombr\u00e9 brows are <strong>GHS 400</strong> and include your 6-week touch-up. \u2728 We map and draw them on first so you approve the shape before anything is permanent. Shaping and tinting alone start from GHS 50.',
-    makeup:
-      'Make-up from <strong>GHS 200</strong> for soft glam. \uD83D\uDC84 Bridal is from GHS 800 and includes a trial beforehand. We shade-match at your jaw in daylight, so you never go grey in photos. What is the occasion?',
-    skin:
-      'Facials from <strong>GHS 160</strong> \u2014 deep cleansing, hydrating and acne treatments built for Accra heat and dust. \uD83E\uDDF4 Piercing is from <strong>GHS 80</strong> with a sterile single-use needle and full aftercare.',
-    pedicure:
-      'Feet first \uD83D\uDC63 Classic pedicure <strong>GHS 80</strong>, spa pedicure <strong>GHS 140</strong> (soak, scrub, callus work and a foot massage), gel pedicure <strong>GHS 160</strong>. Mani + pedi booked together is <strong>GHS 190</strong>.',
-    massage:
-      'Our body room is the best-kept secret here \u2728 Back, neck &amp; shoulder 30 min <strong>GHS 150</strong>; full body 60 min <strong>GHS 250</strong>, 90 min <strong>GHS 350</strong>. Hot stone <strong>GHS 320</strong>, deep tissue <strong>GHS 300</strong>, body scrub <strong>GHS 280</strong>. Private room, always.',
-    waxing:
-      'Waxing and threading, done discreetly in a private room with fresh strips every time. Brows <strong>GHS 40</strong>, underarm <strong>GHS 60</strong>, half leg <strong>GHS 90</strong>, full leg <strong>GHS 160</strong>, bikini <strong>GHS 120</strong>, Brazilian <strong>GHS 200</strong>.',
-    locs:
-      'We love a loc journey \u2728 Starter locs <strong>GHS 350</strong>, retwist &amp; maintenance <strong>GHS 120</strong> (with styling <strong>GHS 180</strong>), faux locs <strong>GHS 400</strong>, loc detox <strong>GHS 160</strong>. Silk press is <strong>GHS 180</strong>.',
-    treatment:
-      'Healthy hair first \u2728 Wash &amp; blow-dry <strong>GHS 60</strong>, deep conditioning <strong>GHS 90</strong>, protein treatment <strong>GHS 130</strong>, steam therapy <strong>GHS 110</strong>, scalp detox <strong>GHS 120</strong>, dandruff treatment <strong>GHS 140</strong>. Full hair spa session <strong>GHS 220</strong>.',
-    availability:
-      'Rough timings so you can plan your day \u23F1\uFE0F<br><br>\u2022 Braids \u2014 3 to 6 hours<br>\u2022 Frontal install \u2014 2 to 3 hours<br>\u2022 Nail extensions \u2014 about 90 minutes<br>\u2022 Lashes \u2014 90 minutes to 2 hours<br>\u2022 Make-up \u2014 about an hour<br><br>We book realistic slots, so you are not left waiting.',
-    team:
-      'Of course! Our team is a call or message away:<br><br>\uD83D\uDCDE 055 574 7887<br><br>Or tap the green WhatsApp button to chat instantly. We reply within minutes during opening hours (Mon\u2013Sun, 9am\u20136pm).',
-    location:
-      'We are in <strong>Greater Accra</strong> \uD83D\uDCCD and open <strong>Mon\u2013Sun, 9am\u20136pm</strong>. Walk-ins are welcome whenever a chair is free, but booking guarantees your slot. Map is on our <a href="./contact.html" style="color:#A97142;font-weight:700;text-decoration:underline;">contact page</a>.',
-    greet:
-      'Hey love \u2728 So glad you are here. Ask me anything \u2014 braids, wigs, locs, nails, pedicure, lashes, brows, make-up, facials, massage or waxing. Or tap a quick option below.',
-    thanks:
-      'You are so welcome! \uD83D\uDC95 We cannot wait to have you in the chair. Anything else I can help with?',
-    fallback:
-      'Good question! For that one our team will answer best \u2014 reach them on <strong>055 574 7887</strong> or tap <em>Speak to Team</em> below. Meanwhile, would you like to see prices or check availability?'
-  };
+  var INTENT_REPLIES = {};
+
+  /* Built at load so every price is read from the live menu. */
+  function buildReplies() {
+    var b = (window.BESIA && BESIA.business) || {};
+    INTENT_REPLIES = {
+      prices:
+        'Here is the shape of our menu \u2014 all <strong>47 prices</strong> are published in full:<br><br>' +
+        '\u2022 Fusion extensions \u2014 from ' + P('Extensions') + '<br>' +
+        '\u2022 Texture systems \u2014 from ' + P('Texture Systems + Treatments') + '<br>' +
+        '\u2022 Scalp &amp; bond repair \u2014 from ' + P('Scalp + Bond Repair Treatments') + '<br>' +
+        '\u2022 Colour \u2014 from ' + P('Color Service') + '<br>' +
+        '\u2022 Naturals, curls &amp; coils \u2014 from ' + P('Naturals | Curls & Coils') + '<br>' +
+        '\u2022 Cutting \u2014 from ' + P('Cut Service') + '<br>' +
+        '\u2022 Braids &amp; cornrows \u2014 from ' + P('Braids | Cornrows') + '<br>' +
+        '\u2022 Wig service \u2014 from ' + P('Wig Service') + '<br><br>' +
+        'Full list with durations on the <a href="./services.html#prices" ' + LINK + '>Services page</a>. A consultation is free.',
+
+      ext:
+        'Fusion extensions are our signature \uD83D\uDCAB Seamless <strong>KTips</strong> and <strong>microlinks</strong>, fitted by UK-certified specialists so they move like your own hair.<br><br>' +
+        '\u2022 100g KTips \u2014 ' + S('100 grams - KTips') + '<br>' +
+        '\u2022 150g KTips \u2014 ' + S('150 grams - KTips') + '<br>' +
+        '\u2022 Seamless tape-ins \u2014 ' + S('Seamless Tape-Ins') + '<br>' +
+        '\u2022 Classic weave install \u2014 ' + S('Classic Weave Install - One Part Leave Out') + '<br>' +
+        '\u2022 Closure weave install \u2014 ' + S('Closure Weave Install') + '<br>' +
+        '\u2022 360 Illusion Crochet \u2014 ' + S('Illusion Crochet') + '<br><br>' +
+        'Removal is ' + S('KTip Removal') + '. See the full list on the <a href="./services.html#ext" ' + LINK + '>Services page</a>.',
+
+      tex:
+        'This is what makes us different \u2728 We were the <strong>first studio in Ghana</strong> to offer a safe, vegan, <strong>formaldehyde-free</strong> straightening and texturising system.<br><br>' +
+        '\u2022 Vegan Keratin \u2014 Nanoplasty \u2014 ' + S('Vegan Keratin Treatment - Nanoplasty') + ' \u00B7 4 hr 30 min<br>' +
+        '\u2022 Texture Release \u2014 Hair Botox \u2014 ' + S('Texture Release - Hair Botox') + ' \u00B7 3 hr 45 min<br>' +
+        '\u2022 Perm retouch and style \u2014 ' + S('Perm Retouch and Style') + '<br><br>' +
+        'Smoother, more manageable hair with none of the chemistry that damages it.',
+
+      scalp:
+        'Healthy hair first \uD83C\uDF3F We treat the scalp and the bonds before anything else:<br><br>' +
+        '\u2022 Flax Seed + Aloe \u2014 ' + S('Flax Seed + Aloe Treatment') + '<br>' +
+        '\u2022 GRO hot oil \u2014 ' + S('GRO Hot Oil Treatment') + '<br>' +
+        '\u2022 K18 bond repair \u2014 ' + S('K18 Treatment and Bond Repair') + '<br>' +
+        '\u2022 Olaplex \u2014 ' + S('Olaplex Treatment') + '<br>' +
+        '\u2022 Scalp &amp; dandruff detox \u2014 ' + S('Scalp + Dandruff Intensive Detox') + '<br>' +
+        '\u2022 B\u0113sia Hair CPR \u2014 ' + S('Bēsia Hair CPR Treatment') + '<br><br>' +
+        'Not sure which? The <a href="./services.html#gen" ' + LINK + '>consultation is free</a>.',
+
+      color:
+        'Colour, blended against your natural depth rather than fighting it \uD83C\uDFA8<br><br>' +
+        '\u2022 All-over colour \u2014 short ' + S('All Over Color - Short') + ', medium ' + S('All Over Color - Medium') + ', long ' + S('All Over Color - Long') + '<br>' +
+        '\u2022 Balayage \u2014 from ' + P('Color Service') + '<br>' +
+        '\u2022 Full highlights \u2014 ' + S('Full Highlights') + '<br><br>' +
+        'We pair colour with bond repair as standard, so the condition holds.',
+
+      nat:
+        'For curls and coils \uD83D\uDC9A Our <strong>Curl Revive</strong> wash-and-go uses in-house flaxseed, rosemary and olive blends with a gentle steam.<br><br>' +
+        '\u2022 Curl Revive | Wash + Go \u2014 ' + S('Curl Revive | Wash + Go') + ' \u00B7 1 hr 30 min<br>' +
+        '\u2022 Curly cut \u2014 ' + S('Curly Cut') + '<br>' +
+        '\u2022 Silkpress Xpress \u2014 ' + S('Silkpress Xpress') + '<br>' +
+        '\u2022 Basic wash + blow dry \u2014 ' + S('Basic Wash + Blowdry') + '<br><br>' +
+        'Curl Revive pairs beautifully with the Flax treatment \u2014 see <a href="./packages.html" ' + LINK + '>Packages</a>.',
+
+      cut:
+        'Shape first, length second \u2702\uFE0F<br><br>' +
+        '\u2022 Trim \u2014 ' + S('Trim') + '<br>' +
+        '\u2022 Precision cut \u2014 ' + S('Precision Cut') + '<br>' +
+        '\u2022 Layers \u2014 ' + S('Layers') + '<br>' +
+        '\u2022 Coily curly cut \u2014 ' + S('Coily Curly Cut') + '<br>' +
+        '\u2022 Curly cut \u2014 ' + S('Curly Cut') + '<br><br>' +
+        'Every cut is dry-checked at the end so it sits right when you leave.',
+
+      braid:
+        'Parted clean and tensioned gently, so your edges outlive the style \uD83D\uDC51<br><br>' +
+        '\u2022 Large braids \u2014 ' + S('Large Braids') + '<br>' +
+        '\u2022 Cornrow updo \u2014 ' + S('Cornrow Updo') + '<br><br>' +
+        'For a protective look with length, ask about the <strong>360 Illusion Crochet</strong> \u2014 ' + S('Illusion Crochet') + '.',
+
+      wig:
+        'Frontal installation is ' + S('Frontal Installation') + ' \u00B7 1 hr 30 min \u2014 fitted flat and blended so the parting reads as scalp \u2728<br><br>' +
+        'We also sell ready-to-wear glueless units on the <a href="./shop.html#wigs" ' + LINK + '>Shop page</a>, from GHS 1,650.',
+
+      beauty:
+        'Yes \u2014 alongside hair we look after <strong>brows, lashes, waxing and facials</strong> \uD83D\uDC41\uFE0F<br><br>' +
+        'These are booked directly with the artist rather than through the online menu, and priced at consultation. ' +
+        'Message us on <a href="' + (b.whatsappLink || '#') + '" ' + LINK + '>WhatsApp</a> or call <strong>' + (b.phone || '') + '</strong> and we will match you with the right person.',
+
+      packages:
+        'Booking two services together is cheaper than booking them apart \uD83D\uDC9D Our own bundles:<br><br>' +
+        '\u2022 Curl Revive + Flax \u2014 ' + S('Curl Revive + Flax') + '<br>' +
+        '\u2022 Curl Revive with FlaxGRO \u2014 ' + S('Curl Revive with FlaxGRO') + '<br>' +
+        '\u2022 Deep Moisture + Curl Revive \u2014 ' + S('Deep Moisture Treatment + Curl Revive') + '<br><br>' +
+        'Build your own combination on the <a href="./packages.html" ' + LINK + '>Packages page</a> and watch the total update live.',
+
+      shop:
+        'We sell the same hair we install, and the same products we treat with \uD83D\uDECD\uFE0F<br><br>' +
+        '\u2022 Extensions &amp; bundles \u2014 from GHS 1,200<br>' +
+        '\u2022 Closures &amp; frontals \u2014 from GHS 720<br>' +
+        '\u2022 Wigs &amp; units \u2014 from GHS 1,650<br>' +
+        '\u2022 Home care \u2014 from GHS 180<br>' +
+        '\u2022 Studio accessories \u2014 from GHS 85<br><br>' +
+        'Browse the <a href="./shop.html" ' + LINK + '>Shop</a>, add to your bag and check out with Mobile Money or card \u2014 then follow it on <a href="./track.html" ' + LINK + '>Track Order</a>.',
+
+      moringa:
+        'Our own <strong>Moringa line</strong> is launching soon \uD83C\uDF3F Moringa Ginseng Follicle Fuel and a Moringa Root Fuel scalp oil, formulated around the same botanicals we already use in treatment.<br><br>' +
+        'You can reserve yours now on the <a href="./shop.html#care" ' + LINK + '>Shop page</a> \u2014 pre-orders ship first.',
+
+      consult:
+        'Let us get you booked \uD83D\uDCC5 We are open <strong>' + (b.hoursLabel || 'Mon\u2013Sat \u00B7 9am \u2013 7pm') + '</strong>, closed Sundays. Saturdays fill first, so midweek is easier.<br><br>' +
+        'The <strong>first consultation is free</strong> \u2014 30 minutes to look at your hair and plan properly. ' +
+        'Use the <a href="./contact.html" ' + LINK + '>booking form</a> for an instant estimate, or call <strong>' + (b.phone || '') + '</strong>.',
+
+      availability:
+        'Rough timings so you can plan your day \u23F1\uFE0F<br><br>' +
+        '\u2022 KTip install \u2014 4 to 7 hours by weight<br>' +
+        '\u2022 Nanoplasty \u2014 4 hr 30 min<br>' +
+        '\u2022 Hair Botox \u2014 3 hr 45 min<br>' +
+        '\u2022 Curl Revive \u2014 1 hr 30 min<br>' +
+        '\u2022 Silkpress Xpress \u2014 1 hr 30 min<br>' +
+        '\u2022 Colour \u2014 2 to 4 hours<br><br>' +
+        'Every service on the <a href="./services.html#prices" ' + LINK + '>menu</a> carries its own published duration, and we book to it.',
+
+      team:
+        'Of course \u2014 we are a message away:<br><br>\uD83D\uDCDE <strong>' + (b.phone || '') + '</strong><br><br>' +
+        'Or tap the green WhatsApp button to chat instantly. We usually reply within the hour during opening times.',
+
+      location:
+        'You will find us at <strong>54 Fifth Circular Road, Cantonments, Accra</strong> \uD83D\uDCCD<br><br>' +
+        'Open <strong>' + (b.hoursLabel || '') + '</strong>, closed Sundays. Parking available on site. ' +
+        'Directions are on the <a href="./contact.html" ' + LINK + '>Contact page</a>.',
+
+      greet:
+        'Hi \u2728 So glad you are here. Ask me anything \u2014 fusion extensions, Nanoplasty, scalp and bond repair, colour, cutting, curls or the shop. Where would you like to start?',
+
+      thanks:
+        'You are so welcome! \uD83D\uDC95 We cannot wait to have you in the chair. Anything else I can help with?',
+
+      fallback:
+        'Good question \u2014 our team will answer that one best. Reach them on <strong>' + (b.phone || '') + '</strong> or tap <em>Speak to the team</em> below. ' +
+        'Meanwhile, every price and duration is published on the <a href="./services.html#prices" ' + LINK + '>Services page</a>.'
+    };
+  }
+  buildReplies();
 
   function detectIntent(text) {
     for (var i = 0; i < RESPONSES.length; i++) {

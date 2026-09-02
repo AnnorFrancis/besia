@@ -1,5 +1,5 @@
 /* ============================================================
-   XCLUSIVEHAIRDEALS — store.js
+   BĒSIA BEAUTY STUDIO — store.js
    The shop engine shared by shop.html, checkout.html, track.html
    and admin/orders.html: cart, orders, order numbers, status
    timeline and the demo payment flow. Everything lives in
@@ -9,8 +9,12 @@
 (function () {
   'use strict';
 
-  var CART_KEY = 'xhd-cart';
-  var ORDERS_KEY = 'xhd-orders';
+  /* Keys are namespaced through js/besia-data.js. localStorage is scoped
+     per ORIGIN, not per path — without a namespace, two demos hosted on
+     the same domain would silently share one cart and one order book. */
+  var NS = window.BESIA ? BESIA.key : function (n) { return 'besia-' + n; };
+  var CART_KEY = NS('cart');
+  var ORDERS_KEY = NS('orders');
 
   function read(key, fallback) {
     try { return JSON.parse(localStorage.getItem(key)) || fallback; }
@@ -19,7 +23,12 @@
   function write(key, value) {
     try { localStorage.setItem(key, JSON.stringify(value)); } catch (e) {}
   }
-  function money(n) { return 'GHS ' + Math.round(n).toLocaleString(); }
+  function money(n) {
+    return window.BESIA ? BESIA.money(n) : ('GHS ' + Math.round(n).toLocaleString());
+  }
+  function deliveryFee() {
+    return window.BESIA ? BESIA.business.deliveryFee : 30;
+  }
 
   /* ---------- Cart ---------- */
   function getCart() { return read(CART_KEY, []); }
@@ -54,11 +63,11 @@
   }
 
   function newOrderId() {
-    // XHD-yymmdd-xxx keeps ids readable on a receipt and easy to say on the phone
+    // BES-yymmdd-xxx keeps ids readable on a receipt and easy to say on the phone
     var d = new Date();
     var ymd = String(d.getFullYear()).slice(2) +
       ('0' + (d.getMonth() + 1)).slice(-2) + ('0' + d.getDate()).slice(-2);
-    return 'XHD-' + ymd + '-' + String(100 + Math.floor(Math.random() * 900));
+    return 'BES-' + ymd + '-' + String(100 + Math.floor(Math.random() * 900));
   }
 
   function getOrders() { return read(ORDERS_KEY, []); }
@@ -76,7 +85,7 @@
     var items = getCart();
     if (!items.length) return null;
     var subtotal = cartTotal();
-    var deliveryFee = details.method === 'delivery' ? 30 : 0;
+    var fee = details.method === 'delivery' ? deliveryFee() : 0;
     var order = {
       id: newOrderId(),
       placedAt: Date.now(),
@@ -87,8 +96,8 @@
       payment: details.payment,                  // {type, network, number, status}
       items: items,
       subtotal: subtotal,
-      deliveryFee: deliveryFee,
-      total: subtotal + deliveryFee,
+      deliveryFee: fee,
+      total: subtotal + fee,
       status: 'Order placed',
       timeline: [{ status: 'Order placed', at: Date.now() }]
     };
@@ -128,11 +137,11 @@
     var h = 3600000;
     var seeds = [
       {
-        id: 'XHD-DEMO-101', seeded: true, placedAt: Date.now() - 26 * h,
+        id: 'BES-DEMO-101', seeded: true, placedAt: Date.now() - 26 * h,
         customer: 'Efua Boakye', phone: '030 277 4410', method: 'delivery', area: 'East Legon',
         payment: { type: 'momo', network: 'MTN MoMo', number: '024 xxx 4410', status: 'Paid' },
-        items: [{ name: 'Jet Black Body Wave Unit', price: 1350, qty: 1, cat: 'wigs' }],
-        subtotal: 1350, deliveryFee: 30, total: 1380,
+        items: [{ name: 'KTip Fusion Bundle — 100g', price: 1850, qty: 1, cat: 'extensions' }],
+        subtotal: 1850, deliveryFee: 30, total: 1880,
         status: 'Out for delivery',
         timeline: [
           { status: 'Order placed', at: Date.now() - 26 * h },
@@ -141,14 +150,14 @@
         ]
       },
       {
-        id: 'XHD-DEMO-102', seeded: true, placedAt: Date.now() - 8 * h,
+        id: 'BES-DEMO-102', seeded: true, placedAt: Date.now() - 8 * h,
         customer: 'Adjoa Serwaa', phone: '024 118 7745', method: 'pickup', area: '',
         payment: { type: 'pickup', network: '', number: '', status: 'Pay on pickup' },
         items: [
-          { name: 'Ginger Straight Bundles ×3', price: 950, qty: 1, cat: 'bundles' },
-          { name: 'Argan Repair Mask + Serum', price: 140, qty: 2, cat: 'care' }
+          { name: 'HD Lace Frontal — 13×4', price: 1350, qty: 1, cat: 'closures' },
+          { name: 'K18 Molecular Repair Leave-In', price: 650, qty: 1, cat: 'care' }
         ],
-        subtotal: 1230, deliveryFee: 0, total: 1230,
+        subtotal: 2000, deliveryFee: 0, total: 2000,
         status: 'Confirmed',
         timeline: [
           { status: 'Order placed', at: Date.now() - 8 * h },
@@ -156,23 +165,23 @@
         ]
       },
       {
-        id: 'XHD-DEMO-103', seeded: true, placedAt: Date.now() - 2 * h,
+        id: 'BES-DEMO-103', seeded: true, placedAt: Date.now() - 2 * h,
         customer: 'Yaa Pokuaa', phone: '027 233 8181', method: 'delivery', area: 'Madina',
         payment: { type: 'momo', network: 'Telecel Cash', number: '020 xxx 8181', status: 'Paid' },
         items: [
-          { name: 'Gold Claw Clip', price: 45, qty: 2, cat: 'accessories' },
-          { name: 'Growth Drops — Scalp Oil', price: 110, qty: 1, cat: 'care' }
+          { name: 'Satin-Lined Bonnet', price: 120, qty: 2, cat: 'accessories' },
+          { name: 'Flax Seed + Aloe Hair Mask', price: 190, qty: 1, cat: 'care' }
         ],
-        subtotal: 200, deliveryFee: 30, total: 230,
+        subtotal: 430, deliveryFee: 30, total: 460,
         status: 'Order placed',
         timeline: [{ status: 'Order placed', at: Date.now() - 2 * h }]
       },
       {
-        id: 'XHD-DEMO-104', seeded: true, placedAt: Date.now() - 50 * h,
+        id: 'BES-DEMO-104', seeded: true, placedAt: Date.now() - 50 * h,
         customer: 'Linda Mensah', phone: '055 302 6614', method: 'pickup', area: '',
         payment: { type: 'momo', network: 'MTN MoMo', number: '055 xxx 6614', status: 'Paid' },
-        items: [{ name: 'Honey Ginger Root-Melt Unit', price: 1200, qty: 1, cat: 'wigs' }],
-        subtotal: 1200, deliveryFee: 0, total: 1200,
+        items: [{ name: 'Glueless Unit — Body Wave', price: 2400, qty: 1, cat: 'wigs' }],
+        subtotal: 2400, deliveryFee: 0, total: 2400,
         status: 'Picked up',
         timeline: [
           { status: 'Order placed', at: Date.now() - 50 * h },
@@ -230,7 +239,7 @@
     t._timer = setTimeout(function () { t.classList.remove('is-shown'); }, 2200);
   }
 
-  window.XHDStore = {
+  window.BesiaStore = {
     money: money,
     getCart: getCart, addItem: addItem, setQty: setQty, removeItem: removeItem,
     clearCart: clearCart, cartCount: cartCount, cartTotal: cartTotal,

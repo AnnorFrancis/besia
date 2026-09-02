@@ -1,5 +1,5 @@
 /* ============================================================
-   XCLUSIVEHAIRDEALS — gallery.js
+   BĒSIA BEAUTY STUDIO — gallery.js
    Filterable masonry-style gallery with FLIP transitions
    and a keyboard-accessible lightbox.
    ============================================================ */

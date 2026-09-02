@@ -1,5 +1,5 @@
 /* ============================================================
-   XCLUSIVEHAIRDEALS — animations.js
+   BĒSIA BEAUTY STUDIO — animations.js
    GSAP-powered cinematic layer: hero text choreography,
    slideshow, parallax, 3D card tilt.
    Everything degrades gracefully if a CDN fails.
