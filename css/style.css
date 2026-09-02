@@ -2076,3 +2076,8 @@ details.price-group[open] > summary::after { transform: rotate(-135deg); }
 .enrol-tick svg { width: 28px; height: 28px; }
 .enrol-done h3 { font-family: var(--font-display); font-size: 1.5rem; color: var(--espresso); margin-bottom: 0.7rem; }
 .enrol-done p { font-size: 0.94rem; color: var(--ink-soft); margin-bottom: 0.5rem; }
+.track-hint {
+  margin-top: 0.9rem;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+}
