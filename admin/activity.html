@@ -73,6 +73,7 @@
       </div>
       <div class="topbar-spacer"></div>
       <div class="topbar-date" id="today-date">—</div>
+      
       <div class="topbar-avatar">B</div>
     </header>
 
@@ -90,6 +91,18 @@
     </main>
   </div>
 </div>
+
+<!-- The slide-in detail panel. It lives OUTSIDE .admin-shell so it can sit
+     above everything, and it is emitted on every page so any section can
+     open a record without needing its own copy of this markup. -->
+<div class="a-modal-backdrop" id="drawer-backdrop"></div>
+<aside class="a-drawer" id="page-drawer" role="dialog" aria-modal="true" aria-labelledby="drawer-title" aria-label="Activity details">
+  <div class="a-drawer-head">
+    <h2 id="drawer-title">Activity</h2>
+    <button class="a-drawer-close" id="drawer-close" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 6l12 12M18 6L6 18" stroke-linecap="round"/></svg></button>
+  </div>
+  <div class="a-drawer-body" id="drawer-body"></div>
+</aside>
 
 <script src="../js/besia-data.js" defer></script>
 <script src="../js/store.js" defer></script>

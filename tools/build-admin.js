@@ -46,7 +46,7 @@ const ICON = {
 const PAGES = [
   { id: 'dashboard', file: 'dashboard.html', group: 'Today', nav: 'Overview',    icon: 'overview',
     title: 'Overview',    intro: 'Everything happening today, in one place.' },
-  { id: 'bookings',  file: 'bookings.html',  group: 'Today', nav: 'Appointments', icon: 'diary',
+  { id: 'bookings', countId: 'bookings-count', action: ['add-booking', 'New appointment'],  file: 'bookings.html',  group: 'Today', nav: 'Appointments', icon: 'diary',
     title: 'Appointments', intro: 'Everyone booked in. Confirm them, or let them know if something changes.' },
   { id: 'sell',      file: 'sell.html',      group: 'Today', nav: 'Sell Now',    icon: 'till',
     title: 'Sell Now',    intro: 'Someone is at the counter. Add what they are having, then take the money.' },
@@ -60,7 +60,7 @@ const PAGES = [
   { id: 'expenses',  file: 'expenses.html',  group: 'Money', nav: 'Expenses',    icon: 'expenses',
     title: 'Expenses',    intro: 'Money going out — rent, stock, salaries, transport.' },
 
-  { id: 'orders',    file: 'orders.html',    group: 'Shop',  nav: 'Shop Orders', icon: 'orders',
+  { id: 'orders', countId: 'orders-count',     file: 'orders.html',    group: 'Shop',  nav: 'Shop Orders', icon: 'orders',
     title: 'Shop Orders', intro: 'Orders from the website. Confirm each one, then get it ready.' },
   { id: 'stock',     file: 'stock.html',     group: 'Shop',  nav: 'Stock',       icon: 'stock',
     title: 'Stock',       intro: 'What is on the shelf right now, and what is running low.' },
@@ -70,12 +70,12 @@ const PAGES = [
   { id: 'classes',   file: 'classes.html',   group: 'School', nav: 'Classes',    icon: 'classes',
     title: 'Classes',     intro: 'Your students, what they are learning, and what they have paid so far.' },
 
-  { id: 'clients',   file: 'clients.html',   group: 'People', nav: 'Customers',  icon: 'customers',
+  { id: 'clients', countId: 'clients-count', action: ['add-client', 'New customer'],   file: 'clients.html',   group: 'People', nav: 'Customers',  icon: 'customers',
     title: 'Customers',   intro: 'Everyone who has been in. Their history, and your notes about them.' },
-  { id: 'staff',     file: 'staff.html',     group: 'People', nav: 'Team',       icon: 'team',
+  { id: 'staff', action: ['add-staff', 'Add someone'],     file: 'staff.html',     group: 'People', nav: 'Team',       icon: 'team',
     title: 'Team',        intro: 'Your stylists, what each one does, and how busy they are.' },
 
-  { id: 'reports',   file: 'reports.html',   group: 'Business', nav: 'Reports',  icon: 'reports',
+  { id: 'reports',    file: 'reports.html',   group: 'Business', nav: 'Reports',  icon: 'reports',
     title: 'Reports',     intro: 'How the business is doing this week, this month and this year.' },
   { id: 'activity',  file: 'activity.html',  group: 'Business', nav: 'Activity', icon: 'activity',
     title: 'Activity',    intro: 'A record of what changed today, and who changed it.' },
@@ -84,7 +84,7 @@ const PAGES = [
     title: 'Price List',  intro: 'Every price the website shows. This is the only place a price is kept.' },
   { id: 'settings',  file: 'settings.html',  group: 'Set up', nav: 'Settings',   icon: 'settings',
     title: 'Settings',    intro: 'Your studio details — address, phone, opening hours.' },
-  { id: 'payments',  file: 'payments.html',  group: 'Money',  nav: 'Payments',   icon: 'cash', hidden: true,
+  { id: 'payments', action: ['pay-record', 'Record a payment'],  file: 'payments.html',  group: 'Money',  nav: 'Payments',   icon: 'cash', hidden: true,
     title: 'Payments',    intro: 'Deposits taken and balances still owed.' },
   { id: 'help',      file: 'help.html',      group: 'Set up', nav: 'Help',       icon: 'help',
     title: 'Help',        intro: 'Short answers to “how do I…?”' }
@@ -172,7 +172,8 @@ ${sidebar(p.id)}
         <p class="topbar-intro">${p.intro}</p>
       </div>
       <div class="topbar-spacer"></div>
-      <div class="topbar-date" id="today-date">—</div>
+      ${p.countId ? '<span class="topbar-meta" id="' + p.countId + '">—</span>' : '<div class="topbar-date" id="today-date">—</div>'}
+      ${p.action ? '<button class="a-btn a-btn--gold a-btn--sm" id="' + p.action[0] + '" type="button">' + p.action[1] + '</button>' : ''}
       <div class="topbar-avatar">B</div>
     </header>
 
@@ -181,6 +182,18 @@ ${body}
     </main>
   </div>
 </div>
+
+<!-- The slide-in detail panel. It lives OUTSIDE .admin-shell so it can sit
+     above everything, and it is emitted on every page so any section can
+     open a record without needing its own copy of this markup. -->
+<div class="a-modal-backdrop" id="drawer-backdrop"></div>
+<aside class="a-drawer" id="page-drawer" role="dialog" aria-modal="true" aria-labelledby="drawer-title" aria-label="${p.title} details">
+  <div class="a-drawer-head">
+    <h2 id="drawer-title">${p.title}</h2>
+    <button class="a-drawer-close" id="drawer-close" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 6l12 12M18 6L6 18" stroke-linecap="round"/></svg></button>
+  </div>
+  <div class="a-drawer-body" id="drawer-body"></div>
+</aside>
 
 ${scripts.join('\n')}
 </body>

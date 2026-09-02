@@ -694,3 +694,10 @@ input, select, textarea { font-family: inherit; font-size: 0.92rem; }
   .pick-list { max-height: none; }
   .topbar-date { display: none; }
 }
+.topbar-meta {
+  font-size: 0.8rem;
+  color: var(--a-ink-soft);
+  white-space: nowrap;
+  margin-right: 0.9rem;
+}
+@media (max-width: 720px) { .topbar-meta { display: none; } }
