@@ -15,6 +15,14 @@ const B = require(path.join(ROOT, 'js', 'besia-data.js'));
 /* >>> The one line to change when the domain is decided. <<< */
 const SITE_URL = 'https://annorfrancis.github.io/besia';
 
+/* >>> Set to false the day this becomes Bēsia's live site. <<<
+   While it is a proposal it is hosted under Perkins Creative's account, so it
+   must not be indexed: a demo carrying her name and placeholder retail prices
+   could outrank her real Fresha booking page and take bookings away from her.
+   Flipping this to false and re-running removes every noindex and opens
+   robots.txt back up. Nothing else changes. */
+const IS_PROPOSAL = true;
+
 const OG_IMAGE = '/images/studio/studio-reception.jpg';
 
 const PAGES = {
@@ -128,7 +136,7 @@ for (const [file, meta] of Object.entries(PAGES)) {
   const block =
     '  <!-- BUILD:seo -->\n' +
     '  <link rel="canonical" href="' + url + '">\n' +
-    (meta.noindex ? '  <meta name="robots" content="noindex,follow">\n' : '') +
+    (meta.noindex || IS_PROPOSAL ? '  <meta name="robots" content="noindex,follow">\n' : '') +
     '  <meta property="og:type" content="website">\n' +
     '  <meta property="og:site_name" content="' + esc(B.business.nameFull) + '">\n' +
     '  <meta property="og:title" content="' + esc(meta.title) + '">\n' +
@@ -152,8 +160,14 @@ for (const [file, meta] of Object.entries(PAGES)) {
 console.log('SEO head written for ' + done + ' pages.');
 
 /* ---------- robots.txt ---------- */
-fs.writeFileSync(path.join(ROOT, 'robots.txt'),
-`User-agent: *
+fs.writeFileSync(path.join(ROOT, 'robots.txt'), IS_PROPOSAL
+? `# This is a proposal build hosted under the developer's account, not the
+# studio's live site. Nothing here should be indexed while that is true.
+# See IS_PROPOSAL in tools/build-seo.js.
+User-agent: *
+Disallow: /
+`
+: `User-agent: *
 Allow: /
 
 # The studio manager is a private back office, not public content.

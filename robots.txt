@@ -1,8 +1,5 @@
+# This is a proposal build hosted under the developer's account, not the
+# studio's live site. Nothing here should be indexed while that is true.
+# See IS_PROPOSAL in tools/build-seo.js.
 User-agent: *
-Allow: /
-
-# The studio manager is a private back office, not public content.
-Disallow: /admin/
-Disallow: /checkout.html
-
-Sitemap: https://annorfrancis.github.io/besia/sitemap.xml
+Disallow: /
