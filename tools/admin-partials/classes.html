@@ -1,0 +1,31 @@
+      <div class="stat-cards stat-cards--3" id="cls-stats"></div>
+
+      <section class="panel">
+        <div class="panel-head">
+          <div>
+            <div class="panel-title">Courses you teach</div>
+            <div class="panel-sub">Seats filled out of seats available.</div>
+          </div>
+        </div>
+        <div class="staff-grid" id="cls-courses"></div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head">
+          <div>
+            <div class="panel-title">Students</div>
+            <div class="panel-sub">A student can pay in full, or pay half to reserve a seat and settle the rest before the last day.</div>
+          </div>
+          <div class="chip-row" id="cls-filter">
+            <button type="button" class="a-chip is-active" data-cls="all">Everyone</button>
+            <button type="button" class="a-chip" data-cls="owing">Still owing</button>
+            <button type="button" class="a-chip" data-cls="paid">Fully paid</button>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table class="a-table">
+            <thead><tr><th>Student</th><th>Course</th><th>Starts</th><th class="num">Fee</th><th class="num">Paid</th><th class="num">Owing</th><th></th></tr></thead>
+            <tbody id="cls-body"></tbody>
+          </table>
+        </div>
+      </section>

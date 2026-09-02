@@ -267,19 +267,46 @@
     var newOrders = 0;
     if (window.BesiaStore) { window.BesiaStore.seedOrders(); newOrders = window.BesiaStore.getOrders().filter(function (o) { return o.status === 'Order placed'; }).length; }
 
-    var sum = document.getElementById('dash-summary');
-    if (sum) {
-      sum.innerHTML = 'You have <strong>' + today + '</strong> appointment' + (today === 1 ? '' : 's') + ' today' +
-        ' · <strong>' + pend + '</strong> waiting to confirm' +
-        ' · <strong>' + money(owed) + '</strong> still owed' + (newOrders ? ' · <strong>' + newOrders + '</strong> new shop order' + (newOrders === 1 ? '' : 's') : '') + '.';
+    /* Three plain numbers: what came in, what is booked, what is owed. */
+    var statsEl = document.getElementById('dash-stats');
+    if (statsEl) {
+      var startOfDay = new Date(); startOfDay.setHours(0, 0, 0, 0);
+      var takenToday = 0;
+      try {
+        var sales = JSON.parse(localStorage.getItem('besia-sales')) || [];
+        takenToday = sales
+          .filter(function (x) { return x.at >= startOfDay.getTime(); })
+          .reduce(function (n, x) { return n + x.paid; }, 0);
+      } catch (e) {}
+      var card = function (label, value, sub) {
+        return '<div class="stat-card"><div class="stat-card-label">' + label +
+          '</div><div class="stat-card-value">' + value +
+          '</div><div class="stat-card-delta">' + sub + '</div></div>';
+      };
+      statsEl.innerHTML =
+        card('Taken today', money(takenToday), 'Every sale, however they paid') +
+        card('Booked in today', String(today), pend + ' still to confirm') +
+        card('Owed to you', money(owed), 'See Balances to chase it');
     }
+
     var set = function (id, val) { var el = document.getElementById(id); if (el) el.textContent = val; };
     set('tile-orders', newOrders + ' new');
     set('tile-today', today);
     set('tile-confirm', pend + ' to confirm');
-    set('tile-customers', CLIENTS.length);
     set('tile-owed', money(owed) + ' owed');
-    set('tile-staff', STAFF.length);
+
+    try {
+      var studs = JSON.parse(localStorage.getItem('besia-students')) || [];
+      set('tile-students', studs.length + (studs.length === 1 ? ' student' : ' students'));
+      var stock = JSON.parse(localStorage.getItem('besia-stock')) || {};
+      var lowCount = Object.keys(stock).filter(function (k) { return stock[k] <= 3; }).length;
+      set('tile-stock', lowCount ? lowCount + ' running low' : 'All good');
+      var drawer = JSON.parse(localStorage.getItem('besia-drawer')) || null;
+      var todayKey = new Date().toISOString().slice(0, 10);
+      set('tile-cash', drawer && drawer.day === todayKey && drawer.opened
+        ? (drawer.closed ? 'Closed for the day' : 'Open — ' + money(drawer.float) + ' float')
+        : 'Not opened yet');
+    } catch (e) {}
   }
 
   /* ================================================================
@@ -441,49 +468,6 @@
   /* ================================================================
      WALK-IN
      ================================================================ */
-  if (page === 'walkin') {
-    var staffSel = document.getElementById('wi-staff');
-    if (staffSel) staffSel.innerHTML = STAFF.map(function (s) { return '<option>' + s.name + '</option>'; }).join('');
-
-    function renderWalkins() {
-      var list = BOOKINGS.filter(function (b) { return b.source === 'Walk-in' && sameDay(b.date, new Date()); });
-      var body = document.getElementById('walkin-today');
-      var cnt = document.getElementById('wi-count');
-      if (cnt) cnt.textContent = list.length + ' walk-in' + (list.length === 1 ? '' : 's') + ' so far today';
-      body.innerHTML = list.length ? list.map(function (b) {
-        var bal = b.amount - b.deposit;
-        return '<tr><td class="cell-strong">' + esc(b.client) + '</td><td>' + esc(b.type) + '</td><td>' + esc(b.venue) + '</td>' +
-          '<td class="num">' + money(b.deposit) + '</td><td class="num">' + (bal > 0 ? money(bal) : '—') + '</td></tr>';
-      }).join('') : '<tr class="empty-row"><td colspan="5">No walk-ins recorded yet today.</td></tr>';
-    }
-
-    var wiSave = document.getElementById('wi-save');
-    if (wiSave) wiSave.addEventListener('click', function () {
-      var name = document.getElementById('wi-name').value.trim();
-      if (!name) { toast('Please enter the client name'); return; }
-      var amount = parseInt(document.getElementById('wi-amount').value, 10) || 0;
-      var paid = parseInt(document.getElementById('wi-paid').value, 10) || 0;
-      if (paid > amount) paid = amount;
-      var service = document.getElementById('wi-service').value;
-      var stylist = document.getElementById('wi-staff').value;
-      var phone = document.getElementById('wi-phone').value || '—';
-      BOOKINGS.unshift({
-        id: 'WLK-' + (Date.now() % 100000), client: name, phone: phone, type: service,
-        date: d(0), venue: stylist, pkg: 'Single Service', amount: amount, deposit: paid,
-        status: 'In Progress', source: 'Walk-in', notes: 'Walked in today.'
-      });
-      if (paid > 0) PAYMENTS.push({ client: name, service: service, amount: paid, when: new Date() });
-      // add to customer list if new
-      var exists = CLIENTS.some(function (c) { return c.name.toLowerCase() === name.toLowerCase(); });
-      if (!exists) CLIENTS.unshift({ name: name, phone: phone, email: '—', events: 1, spent: paid, last: new Date(), src: 'Walk-in', notes: 'Added from a walk-in visit.' });
-      ['wi-name', 'wi-phone', 'wi-amount', 'wi-paid'].forEach(function (id) { document.getElementById(id).value = ''; });
-      renderWalkins();
-      toast(name + ' saved to today’s appointments');
-    });
-
-    renderWalkins();
-  }
-
   /* ================================================================
      CUSTOMERS
      ================================================================ */

@@ -1,0 +1,21 @@
+      <div class="stat-cards stat-cards--3" id="stock-stats"></div>
+
+      <section class="panel">
+        <div class="panel-head">
+          <div>
+            <div class="panel-title">What is on the shelf</div>
+            <div class="panel-sub">Use the − and + buttons when stock goes out or comes in. Anything at 3 or fewer is flagged.</div>
+          </div>
+          <div class="chip-row" id="stock-filter">
+            <button type="button" class="a-chip is-active" data-stock="all">Everything</button>
+            <button type="button" class="a-chip" data-stock="low">Running low</button>
+            <button type="button" class="a-chip" data-stock="out">Finished</button>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table class="a-table">
+            <thead><tr><th>Item</th><th>Group</th><th class="num">Price</th><th class="num">In stock</th><th>Status</th><th></th></tr></thead>
+            <tbody id="stock-body"></tbody>
+          </table>
+        </div>
+      </section>

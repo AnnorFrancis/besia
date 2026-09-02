@@ -294,6 +294,84 @@
     { name:'Ama O',      date:'2026-04-16', stars:5, service:'Regular client', text:'Great service as always.' }
   ];
 
+  /* ---------- The training school ----------
+     Bēsia teaches as well as styles. Students either pay in full or pay
+     half to reserve a seat and settle the balance before the last day.
+
+     NOTE: course content and fees are a first draft built from the
+     studio's own disciplines. Confirm both with the owner.
+  */
+  var COURSE_PAYMENT = {
+    depositPercent: 50,
+    note: 'Pay in full, or half to reserve your seat and the balance before the final day.'
+  };
+
+  var COURSES = [
+    {
+      id: 'C-FUSION', name: 'Fusion Extensions Masterclass',
+      days: 5, fee: 4500, seats: 6, level: 'Advanced',
+      blurb: 'Our signature course. KTips and microlinks, start to finish.',
+      learn: ['Reading density and deciding what hair can carry', 'Sectioning and bond placement',
+              'KTip application and heat control', 'Microlink fitting and tension',
+              'Safe removal without breakage', 'Aftercare you can teach your own clients']
+    },
+    {
+      id: 'C-BRAID', name: 'Braiding & Cornrows',
+      days: 10, fee: 2500, seats: 8, level: 'Beginner',
+      blurb: 'Start here if you are learning from scratch.',
+      learn: ['Parting clean and even', 'Tension that protects the edges', 'Feed-in cornrows',
+              'Large braids and updos', 'Speed without losing neatness', 'Pricing your own work']
+    },
+    {
+      id: 'C-SILK', name: 'Silk Press & Blow Dry',
+      days: 3, fee: 1800, seats: 8, level: 'Beginner',
+      blurb: 'The Silkpress Xpress method, taught properly.',
+      learn: ['Washing and prepping for heat', 'Brush blow-dry technique',
+              'Heat settings by hair type', 'Pressing without heat damage', 'Finishing and shine']
+    },
+    {
+      id: 'C-CURL', name: 'Natural Hair & Curl Care',
+      days: 4, fee: 2200, seats: 8, level: 'Beginner',
+      blurb: 'Curl Revive, wash-and-go and cutting for texture.',
+      learn: ['Curl patterns and porosity', 'Wash-and-go that lasts', 'Steam and deep conditioning',
+              'Cutting curly and coily hair', 'Building a client home routine']
+    },
+    {
+      id: 'C-COLOUR', name: 'Colour Fundamentals',
+      days: 4, fee: 3000, seats: 6, level: 'Intermediate',
+      blurb: 'Colour on textured hair, without wrecking the bonds.',
+      learn: ['Colour theory on dark hair', 'Lifting safely', 'Balayage and highlights',
+              'Bond protection with Olaplex and K18', 'Correcting a colour that went wrong']
+    },
+    {
+      id: 'C-LASH', name: 'Lashes & Brows',
+      days: 3, fee: 2000, seats: 6, level: 'Beginner',
+      blurb: 'Classic, hybrid and volume sets, plus brow shaping.',
+      learn: ['Eye mapping', 'Isolation and placement', 'Classic, hybrid and volume sets',
+              'Brow shaping to face shape', 'Hygiene and patch testing']
+    }
+  ];
+
+  /* ---------- Who the studio buys from ---------- */
+  var SUPPLIERS = [
+    { name: 'Accra Hair Imports',   supplies: 'KTip bundles, tape-in wefts, raw bundles', phone: '024 611 3390', terms: '30 days' },
+    { name: 'Beauty Depot GH',      supplies: 'Olaplex, K18, colour and developer',       phone: '020 774 5512', terms: 'On delivery' },
+    { name: 'Lace & Units Ltd',     supplies: 'HD closures, frontals, glueless units',    phone: '055 209 8814', terms: '14 days' },
+    { name: 'Moringa Farms Co-op',  supplies: 'Raw moringa, ginseng, carrier oils',       phone: '027 480 1176', terms: 'On delivery' },
+    { name: 'Studio Supplies Ltd',  supplies: 'Towels, capes, foils, gloves, bonnets',    phone: '030 291 6603', terms: '30 days' }
+  ];
+
+  /* ---------- Plain-language lists the manager uses ---------- */
+  var EXPENSE_CATEGORIES = [
+    'Rent', 'Salaries', 'Stock purchase', 'Electricity & water',
+    'Transport', 'Marketing', 'Equipment', 'Repairs', 'Other'
+  ];
+
+  var PAYMENT_METHODS = ['Cash', 'MTN MoMo', 'Telecel Cash', 'AT Money', 'Card', 'Bank transfer'];
+
+  /* Reorder point: below this many units, Stock flags the item. */
+  var LOW_STOCK_AT = 3;
+
   /* ---------- Helpers every page uses ---------- */
   function money(n) { return BUSINESS.currency + ' ' + Math.round(n).toLocaleString('en-GB'); }
 
@@ -346,6 +424,12 @@
     productCategories: PRODUCT_CATEGORIES,
     products: PRODUCTS,
     team: TEAM,
+    courses: COURSES,
+    coursePayment: COURSE_PAYMENT,
+    suppliers: SUPPLIERS,
+    expenseCategories: EXPENSE_CATEGORIES,
+    paymentMethods: PAYMENT_METHODS,
+    lowStockAt: LOW_STOCK_AT,
     reviews: REVIEWS,
     money: money,
     priceLabel: priceLabel,

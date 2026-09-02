@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Overview — Bēsia Studio Manager</title>
+  <title>Classes — Bēsia Studio Manager</title>
   <meta name="robots" content="noindex">
   <link rel="icon" type="image/svg+xml" href="../assets/icons/favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="../css/admin.css">
   <script>try{var t=localStorage.getItem('besia-admin-theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
 </head>
-<body class="admin" data-page="dashboard">
+<body class="admin" data-page="classes">
 
 <div class="admin-shell">
 
@@ -26,7 +26,7 @@
     </div>
     <nav class="admin-nav" aria-label="Sections">
       <div class="admin-nav-label">Today</div>
-      <a href="./dashboard.html" class="is-active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="8" height="8" rx="2"/><rect x="13" y="3" width="8" height="5" rx="2"/><rect x="13" y="10" width="8" height="11" rx="2"/><rect x="3" y="13" width="8" height="8" rx="2"/></svg>Overview</a>
+      <a href="./dashboard.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="8" height="8" rx="2"/><rect x="13" y="3" width="8" height="5" rx="2"/><rect x="13" y="10" width="8" height="11" rx="2"/><rect x="3" y="13" width="8" height="8" rx="2"/></svg>Overview</a>
       <a href="./bookings.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4m8-4v4M3 10h18" stroke-linecap="round"/></svg>Appointments</a>
       <a href="./sell.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 9h16l-1 11H5z" stroke-linejoin="round"/><path d="M8 9V6.5A3.5 3.5 0 0 1 15 6.5V9" stroke-linecap="round"/><path d="M9.5 14h5" stroke-linecap="round"/></svg>Sell Now</a>
       <div class="admin-nav-label">Money</div>
@@ -39,7 +39,7 @@
       <a href="./stock.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 8.5 12 4l9 4.5v7L12 20l-9-4.5z" stroke-linejoin="round"/><path d="M3 8.5 12 13l9-4.5M12 13v7" stroke-linejoin="round"/></svg>Stock</a>
       <a href="./suppliers.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="1.5" y="7" width="12" height="9" rx="1.5"/><path d="M13.5 10.5H18l3.5 3v2.5h-8z" stroke-linejoin="round"/><circle cx="6" cy="18" r="1.8"/><circle cx="17" cy="18" r="1.8"/></svg>Suppliers</a>
       <div class="admin-nav-label">School</div>
-      <a href="./classes.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 4 2.5 9 12 14l9.5-5z" stroke-linejoin="round"/><path d="M6.5 11.5V17c0 1.4 2.5 2.6 5.5 2.6s5.5-1.2 5.5-2.6v-5.5" stroke-linecap="round"/></svg>Classes</a>
+      <a href="./classes.html" class="is-active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 4 2.5 9 12 14l9.5-5z" stroke-linejoin="round"/><path d="M6.5 11.5V17c0 1.4 2.5 2.6 5.5 2.6s5.5-1.2 5.5-2.6v-5.5" stroke-linecap="round"/></svg>Classes</a>
       <div class="admin-nav-label">People</div>
       <a href="./clients.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.8-3.2 3.4-5 6.5-5s5.7 1.8 6.5 5" stroke-linecap="round"/><circle cx="17" cy="9" r="2.5"/><path d="M16.5 15c2.6.2 4.4 1.7 5 4.5" stroke-linecap="round"/></svg>Customers</a>
       <a href="./staff.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2.5"/><circle cx="12" cy="9" r="2.6"/><path d="M7.5 17c0-2.2 2-3.4 4.5-3.4s4.5 1.2 4.5 3.4" stroke-linecap="round"/></svg>Team</a>
@@ -68,8 +68,8 @@
     <header class="admin-topbar">
       <button class="sidebar-toggle" aria-label="Open menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round"/></svg></button>
       <div class="topbar-title">
-        <h1>Overview</h1>
-        <p class="topbar-intro">Everything happening today, in one place.</p>
+        <h1>Classes</h1>
+        <p class="topbar-intro">Your students, what they are learning, and what they have paid so far.</p>
       </div>
       <div class="topbar-spacer"></div>
       <div class="topbar-date" id="today-date">—</div>
@@ -77,64 +77,35 @@
     </header>
 
     <main class="admin-content">
-      <div class="stat-cards stat-cards--3" id="dash-stats"></div>
+      <div class="stat-cards stat-cards--3" id="cls-stats"></div>
 
       <section class="panel">
         <div class="panel-head">
           <div>
-            <div class="panel-title">What do you want to do?</div>
-            <div class="panel-sub">The things you reach for most, in one tap.</div>
+            <div class="panel-title">Courses you teach</div>
+            <div class="panel-sub">Seats filled out of seats available.</div>
           </div>
         </div>
+        <div class="staff-grid" id="cls-courses"></div>
+      </section>
 
-        <div class="tile-grid">
-          <a class="tile tile--primary" href="./sell.html">
-            <span class="tile-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 9h16l-1 11H5z" stroke-linejoin="round"/><path d="M8 9V6.5A3.5 3.5 0 0 1 15 6.5V9" stroke-linecap="round"/><path d="M9.5 14h5" stroke-linecap="round"/></svg></span>
-            <span class="tile-label">Sell Now</span>
-            <span class="tile-sub">Someone is at the counter</span>
-          </a>
-
-          <a class="tile" href="./bookings.html#today">
-            <span class="tile-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4m8-4v4M3 10h18" stroke-linecap="round"/></svg></span>
-            <span class="tile-label">Today's Appointments</span>
-            <span class="tile-count" id="tile-today">0</span>
-          </a>
-
-          <a class="tile" href="./bookings.html">
-            <span class="tile-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="8" height="8" rx="2"/><rect x="13" y="3" width="8" height="5" rx="2"/><rect x="13" y="10" width="8" height="11" rx="2"/><rect x="3" y="13" width="8" height="8" rx="2"/></svg></span>
-            <span class="tile-label">All Appointments</span>
-            <span class="tile-sub" id="tile-confirm">0 to confirm</span>
-          </a>
-
-          <a class="tile" href="./orders.html">
-            <span class="tile-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M6 7h12l1.5 13h-15z" stroke-linejoin="round"/><path d="M9 9V6a3 3 0 0 1 6 0v3" stroke-linecap="round"/></svg></span>
-            <span class="tile-label">Shop Orders</span>
-            <span class="tile-sub" id="tile-orders">0 new</span>
-          </a>
-
-          <a class="tile" href="./balances.html">
-            <span class="tile-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M9.5 9.5h4a1.8 1.8 0 0 1 0 3.6h-3a1.8 1.8 0 0 0 0 3.6h4" stroke-linecap="round"/></svg></span>
-            <span class="tile-label">Balances</span>
-            <span class="tile-sub" id="tile-owed">GHS 0 owed</span>
-          </a>
-
-          <a class="tile" href="./classes.html">
-            <span class="tile-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 4 2.5 9 12 14l9.5-5z" stroke-linejoin="round"/><path d="M6.5 11.5V17c0 1.4 2.5 2.6 5.5 2.6s5.5-1.2 5.5-2.6v-5.5" stroke-linecap="round"/></svg></span>
-            <span class="tile-label">Classes</span>
-            <span class="tile-sub" id="tile-students">0 students</span>
-          </a>
-
-          <a class="tile" href="./stock.html">
-            <span class="tile-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 8.5 12 4l9 4.5v7L12 20l-9-4.5z" stroke-linejoin="round"/><path d="M3 8.5 12 13l9-4.5M12 13v7" stroke-linejoin="round"/></svg></span>
-            <span class="tile-label">Stock</span>
-            <span class="tile-sub" id="tile-stock">All good</span>
-          </a>
-
-          <a class="tile" href="./cash.html">
-            <span class="tile-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2.6"/><path d="M6 12h.01M18 12h.01" stroke-linecap="round"/></svg></span>
-            <span class="tile-label">Cash Drawer</span>
-            <span class="tile-sub" id="tile-cash">Not opened yet</span>
-          </a>
+      <section class="panel">
+        <div class="panel-head">
+          <div>
+            <div class="panel-title">Students</div>
+            <div class="panel-sub">A student can pay in full, or pay half to reserve a seat and settle the rest before the last day.</div>
+          </div>
+          <div class="chip-row" id="cls-filter">
+            <button type="button" class="a-chip is-active" data-cls="all">Everyone</button>
+            <button type="button" class="a-chip" data-cls="owing">Still owing</button>
+            <button type="button" class="a-chip" data-cls="paid">Fully paid</button>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table class="a-table">
+            <thead><tr><th>Student</th><th>Course</th><th>Starts</th><th class="num">Fee</th><th class="num">Paid</th><th class="num">Owing</th><th></th></tr></thead>
+            <tbody id="cls-body"></tbody>
+          </table>
         </div>
       </section>
     </main>

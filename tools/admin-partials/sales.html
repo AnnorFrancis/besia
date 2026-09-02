@@ -1,0 +1,23 @@
+      <div class="stat-cards stat-cards--3" id="sales-stats"></div>
+
+      <section class="panel">
+        <div class="panel-head">
+          <div>
+            <div class="panel-title">Sales</div>
+            <div class="panel-sub">Newest first. Change the period to see further back.</div>
+          </div>
+          <div class="chip-row" id="sales-period">
+            <button type="button" class="a-chip is-active" data-period="today">Today</button>
+            <button type="button" class="a-chip" data-period="week">This week</button>
+            <button type="button" class="a-chip" data-period="month">This month</button>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table class="a-table">
+            <thead>
+              <tr><th>When</th><th>Customer</th><th>What they bought</th><th>Where</th><th>Paid with</th><th class="num">Amount</th></tr>
+            </thead>
+            <tbody id="sales-body"></tbody>
+          </table>
+        </div>
+      </section>

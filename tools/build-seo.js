@@ -48,6 +48,11 @@ const PAGES = {
     desc: 'Our own multi-service bundles — Curl Revive + Flax, Curl Revive with FlaxGRO and the Nanoplasty signature — or build your own combination and see the total update live.',
     prio: '0.8'
   },
+  'classes.html': {
+    title: 'Classes — Learn Fusion Extensions & Hair Care at Bēsia, Accra',
+    desc: 'Train at Bēsia Beauty Studio in Cantonments, Accra. Six hands-on courses — fusion extensions, braiding, silk press, natural hair, colour, lashes and brows. Pay in full or pay half to reserve your seat.',
+    prio: '0.8'
+  },
   'contact.html': {
     title: 'Book an Appointment — Bēsia Beauty Studio, Cantonments Accra',
     desc: 'Book at 54 Fifth Circular Road, Cantonments. Open Mon–Sat 9am–7pm. Get an instant estimate from our published prices — the first consultation is free.',

@@ -1,0 +1,65 @@
+      <div class="panel-grid panel-grid--2">
+
+        <section class="panel">
+          <div class="panel-head">
+            <div>
+              <div class="panel-title">1. What are they having?</div>
+              <div class="panel-sub">Tap an item to add it. Tap again to add another.</div>
+            </div>
+          </div>
+          <div class="chip-row" id="sell-tabs">
+            <button type="button" class="a-chip is-active" data-sell-tab="services">Services</button>
+            <button type="button" class="a-chip" data-sell-tab="products">Products</button>
+          </div>
+          <div class="a-field">
+            <input class="a-input" id="sell-search" type="search" placeholder="Search by name…" aria-label="Search the price list">
+          </div>
+          <div class="pick-list" id="sell-catalogue"></div>
+        </section>
+
+        <section class="panel panel--soft">
+          <div class="panel-head">
+            <div>
+              <div class="panel-title">2. Check the bill</div>
+              <div class="panel-sub">Read it back to the customer before you take any money.</div>
+            </div>
+          </div>
+
+          <div id="sell-bill"></div>
+
+          <div class="form-2col">
+            <div class="a-field">
+              <label for="sell-name">Customer name</label>
+              <input class="a-input" id="sell-name" placeholder="Leave blank for a walk-in">
+            </div>
+            <div class="a-field">
+              <label for="sell-phone">Phone</label>
+              <input class="a-input" id="sell-phone" type="tel" placeholder="024 000 0000">
+            </div>
+          </div>
+
+          <div class="a-field">
+            <label for="sell-method">How are they paying?</label>
+            <select class="a-select" id="sell-method"></select>
+          </div>
+
+          <div class="a-field">
+            <label>How much are they paying now?</label>
+            <div class="chip-row">
+              <button type="button" class="a-chip is-active" data-sell-pay="full">All of it</button>
+              <button type="button" class="a-chip" data-sell-pay="part">Part of it</button>
+            </div>
+          </div>
+
+          <div class="a-field" id="sell-part-wrap" hidden>
+            <label for="sell-part">Amount paid now</label>
+            <input class="a-input" id="sell-part" type="number" inputmode="numeric" min="0" step="10">
+            <p class="form-help">The rest is saved to <strong>Balances</strong> so you do not forget it.</p>
+          </div>
+
+          <p class="form-help" id="sell-owing"></p>
+
+          <button class="a-btn a-btn--gold a-btn--lg" id="sell-take" type="button">Take payment</button>
+        </section>
+
+      </div>

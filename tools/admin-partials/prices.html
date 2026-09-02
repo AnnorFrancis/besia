@@ -1,0 +1,31 @@
+      <section class="panel panel--soft">
+        <div class="panel-head">
+          <div>
+            <div class="panel-title">Where prices live</div>
+            <div class="panel-sub">Every price below is kept in one file — <code>js/besia-data.js</code>. Change it there and it changes on the website, the booking form, the chat and here, all at once. There is nowhere else to remember.</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head">
+          <div>
+            <div class="panel-title">Prices</div>
+            <div class="panel-sub">Search to find one quickly.</div>
+          </div>
+          <div class="chip-row" id="price-tabs">
+            <button type="button" class="a-chip is-active" data-price-tab="services">Services</button>
+            <button type="button" class="a-chip" data-price-tab="products">Products</button>
+            <button type="button" class="a-chip" data-price-tab="courses">Courses</button>
+          </div>
+        </div>
+        <div class="a-field">
+          <input class="a-input" id="price-search" type="search" placeholder="Search by name…" aria-label="Search prices">
+        </div>
+        <div class="table-wrap">
+          <table class="a-table">
+            <thead><tr><th>Name</th><th>Group</th><th>How long</th><th class="num">Price</th></tr></thead>
+            <tbody id="price-body"></tbody>
+          </table>
+        </div>
+      </section>

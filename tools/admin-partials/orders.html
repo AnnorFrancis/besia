@@ -1,0 +1,48 @@
+      <div class="stat-cards">
+        <div class="stat-card">
+          <div class="stat-card-head">
+            <div class="stat-card-label">New orders</div>
+            <div class="stat-card-icon gold"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 7h12l1.5 13h-15z" stroke-linejoin="round"/><path d="M9 9V6a3 3 0 016 0v3" stroke-linecap="round"/></svg></div>
+          </div>
+          <div class="stat-card-value" id="os-new">0</div>
+          <div class="stat-card-delta"><span>waiting for you to confirm</span></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-head">
+            <div class="stat-card-label">In progress</div>
+            <div class="stat-card-icon blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 7h13v10H3zM16 10h3l2 3v4h-5z" stroke-linejoin="round"/><circle cx="7.5" cy="17" r="1.6"/><circle cx="17.5" cy="17" r="1.6"/></svg></div>
+          </div>
+          <div class="stat-card-value" id="os-active">0</div>
+          <div class="stat-card-delta"><span>confirmed, packing or on the road</span></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-head">
+            <div class="stat-card-label">Shop sales</div>
+            <div class="stat-card-icon green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 17l6-6 4 4 6-7" stroke-linecap="round" stroke-linejoin="round"/><path d="M20 8v4m0-4h-4" stroke-linecap="round"/></svg></div>
+          </div>
+          <div class="stat-card-value" id="os-week">GHS 0</div>
+          <div class="stat-card-delta"><span>from completed orders</span></div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="chip-row" id="or-chips">
+          <button class="a-chip is-active" data-chip="all">All</button>
+          <button class="a-chip" data-chip="new">New <span class="chip-badge" id="chip-new">0</span></button>
+          <button class="a-chip" data-chip="active">In progress</button>
+          <button class="a-chip" data-chip="done">Completed</button>
+        </div>
+        <div class="filter-row" style="margin-top:0.9rem;">
+          <div class="grow"><input class="a-input" id="or-search" type="search" placeholder="Search an order number, name or phone…" aria-label="Search orders"></div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="table-wrap">
+          <table class="a-table">
+            <thead><tr><th>Order</th><th>Items</th><th>Fulfil</th><th>Total</th><th>Payment</th><th>Status</th></tr></thead>
+            <tbody id="orders-body"></tbody>
+          </table>
+        </div>
+        <p class="panel-sub" style="margin-top:0.8rem;">Tap an order to confirm it, move it along, or mark it paid. The customer's Track Order page updates the moment you do.</p>
+      </div>

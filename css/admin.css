@@ -550,3 +550,147 @@ input, select, textarea { font-family: inherit; font-size: 0.92rem; }
   .drawer-actions--decide { grid-template-columns: 1fr; }
   .chip-row--big .a-chip { flex: 1; justify-content: center; }
 }
+
+/* ============================================================
+   Sections added in the Bēsia build
+   Sell Now · Cash Drawer · Classes · Activity · Help
+   Kept deliberately plain: generous spacing, one idea per block.
+   ============================================================ */
+
+/* the one-line explanation under every page title */
+.topbar-intro {
+  margin-top: 0.15rem;
+  font-size: 0.86rem;
+  line-height: 1.45;
+  color: var(--a-ink-soft);
+  max-width: 62ch;
+}
+.topbar-date {
+  font-size: 0.8rem;
+  color: var(--a-ink-soft);
+  white-space: nowrap;
+  margin-right: 0.9rem;
+}
+
+/* ---------- Sell Now: pick list ---------- */
+.pick-list {
+  display: grid;
+  gap: 0.5rem;
+  max-height: 26rem;
+  overflow-y: auto;
+  padding-right: 0.25rem;
+}
+.pick-item {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-areas: "name price" "sub price";
+  gap: 0.1rem 1rem;
+  align-items: center;
+  width: 100%;
+  padding: 0.8rem 0.95rem;
+  text-align: left;
+  background: var(--a-surface);
+  border: 1px solid var(--a-border);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: border-color 0.18s ease, background 0.18s ease;
+}
+.pick-item:hover:not(:disabled) { border-color: var(--a-gold); background: var(--a-powder); }
+.pick-item:disabled { opacity: 0.5; cursor: not-allowed; }
+.pick-name  { grid-area: name;  font-weight: 600; color: var(--a-ink); }
+.pick-sub   { grid-area: sub;   font-size: 0.78rem; color: var(--a-ink-soft); }
+.pick-price { grid-area: price; font-weight: 700; color: var(--a-ink); white-space: nowrap; font-variant-numeric: tabular-nums; }
+
+/* ---------- Sell Now: the bill ---------- */
+.bill-lines { display: grid; gap: 0.55rem; margin-bottom: 0.9rem; }
+.bill-line {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 0.9rem;
+  align-items: center;
+  padding-bottom: 0.55rem;
+  border-bottom: 1px solid var(--a-border);
+}
+.bill-name { font-size: 0.9rem; color: var(--a-ink); }
+.bill-qty { display: inline-flex; align-items: center; gap: 0.5rem; }
+.bill-qty b { min-width: 1.2rem; text-align: center; font-variant-numeric: tabular-nums; }
+.bill-amt { font-weight: 700; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.bill-total {
+  display: flex; justify-content: space-between; align-items: baseline;
+  padding: 0.9rem 0 1.1rem;
+  font-size: 0.9rem; color: var(--a-ink-soft);
+}
+.bill-total strong {
+  font-family: var(--a-display);
+  font-size: 1.9rem; color: var(--a-ink);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- Activity timeline ---------- */
+.mini-step {
+  display: flex; gap: 0.85rem;
+  padding: 0.85rem 0;
+  border-bottom: 1px solid var(--a-border);
+}
+.mini-step:last-child { border-bottom: none; }
+.mini-step::before {
+  content: '';
+  flex: none;
+  width: 9px; height: 9px;
+  margin-top: 0.45rem;
+  border-radius: 50%;
+  background: var(--a-gold);
+}
+.mini-step strong { font-size: 0.92rem; color: var(--a-ink); }
+
+/* ---------- Help ---------- */
+.help-item {
+  border-bottom: 1px solid var(--a-border);
+  padding: 0.2rem 0;
+}
+.help-item:last-child { border-bottom: none; }
+.help-item summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 0.95rem 2rem 0.95rem 0;
+  font-weight: 600;
+  color: var(--a-ink);
+  position: relative;
+}
+.help-item summary::-webkit-details-marker { display: none; }
+.help-item summary::after {
+  content: '';
+  position: absolute; right: 0.4rem; top: 50%;
+  width: 8px; height: 8px;
+  border-right: 2px solid var(--a-ink-soft);
+  border-bottom: 2px solid var(--a-ink-soft);
+  transform: translateY(-60%) rotate(45deg);
+  transition: transform 0.2s ease;
+}
+.help-item[open] summary::after { transform: translateY(-30%) rotate(-135deg); }
+.help-answer {
+  padding: 0 0 1.1rem;
+  font-size: 0.92rem;
+  line-height: 1.65;
+  color: var(--a-ink-soft);
+  max-width: 68ch;
+}
+.help-answer code, .panel-sub code {
+  background: var(--a-powder);
+  padding: 0.12em 0.4em;
+  border-radius: 5px;
+  font-size: 0.92em;
+}
+
+/* ---------- breathing room ----------
+   Non-technical operators read this all day. Nothing should feel packed. */
+.admin-content > .panel + .panel,
+.admin-content > .panel-grid + .panel,
+.admin-content > .panel + .panel-grid,
+.admin-content > .stat-cards + .panel { margin-top: 1.5rem; }
+.panel-sub { max-width: 68ch; line-height: 1.55; }
+
+@media (max-width: 720px) {
+  .pick-list { max-height: none; }
+  .topbar-date { display: none; }
+}

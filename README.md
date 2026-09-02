@@ -36,16 +36,27 @@ js/besia-data.js
   SERVICE_CATEGORIES  the 10 disciplines
   SERVICES            all 47 services: price, duration, description
   PRODUCTS            23 retail items across 5 categories
+  COURSES             the 6 training courses, fees and what each covers
+  SUPPLIERS           who the studio buys hair and product from
   TEAM / REVIEWS      the collaborative, and the real 5.0 reviews
 ```
 
-The pages are then **generated** from it:
+The pages are then **generated** from it. One command rebuilds everything and
+runs the checks:
+
+```bash
+node tools/build-all.js
+```
+
+Or run a single step:
 
 ```bash
 node tools/build-services.js     # service tiles + the 47-line price list
 node tools/build-shop.js         # the 23 product cards + filters
 node tools/build-home.js         # home page service and shop teasers
 node tools/build-packages.js     # the three bundles + the price builder
+node tools/build-classes.js      # the training school + its nav link
+node tools/build-admin.js        # all 19 Studio Manager pages
 node tools/build-seo.js          # titles, canonicals, OG, JSON-LD, sitemap, robots
 ```
 
@@ -113,6 +124,29 @@ consultation, rather than inventing figures.
 
 ---
 
+## The training school
+
+Bēsia teaches as well as styles, so the school is a first-class part of both halves.
+
+**`classes.html`** lists six hands-on courses built from her own disciplines —
+Fusion Extensions, Braiding & Cornrows, Silk Press, Natural Hair & Curl Care,
+Colour Fundamentals, and Lashes & Brows — with what each one covers, how many days
+it runs and how many seats there are.
+
+Payment works two ways, and the form does the arithmetic in front of the student:
+
+- **Pay in full** — the whole fee, seat confirmed straight away.
+- **Pay half to reserve** — 50% holds the seat, balance due before the final day.
+
+Reserving a seat produces a reference like `CLS-260902-566` and drops the student
+straight into **Classes** in the manager, where the owner sees the fee, what has
+been paid and what is still owed, and can record each instalment as it arrives.
+The outstanding balance also appears in **Balances** alongside customer debts, so
+there is only ever one list of money owed.
+
+> Course content and fees are a considered first draft built from her real service
+> menu. **They need her sign-off** — she has not published a curriculum anywhere.
+
 ## Ordering — end to end, on the site
 
 **Shop → Bag → Checkout → Payment → Order number → Tracking → Studio Manager**
@@ -142,15 +176,52 @@ cards, and the cart, order and tracking logic around it stays exactly as it is.
 
 ## The studio manager
 
-Plain-English labels: *Dashboard, Appointments, Shop Orders, Walk-In, Customers,
-Payments, Reports, Staff*. Every page answers one question. Dark mode included.
+Eighteen sections, grouped so nothing has to be hunted for. Every one carries a
+**single plain sentence** under its title saying what it is for — written for
+someone who has never used a management system before.
+
+| Group | Sections |
+|---|---|
+| **Today** | Overview · Appointments · Sell Now |
+| **Money** | Sales · Balances · Cash Drawer · Expenses |
+| **Shop** | Shop Orders · Stock · Suppliers |
+| **School** | Classes |
+| **People** | Customers · Team |
+| **Business** | Reports · Activity |
+| **Set up** | Price List · Settings · Help |
+
+What each one does:
+
+- **Overview** — three numbers (taken today, booked in, owed) and eight big buttons.
+- **Sell Now** — the counter. Tap services and products, take cash / MoMo / card,
+  in full or in part. Replaces the old Walk-In page, which did half the job.
+- **Sales** — everything sold in the chair, at the counter and online, by period.
+- **Balances** — one list of everyone who owes: part-paid sales, students on an
+  instalment, and shop orders due on collection. *Record payment* on each row.
+- **Cash Drawer** — open with a float, log cash in and out, count at close.
+  It tells you plainly whether the drawer matched, and by how much if not.
+- **Expenses** — rent, stock, salaries, transport, by category. Feeds Reports.
+- **Stock** — quantity per product with − and + buttons; flags anything at 3 or
+  fewer, and marks what has finished. Selling a product takes it off the shelf.
+- **Suppliers** — who to call or WhatsApp to reorder, with payment terms.
+- **Classes** — the training school. Courses with seats filled, students with fees
+  paid and outstanding, and one button to record an instalment.
+- **Activity** — a plain log of what changed and when.
+- **Price List** — every service, product and course price in one searchable table,
+  with a note saying where prices actually live.
+- **Settings** — studio details and opening hours, plus a *Reset demo data* button.
+- **Help** — ten "how do I…?" answers in plain English.
 
 Seeded with Bēsia's real service names, real prices and the real team
 (Dana, Francis, Rabs, The Hair Club). Every seeded appointment amount is
 cross-checked against the published menu.
 
-**The moment to demo:** place an order on the site, open `admin/orders.html` —
-it is already there — press *Confirm this order*, then go back to `track.html`.
+**Two moments to demo:**
+
+1. Place an order on the site, open **Shop Orders** — it is already there — press
+   *Confirm this order*, then go back to `track.html` and watch the timeline move.
+2. Take a part payment in **Sell Now**, then open **Balances** — the outstanding
+   amount is already waiting, and **Stock** has come down by what you sold.
 
 ---
 
@@ -178,8 +249,9 @@ it is already there — press *Confirm this order*, then go back to `track.html`
 ### Before going live
 
 1. `tools/build-seo.js` → change `SITE_URL` to the real domain, then re-run it.
-2. Confirm the **retail prices** with the owner — service prices are her real
-   published menu, but the 23 shop prices are indicative placeholders.
+2. Confirm the **retail prices** and the **course fees** with the owner. Service
+   prices are her real published menu; the 23 shop prices and the 6 course fees
+   are considered placeholders.
 3. Confirm the **email address**; `hello@besia.co` is taken from her link-in-bio.
 4. Replace the simulated payment step with Paystack or Hubtel.
 5. Put the studio manager behind real authentication — see below.

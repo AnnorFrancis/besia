@@ -53,6 +53,7 @@
         <a href="./index.html">Home</a>
         <a href="./services.html" class="is-active">Services</a>
         <a href="./shop.html">Shop</a>
+        <a href="./classes.html">Classes</a>
         <a href="./gallery.html">Gallery</a>
         <a href="./about.html">About</a>
         <a href="./packages.html">Packages</a>
@@ -74,6 +75,7 @@
         <a href="./index.html">Home</a>
         <a href="./services.html" class="is-active">Services</a>
         <a href="./shop.html">Shop</a>
+        <a href="./classes.html">Classes</a>
         <a href="./gallery.html">Gallery</a>
         <a href="./about.html">About</a>
         <a href="./packages.html">Packages</a>
@@ -435,10 +437,10 @@
             We'll Suggest the Combination
           </h2>
           <div class="reco-chips" role="tablist" aria-label="Occasion">
-            <button class="reco-chip is-active" data-reco="bridal" role="tab" aria-selected="true">Bridal</button>
-            <button class="reco-chip" data-reco="everyday" role="tab" aria-selected="false">Everyday</button>
-            <button class="reco-chip" data-reco="protective" role="tab" aria-selected="false">Protective</button>
-            <button class="reco-chip" data-reco="glowup" role="tab" aria-selected="false">Full Glow-Up</button>
+            <button class="reco-chip is-active" data-reco="length" role="tab" aria-selected="true">I want length</button>
+            <button class="reco-chip" data-reco="damaged" role="tab" aria-selected="false">My hair is struggling</button>
+            <button class="reco-chip" data-reco="smooth" role="tab" aria-selected="false">I want it smoother</button>
+            <button class="reco-chip" data-reco="natural" role="tab" aria-selected="false">I am going natural</button>
           </div>
           <div class="reco-results" id="reco-results" aria-live="polite"></div>
         </div>
@@ -551,10 +553,10 @@
     // Smart recommendations (page-local, tiny)
     document.addEventListener('DOMContentLoaded', function () {
       var DATA = {
-        bridal: ['Bridal hair or frontal install', 'Full glam make-up + trial', 'Mink lash volume set', 'Ombr\u00e9 brows, healed in advance', 'Nail extensions, elegant shape', 'Facial two weeks before the day'],
-        everyday: ['Wash, condition &amp; blow-dry', 'Classic lash set', 'Brow shaping &amp; tint', 'Gel manicure', 'Spa pedicure', 'Quick soft-glam touch-up'],
-        protective: ['Knotless braids or twists', 'Scalp treatment before install', 'Deep conditioning', 'Edge-safe tension braiding', 'Take-down &amp; wash service', 'Nourishing oil finish'],
-        glowup: ['Braids or frontal install', 'Hair colouring or highlights', 'Nail extensions, full set', 'Mink lashes', 'Ombr\u00e9 brows', 'Deep-cleansing facial']
+        length:  ['Free consultation to check your density first', '100g KTips \u2014 GHS 2,500', 'Seamless tape-ins \u2014 GHS 1,500', 'Closure weave install \u2014 GHS 1,000', 'K18 bond repair to keep your own hair strong', 'Move-up every 6 to 8 weeks'],
+        damaged: ['B\u0113sia Hair CPR treatment \u2014 GHS 1,500', 'Olaplex treatment \u2014 GHS 850', 'Hair loss + growth treatment', 'Scalp + dandruff intensive detox \u2014 GHS 550', 'GRO hot oil treatment \u2014 GHS 350', 'A trim, before anything else'],
+        smooth:  ['Vegan keratin \u2014 Nanoplasty \u2014 GHS 4,650', 'Texture release \u2014 Hair Botox \u2014 GHS 3,850', 'Silkpress Xpress \u2014 GHS 550', 'Deep moisture treatment first', 'Precision cut to finish', 'Aftercare so it lasts'],
+        natural: ['Curl Revive | Wash + Go \u2014 GHS 550', 'Flax seed + aloe treatment \u2014 GHS 450', 'Curly cut \u2014 GHS 585', 'Curl Revive + Flax bundle \u2014 from GHS 850', 'A home routine written for your curl pattern', 'The Hair Club at B\u0113sia for ongoing care']
       };
       var results = document.getElementById('reco-results');
       var chips = document.querySelectorAll('.reco-chip');
@@ -571,7 +573,7 @@
           render(chip.getAttribute('data-reco'));
         });
       });
-      render('bridal');
+      render('length');
     });
   </script>
 </body>

@@ -1,0 +1,52 @@
+      <div class="stat-cards stat-cards--3" id="cash-stats"></div>
+
+      <div class="panel-grid panel-grid--2">
+        <section class="panel">
+          <div class="panel-head">
+            <div>
+              <div class="panel-title">Start of day</div>
+              <div class="panel-sub">Count the cash you are starting with and type it in.</div>
+            </div>
+          </div>
+          <div id="cash-open"></div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-head">
+            <div>
+              <div class="panel-title">Cash in and out</div>
+              <div class="panel-sub">Anything that is not a sale — change, a quick errand, money moved to the bank.</div>
+            </div>
+          </div>
+          <div class="form-2col">
+            <div class="a-field">
+              <label for="cash-note">What is it for?</label>
+              <input class="a-input" id="cash-note" placeholder="e.g. bought water for the shop">
+            </div>
+            <div class="a-field">
+              <label for="cash-amt">Amount</label>
+              <input class="a-input" id="cash-amt" type="number" inputmode="numeric" min="0" step="10">
+            </div>
+          </div>
+          <div class="row-actions">
+            <button class="a-btn a-btn--green" type="button" id="cash-in">Money in</button>
+            <button class="a-btn a-btn--soft-red" type="button" id="cash-out">Money out</button>
+          </div>
+          <div class="table-wrap" style="margin-top:1rem;">
+            <table class="a-table">
+              <thead><tr><th>Time</th><th>What for</th><th class="num">Amount</th></tr></thead>
+              <tbody id="cash-body"></tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+
+      <section class="panel">
+        <div class="panel-head">
+          <div>
+            <div class="panel-title">End of day</div>
+            <div class="panel-sub">Count the drawer and type what is actually there. We will tell you if it matches.</div>
+          </div>
+        </div>
+        <div id="cash-close"></div>
+      </section>

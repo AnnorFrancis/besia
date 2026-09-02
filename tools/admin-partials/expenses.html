@@ -1,0 +1,46 @@
+      <div class="stat-cards stat-cards--3" id="exp-stats"></div>
+
+      <div class="panel-grid panel-grid--2">
+        <section class="panel panel--form">
+          <div class="panel-head">
+            <div>
+              <div class="panel-title">Add an expense</div>
+              <div class="panel-sub">Record it the day it happens, while you still remember.</div>
+            </div>
+          </div>
+          <div class="a-field">
+            <label for="exp-cat">What kind of expense?</label>
+            <select class="a-select" id="exp-cat"></select>
+          </div>
+          <div class="a-field">
+            <label for="exp-note">What was it for?</label>
+            <input class="a-input" id="exp-note" placeholder="e.g. two boxes of gloves">
+          </div>
+          <div class="form-2col">
+            <div class="a-field">
+              <label for="exp-amt">Amount</label>
+              <input class="a-input" id="exp-amt" type="number" inputmode="numeric" min="0" step="10">
+            </div>
+            <div class="a-field">
+              <label for="exp-method">Paid with</label>
+              <select class="a-select" id="exp-method"></select>
+            </div>
+          </div>
+          <button class="a-btn a-btn--gold" type="button" id="exp-add">Save expense</button>
+        </section>
+
+        <section class="panel">
+          <div class="panel-head">
+            <div>
+              <div class="panel-title">This month</div>
+              <div class="panel-sub">Everything you have spent since the 1st.</div>
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table class="a-table">
+              <thead><tr><th>Date</th><th>Kind</th><th>What for</th><th class="num">Amount</th></tr></thead>
+              <tbody id="exp-body"></tbody>
+            </table>
+          </div>
+        </section>
+      </div>
