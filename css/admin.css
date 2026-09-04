@@ -760,3 +760,76 @@ tr.is-hidden-row > td:first-child { opacity: 0.75; }
 
 /* the connection pill, sized for the manager's darker surface */
 .net-pill { position: fixed; left: 50%; bottom: 1.1rem; z-index: 200; }
+
+/* ============================================================
+   The ask dialog — replaces the browser's prompt() and confirm()
+   ============================================================ */
+.ask-backdrop {
+  position: fixed; inset: 0; z-index: 400;
+  display: grid; place-items: center;
+  padding: 1.25rem;
+  background: rgba(20, 17, 13, 0.55);
+  backdrop-filter: blur(3px);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+.ask-backdrop.is-in { opacity: 1; }
+.ask {
+  width: min(26rem, 100%);
+  background: var(--a-surface);
+  border: 1px solid var(--a-border);
+  border-radius: 16px;
+  padding: 1.6rem 1.5rem 1.35rem;
+  box-shadow: 0 30px 70px -24px rgba(0, 0, 0, 0.45);
+  transform: translateY(10px) scale(0.985);
+  transition: transform 0.22s var(--ease-out, cubic-bezier(0.22, 1, 0.36, 1));
+}
+.ask-backdrop.is-in .ask { transform: none; }
+.ask-title {
+  font-family: var(--a-display);
+  font-size: 1.25rem; line-height: 1.25;
+  color: var(--a-ink); margin-bottom: 0.5rem;
+}
+.ask-msg {
+  font-size: 0.9rem; line-height: 1.55;
+  color: var(--a-ink-soft); margin-bottom: 1.1rem;
+}
+.ask-msg strong { color: var(--a-ink); font-weight: 600; }
+
+.ask-field {
+  display: flex; align-items: stretch;
+  border: 1px solid var(--a-border); border-radius: 10px;
+  overflow: hidden; margin-bottom: 0.4rem;
+  background: var(--a-bg);
+}
+.ask-field:focus-within { border-color: var(--a-gold); box-shadow: 0 0 0 3px rgba(156, 107, 51, 0.14); }
+.ask-unit {
+  display: grid; place-items: center;
+  padding: 0 0.85rem;
+  background: var(--a-powder);
+  color: var(--a-ink-soft);
+  font-size: 0.82rem; font-weight: 700; letter-spacing: 0.08em;
+}
+.ask-input {
+  flex: 1; min-width: 0;
+  border: 0; background: none;
+  padding: 0.85rem 0.9rem;
+  font-family: inherit; font-size: 1.35rem; font-weight: 700;
+  color: var(--a-ink);
+  font-variant-numeric: tabular-nums;
+}
+.ask-input:focus { outline: none; }
+.ask-error {
+  font-size: 0.82rem; color: var(--a-red);
+  margin: 0.35rem 0 0;
+}
+.ask-actions {
+  display: flex; gap: 0.6rem; justify-content: flex-end;
+  margin-top: 1.3rem; flex-wrap: wrap;
+}
+.ask-actions .a-btn { min-height: 44px; }
+
+@media (max-width: 480px) {
+  .ask-actions { flex-direction: column-reverse; }
+  .ask-actions .a-btn { width: 100%; }
+}

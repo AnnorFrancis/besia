@@ -206,6 +206,77 @@
   }
 
   /* =========================================================
+     PACKAGES — the builder options carry their own price in the
+     markup, so they have to follow the manager too. An option for
+     something taken off the website is removed rather than left
+     sitting there quotable.
+     ========================================================= */
+  function syncBuilder() {
+    var opts = document.querySelectorAll('.builder-opt[data-name]');
+    if (!opts.length) return;
+
+    opts.forEach(function (opt) {
+      var item = B.live.find('service', opt.getAttribute('data-name'));
+      if (!item || !item.published) {
+        var box = opt.querySelector('input');
+        if (box) { box.checked = false; box.disabled = true; }
+        opt.hidden = true;
+        return;
+      }
+      opt.hidden = false;
+      var box2 = opt.querySelector('input');
+      if (box2) box2.disabled = false;
+      opt.setAttribute('data-price', item.price);
+      var slot = opt.querySelector('.builder-opt-price');
+      if (slot) {
+        slot.innerHTML = item.was && item.was !== item.price
+          ? '<span class="live-was">' + money(item.was) + '</span> ' + money(item.price)
+          : money(item.price);
+      }
+    });
+
+    /* the three package cards quote a single service each */
+    document.querySelectorAll('.pkg-card').forEach(function (card) {
+      var nameEl = card.querySelector('.pkg-name');
+      var amt = card.querySelector('.pkg-price .amount');
+      if (!nameEl || !amt) return;
+      var item = B.live.find('service', nameEl.textContent.trim());
+      if (!item) return;
+      if (!item.published) { card.hidden = true; return; }
+      card.hidden = false;
+      if (item.price !== item.basePrice) {
+        amt.setAttribute('data-count', item.price);
+        amt.textContent = item.price.toLocaleString('en-GB');
+      }
+    });
+  }
+
+  /* =========================================================
+     BOOKING FORM — do not offer a discipline that has nothing
+     published left in it.
+     ========================================================= */
+  function syncBookingPills() {
+    var pills = document.querySelectorAll('.check-pill input[value]');
+    if (!pills.length) return;
+    pills.forEach(function (box) {
+      var cat = (B.serviceCategories.filter(function (c) { return c.slug === box.value; })[0] || {}).key;
+      if (!cat) return;
+      var left = B.live.published(B.live.services())
+        .filter(function (s) { return s.cat === cat; }).length;
+      var pill = box.closest('.check-pill');
+      if (!pill) return;
+      if (!left) { box.checked = false; box.disabled = true; pill.hidden = true; }
+      else { box.disabled = false; pill.hidden = false; }
+    });
+    /* if everything the customer had ticked went away, tick the first one left */
+    var form = document.getElementById('booking-form') || document.querySelector('form');
+    if (form && !form.querySelector('.check-pill input:checked')) {
+      var first = form.querySelector('.check-pill:not([hidden]) input');
+      if (first) { first.checked = true; first.closest('.check-pill').classList.add('is-checked'); }
+    }
+  }
+
+  /* =========================================================
      A running offer, announced once at the top of the page
      ========================================================= */
   function syncBanner() {
@@ -259,6 +330,8 @@
     try { syncShop(); } catch (e) {}
     try { syncServices(); } catch (e) {}
     try { syncTeasers(); } catch (e) {}
+    try { syncBuilder(); } catch (e) {}
+    try { syncBookingPills(); } catch (e) {}
   }
 
   if (document.readyState === 'loading') {

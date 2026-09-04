@@ -147,13 +147,19 @@
     on(el('items-body'), 'click', '[data-editprice]', function (e, t) {
       var name = t.getAttribute('data-editprice');
       var item = L.find(kind, name);
-      var input = window.prompt('New price for ' + name + '\nIt is ' + money(item.basePrice) + ' now.\n\nType the amount in cedis.',
-                                String(item.was != null ? item.was : item.price));
-      if (input === null) return;
-      if (!L.setPrice(kind, name, input)) { toast('That is not a valid amount.'); return; }
-      log('Price changed', name + ' → ' + money(Number(input)));
-      toast(name + ' is now ' + money(Number(input)) + ' everywhere.');
-      render();
+      BesiaAsk.amount({
+        title: 'New price for ' + name,
+        message: 'The published price is <strong>' + money(item.basePrice) + '</strong>. ' +
+                 'Changing it here changes it on the website, the booking form and the chat at the same time.',
+        value: item.was != null ? item.was : item.price,
+        confirmLabel: 'Change the price'
+      }).then(function (v) {
+        if (!v) return;
+        if (!L.setPrice(kind, name, v)) { toast('That is not a valid amount.'); return; }
+        log('Price changed', name + ' → ' + money(v));
+        toast(name + ' is now ' + money(v) + ' everywhere.');
+        render();
+      });
     });
 
     on(el('items-body'), 'click', '[data-resetprice]', function (e, t) {
@@ -166,11 +172,17 @@
 
     on(el('items-body'), 'click', '[data-remove]', function (e, t) {
       var name = t.getAttribute('data-remove');
-      if (!window.confirm('Remove ' + name + ' completely? It disappears from the website.')) return;
-      L.removeAdded(kind, name);
-      log('Item removed', name);
-      toast(name + ' removed.');
-      render();
+      BesiaAsk.confirm({
+        title: 'Remove ' + name + '?',
+        message: 'It disappears from the website. If you only want to hide it for now, use the switch instead.',
+        confirmLabel: 'Yes, remove it', tone: 'danger'
+      }).then(function (yes) {
+        if (!yes) return;
+        L.removeAdded(kind, name);
+        log('Item removed', name);
+        toast(name + ' removed.');
+        render();
+      });
     });
 
     /* ---- add something new ---- */
@@ -281,10 +293,16 @@
       var id = t.getAttribute('data-del');
       var list = L.discounts();
       var hit = list.filter(function (d) { return d.id === id; })[0];
-      if (!window.confirm('Delete “' + hit.label + '”?')) return;
-      L.saveDiscounts(list.filter(function (d) { return d.id !== id; }));
-      log('Offer deleted', hit.label);
-      render();
+      BesiaAsk.confirm({
+        title: 'Delete this offer?',
+        message: '“' + esc(hit.label) + '” will be removed. If it is running, it stops immediately.',
+        confirmLabel: 'Yes, delete it', tone: 'danger'
+      }).then(function (yes) {
+        if (!yes) return;
+        L.saveDiscounts(list.filter(function (d) { return d.id !== id; }));
+        log('Offer deleted', hit.label);
+        render();
+      });
     });
 
     /* ---- the form ---- */

@@ -65,14 +65,28 @@
        Every figure comes from js/besia-data.js — the same file that
        prints the price list on services.html. One source, so the
        estimator can never quote a price the menu does not publish. */
-    var SERVICE_PRICES = (function () {
+    /* Rebuilt on every quote rather than once at load, so the estimate
+       always matches the price list the customer can see. Uses the live
+       view, and ignores anything the owner has taken off the website. */
+    function servicePrices() {
       var out = {};
       if (!window.BESIA) return out;
       BESIA.serviceCategories.forEach(function (c) {
-        out[c.slug] = { label: c.label, price: BESIA.fromPrice(c.key), cat: c.key };
+        var price;
+        if (BESIA.live) {
+          var on = BESIA.live.published(BESIA.live.services())
+            .filter(function (s) { return s.cat === c.key; })
+            .map(function (s) { return s.price; })
+            .filter(function (n) { return n > 0; });
+          price = on.length ? Math.min.apply(null, on) : null;
+        } else {
+          price = BESIA.fromPrice(c.key);
+        }
+        if (price != null) out[c.slug] = { label: c.label, price: price, cat: c.key };
       });
       return out;
-    })();
+    }
+    var SERVICE_PRICES = servicePrices();
 
     var OCCASION_MULTIPLIER = {
       'Regular Appointment': 1, 'Bridal / Wedding Party': 1.35,
@@ -81,6 +95,7 @@
     };
 
     function buildQuote() {
+      var PRICES = servicePrices();
       var panel = document.getElementById('quote-panel');
       if (!panel) return;
       var lines = panel.querySelector('.quote-lines');
@@ -97,7 +112,7 @@
       lines.innerHTML = '';
       var total = 0;
       checked.forEach(function (cb) {
-        var svc = SERVICE_PRICES[cb.value];
+        var svc = PRICES[cb.value];
         if (!svc) return;
         var price = svc.price * mult * people;
         total += price;
@@ -171,7 +186,7 @@
            than one that has to be phoned about. */
         var picked = Array.prototype.slice
           .call(form.querySelectorAll('.check-pill input:checked'))
-          .map(function (cb) { return (SERVICE_PRICES[cb.value] || {}).label; })
+          .map(function (cb) { return (servicePrices()[cb.value] || {}).label; })
           .filter(Boolean);
         var quoted = 0;
         try {

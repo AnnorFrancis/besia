@@ -145,6 +145,7 @@ function shell(p, body) {
      admin.js reads when it draws the Overview numbers. */
   const scripts = ['<script src="../js/besia-data.js" defer></script>',
                    '<script src="../js/besia-live.js" defer></script>',
+                   '<script src="../js/admin-ask.js" defer></script>',
                    '<script src="../js/store.js" defer></script>',
                    '<script src="../js/admin-pages.js" defer></script>',
                    '<script src="../js/admin.js" defer></script>',

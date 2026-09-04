@@ -406,9 +406,11 @@
       var row = collectBalances().filter(function (r) { return r.kind === kind && r.ref === ref; })[0];
       if (!row) return;
       var outstanding = row.total - row.paid;
-      var input = window.prompt('How much is ' + row.who + ' paying now?\nThey still owe ' + money(outstanding) + '.', String(outstanding));
-      if (input === null) return;
-      var amt = Math.max(0, Math.min(Number(input) || 0, outstanding));
+      BesiaAsk.amount({
+        title: 'Payment from ' + row.who,
+        message: 'They still owe <strong>' + money(outstanding) + '</strong> for ' + esc(row.what) + '.',
+        value: outstanding, max: outstanding, confirmLabel: 'Record it'
+      }).then(function (amt) {
       if (!amt) return;
 
       if (kind === 'sale') {
@@ -425,6 +427,7 @@
       logActivity('Payment received', row.who + ' · ' + money(amt) + ' towards ' + ref);
       toast(money(amt) + ' recorded for ' + row.who + '.');
       render();
+      });
     });
 
     render();
@@ -744,15 +747,18 @@
       var s = studs.filter(function (x) { return x.id === id; })[0];
       if (!s) return;
       var owing = s.fee - s.paid;
-      var input = window.prompt('How much is ' + s.name + ' paying now?\nShe still owes ' + money(owing) + '.', String(owing));
-      if (input === null) return;
-      var amt = Math.max(0, Math.min(Number(input) || 0, owing));
-      if (!amt) return;
-      s.paid += amt;
-      write('students', studs);
-      logActivity('Course fee received', s.name + ' · ' + money(amt));
-      toast(money(amt) + ' recorded for ' + s.name + '.');
-      render();
+      BesiaAsk.amount({
+        title: 'Fee from ' + s.name,
+        message: 'She still owes <strong>' + money(owing) + '</strong> on this course.',
+        value: owing, max: owing, confirmLabel: 'Record it'
+      }).then(function (amt) {
+        if (!amt) return;
+        s.paid += amt;
+        write('students', studs);
+        logActivity('Course fee received', s.name + ' · ' + money(amt));
+        toast(money(amt) + ' recorded for ' + s.name + '.');
+        render();
+      });
     });
 
     on(el('cls-filter'), 'click', '[data-cls]', function (e, t) {
@@ -776,8 +782,11 @@
       }).join('') : '<p class="form-help">Nothing has happened yet today. Take a sale or record a payment and it will show up here.</p>';
     }
     el('act-clear').addEventListener('click', function () {
-      if (!window.confirm('Clear the activity list? This cannot be undone.')) return;
-      write('activity', []); render();
+      BesiaAsk.confirm({
+        title: 'Clear the activity list?',
+        message: 'This wipes the record of what has happened. It cannot be undone.',
+        confirmLabel: 'Yes, clear it', tone: 'danger'
+      }).then(function (yes) { if (yes) { write('activity', []); render(); } });
     });
     render();
   }
@@ -807,13 +816,20 @@
     }).concat([['Open right now?', B.isOpenNow() ? 'Yes' : 'No']]));
 
     el('set-reset').addEventListener('click', function () {
-      if (!window.confirm('Clear everything you have entered while testing and put the sample data back?')) return;
-      ['sales', 'expenses', 'students', 'stock', 'drawer', 'activity', 'orders', 'cart',
-       'seeded-sales', 'seeded-expenses', 'seeded-students', 'seeded-stock'].forEach(function (k) {
-        try { localStorage.removeItem(B.key(k)); } catch (e) {}
+      BesiaAsk.confirm({
+        title: 'Start the demo again?',
+        message: 'This clears the sales, orders, students and price changes you have entered while trying the system, and puts the sample data back.',
+        confirmLabel: 'Yes, reset it', tone: 'danger'
+      }).then(function (yes) {
+        if (!yes) return;
+        ['sales', 'expenses', 'students', 'stock', 'drawer', 'activity', 'orders', 'cart',
+         'catalogue', 'discounts', 'web-bookings', 'builder', 'last-order',
+         'seeded-sales', 'seeded-expenses', 'seeded-students', 'seeded-stock'].forEach(function (k) {
+          try { localStorage.removeItem(B.key(k)); } catch (e) {}
+        });
+        toast('Demo data reset. Reloading…');
+        setTimeout(function () { location.reload(); }, 900);
       });
-      toast('Demo data reset. Reloading…');
-      setTimeout(function () { location.reload(); }, 900);
     });
   }
 

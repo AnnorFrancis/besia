@@ -93,12 +93,30 @@
   /* ---------- Live pricing ----------
      Every figure the assistant quotes is read from js/besia-data.js at
      runtime, so the chat can never contradict the published menu. */
+  /* Cheapest PUBLISHED price in a category, discount included. Reads the
+     live view so the assistant can never quote a price the website no
+     longer shows, or offer something the owner has taken down. */
   function P(catKey) {
-    return (window.BESIA && BESIA.fromPrice(catKey) != null)
-      ? BESIA.money(BESIA.fromPrice(catKey)) : '';
+    if (!window.BESIA) return '';
+    if (BESIA.live) {
+      var on = BESIA.live.published(BESIA.live.services())
+        .filter(function (s) { return s.cat === catKey; })
+        .map(function (s) { return s.price; })
+        .filter(function (n) { return n > 0; });
+      if (!on.length) return '';
+      return BESIA.money(Math.min.apply(null, on));
+    }
+    return BESIA.fromPrice(catKey) != null ? BESIA.money(BESIA.fromPrice(catKey)) : '';
   }
+  /* One named service. Returns nothing if it has been taken off the
+     website, so the assistant simply does not mention it. */
   function S(name) {
     if (!window.BESIA) return '';
+    if (BESIA.live) {
+      var item = BESIA.live.find('service', name);
+      if (!item || !item.published) return '';
+      if (item.price !== item.basePrice) return BESIA.money(item.price);
+    }
     var svc = BESIA.services.filter(function (x) { return x.name === name; })[0];
     return svc ? BESIA.priceLabel(svc) : '';
   }
@@ -298,6 +316,9 @@
     };
   }
   buildReplies();
+  /* Rebuild if the owner changes a price or hides something while the
+     page is open, so an answer given a minute later is still correct. */
+  if (window.BESIA && BESIA.live) BESIA.live.onChange(buildReplies);
 
   function detectIntent(text) {
     for (var i = 0; i < RESPONSES.length; i++) {
