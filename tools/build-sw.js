@@ -106,7 +106,28 @@ self.addEventListener('fetch', event => {
     return;
   }
 
-  /* Everything else: serve from cache instantly, refresh in the background. */
+  /* Code and styles: network first, cache as the fallback.
+     Serving a stale script against a fresh page is worse than a few
+     hundred milliseconds of latency — it means a deploy lands with the
+     new HTML calling into the old JavaScript, and buttons quietly stop
+     working. These files are small; correctness wins. */
+  if (/\.(js|css)$/i.test(url.pathname)) {
+    event.respondWith(
+      fetch(req)
+        .then(res => {
+          if (res && res.status === 200 && res.type === 'basic') {
+            const copy = res.clone();
+            caches.open(CACHE).then(c => c.put(req, copy));
+          }
+          return res;
+        })
+        .catch(() => caches.match(req))
+    );
+    return;
+  }
+
+  /* Everything else — images, icons, fonts — is heavy and rarely changes,
+     so serve it from cache instantly and refresh in the background. */
   event.respondWith(
     caches.match(req).then(hit => {
       const net = fetch(req)
