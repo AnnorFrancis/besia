@@ -37,6 +37,7 @@ const ICON = {
   activity:  '<circle cx="12" cy="12" r="9"/><path d="M12 7v5.2l3.4 2" stroke-linecap="round"/>',
   prices:    '<path d="M4 6h16M4 12h16M4 18h10" stroke-linecap="round"/><circle cx="18.5" cy="18" r="2.2"/>',
   settings:  '<circle cx="12" cy="12" r="3"/><path d="M19.4 14.5a1.7 1.7 0 0 0 .34 1.87l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.7 1.7 0 0 0-1.87-.34 1.7 1.7 0 0 0-1 1.55V21a2 2 0 0 1-4 0v-.11a1.7 1.7 0 0 0-1.11-1.55 1.7 1.7 0 0 0-1.87.34l-.06.06A2 2 0 1 1 3.9 16.9l.06-.06a1.7 1.7 0 0 0 .34-1.87 1.7 1.7 0 0 0-1.55-1H2.5a2 2 0 0 1 0-4h.11a1.7 1.7 0 0 0 1.55-1.11 1.7 1.7 0 0 0-.34-1.87L3.76 7A2 2 0 1 1 6.6 4.16l.06.06a1.7 1.7 0 0 0 1.87.34H8.6a1.7 1.7 0 0 0 1-1.55V2.5a2 2 0 0 1 4 0v.11a1.7 1.7 0 0 0 1 1.55 1.7 1.7 0 0 0 1.87-.34l.06-.06A2 2 0 1 1 19.36 6.6l-.06.06a1.7 1.7 0 0 0-.34 1.87v.07a1.7 1.7 0 0 0 1.55 1h.11a2 2 0 0 1 0 4H20.5a1.7 1.7 0 0 0-1.55 1z" stroke-linejoin="round"/>',
+  discounts: '<path d="M20.6 12.4 12.4 20.6a2 2 0 0 1-2.83 0l-6.2-6.2A2 2 0 0 1 2.8 13V4.8A2 2 0 0 1 4.8 2.8H13a2 2 0 0 1 1.4.58l6.2 6.2a2 2 0 0 1 0 2.82z" stroke-linejoin="round"/><circle cx="7.6" cy="7.6" r="1.4"/>',
   help:      '<circle cx="12" cy="12" r="9"/><path d="M9.6 9.4a2.5 2.5 0 0 1 4.86.83c0 1.67-2.5 2.5-2.5 2.5" stroke-linecap="round"/><path d="M12 17h.01" stroke-linecap="round" stroke-width="2.4"/>'
 };
 
@@ -80,8 +81,10 @@ const PAGES = [
   { id: 'activity',  file: 'activity.html',  group: 'Business', nav: 'Activity', icon: 'activity',
     title: 'Activity',    intro: 'A record of what changed today, and who changed it.' },
 
-  { id: 'prices',    file: 'prices.html',    group: 'Set up', nav: 'Price List', icon: 'prices',
-    title: 'Price List',  intro: 'Every price the website shows. This is the only place a price is kept.' },
+  { id: 'prices',    file: 'prices.html',    group: 'Shop', nav: 'Items',     icon: 'prices',
+    title: 'Items',       intro: 'Everything you sell. Change a price, mark something new, or take it off the website.' },
+  { id: 'discounts', file: 'discounts.html', group: 'Shop', nav: 'Discounts', icon: 'discounts',
+    title: 'Discounts',   intro: 'Run an offer on the website. Switch it on when you want it, off when it ends.' },
   { id: 'settings',  file: 'settings.html',  group: 'Set up', nav: 'Settings',   icon: 'settings',
     title: 'Settings',    intro: 'Your studio details — address, phone, opening hours.' },
   { id: 'payments', action: ['pay-record', 'Record a payment'],  file: 'payments.html',  group: 'Money',  nav: 'Payments',   icon: 'cash', hidden: true,
@@ -141,9 +144,12 @@ function shell(p, body) {
   /* Order matters: admin-pages.js seeds the shared collections that
      admin.js reads when it draws the Overview numbers. */
   const scripts = ['<script src="../js/besia-data.js" defer></script>',
+                   '<script src="../js/besia-live.js" defer></script>',
                    '<script src="../js/store.js" defer></script>',
                    '<script src="../js/admin-pages.js" defer></script>',
-                   '<script src="../js/admin.js" defer></script>'];
+                   '<script src="../js/admin.js" defer></script>',
+                   '<script src="../js/admin-catalogue.js" defer></script>',
+                   '<script src="../js/offline.js" defer></script>'];
   return `<!DOCTYPE html>
 <html lang="en">
 <head>

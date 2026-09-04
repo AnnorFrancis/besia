@@ -217,7 +217,13 @@
       date: new Date((w.date || iso(d(2))) + 'T12:00:00'),
       venue: 'Not assigned', pkg: 'From website', amount: w.amount || 0, deposit: 0,
       status: w.status || 'Pending', source: 'Website', web: true, webId: w.id,
-      notes: (w.notes ? w.notes + '\n\n' : '') + 'Booked through the website. Confirm the time with the client.'
+      notes: [
+        w.occasion ? 'Occasion: ' + w.occasion : '',
+        w.slot ? 'Preferred time: ' + w.slot : '',
+        (w.people && String(w.people) !== '1') ? 'People: ' + w.people : '',
+        w.notes || '',
+        'Booked through the website. Confirm the time with her.'
+      ].filter(Boolean).join('\n')
     });
   });
 

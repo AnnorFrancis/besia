@@ -67,7 +67,7 @@ function tiles() {
     const lis = names.map(s => `<li>${esc(s.name)}</li>`);
     const rows = [];
     for (let k = 0; k < lis.length; k += 2) rows.push('                ' + lis.slice(k, k + 2).join(''));
-    return `          <article class="svc-tile" id="${c.slug}">
+    return `          <article class="svc-tile" id="${c.slug}" data-svc-cat="${esc(c.key)}">
             <div class="svc-tile-img"><img src="${src}" alt="${esc(alt)}" width="800" height="1000" loading="lazy" decoding="async"><span class="svc-tile-num">${num}</span></div>
             <div class="svc-tile-body">
               <h3>${esc(c.label)}</h3>
@@ -76,7 +76,7 @@ function tiles() {
 ${rows.join('\n')}
               </ul>
               <div class="svc-tile-foot">
-                <span class="svc-tile-price"><em>From</em> ${B.money(from)}</span>
+                <span class="svc-tile-price" data-from-slot><em>From</em> ${B.money(from)}</span>
                 <a href="./contact.html?service=${encodeURIComponent(c.slug)}" class="btn btn--gold btn--sm">Book ${esc(c.label.split(',')[0].split(' ')[0])}</a>
               </div>
             </div>
@@ -88,10 +88,10 @@ function priceGroups() {
   return B.serviceCategories.map((c, i) => {
     const items = B.byCategory(c.key);
     const rows = items.map(s =>
-      `            <div class="price-row"><span class="name">${esc(s.name)}<em class="price-dur">${esc(s.dur)}</em></span><span class="dots"></span><span class="amt">${esc(B.priceLabel(s))}</span></div>`
+      `            <div class="price-row" data-kind="service" data-item="${esc(s.name)}"><span class="name">${esc(s.name)}<em class="price-dur">${esc(s.dur)}</em></span><span class="dots"></span><span class="amt" data-price-slot>${esc(B.priceLabel(s))}</span></div>`
     ).join('\n');
     return `          <details class="price-group" id="prices-${c.slug}"${i === 0 ? ' open' : ''}>
-            <summary><h3>${esc(c.label)}</h3><span class="price-count">${items.length}</span></summary>
+            <summary><h3>${esc(c.label)}</h3><span class="price-count" data-count-slot>${items.length}</span></summary>
             <div class="price-rows">
 ${rows}</div></details>`;
   }).join('\n\n');

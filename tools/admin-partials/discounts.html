@@ -1,0 +1,76 @@
+      <section class="panel panel--soft">
+        <div class="panel-head">
+          <div>
+            <div class="panel-title">How an offer works</div>
+            <div class="panel-sub">Make the offer here and leave it switched off until you want it. When you
+              switch it on, the website shows the new price with the old one crossed out, a banner announces it
+              at the top of every page, and the checkout charges the lower price. Switch it off and everything
+              goes back to normal.</div>
+          </div>
+        </div>
+      </section>
+
+      <div class="stat-cards stat-cards--3" id="disc-stats"></div>
+
+      <section class="panel">
+        <div class="panel-head">
+          <div>
+            <div class="panel-title">Your offers</div>
+            <div class="panel-sub">Only switched-on offers show on the website.</div>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table class="a-table">
+            <thead>
+              <tr><th>Offer</th><th>Amount off</th><th>Applies to</th><th>Showing</th><th></th></tr>
+            </thead>
+            <tbody id="disc-body"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="panel panel--form">
+        <div class="panel-head">
+          <div>
+            <div class="panel-title">Make a new offer</div>
+            <div class="panel-sub">It is saved switched off, so nothing changes on the website until you are ready.</div>
+          </div>
+        </div>
+
+        <div class="a-field">
+          <label for="d-label">What should customers see it called?</label>
+          <input class="a-input" id="d-label" placeholder="e.g. Treatment week — 15% off scalp and bond repair">
+        </div>
+
+        <div class="form-2col">
+          <div class="a-field">
+            <label for="d-kind">How much off?</label>
+            <select class="a-select" id="d-kind">
+              <option value="percent">A percentage off</option>
+              <option value="amount">A fixed amount off</option>
+            </select>
+          </div>
+          <div class="a-field">
+            <label for="d-value" id="d-value-label">Percentage</label>
+            <input class="a-input" id="d-value" type="number" inputmode="numeric" min="1" step="1" placeholder="15">
+          </div>
+        </div>
+
+        <div class="form-2col">
+          <div class="a-field">
+            <label for="d-scope">What does it apply to?</label>
+            <select class="a-select" id="d-scope">
+              <option value="all">Everything on the website</option>
+              <option value="category">One group of things</option>
+              <option value="item">One single item</option>
+            </select>
+          </div>
+          <div class="a-field" id="d-target-wrap" hidden>
+            <label for="d-target" id="d-target-label">Which one?</label>
+            <select class="a-select" id="d-target"></select>
+          </div>
+        </div>
+
+        <p class="form-help" id="d-preview"></p>
+        <button class="a-btn a-btn--gold" type="button" id="d-add">Save the offer</button>
+      </section>

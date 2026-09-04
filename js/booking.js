@@ -165,9 +165,30 @@
       try {
         var KEY = 'besia-web-bookings';
         var list = JSON.parse(localStorage.getItem(KEY) || '[]');
+
+        /* Carry the services she actually ticked, and what we quoted her,
+           so the manager opens a booking that is ready to confirm rather
+           than one that has to be phoned about. */
+        var picked = Array.prototype.slice
+          .call(form.querySelectorAll('.check-pill input:checked'))
+          .map(function (cb) { return (SERVICE_PRICES[cb.value] || {}).label; })
+          .filter(Boolean);
+        var quoted = 0;
+        try {
+          var t = (document.querySelector('.quote-total .value') || {}).textContent || '';
+          quoted = Number(String(t).replace(/[^0-9]/g, '')) || 0;
+        } catch (err) {}
+
+        var slotVal = (form.querySelector('[name="time-slot"]') || {}).value || '';
+        var people = (form.querySelector('[name="guests"]') || {}).value || '1';
+
         list.push({
           id: bookingId,
-          name: name, phone: phone, service: evType || 'Appointment',
+          name: name, phone: phone,
+          service: picked.length ? picked.join(', ') : (evType || 'Appointment'),
+          occasion: evType || '',
+          slot: slotVal, people: people,
+          amount: quoted,
           date: date, notes: notes, status: 'Pending', ts: Date.now()
         });
         localStorage.setItem(KEY, JSON.stringify(list));

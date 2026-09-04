@@ -2081,3 +2081,95 @@ details.price-group[open] > summary::after { transform: rotate(-135deg); }
   font-size: 0.85rem;
   color: var(--ink-soft);
 }
+
+/* ============================================================
+   LIVE FROM THE STUDIO MANAGER
+   Badges and prices the owner controls from the back office.
+   ============================================================ */
+.live-flag {
+  position: absolute; z-index: 2;
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.62rem; font-weight: 700;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  white-space: nowrap;
+}
+.product-img .live-flag { right: 0.75rem; top: 0.75rem; }
+.product-img .live-flag--deal { top: auto; bottom: 0.75rem; right: 0.75rem; }
+.live-flag--new  { background: var(--espresso-deep); color: var(--champagne); }
+.live-flag--deal { background: var(--gold); color: #fff; }
+.live-flag--out  { background: #7a2f2f; color: #fff; left: 0.75rem; right: auto; }
+
+/* a "New" pill next to a service name reads inline, not absolute */
+.price-row .live-flag {
+  position: static; display: inline-block;
+  margin-left: 0.5rem; padding: 0.14rem 0.5rem;
+  font-size: 0.56rem; letter-spacing: 0.14em;
+  background: var(--champagne); color: var(--gold-ink);
+}
+
+.live-was {
+  text-decoration: line-through;
+  color: var(--taupe);
+  font-weight: 400;
+  margin-right: 0.35rem;
+}
+
+.btn.is-out, button.is-out {
+  opacity: 0.55;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ---------- the offer bar ---------- */
+.offer-bar {
+  position: relative; z-index: 60;
+  display: flex; align-items: center; justify-content: center; gap: 0.6rem;
+  padding: 0.65rem 1.1rem;
+  background: var(--espresso-deep);
+  color: var(--champagne);
+  font-size: 0.8rem; font-weight: 600;
+  letter-spacing: 0.06em;
+  text-align: center;
+}
+.offer-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--gold-light);
+  flex: none;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .offer-dot { animation: offer-pulse 2.4s ease-in-out infinite; }
+  @keyframes offer-pulse { 0%,100% { opacity: 1 } 50% { opacity: 0.35 } }
+}
+/* The nav is fixed, so the bar must be fixed too and the nav pushed
+   down by exactly its height. --offer-h is measured and set by site-sync.js,
+   so the bar can wrap to two lines on a phone without overlapping anything. */
+.offer-bar { position: fixed; top: 0; left: 0; right: 0; }
+body.has-offer .site-nav { top: var(--offer-h, 0px); }
+body.has-offer { padding-top: var(--offer-h, 0px); }
+body.has-offer .page-hero,
+body.has-offer .hero { scroll-margin-top: calc(var(--offer-h, 0px) + var(--nav-height)); }
+
+/* ---------- Connection status ----------
+   Power and data are not guaranteed here. Whoever is using the manager
+   needs to know whether what they are looking at is live. */
+.net-pill {
+  position: fixed; left: 50%; bottom: 1.1rem; z-index: 200;
+  transform: translate(-50%, 140%);
+  display: flex; align-items: flex-start; gap: 0.65rem;
+  max-width: min(30rem, calc(100vw - 2rem));
+  padding: 0.85rem 1.15rem;
+  border-radius: 14px;
+  background: var(--espresso-deep);
+  color: var(--champagne);
+  font-size: 0.86rem; line-height: 1.5;
+  box-shadow: 0 16px 44px -14px rgba(0,0,0,.5);
+  transition: transform 0.35s var(--ease-out), opacity 0.35s var(--ease-out);
+  opacity: 0;
+}
+.net-pill.is-in { transform: translate(-50%, 0); opacity: 1; }
+.net-dot { flex: none; width: 9px; height: 9px; border-radius: 50%; margin-top: 0.42rem; }
+.net-pill.is-off .net-dot { background: #e0a13c; }
+.net-pill.is-on  { background: #23543c; }
+.net-pill.is-on .net-dot { background: #6fd39b; }
+@media (max-width: 640px) { .net-pill { bottom: 5.2rem; } }

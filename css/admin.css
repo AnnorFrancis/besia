@@ -701,3 +701,62 @@ input, select, textarea { font-family: inherit; font-size: 0.92rem; }
   margin-right: 0.9rem;
 }
 @media (max-width: 720px) { .topbar-meta { display: none; } }
+
+/* ============================================================
+   Items & Discounts — the controls that drive the website
+   ============================================================ */
+
+/* An on/off switch. Big enough for a thumb, obvious at a glance. */
+.switch {
+  display: inline-flex; align-items: center;
+  padding: 0.35rem; margin: -0.35rem;
+  background: none; border: 0; cursor: pointer;
+}
+.switch-track {
+  position: relative;
+  width: 46px; height: 26px;
+  border-radius: 999px;
+  background: #cfc7bb;
+  transition: background 0.2s ease;
+}
+.switch-thumb {
+  position: absolute; top: 3px; left: 3px;
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(0,0,0,.28);
+  transition: transform 0.2s ease;
+}
+.switch.is-on .switch-track { background: var(--a-green); }
+.switch.is-on .switch-thumb { transform: translateX(20px); }
+.switch:focus-visible .switch-track { outline: 2px solid var(--a-gold); outline-offset: 2px; }
+[data-theme="dark"] .switch-track { background: #4a4038; }
+
+/* A row that is switched off reads as switched off. */
+tr.is-hidden-row > td { opacity: 0.5; }
+tr.is-hidden-row > td:first-child { opacity: 0.75; }
+
+/* Old price, on the manager's own tables. */
+.live-was-a {
+  text-decoration: line-through;
+  color: var(--a-ink-soft);
+  font-weight: 400;
+  margin-right: 0.3rem;
+}
+
+/* Search + chips on one line, wrapping cleanly on a phone. */
+.filter-row {
+  display: flex; gap: 0.9rem; align-items: center;
+  flex-wrap: wrap; margin-bottom: 1rem;
+}
+.filter-row .a-field { margin: 0; }
+
+@media (max-width: 720px) {
+  .filter-row { gap: 0.6rem; }
+  .switch-track { width: 52px; height: 30px; }
+  .switch-thumb { width: 24px; height: 24px; }
+  .switch.is-on .switch-thumb { transform: translateX(22px); }
+}
+
+/* the connection pill, sized for the manager's darker surface */
+.net-pill { position: fixed; left: 50%; bottom: 1.1rem; z-index: 200; }

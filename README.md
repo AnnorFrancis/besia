@@ -58,6 +58,7 @@ node tools/build-packages.js     # the three bundles + the price builder
 node tools/build-classes.js      # the training school + its nav link
 node tools/build-admin.js        # all 19 Studio Manager pages
 node tools/build-seo.js          # titles, canonicals, OG, JSON-LD, sitemap, robots
+node tools/build-sw.js           # the offline service worker (always last)
 ```
 
 Each writes only between `<!--BUILD:x-->` markers, so hand-written copy around
@@ -174,6 +175,59 @@ cards, and the cart, order and tracking logic around it stays exactly as it is.
 
 ---
 
+## The manager runs the website
+
+The Studio Manager is not a separate report on the website — it **is** the
+control room. Three files do it:
+
+```
+js/besia-data.js   the baseline catalogue, as first published
+js/besia-live.js   the live view — baseline + everything changed since
+js/site-sync.js    applies that live view to the public pages
+```
+
+Pages still ship as finished HTML, so search engines and the first paint get
+real content. `site-sync.js` then reconciles them against the live view.
+
+What the owner controls, and what happens the moment she does it:
+
+| In the manager | On the website |
+|---|---|
+| Switch an item off in **Items** | It disappears from the shop or the price list. Group counts and every "from" figure recalculate |
+| Change a price in **Items** | The new price shows on the website, the booking estimator and the chat assistant together |
+| Add an item in **Items** | A new card appears in the shop, badged as a new arrival |
+| Mark a new arrival | A **New in** badge appears |
+| Switch on an offer in **Discounts** | Old price struck through, a **20% off** badge, a banner across the top of every page, and the checkout charges the lower price |
+| Stock reaches zero in **Stock** | The card is marked **Sold out** and Add to Cart stops working |
+| Confirm an order in **Shop Orders** | Stock comes off the shelf. Cancelling puts it back |
+
+It reacts live — leave the website open in one tab, change something in the
+manager in another, and the page updates itself. That is a `storage` event,
+not a poll.
+
+The overrides live in `localStorage` under `besia-catalogue` and
+`besia-discounts`. In production those become two database tables and
+`besia-live.js` becomes the API client. **Nothing else in the codebase
+changes** — every page already reads the catalogue through that one file.
+
+## Built for how Ghana actually works
+
+- **Mobile Money first** — MTN, Telecel and AT at checkout and at the counter,
+  alongside card and cash.
+- **Part payments everywhere.** A customer can pay half at the counter and a
+  student can pay half to hold a seat. Whatever is left lands in **Balances**,
+  which is one list covering customers, shop orders and students.
+- **Cash is still king** — the **Cash Drawer** opens with a float, tracks money
+  in and out, and tells you plainly at close whether it balanced.
+- **Power and data are not guaranteed.** A service worker (`sw.js`, generated
+  by `tools/build-sw.js`) precaches the whole shell, so the manager keeps
+  working through an outage. A message tells the operator the connection is
+  gone and that their work is saved on the device.
+- **Light on data.** Images are compressed and lazy-loaded; the shell is under
+  a megabyte.
+- **WhatsApp is the channel** — order confirmations, supplier reorders, class
+  enquiries and the contract all hand off to it.
+
 ## The studio manager
 
 Eighteen sections, grouped so nothing has to be hunted for. Every one carries a
@@ -184,11 +238,11 @@ someone who has never used a management system before.
 |---|---|
 | **Today** | Overview · Appointments · Sell Now |
 | **Money** | Sales · Balances · Cash Drawer · Expenses |
-| **Shop** | Shop Orders · Stock · Suppliers |
+| **Shop** | Shop Orders · Stock · Suppliers · Items · Discounts |
 | **School** | Classes |
 | **People** | Customers · Team |
 | **Business** | Reports · Activity |
-| **Set up** | Price List · Settings · Help |
+| **Set up** | Settings · Help |
 
 What each one does:
 
@@ -207,8 +261,10 @@ What each one does:
 - **Classes** — the training school. Courses with seats filled, students with fees
   paid and outstanding, and one button to record an instalment.
 - **Activity** — a plain log of what changed and when.
-- **Price List** — every service, product and course price in one searchable table,
-  with a note saying where prices actually live.
+- **Items** — everything you sell. Change a price, mark a new arrival, add
+  something, or switch it off the website. This page drives the public site.
+- **Discounts** — build an offer, leave it switched off, switch it on when you
+  want it. The website follows instantly.
 - **Settings** — studio details and opening hours, plus a *Reset demo data* button.
 - **Help** — ten "how do I…?" answers in plain English.
 

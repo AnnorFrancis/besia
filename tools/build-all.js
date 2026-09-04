@@ -22,6 +22,7 @@ const STEPS = [
   ['build-admin.js',    'Studio Manager, all pages'],
   ['build-seo.js',      'Titles, canonicals, OG, JSON-LD, sitemap'],
   ['add-image-dims.js', 'Image width/height'],
+  ['build-sw.js',       'Offline service worker (must be last — it fingerprints the shell)'],
   ['check-assets.js',   'Every local asset resolves, exact case']
 ];
 

@@ -108,12 +108,46 @@
     return order;
   }
 
+  /* Confirming an online order takes the goods off the shelf, exactly as
+     selling them over the counter does. Done once per order — the flag on
+     the order stops a second confirmation double-counting. */
+  function releaseStock(order) {
+    if (!order || order.stockTaken) return;
+    var key = NS('stock'), stock;
+    try { stock = JSON.parse(localStorage.getItem(key)) || {}; } catch (e) { return; }
+    var moved = false;
+    (order.items || []).forEach(function (it) {
+      if (Object.prototype.hasOwnProperty.call(stock, it.name)) {
+        stock[it.name] = Math.max(0, stock[it.name] - (it.qty || 1));
+        moved = true;
+      }
+    });
+    if (moved) { try { localStorage.setItem(key, JSON.stringify(stock)); } catch (e) {} }
+    order.stockTaken = true;
+  }
+
+  /* A cancelled order puts everything back. */
+  function returnStock(order) {
+    if (!order || !order.stockTaken) return;
+    var key = NS('stock'), stock;
+    try { stock = JSON.parse(localStorage.getItem(key)) || {}; } catch (e) { return; }
+    (order.items || []).forEach(function (it) {
+      if (Object.prototype.hasOwnProperty.call(stock, it.name)) {
+        stock[it.name] = stock[it.name] + (it.qty || 1);
+      }
+    });
+    try { localStorage.setItem(key, JSON.stringify(stock)); } catch (e) {}
+    order.stockTaken = false;
+  }
+
   function updateStatus(id, status) {
     var list = getOrders();
     for (var i = 0; i < list.length; i++) {
       if (list[i].id === id) {
         list[i].status = status;
         list[i].timeline.push({ status: status, at: Date.now() });
+        if (status === 'Confirmed') releaseStock(list[i]);
+        if (status === 'Cancelled') returnStock(list[i]);
         if (status === 'Picked up' || status === 'Delivered') {
           if (list[i].payment && list[i].payment.status !== 'Paid') list[i].payment.status = 'Paid';
         }

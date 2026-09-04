@@ -56,13 +56,13 @@ function cards() {
     B.products.filter(p => p.cat === cat.key).map(p => {
       const alt = ALT[p.img] || p.name;
       const pre = p.preorder;
-      return `          <article class="product-card" data-cat="${p.cat}" data-reveal>
+      return `          <article class="product-card" data-cat="${p.cat}" data-kind="product" data-item="${esc(p.name)}" data-reveal>
             <div class="product-img"><img src="./${p.img}" alt="${esc(alt)}" width="700" height="875" loading="lazy" decoding="async"><span class="product-tag">${esc(cat.label)}</span>${pre ? '<span class="product-flag">Launching soon</span>' : ''}</div>
             <div class="product-body">
               <h3 class="product-name">${esc(p.name)}</h3>
               <p class="product-blurb">${esc(p.blurb)}</p>
-              <div class="product-price">${B.money(p.price)}</div>
-              <div class="product-cta"><button class="btn btn--ghost-dark" type="button" data-add="${esc(p.name)}|${p.price}">${pre ? 'Pre-order' : 'Add to Cart'}</button></div>
+              <div class="product-price" data-price-slot>${B.money(p.price)}</div>
+              <div class="product-cta" data-cta-slot><button class="btn btn--ghost-dark" type="button" data-add="${esc(p.name)}|${p.price}">${pre ? 'Pre-order' : 'Add to Cart'}</button></div>
             </div>
           </article>`;
     })

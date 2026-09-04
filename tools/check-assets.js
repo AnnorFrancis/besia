@@ -30,7 +30,9 @@ const onDisk = new Set(
 const lowerMap = new Map();
 onDisk.forEach(f => lowerMap.set(f.toLowerCase(), f));
 
-const pages = walk(ROOT).filter(f => /\.(html|css|js)$/i.test(f));
+const pages = walk(ROOT)
+  .filter(f => /\.(html|css|js)$/i.test(f))
+  .filter(f => !/[\\/]sw\.js$/i.test(f));   /* generated; contains runtime URLs, not paths */
 const REF = /(?:src|href)\s*=\s*["']([^"'#?]+)["']|url\(\s*["']?([^"')?#]+)["']?\s*\)/gi;
 
 let checked = 0, missing = [], caseWrong = [];
@@ -44,6 +46,8 @@ for (const file of pages) {
     const raw = (m[1] || m[2] || '').trim();
     if (!raw) continue;
     if (/^(https?:|data:|mailto:|tel:|#|\/\/)/i.test(raw)) continue;
+    /* A path built at runtime — src="./' + item.img + '" — is not a file. */
+    if (/['"`+]/.test(raw) || /\$\{/.test(raw) || raw === './') continue;
     // CSS url() is relative to the stylesheet; a URL written inside a JS
     // string is relative to the PAGE that loads it, so resolve those from root.
     const base = /.js$/i.test(rel) ? '' : (dir === '.' ? '' : dir);

@@ -782,42 +782,6 @@
     render();
   }
 
-  /* ================= PRICE LIST ================= */
-  function initPrices() {
-    var tab = 'services';
-    function render() {
-      var q = (el('price-search').value || '').toLowerCase();
-      var rows;
-      if (tab === 'services') {
-        rows = B.services.map(function (s) {
-          return { name: s.name, group: B.categoryOf(s.cat).label, dur: s.dur, price: B.priceLabel(s) };
-        });
-      } else if (tab === 'products') {
-        var catLabel = {};
-        B.productCategories.forEach(function (c) { catLabel[c.key] = c.label; });
-        rows = B.products.map(function (p) {
-          return { name: p.name, group: catLabel[p.cat], dur: '—', price: money(p.price) };
-        });
-      } else {
-        rows = B.courses.map(function (c) {
-          return { name: c.name, group: c.level, dur: c.days + ' days', price: money(c.fee) };
-        });
-      }
-      if (q) rows = rows.filter(function (r) { return r.name.toLowerCase().indexOf(q) !== -1; });
-      el('price-body').innerHTML = rows.length ? rows.map(function (r) {
-        return '<tr><td><strong>' + esc(r.name) + '</strong></td><td>' + esc(r.group) + '</td>' +
-          '<td>' + esc(r.dur) + '</td><td class="num"><strong>' + esc(r.price) + '</strong></td></tr>';
-      }).join('') : emptyRow(4, 'Nothing matches that.');
-    }
-    on(el('price-tabs'), 'click', '[data-price-tab]', function (e, t) {
-      tab = t.getAttribute('data-price-tab');
-      el('price-tabs').querySelectorAll('.a-chip').forEach(function (c) { c.classList.toggle('is-active', c === t); });
-      render();
-    });
-    el('price-search').addEventListener('input', render);
-    render();
-  }
-
   /* ================= SETTINGS ================= */
   function initSettings() {
     var b = B.business;
@@ -863,6 +827,16 @@
      'Open <strong>Balances</strong>. It shows customers, shop orders and students in one list, biggest debt first. Press <em>Record payment</em> when money comes in.'],
     ['A student wants to join a class.',
      'Classes are booked from the website. Open <strong>Classes</strong> to see who has signed up, what they have paid and what is still owing. Students can pay in full or pay half to hold a seat.'],
+    ['How do I take something off the website?',
+     'Open <strong>Items</strong>, find it, and tap the switch under <em>On the website</em>. It disappears from the website straight away. Tap it again and it comes back. Nothing is deleted — it is only hidden.'],
+    ['How do I put a new product or service on the website?',
+     'Open <strong>Items</strong> and scroll to <em>Add something new</em>. Give it a name, a group, a price and one line about it. It goes on the website immediately, marked as a new arrival.'],
+    ['How do I run a discount?',
+     'Open <strong>Discounts</strong> and make the offer — how much off, and what it applies to. It saves switched <em>off</em>, so nothing changes yet. When you are ready, tap the switch. The website then shows the old price crossed out, a banner across the top, and the checkout charges the lower price. Switch it off when the offer ends.'],
+    ['Something is finished. Will the website still sell it?',
+     'No. When <strong>Stock</strong> reaches zero the website marks it <em>Sold out</em> and the Add to Cart button stops working, so nobody can order what you do not have. Confirming an online order takes the stock off the shelf for you.'],
+    ['The lights went off, or the internet dropped. What happens?',
+     'Keep working. A message appears at the bottom telling you there is no connection, and everything you enter is saved on the device. It is all still there when you are back online.'],
     ['How do I change a price?',
      'Every price lives in one file — <code>js/besia-data.js</code>. Change it there and the website, the booking form, the chat assistant and this manager all update together. <strong>Price List</strong> shows you exactly what is set right now.'],
     ['An online order came in. What now?',
@@ -889,7 +863,7 @@
   var ROUTES = {
     sell: initSell, sales: initSales, balances: initBalances, cash: initCash,
     expenses: initExpenses, stock: initStock, suppliers: initSuppliers,
-    classes: initClasses, activity: initActivity, prices: initPrices,
+    classes: initClasses, activity: initActivity,
     settings: initSettings, help: initHelp
   };
 
