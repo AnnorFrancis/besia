@@ -859,3 +859,62 @@
   }
 
 })();
+
+/* ============================================================
+   PHONE VIEW — give every table cell its column heading.
+   On a phone the wide tables stack into cards (see admin.css).
+   A stacked figure with no heading is meaningless, so each cell
+   borrows the text of the <th> above it and CSS prints it on the
+   left of the line. Runs once on load, then again whenever a page
+   redraws its rows.
+   ============================================================ */
+(function () {
+  'use strict';
+
+  function stamp(table) {
+    var heads = [];
+    table.querySelectorAll('thead th').forEach(function (th) {
+      heads.push((th.textContent || '').replace(/\s+/g, ' ').trim());
+    });
+    if (!heads.length) return;
+
+    table.querySelectorAll('tbody tr').forEach(function (tr) {
+      var cells = tr.children;
+      for (var i = 0; i < cells.length; i++) {
+        var td = cells[i];
+        if (td.tagName !== 'TD') continue;
+        /* A cell that spans the table is a message, not a value. */
+        var head = td.hasAttribute('colspan') ? '' : heads[i];
+        if (head) td.setAttribute('data-label', head);
+        else td.removeAttribute('data-label');
+      }
+    });
+  }
+
+  function stampAll() {
+    document.querySelectorAll('table.a-table').forEach(stamp);
+  }
+
+  function start() {
+    stampAll();
+
+    /* Rows are redrawn by the page scripts (filters, search, new
+       records). Watch for that and re-stamp. Setting an attribute
+       is not a childList change, so this cannot loop on itself. */
+    if (!window.MutationObserver) return;
+    var queued = 0;
+    var watch = new MutationObserver(function () {
+      if (queued) return;
+      queued = requestAnimationFrame(function () { queued = 0; stampAll(); });
+    });
+    document.querySelectorAll('table.a-table').forEach(function (t) {
+      watch.observe(t, { childList: true, subtree: true });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', start);
+  } else {
+    start();
+  }
+})();

@@ -4,7 +4,7 @@
    Keeps the website and the Studio Manager working when the power
    or the network goes. Regenerated on every build.
    ============================================================ */
-const VERSION = 'e6d08ceb';
+const VERSION = '0f155822';
 const CACHE = 'besia-' + VERSION;
 
 const PRECACHE = [

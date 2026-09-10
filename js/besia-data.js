@@ -97,7 +97,7 @@
       short: "Achieve a seamless, natural-looking style with this professional weave installation.",
       desc: "Achieve a seamless, natural-looking style with this professional weave installation. Ideal for anyone seeking versatility and added length, this service creates a flawless finish using a closure for a polished appearance. Enjoy a comfortable, secure fit for everyday confidence and beauty." },
     { cat: "Extensions", name: "V-Light Extensions/Invisibles - Hairline", price: null, from: 1000, to: null, mins: 90, dur: "1 hr 30 min", featured: false,
-      short: "V-Light extensions are a new, innovative hair extension method using a UV LED light to rapidly cure a special adhesive, creating nearly invisible, lig…",
+      short: "V-Light extensions are a new, innovative hair extension method using a UV LED light to rapidly cure a special adhesive, creating nearly invisible, lightweight bonds that are seamless and comfortable.",
       desc: "V-Light extensions are a new, innovative hair extension method using a UV LED light to rapidly cure a special adhesive, creating nearly invisible, lightweight bonds that are seamless and comfortable, ideal for fine hair or covering alopecia, with quick application and removal, lasting several weeks to months depending on maintenance. The process integrates extensions with natural hair using a light-activated glue that sets in seconds, offering a natural look without sticky residue and allowing for versatile use on crowns, hairlines, or full heads" },
     { cat: "Extensions", name: "Seamless Tape-Ins", price: 1500, from: null, to: null, mins: 150, dur: "2 hr 30 min", featured: false,
       short: "Tape in service 1500ghc (wash, install style) excluding hair.",

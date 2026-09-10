@@ -2173,3 +2173,108 @@ body.has-offer .hero { scroll-margin-top: calc(var(--offer-h, 0px) + var(--nav-h
 .net-pill.is-on  { background: #23543c; }
 .net-pill.is-on .net-dot { background: #6fd39b; }
 @media (max-width: 640px) { .net-pill { bottom: 5.2rem; } }
+
+/* ============================================================
+   PHONE POLISH
+   Most of her customers will meet this site on a phone, in one
+   hand, probably on mobile data. This section is about that:
+   nothing cut off at the edge, nothing too small to tap, nothing
+   too small to read.
+   ============================================================ */
+
+/* ---------- Stop wide content pushing past the screen edge ----------
+   A grid column written as "1fr" will not shrink below the width of
+   its widest line — so a long service name could stretch the price
+   builder past the edge of the phone, where it was quietly clipped.
+   "minmax(0, 1fr)" lets the column shrink and the text wrap instead. */
+.builder,
+.builder-options,
+.checkout-shell,
+.booking-shell,
+.track-panels { grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 1081px) {
+  .builder { grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); }
+  .checkout-shell { grid-template-columns: minmax(0, 1fr) 350px; }
+  .booking-shell { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.4fr); }
+  .track-panels { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+}
+.builder-opt, .builder-summary, .builder-opt > * { min-width: 0; }
+.builder-opt-name { min-width: 0; overflow-wrap: anywhere; }
+
+@media (max-width: 920px) {
+  /* ---------- Room for a thumb ----------
+     Apple and Google both put the comfortable target at around 44px.
+     These were all sitting between 18px and 32px, which is fine with
+     a mouse and a nuisance with a thumb. */
+
+  /* Footer link columns — the site's second navigation. */
+  .footer-col ul { gap: 0.25rem; }
+  .footer-col a { display: inline-flex; align-items: center; min-height: 44px; }
+  .footer-col a:hover { padding-left: 0; }
+  .footer-contact li { padding-block: 0.3rem; }
+  .footer-contact a { display: inline-flex; align-items: center; min-height: 40px; }
+
+  /* "Home / Services" trail at the top of inner pages. */
+  .breadcrumb { gap: 0.15rem; }
+  .breadcrumb a { display: inline-flex; align-items: center; min-height: 40px; padding-inline: 0.35rem; }
+  .breadcrumb a:first-child { padding-left: 0; }
+
+  /* The underlined gold links — "From GHS 680", "Track an existing order". */
+  .text-link { min-height: 44px; }
+
+  /* Phone, email and WhatsApp on the contact page. The whole reason
+     a salon has a contact page; they should be the easiest tap on it. */
+  .contact-card a,
+  .booking-side-contact a { display: inline-flex; align-items: center; gap: 0.5rem; min-height: 44px; }
+
+  /* Filter and jump pills. */
+  .filter-btn, .jump-chip { min-height: 42px; display: inline-flex; align-items: center; }
+
+  /* The service categories on the price list open and close by tapping
+     this row, so it needs to be a comfortable band, not a thin line. */
+  .price-group summary { min-height: 52px; padding-block: 0.55rem; }
+}
+
+@media (max-width: 640px) {
+  /* ---------- Small print that still has to be read ----------
+     Eyebrow labels and badges can be small by design; these three
+     carry real information, so they get a little more. */
+  .badge-years .lbl { font-size: 0.68rem; letter-spacing: 0.14em; }
+  .nav-logo-tag { font-size: 0.64rem; }
+  .price-dur { font-size: 0.78rem; }
+
+  /* Long words — a product name, an email address — wrap instead of
+     stretching their card past the edge of the screen. */
+  .product-card h3, .svc-card h3, .price-row .name, .order-line { overflow-wrap: anywhere; }
+}
+
+@media (max-width: 920px) {
+  /* The studio's own credit line at the foot of every page. */
+  .footer-credit a { display: inline-flex; align-items: center; min-height: 36px; }
+}
+
+/* ---------- Very narrow phones (320px and under) ----------
+   Plenty of Android handsets in Ghana still report a 320px screen.
+   Two things stuck out past the edge there and were being clipped:
+   the row of social icons in the footer, and the wide-tracked
+   "BEAUTY STUDIO" line under the logo. */
+.footer-social { flex-wrap: wrap; }
+.nav-logo { max-width: 100%; }
+.nav-logo-text { min-width: 0; }
+.nav-logo-name, .nav-logo-tag { overflow-wrap: anywhere; }
+
+@media (max-width: 400px) {
+  /* Loosen the letter-spacing just enough for the lockup to fit. */
+  .nav-logo-tag { letter-spacing: 0.24em; }
+  .footer-col h4 { letter-spacing: 0.2em; }
+}
+
+/* The footer column was sized by its widest single item rather than by
+   the screen, which pushed the logo, the blurb and the social icons
+   past the right edge on a 320px phone. Pin the column to the width
+   that is actually available and let its contents wrap inside it. */
+.footer-grid { grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 641px) { .footer-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1081px) { .footer-grid { grid-template-columns: minmax(0, 1.4fr) minmax(0, 0.8fr) minmax(0, 1fr) minmax(0, 1.2fr); } }
+.footer-brand, .footer-col { min-width: 0; }
+@media (max-width: 640px) { .footer-brand p { max-width: 100%; } }

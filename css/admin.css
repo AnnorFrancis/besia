@@ -833,3 +833,116 @@ tr.is-hidden-row > td:first-child { opacity: 0.75; }
   .ask-actions { flex-direction: column-reverse; }
   .ask-actions .a-btn { width: 100%; }
 }
+
+/* ============================================================
+   PHONE POLISH
+   The owner will run this from her phone more often than a
+   laptop. Everything below is about that: nothing squeezed too
+   small to tap, no label too small to read, and no table that
+   has to be dragged sideways to see the money column.
+   ============================================================ */
+
+@media (max-width: 900px) {
+  /* The menu button is how you get anywhere on a phone. It sits in a
+     flex row, so without this it gets squeezed by a long page title
+     down to about 20px wide — a target most thumbs miss. */
+  .sidebar-toggle { flex: none; width: 44px; height: 44px; }
+  .sidebar-toggle svg { width: 20px; height: 20px; }
+
+  /* Same squeeze applies to the action button beside it
+     ("New appointment", "Record a payment"). Keep it thumb-sized. */
+  .admin-topbar .a-btn { min-height: 40px; }
+
+  /* "View website" is a link back out to her own shop. */
+  .back-to-site { min-height: 40px; padding-block: 0.5rem; }
+
+  /* Filter chips: one comfortable height, whether or not they carry a count. */
+  .a-chip { min-height: 40px; }
+
+  /* Sidebar wording. 9px is a squint on a phone. */
+  .admin-nav-label { font-size: 0.7rem; letter-spacing: 0.16em; }
+  .admin-logo-tag { font-size: 0.68rem; }
+}
+
+/* The close button on the detail panel — 36px was under the mark. */
+.a-drawer-close { width: 44px; height: 44px; }
+
+/* ---------- Wide tables become stacked cards ----------
+   A table 760px wide inside a sideways-scrolling box technically
+   "works" on a phone, but you cannot see a name and its price at
+   the same time. Under 720px each row becomes its own little card
+   and every figure carries its column heading, so a row reads
+   top to bottom: Customer — Ama. Total — GHS 450.
+   The headings are stamped onto the cells by admin.js. */
+@media (max-width: 720px) {
+  .table-wrap { overflow-x: visible; border: 0; border-radius: 0; background: none; }
+  .a-table { display: block; min-width: 0; background: none; }
+  .a-table thead { display: none; }
+  .a-table tbody { display: grid; gap: 0.75rem; }
+
+  .a-table tbody tr {
+    display: block;
+    padding: 0.2rem 1rem 0.35rem;
+    background: var(--a-surface);
+    border: 1px solid var(--a-border);
+    border-radius: 12px;
+  }
+  .a-table tbody tr:hover { background: var(--a-surface); }
+
+  .a-table tbody td {
+    display: flex; align-items: baseline; justify-content: space-between; gap: 1.2rem;
+    padding: 0.7rem 0;
+    border-bottom: 1px solid var(--a-border);
+    text-align: right;
+    font-size: 0.92rem;
+  }
+  .a-table tbody tr td:last-child { border-bottom: none; }
+
+  /* The column heading, repeated quietly on the left of each line. */
+  .a-table tbody td[data-label]::before {
+    content: attr(data-label);
+    flex: none; text-align: left;
+    font-size: 0.72rem; font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--a-ink-soft);
+  }
+
+  /* First cell is the card's name — reads as a title, not a row. */
+  .a-table tbody td:first-child {
+    display: block; text-align: left;
+    padding-top: 0.85rem;
+    font-size: 1rem; font-weight: 700;
+  }
+  .a-table tbody td:first-child[data-label]::before {
+    display: block; margin-bottom: 0.2rem; font-weight: 700;
+  }
+
+  /* The grey second line in a cell (a phone number, a delivery area)
+     drops onto its own line rather than fighting the value for room. */
+  .a-table tbody td { flex-wrap: wrap; }
+  .a-table .cell-sub { display: block; font-size: 0.78rem; }
+  .a-table tbody td:not(:first-child) .cell-sub { flex-basis: 100%; text-align: right; }
+
+  /* A row spanning the whole table (like "nothing here yet"). */
+  .a-table tbody tr.empty-row td,
+  .a-table tbody td[colspan] { display: block; text-align: center; border-bottom: none; }
+  .a-table tbody tr.empty-row td::before,
+  .a-table tbody td[colspan]::before { content: none; }
+
+  /* Switches and buttons living inside a cell sit on the right. */
+  .a-table tbody td .switch,
+  .a-table tbody td .a-btn { margin-left: auto; }
+}
+
+/* ---------- Buttons inside the pages, not just the top bar ----------
+   The small button style is used for the things she taps most: the
+   plus and minus on stock, "Record payment", "Message Dana". At
+   29px tall those were the fiddliest controls in the manager. */
+@media (max-width: 720px) {
+  .a-btn { min-height: 40px; justify-content: center; }
+  .a-btn--sm { min-height: 38px; min-width: 40px; padding-inline: 0.9rem; }
+  .a-btn--lg { min-height: 50px; }
+
+  /* Phone number, email and social handles on the Settings page. */
+  .detail-list a { display: inline-flex; align-items: center; min-height: 40px; }
+}

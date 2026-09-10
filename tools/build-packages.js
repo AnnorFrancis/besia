@@ -94,11 +94,29 @@ const BUILDER = [
   'Texture Release - Hair Botox'
 ];
 
+
+/* Cut a blurb to length without slicing a word in half.
+   A hard .slice() was leaving lines like "a luxurious wash-and-go experie"
+   on the page, which reads as a broken site rather than a shortened
+   sentence. It also strips the "<service> at Bēsia Beauty Studio" opening
+   that some of the Fresha blurbs carry, so the sentence starts with the
+   description instead of repeating the name above it. */
+function shorten(text, max) {
+  let t = String(text || '').replace(/\s+/g, ' ').trim();
+  t = t.replace(/^.{0,70}?(?:at|-|\u2013|\u2014)\s*B[e\u0113]sia Beauty Studio[,.]?\s*/i, '');
+  t = t.replace(/\u2026+$/, '').trim();
+  if (t.length <= max) return t;
+  const cut = t.slice(0, max);
+  const space = cut.lastIndexOf(' ');
+  const kept = space > max * 0.5 ? cut.slice(0, space) : cut;
+  return kept.replace(/[\s,;:.\u2013-]+$/, '') + '\u2026';
+}
+
 function builder() {
   return BUILDER.map(name => {
     const s = find(name);
     const price = B.priceOf(s);
-    const desc = (s.short || '').replace(/\s+/g, ' ').slice(0, 92);
+    const desc = shorten(s.short, 92);
     return `            <label class="builder-opt" data-name="${esc(s.name)}" data-price="${price}">
               <input type="checkbox">
               <span class="builder-check">✓</span>
