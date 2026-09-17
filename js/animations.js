@@ -27,12 +27,28 @@
       var text = lineSpan.textContent;
       lineSpan.textContent = '';
       lineSpan.setAttribute('aria-hidden', 'true');
-      Array.prototype.forEach.call(text, function (ch, i) {
+      // Letters live inside word groups, so a line can only wrap between
+      // words — never leaving a stray letter or full stop on its own line.
+      var word = null, i = 0;
+      Array.prototype.forEach.call(text, function (ch) {
+        if (ch === ' ') {
+          word = null;
+          lineSpan.appendChild(document.createTextNode(' '));
+          i++;
+          return;
+        }
+        if (!word) {
+          word = document.createElement('span');
+          word.className = 'word';
+          word.style.cssText = 'display:inline-block;white-space:nowrap;';
+          lineSpan.appendChild(word);
+        }
         var s = document.createElement('span');
         s.className = 'char';
-        s.textContent = ch === ' ' ? ' ' : ch;
+        s.textContent = ch;
         s.style.animationDelay = (0.65 + lineIdx * 0.34 + i * 0.032) + 's';
-        lineSpan.appendChild(s);
+        word.appendChild(s);
+        i++;
       });
     });
     // Screen-reader friendly: put full text back in an sr-only node

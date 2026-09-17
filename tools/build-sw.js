@@ -30,7 +30,7 @@ function walk(dir, out = []) {
 
 const shell = walk(ROOT)
   .map(p => path.relative(ROOT, p).split(path.sep).join('/'))
-  .filter(f => /\.(html|css|js|svg)$/i.test(f))
+  .filter(f => /\.(html|css|js|svg|woff2)$/i.test(f))
   .filter(f => !f.startsWith('sw.js'))
   .sort();
 

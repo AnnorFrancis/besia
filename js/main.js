@@ -38,10 +38,12 @@
     var hide = function () { preloader.classList.add('is-done'); };
     if (sessionStorage.getItem('besia-loaded')) {
       // Returning visitor within session: quick fade only.
-      window.setTimeout(hide, 350);
+      preloader.classList.add('is-quick');
+      window.setTimeout(hide, 300);
     } else {
       sessionStorage.setItem('besia-loaded', '1');
-      window.addEventListener('load', function () { window.setTimeout(hide, 1450); });
+      // The intro is 1.6s of letters, rule and sub-line; the curtain lifts after it.
+      window.addEventListener('load', function () { window.setTimeout(hide, 1700); });
       window.setTimeout(hide, 3800); // hard cap so it never traps the user
     }
   }
