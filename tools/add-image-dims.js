@@ -1,5 +1,5 @@
 /* ============================================================
-   add-image-dims.js — stamps intrinsic width/height on every
+   add-image-dims.js, stamps intrinsic width/height on every
    local <img> that lacks them.
 
    Without these the browser cannot reserve space before the image
@@ -29,7 +29,7 @@ function dims(rel) {
          '-of', 'csv=p=0:s=x', abs], { encoding: 'utf8' }).trim().split('\n')[0];
       const m = /^(\d+)x(\d+)/.exec(r);
       if (m) out = { w: m[1], h: m[2] };
-    } catch (e) { /* unreadable — leave it alone */ }
+    } catch (e) { /* unreadable, leave it alone */ }
   }
   cache.set(rel, out);
   return out;

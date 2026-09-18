@@ -1,5 +1,5 @@
 /* ============================================================
-   BĒSIA BEAUTY STUDIO — admin.js
+   BĒSIA BEAUTY STUDIO, admin.js
    Simple salon manager: appointments, walk-ins, customers,
    payments, reports and staff. No charts, no jargon.
    Everything is frontend-only (demo) and talks to the client
@@ -135,7 +135,7 @@
   }
   function confirmText(b) {
     return 'Hi ' + firstName(b.client) + ',\n\n' +
-      'Good news — your appointment at *Bēsia Beauty Studio* is *CONFIRMED*. ✅\n\n' +
+      'Good news! Your appointment at *Bēsia Beauty Studio* is *CONFIRMED*. ✅\n\n' +
       'Date:    ' + pretty(b.date) + '\nService: ' + b.type + '\n\n' +
       'Please arrive 10 minutes early. Reply here if anything changes. See you soon!';
   }
@@ -144,7 +144,7 @@
       'Thank you for booking *' + b.type + '* with Bēsia Beauty Studio.\n\n' +
       'Unfortunately that time (' + pretty(b.date) + ') is fully booked. \uD83D\uDE4F\n' +
       'Please reply with another day or time that suits you and we will lock it in right away.\n\n' +
-      'We really do not want to miss you. — Bēsia Beauty Studio';
+      'We really do not want to miss you. Bēsia Beauty Studio';
   }
 
   /* ================= WEBSITE BOOKINGS BRIDGE =================
@@ -164,21 +164,21 @@
      menu in js/besia-data.js, so nothing in the manager can quote a
      price the website does not show. */
   var BOOKINGS = [
-    { id: 'APT-2041', client: 'Akosua Danso', phone: '024 555 1201', type: '150 grams - KTips', date: d(0), venue: 'Dana', pkg: 'Fusion Extensions', amount: 3000, deposit: 1000, status: 'Confirmed', source: 'Instagram', notes: 'First KTip install. Consultation done — density is good. Allow 4 hours.' },
-    { id: 'APT-2040', client: 'Naa Adjeley Tetteh', phone: '020 441 8890', type: 'Curl Revive | Wash + Go', date: d(0), venue: 'Hair Club', pkg: 'Naturals, Curls & Coils', amount: 550, deposit: 0, status: 'Confirmed', source: 'TikTok', notes: 'Lunch-break slot — must finish by 2pm. Wash and go, no heat.' },
+    { id: 'APT-2041', client: 'Akosua Danso', phone: '024 555 1201', type: '150 grams - KTips', date: d(0), venue: 'Dana', pkg: 'Fusion Extensions', amount: 3000, deposit: 1000, status: 'Confirmed', source: 'Instagram', notes: 'First KTip install. Consultation done, density is good. Allow 4 hours.' },
+    { id: 'APT-2040', client: 'Naa Adjeley Tetteh', phone: '020 441 8890', type: 'Curl Revive | Wash + Go', date: d(0), venue: 'Hair Club', pkg: 'Naturals, Curls & Coils', amount: 550, deposit: 0, status: 'Confirmed', source: 'TikTok', notes: 'Lunch-break slot, must finish by 2pm. Wash and go, no heat.' },
     { id: 'APT-2039', client: 'Priscilla Amoah', phone: '027 660 3321', type: 'Vegan Keratin Treatment - Nanoplasty', date: d(1), venue: 'Dana', pkg: 'Texture Systems', amount: 4650, deposit: 2000, status: 'Confirmed', source: 'Referral', notes: 'Wedding in three weeks. Patch test done. Block out 4 hr 30 min.' },
     { id: 'APT-2038', client: 'Efua Boakye', phone: '030 277 4410', type: 'Olaplex Treatment', date: d(2), venue: 'Francis', pkg: 'Scalp + Bond Repair', amount: 850, deposit: 200, status: 'Confirmed', source: 'Instagram', notes: 'Post-colour bond repair. Second of three sessions.' },
     { id: 'APT-2037', client: 'Adjoa Serwaa', phone: '024 118 7745', type: 'All Over Color - Medium', date: d(2), venue: 'Francis', pkg: 'Colour', amount: 950, deposit: 0, status: 'Pending', source: 'Phone', notes: 'Wants to go two shades lighter. Waiting for her to confirm the time.' },
     { id: 'APT-2036', client: 'Ama Owusu', phone: '026 909 2288', type: 'Frontal Installation', date: d(3), venue: 'Dana', pkg: 'Wig Service', amount: 500, deposit: 200, status: 'Confirmed', source: 'Instagram', notes: 'Unit already dropped off. Wants a middle parting.' },
     { id: 'APT-2035', client: 'Linda Mensah', phone: '055 302 6614', type: 'Curl Revive with FlaxGRO', date: d(-1), venue: 'Hair Club', pkg: 'Scalp + Bond Repair', amount: 1250, deposit: 1250, status: 'Completed', source: 'Walk-in', notes: 'Shedding has improved noticeably. Ask for a photo and a review.' },
-    { id: 'APT-2034', client: 'Gifty Asare', phone: '024 700 5512', type: 'Scalp + Dandruff Intensive Detox', date: d(4), venue: 'Hair Club', pkg: 'Scalp + Bond Repair', amount: 550, deposit: 0, status: 'Confirmed', source: 'Instagram', notes: 'Sensitive scalp — go gentle on the exfoliating step.' },
+    { id: 'APT-2034', client: 'Gifty Asare', phone: '024 700 5512', type: 'Scalp + Dandruff Intensive Detox', date: d(4), venue: 'Hair Club', pkg: 'Scalp + Bond Repair', amount: 550, deposit: 0, status: 'Confirmed', source: 'Instagram', notes: 'Sensitive scalp, go gentle on the exfoliating step.' },
     { id: 'APT-2033', client: 'Sandra Nyarko', phone: '020 655 0091', type: 'Silkpress Xpress', date: d(-3), venue: 'Francis', pkg: 'Styling', amount: 550, deposit: 550, status: 'Completed', source: 'Walk-in', notes: 'Silk press held all week. Rebook in about four weeks.' },
     { id: 'APT-2032', client: 'Yaa Pokuaa', phone: '027 233 8181', type: 'Texture Release - Hair Botox', date: d(6), venue: 'Dana', pkg: 'Texture Systems', amount: 3850, deposit: 0, status: 'Pending', source: 'TikTok', notes: 'Birthday treat. Awaiting deposit to hold the slot.' },
     { id: 'APT-2031', client: 'Rita Agyeman', phone: '024 866 2299', type: 'Balayage - Medium', date: d(-6), venue: 'Francis', pkg: 'Colour', amount: 1250, deposit: 1250, status: 'Completed', source: 'Referral', notes: 'Honey balayage came out beautifully. Books a change every season.' },
-    { id: 'APT-2030', client: 'Josephine Larbi', phone: '055 121 7648', type: 'Flax Seed + Aloe Treatment', date: d(-9), venue: 'Hair Club', pkg: 'Scalp + Bond Repair', amount: 450, deposit: 450, status: 'Completed', source: 'Walk-in', notes: 'Loved the flaxseed mask — sold her the take-home jar.' },
+    { id: 'APT-2030', client: 'Josephine Larbi', phone: '055 121 7648', type: 'Flax Seed + Aloe Treatment', date: d(-9), venue: 'Hair Club', pkg: 'Scalp + Bond Repair', amount: 450, deposit: 450, status: 'Completed', source: 'Walk-in', notes: 'Loved the flaxseed mask, sold her the take-home jar.' },
     { id: 'APT-2029', client: 'Comfort Adjei', phone: '030 290 1177', type: 'Seamless Tape-Ins', date: d(-14), venue: 'Dana', pkg: 'Fusion Extensions', amount: 1500, deposit: 1500, status: 'Completed', source: 'Walk-in', notes: 'Move-up due in 6 to 8 weeks. Third visit this year.' },
-    { id: 'APT-2028', client: 'Vida Ansah', phone: '026 480 3350', type: 'Precision Cut', date: d(8), venue: 'Francis', pkg: 'Cutting', amount: 300, deposit: 50, status: 'Cancelled', source: 'Phone', notes: 'Travelling — will rebook when back. Deposit carried forward.' },
-    { id: 'APT-2027', client: 'Abena Mensimah', phone: '024 330 7781', type: 'Free Hair Consultation', date: d(0), venue: 'Dana', pkg: 'Consultations & Basics', amount: 0, deposit: 0, status: 'Confirmed', source: 'Website', notes: 'First visit. Wants KTips but has never worn extensions — assess density.' }
+    { id: 'APT-2028', client: 'Vida Ansah', phone: '026 480 3350', type: 'Precision Cut', date: d(8), venue: 'Francis', pkg: 'Cutting', amount: 300, deposit: 50, status: 'Cancelled', source: 'Phone', notes: 'Travelling, will rebook when back. Deposit carried forward.' },
+    { id: 'APT-2027', client: 'Abena Mensimah', phone: '024 330 7781', type: 'Free Hair Consultation', date: d(0), venue: 'Dana', pkg: 'Consultations & Basics', amount: 0, deposit: 0, status: 'Confirmed', source: 'Website', notes: 'First visit. Wants KTips but has never worn extensions, assess density.' }
   ];
 
   var CLIENTS = [
@@ -186,11 +186,11 @@
     { name: 'Priscilla Amoah', phone: '027 660 3321', email: 'priscilla.a@gmail.com', events: 3, spent: 7300, last: d(1), src: 'Referral', notes: 'Nanoplasty before the wedding. Bringing two bridesmaids for silk press.' },
     { name: 'Linda Mensah', phone: '055 302 6614', email: 'lindam@yahoo.com', events: 8, spent: 6100, last: d(-1), src: 'Walk-in', notes: 'Longest-standing client. Shedding much improved. Happy to give a testimonial.' },
     { name: 'Naa Adjeley Tetteh', phone: '020 441 8890', email: 'naa.tetteh@gmail.com', events: 11, spent: 4850, last: d(0), src: 'TikTok', notes: 'Curl Revive every 3 weeks, always on her lunch break. Keep slots short.' },
-    { name: 'Efua Boakye', phone: '030 277 4410', email: 'efua.b@gmail.com', events: 4, spent: 2560, last: d(2), src: 'Instagram', notes: 'Bond repair course, session 2 of 3. Third due in 4 weeks — remind her.' },
+    { name: 'Efua Boakye', phone: '030 277 4410', email: 'efua.b@gmail.com', events: 4, spent: 2560, last: d(2), src: 'Instagram', notes: 'Bond repair course, session 2 of 3. Third due in 4 weeks, remind her.' },
     { name: 'Rita Agyeman', phone: '024 866 2299', email: 'rita.agyeman@gmail.com', events: 5, spent: 5300, last: d(-6), src: 'Referral', notes: 'Loves colour. Books a change every season. Always pairs it with Olaplex.' },
-    { name: 'Adjoa Serwaa', phone: '024 118 7745', email: 'adjoaserwaa@icloud.com', events: 4, spent: 2980, last: d(2), src: 'Facebook', notes: 'Colour regular. Sometimes reschedules — confirm the day before.' },
+    { name: 'Adjoa Serwaa', phone: '024 118 7745', email: 'adjoaserwaa@icloud.com', events: 4, spent: 2980, last: d(2), src: 'Facebook', notes: 'Colour regular. Sometimes reschedules, confirm the day before.' },
     { name: 'Ama Owusu', phone: '026 909 2288', email: 'ama.owusu@gmail.com', events: 3, spent: 1890, last: d(3), src: 'Instagram', notes: 'Drops her unit off ahead of time. Very easy client.' },
-    { name: 'Yaa Pokuaa', phone: '027 233 8181', email: 'yaa.p@gmail.com', events: 1, spent: 460, last: d(6), src: 'TikTok', notes: 'First time. Hair Botox booked — deposit still pending.' },
+    { name: 'Yaa Pokuaa', phone: '027 233 8181', email: 'yaa.p@gmail.com', events: 1, spent: 460, last: d(6), src: 'TikTok', notes: 'First time. Hair Botox booked, deposit still pending.' },
     { name: 'Josephine Larbi', phone: '055 121 7648', email: 'jlarbi@outlook.com', events: 7, spent: 3620, last: d(-9), src: 'Walk-in', notes: 'Treatment client. Buys the flaxseed mask every visit. Ask before posting photos.' }
   ];
 
@@ -201,7 +201,7 @@
     { name: 'Hair Club', role: 'The Hair Club at Bēsia', phone: '024 078 7993', since: 2025, skills: 'Scalp care, treatments, naturals' }
   ];
 
-  // Payments received log — seeded from real deposits plus a few of today's cash sales.
+  // Payments received log, seeded from real deposits plus a few of today's cash sales.
   var PAYMENTS = [];
   BOOKINGS.forEach(function (b) {
     if (b.deposit > 0 && b.status !== 'Cancelled') PAYMENTS.push({ client: b.client, service: b.type, amount: b.deposit, when: b.date });
@@ -261,7 +261,7 @@
   var page = document.body.getAttribute('data-page');
 
   /* ================================================================
-     DASHBOARD — a simple launcher with a one-line summary
+     DASHBOARD, a simple launcher with a one-line summary
      ================================================================ */
   if (page === 'dashboard') {
     var dateEl = document.getElementById('today-date');
@@ -310,7 +310,7 @@
       var drawer = JSON.parse(localStorage.getItem('besia-drawer')) || null;
       var todayKey = new Date().toISOString().slice(0, 10);
       set('tile-cash', drawer && drawer.day === todayKey && drawer.opened
-        ? (drawer.closed ? 'Closed for the day' : 'Open — ' + money(drawer.float) + ' float')
+        ? (drawer.closed ? 'Closed for the day' : 'Open · ' + money(drawer.float) + ' float')
         : 'Not opened yet');
     } catch (e) {}
   }
@@ -413,7 +413,7 @@
         ['Pending', 'Confirmed', 'In Progress', 'Completed', 'Cancelled'].map(function (s) {
           return '<option' + (s === b.status ? ' selected' : '') + '>' + s + '</option>';
         }).join('') + '</select></details>' +
-        '<p class="drawer-hint">Every button opens WhatsApp with the message already written — you just press send.</p>';
+        '<p class="drawer-hint">Every button opens WhatsApp with the message already written, you just press send.</p>';
 
       openDrawer(b.client, html);
 
@@ -424,7 +424,7 @@
       });
       if ((el = document.getElementById('dr-reject'))) el.addEventListener('click', function () {
         b.status = 'Cancelled'; if (b.web) setWebStatus(b.webId, 'Cancelled');
-        waSend(b.phone, rejectText(b)); toast('Message sent — asked her to pick a new time'); render(); openBooking(idx);
+        waSend(b.phone, rejectText(b)); toast('Message sent, asked her to pick a new time'); render(); openBooking(idx);
       });
       document.getElementById('dr-receipt').addEventListener('click', function () { waSend(b.phone, receiptText(b)); toast('Receipt ready in WhatsApp'); });
       document.getElementById('dr-remind').addEventListener('click', function () { waSend(b.phone, reminderText(b)); toast('Reminder ready in WhatsApp'); });
@@ -456,7 +456,7 @@
         var dv = document.getElementById('nb-date').value;
         BOOKINGS.unshift({
           id: 'APT-' + (2042 + BOOKINGS.length), client: name,
-          phone: document.getElementById('nb-phone').value || '—',
+          phone: document.getElementById('nb-phone').value || 'Not given',
           type: document.getElementById('nb-type').value,
           date: dv ? new Date(dv + 'T12:00:00') : d(2),
           venue: document.getElementById('nb-venue').value,
@@ -494,7 +494,7 @@
           '<td>' + pretty(c.last) + '</td>' +
           '<td><span class="badge badge--completed">' + esc(c.src) + '</span></td>' +
           '</tr>';
-      }).join('') : '<tr class="empty-row"><td colspan="6">No customers found — try a different search.</td></tr>';
+      }).join('') : '<tr class="empty-row"><td colspan="6">No customers found. Try a different search.</td></tr>';
       clBody.querySelectorAll('tr[data-idx]').forEach(function (tr) {
         tr.addEventListener('click', function () { openClient(parseInt(tr.getAttribute('data-idx'), 10)); });
       });
@@ -522,7 +522,7 @@
         }).join('') + '</ul>' : '<p style="font-size:0.85rem;color:var(--a-ink-soft);font-style:italic;">No visits recorded yet.</p>') +
         '</div>');
       document.getElementById('cl-msg').addEventListener('click', function () {
-        waSend(c.phone, 'Hi ' + firstName(c.name) + ', it’s Bēsia Beauty Studio ❤️ Just checking in — would you like to book your next appointment?');
+        waSend(c.phone, 'Hi ' + firstName(c.name) + ', it’s Bēsia Beauty Studio ❤️ Just checking in, would you like to book your next appointment?');
         toast('Message ready in WhatsApp');
       });
     }
@@ -538,7 +538,7 @@
       document.getElementById('nc-save').addEventListener('click', function () {
         var name = document.getElementById('nc-name').value.trim();
         if (!name) { toast('Please enter the customer name'); return; }
-        CLIENTS.unshift({ name: name, phone: document.getElementById('nc-phone').value || '—', email: document.getElementById('nc-email').value || '—', events: 0, spent: 0, last: new Date(), src: document.getElementById('nc-src').value, notes: 'Added by hand.' });
+        CLIENTS.unshift({ name: name, phone: document.getElementById('nc-phone').value || 'Not given', email: document.getElementById('nc-email').value || 'Not given', events: 0, spent: 0, last: new Date(), src: document.getElementById('nc-src').value, notes: 'Added by hand.' });
         closeDrawer(); renderClients(); toast('Customer "' + name + '" added');
       });
     });
@@ -617,10 +617,10 @@
   }
 
   /* ================================================================
-     REPORTS — plain numbers only, no charts
+     REPORTS, plain numbers only, no charts
      ================================================================ */
   if (page === 'reports') {
-    // Figures are kept internally consistent — each period's headline totals
+    // Figures are kept internally consistent, each period's headline totals
     // equal the sum of its breakdown table, so nothing ever looks off.
     var REPORT = {
       week: { earned: 4180, appts: 14, newC: 3, busy: 'Saturday', range: 'The last 7 days',
@@ -699,7 +699,7 @@
       document.getElementById('ns-save').addEventListener('click', function () {
         var name = document.getElementById('ns-name').value.trim();
         if (!name) { toast('Please enter a name'); return; }
-        STAFF.push({ name: name, role: document.getElementById('ns-role').value || 'Stylist', phone: document.getElementById('ns-phone').value || '—', since: new Date().getFullYear(), skills: document.getElementById('ns-skills').value || '—' });
+        STAFF.push({ name: name, role: document.getElementById('ns-role').value || 'Stylist', phone: document.getElementById('ns-phone').value || 'Not given', since: new Date().getFullYear(), skills: document.getElementById('ns-skills').value || 'Not given' });
         closeDrawer(); renderStaff(); toast(name + ' added to the team');
       });
     });
@@ -708,7 +708,7 @@
   }
 
   /* ================================================================
-     SHOP ORDERS — reads the same store the website writes to.
+     SHOP ORDERS, reads the same store the website writes to.
      Status changes here appear instantly on the customer's
      Track Order page (same device / same browser in this demo).
      ================================================================ */
@@ -795,7 +795,7 @@
         '<li><span>Status</span><span>' + orBadge(o.status) + '</span></li>' +
         '<li><span>Customer</span><span>' + esc(o.customer) + '</span></li>' +
         '<li><span>Phone</span><span>' + esc(o.phone) + '</span></li>' +
-        '<li><span>Fulfilment</span><span>' + (o.method === 'delivery' ? 'Delivery — ' + esc(o.area || 'Accra') : 'Pickup in store') + '</span></li>' +
+        '<li><span>Fulfilment</span><span>' + (o.method === 'delivery' ? 'Delivery, ' + esc(o.area || 'Accra') : 'Pickup in store') + '</span></li>' +
         '<li><span>Payment</span><span>' + esc((o.payment.network || 'On pickup') + ' · ' + o.payment.status) + '</span></li>' +
         '<li><span>Placed</span><span>' + pretty(new Date(o.placedAt)) + '</span></li>' +
         '</ul>' +
@@ -861,7 +861,7 @@
 })();
 
 /* ============================================================
-   PHONE VIEW — give every table cell its column heading.
+   PHONE VIEW, give every table cell its column heading.
    On a phone the wide tables stack into cards (see admin.css).
    A stacked figure with no heading is meaningless, so each cell
    borrows the text of the <th> above it and CSS prints it on the

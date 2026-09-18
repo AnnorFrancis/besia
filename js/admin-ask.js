@@ -1,11 +1,11 @@
 /* ============================================================
-   BĒSIA STUDIO MANAGER — admin-ask.js
+   BĒSIA STUDIO MANAGER, admin-ask.js
    A small, styled dialog for the two things the manager asks
    the operator to type: an amount, and a confirmation.
 
    It replaces the browser's own prompt() and confirm() boxes,
    which look like an error message, cannot be styled, and are
-   suppressed outright by some mobile browsers — which would
+   suppressed outright by some mobile browsers, which would
    have meant a button that silently did nothing.
 
    Exposes:

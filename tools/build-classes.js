@@ -1,5 +1,5 @@
 /* ============================================================
-   build-classes.js — builds classes.html (the training school)
+   build-classes.js, builds classes.html (the training school)
    from js/besia-data.js, reusing the site chrome from services.html
    so the header, footer and scripts can never drift.
 
@@ -20,7 +20,7 @@ const src = fs.readFileSync(path.join(ROOT, 'services.html'), 'utf8');
 const headEnd = src.indexOf('</head>');
 let head = src.slice(0, headEnd);
 head = head
-  .replace(/<title>[\s\S]*?<\/title>/, '<title>Classes — Learn With Bēsia Beauty Studio, Accra</title>')
+  .replace(/<title>[\s\S]*?<\/title>/, '<title>Classes · Learn With Bēsia Beauty Studio, Accra</title>')
   .replace(/<meta name="description" content="[\s\S]*?">/,
     '<meta name="description" content="Train at Bēsia Beauty Studio in Cantonments, Accra. Fusion extensions, braiding, silk press, natural hair, colour, lashes and brows. Pay in full or pay half to reserve your seat.">')
   .replace(/\n?  <!-- BUILD:seo -->[\s\S]*?<!-- \/BUILD:seo -->\n?/, '\n');
@@ -64,7 +64,7 @@ ${c.learn.map(l => '              <li>' + esc(l) + '</li>').join('\n')}
 }).join('\n\n');
 
 const options = B.courses.map(c =>
-  `                      <option value="${esc(c.id)}">${esc(c.name)} — ${B.money(c.fee)}</option>`
+  `                      <option value="${esc(c.id)}">${esc(c.name)} · ${B.money(c.fee)}</option>`
 ).join('\n');
 
 /* ---------- page ---------- */
@@ -78,7 +78,7 @@ const main = `<main id="main">
         <nav class="breadcrumb" aria-label="Breadcrumb">
           <a href="./index.html">Home</a><span class="sep">·</span><span>Classes</span>
         </nav>
-        <span class="script">Learn it properly —</span>
+        <span class="script">Learn it properly,</span>
         <h1>Train With Bēsia</h1>
         <p>Small groups, real clients and the same methods we use in the studio every day. Pay in full, or pay half to reserve your seat and settle the rest before the last day.</p>
       </div>
@@ -89,7 +89,7 @@ const main = `<main id="main">
         <div class="section-head section-head--center" data-reveal>
           <div class="eyebrow eyebrow--center">The School</div>
           <h2 class="section-title"><span class="script">Six courses,</span>Taught Hands-On</h2>
-          <p class="section-lede">Every course is taught in the studio on real heads of hair, not mannequins alone. You leave able to charge for the work — we cover pricing too.</p>
+          <p class="section-lede">Every course is taught in the studio on real heads of hair, not mannequins alone. You leave able to charge for the work, we cover pricing too.</p>
         </div>
 
         <div class="course-grid" data-reveal-stagger>
@@ -187,7 +187,7 @@ ${options}
   </main>`;
 
 fs.writeFileSync(path.join(ROOT, 'classes.html'), head + '</head>\n' + chromeTop + main + chromeBottom);
-console.log('classes.html built — ' + B.courses.length + ' courses.');
+console.log('classes.html built, ' + B.courses.length + ' courses.');
 
 /* ---------- add the nav link everywhere ---------- */
 const PUBLIC = ['index.html', 'services.html', 'shop.html', 'gallery.html', 'about.html',

@@ -21,7 +21,7 @@
 }
 
 /* ============================================================
-   BĒSIA BEAUTY STUDIO — Core Stylesheet
+   BĒSIA BEAUTY STUDIO, Core Stylesheet
    Fusion Extensions · Texture Systems · Scalp & Bond Repair · Colour
    54 Fifth Circular Road, Cantonments, Accra
    Palette sampled from the studio itself: fluted oak, cream
@@ -31,7 +31,7 @@
 
 /* ---------- Design Tokens ---------- */
 :root {
-  /* Palette — oak, brass, cream plaster, black signage, sage, onyx.
+  /* Palette, oak, brass, cream plaster, black signage, sage, onyx.
      Contrast-checked: every pairing used for text meets WCAG AA. */
   --gold: #9C6B33;          /* white text on this: 4.60:1 AA */
   --gold-ink: #7E5323;      /* accent TEXT on cream: 6.25:1 AA */
@@ -1696,7 +1696,7 @@ details.price-group[open] > summary::after { transform: rotate(-135deg); }
 }
 
 /* ============================================================
-   AURA LAYER — ambient light wash behind dark sections.
+   AURA LAYER, ambient light wash behind dark sections.
    Ambient motion that reads as luxury, not decoration.
    Every effect is GPU-composited (transform/opacity only) and
    switched off under 640px and prefers-reduced-motion.
@@ -1829,7 +1829,7 @@ details.price-group[open] > summary::after { transform: rotate(-135deg); }
 }
 
 /* ============================================================
-   SALON LAYER — mobile action bar, open-now pill, softer cards.
+   SALON LAYER, mobile action bar, open-now pill, softer cards.
    Added because this site is viewed mostly on a phone, and a
    salon lives on "call me / message me / book me".
    ============================================================ */
@@ -1976,7 +1976,7 @@ details.price-group[open] > summary::after { transform: rotate(-135deg); }
 .nav-logo { min-height: 44px; }
 
 /* ============================================================
-   CLASSES — the training school
+   CLASSES, the training school
    ============================================================ */
 .course-grid {
   display: grid;
@@ -2206,7 +2206,7 @@ body.has-offer .hero { scroll-margin-top: calc(var(--offer-h, 0px) + var(--nav-h
 
 /* ---------- Stop wide content pushing past the screen edge ----------
    A grid column written as "1fr" will not shrink below the width of
-   its widest line — so a long service name could stretch the price
+   its widest line, so a long service name could stretch the price
    builder past the edge of the phone, where it was quietly clipped.
    "minmax(0, 1fr)" lets the column shrink and the text wrap instead. */
 .builder,
@@ -2229,7 +2229,7 @@ body.has-offer .hero { scroll-margin-top: calc(var(--offer-h, 0px) + var(--nav-h
      These were all sitting between 18px and 32px, which is fine with
      a mouse and a nuisance with a thumb. */
 
-  /* Footer link columns — the site's second navigation. */
+  /* Footer link columns, the site's second navigation. */
   .footer-col ul { gap: 0.25rem; }
   .footer-col a { display: inline-flex; align-items: center; min-height: 44px; }
   .footer-col a:hover { padding-left: 0; }
@@ -2241,7 +2241,7 @@ body.has-offer .hero { scroll-margin-top: calc(var(--offer-h, 0px) + var(--nav-h
   .breadcrumb a { display: inline-flex; align-items: center; min-height: 40px; padding-inline: 0.35rem; }
   .breadcrumb a:first-child { padding-left: 0; }
 
-  /* The underlined gold links — "From GHS 680", "Track an existing order". */
+  /* The underlined gold links, "From GHS 680", "Track an existing order". */
   .text-link { min-height: 44px; }
 
   /* Phone, email and WhatsApp on the contact page. The whole reason
@@ -2265,7 +2265,7 @@ body.has-offer .hero { scroll-margin-top: calc(var(--offer-h, 0px) + var(--nav-h
   .nav-logo-tag { font-size: 0.64rem; }
   .price-dur { font-size: 0.78rem; }
 
-  /* Long words — a product name, an email address — wrap instead of
+  /* Long words, a product name, an email address, wrap instead of
      stretching their card past the edge of the screen. */
   .product-card h3, .svc-card h3, .price-row .name, .order-line { overflow-wrap: anywhere; }
 }

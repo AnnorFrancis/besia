@@ -1,9 +1,9 @@
 /* ============================================================
-   BĒSIA STUDIO MANAGER — admin-catalogue.js
+   BĒSIA STUDIO MANAGER, admin-catalogue.js
    The two pages that control what the website shows:
 
-     Items      — prices, new arrivals, publish / unpublish, add
-     Discounts  — make an offer, switch it on and off
+     Items     , prices, new arrivals, publish / unpublish, add
+     Discounts , make an offer, switch it on and off
 
    Everything here writes through BESIA.live, so a change made on
    this screen reaches the website immediately.
@@ -337,7 +337,7 @@
                 : '“' + el('d-target').value + '”';
       el('d-preview').innerHTML = 'This takes <strong>' +
         (kind === 'percent' ? v + '%' : money(v)) + '</strong> off ' + esc(where) +
-        '. It is saved switched off — switch it on above when you are ready.';
+        '. It is saved switched off. Switch it on above when you are ready.';
     }
 
     el('d-kind').addEventListener('change', function () {

@@ -1,5 +1,5 @@
 /* ============================================================
-   BĒSIA STUDIO MANAGER — admin-pages.js
+   BĒSIA STUDIO MANAGER, admin-pages.js
 
    The sections added on top of the original manager:
    Sell Now, Sales, Balances, Cash Drawer, Expenses, Stock,
@@ -469,7 +469,7 @@
       el('cash-stats').innerHTML =
         statCard('Cash sales today', money(cashSalesToday()), 'Card and MoMo are not counted here') +
         statCard('Cash paid out today', money(cashExpensesToday()), 'Expenses paid in cash') +
-        statCard('Should be in the drawer', d.opened ? money(exp) : '—', d.opened ? 'Float plus cash in, less cash out' : 'Enter your opening float first');
+        statCard('Should be in the drawer', d.opened ? money(exp) : 'Closed', d.opened ? 'Float plus cash in, less cash out' : 'Enter your opening float first');
 
       el('cash-open').innerHTML = d.opened
         ? '<p class="form-help">Opened with <strong>' + money(d.float) + '</strong>. ' +
@@ -575,7 +575,7 @@
 
       el('exp-stats').innerHTML =
         statCard('Spent this month', money(total), mine.length + (mine.length === 1 ? ' entry' : ' entries')) +
-        statCard('Biggest cost', topCat || '—', topCat ? money(biggest[topCat]) : 'Nothing recorded yet') +
+        statCard('Biggest cost', topCat || 'None yet', topCat ? money(biggest[topCat]) : 'Nothing recorded yet') +
         statCard('Spent today', money(all.filter(function (e) { return e.at >= today(); })
           .reduce(function (n, e) { return n + e.amount; }, 0)), 'Since midnight');
 
@@ -812,7 +812,7 @@
     var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     el('set-hours').innerHTML = dl(days.map(function (d, i) {
       var open = b.openDays.indexOf(i) !== -1;
-      return [d, open ? (b.openHour + 'am – ' + (b.closeHour - 12) + 'pm') : '<em>Closed</em>'];
+      return [d, open ? (b.openHour + 'am to ' + (b.closeHour - 12) + 'pm') : '<em>Closed</em>'];
     }).concat([['Open right now?', B.isOpenNow() ? 'Yes' : 'No']]));
 
     el('set-reset').addEventListener('click', function () {
@@ -844,17 +844,17 @@
     ['A student wants to join a class.',
      'Classes are booked from the website. Open <strong>Classes</strong> to see who has signed up, what they have paid and what is still owing. Students can pay in full or pay half to hold a seat.'],
     ['How do I take something off the website?',
-     'Open <strong>Items</strong>, find it, and tap the switch under <em>On the website</em>. It disappears from the website straight away. Tap it again and it comes back. Nothing is deleted — it is only hidden.'],
+     'Open <strong>Items</strong>, find it, and tap the switch under <em>On the website</em>. It disappears from the website straight away. Tap it again and it comes back. Nothing is deleted, it is only hidden.'],
     ['How do I put a new product or service on the website?',
      'Open <strong>Items</strong> and scroll to <em>Add something new</em>. Give it a name, a group, a price and one line about it. It goes on the website immediately, marked as a new arrival.'],
     ['How do I run a discount?',
-     'Open <strong>Discounts</strong> and make the offer — how much off, and what it applies to. It saves switched <em>off</em>, so nothing changes yet. When you are ready, tap the switch. The website then shows the old price crossed out, a banner across the top, and the checkout charges the lower price. Switch it off when the offer ends.'],
+     'Open <strong>Discounts</strong> and make the offer: how much off, and what it applies to. It saves switched <em>off</em>, so nothing changes yet. When you are ready, tap the switch. The website then shows the old price crossed out, a banner across the top, and the checkout charges the lower price. Switch it off when the offer ends.'],
     ['Something is finished. Will the website still sell it?',
      'No. When <strong>Stock</strong> reaches zero the website marks it <em>Sold out</em> and the Add to Cart button stops working, so nobody can order what you do not have. Confirming an online order takes the stock off the shelf for you.'],
     ['The lights went off, or the internet dropped. What happens?',
      'Keep working. A message appears at the bottom telling you there is no connection, and everything you enter is saved on the device. It is all still there when you are back online.'],
     ['How do I change a price?',
-     'Every price lives in one file — <code>js/besia-data.js</code>. Change it there and the website, the booking form, the chat assistant and this manager all update together. <strong>Price List</strong> shows you exactly what is set right now.'],
+     'Every price lives in one file, <code>js/besia-data.js</code>. Change it there and the website, the booking form, the chat assistant and this manager all update together. <strong>Price List</strong> shows you exactly what is set right now.'],
     ['An online order came in. What now?',
      'Open <strong>Shop Orders</strong>, tap the order, then press <em>Confirm this order</em>. The customer’s tracking page updates the moment you do, with the time on it.'],
     ['How do I balance the cash at the end of the day?',

@@ -1,8 +1,8 @@
 /* ============================================================
-   BĒSIA BEAUTY STUDIO — booking.js
+   BĒSIA BEAUTY STUDIO, booking.js
    Multi-step appointment form with validation, instant price
    estimator, and the interactive service builder (packages page).
-   Frontend demo — no data leaves the page.
+   Frontend demo, no data leaves the page.
    ============================================================ */
 (function () {
   'use strict';
@@ -62,7 +62,7 @@
     });
 
     /* ---------- Instant Price Estimator ----------
-       Every figure comes from js/besia-data.js — the same file that
+       Every figure comes from js/besia-data.js, the same file that
        prints the price list on services.html. One source, so the
        estimator can never quote a price the menu does not publish. */
     /* Rebuilt on every quote rather than once at load, so the estimate
@@ -91,7 +91,7 @@
     var OCCASION_MULTIPLIER = {
       'Regular Appointment': 1, 'Bridal / Wedding Party': 1.35,
       'Birthday or Event Glam': 1.1, 'Photoshoot / Content': 1.15,
-      'First Visit \u2014 Consultation': 1, 'Other': 1
+      'First Visit, Consultation': 1, 'Other': 1
     };
 
     function buildQuote() {
@@ -146,8 +146,8 @@
       // Review summary
       var review = document.getElementById('review-summary');
       if (review) {
-        var name = (form.querySelector('[name="name"]') || {}).value || '\u2014';
-        var date = (form.querySelector('[name="event-date"]') || {}).value || '\u2014';
+        var name = (form.querySelector('[name="name"]') || {}).value || 'Not given';
+        var date = (form.querySelector('[name="event-date"]') || {}).value || 'Not given';
         var slot = (form.querySelector('[name="venue"]') || {}).value || 'Any time';
         review.innerHTML =
           '<li><span>Name</span><span>' + name.replace(/</g, '&lt;') + '</span></li>' +
@@ -209,7 +209,7 @@
         localStorage.setItem(KEY, JSON.stringify(list));
       } catch (err) {}
 
-      // The booking is already saved above — WhatsApp is only for a follow-up
+      // The booking is already saved above, WhatsApp is only for a follow-up
       // question, so the message quotes the reference rather than re-booking.
       var wa = document.getElementById('success-wa');
       if (wa) {
@@ -283,11 +283,11 @@
       window.setTimeout(function () { displayed = to; totalEl.textContent = fmtGHS(to); }, dur + 150);
 
       try { localStorage.setItem('besia-builder', JSON.stringify(chosen.map(function (c) { return c.name; }))); } catch (e) {}
-      if (goBtn) goBtn.textContent = chosen.length ? 'Request This Appointment — ' + fmtGHS(to) : 'Request This Appointment';
+      if (goBtn) goBtn.textContent = chosen.length ? 'Request This Appointment · ' + fmtGHS(to) : 'Request This Appointment';
     }
 
     // The options are <label> elements, so the browser toggles the
-    // checkbox natively — we only need to react to the change.
+    // checkbox natively, we only need to react to the change.
     opts.forEach(function (opt) {
       opt.querySelector('input').addEventListener('change', refresh);
     });

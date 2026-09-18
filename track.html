@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Track Your Order — Bēsia Beauty Studio</title>
+  <title>Track Your Order · Bēsia Beauty Studio</title>
   <meta name="description" content="Enter your order number to follow it live, from confirmed through to collected or delivered.">
   <meta name="theme-color" content="#17140F">
 
@@ -17,7 +17,7 @@
   <meta name="robots" content="noindex,follow">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Bēsia Beauty Studio">
-  <meta property="og:title" content="Track Your Order — Bēsia Beauty Studio">
+  <meta property="og:title" content="Track Your Order · Bēsia Beauty Studio">
   <meta property="og:description" content="Enter your order number to follow it live, from confirmed through to collected or delivered.">
   <meta property="og:url" content="https://annorfrancis.github.io/besia/track.html">
   <meta property="og:image" content="https://annorfrancis.github.io/besia/images/studio/studio-reception.jpg">
@@ -25,7 +25,7 @@
   <meta property="og:image:height" content="1080">
   <meta property="og:locale" content="en_GH">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Track Your Order — Bēsia Beauty Studio">
+  <meta name="twitter:title" content="Track Your Order · Bēsia Beauty Studio">
   <meta name="twitter:description" content="Enter your order number to follow it live, from confirmed through to collected or delivered.">
   <meta name="twitter:image" content="https://annorfrancis.github.io/besia/images/studio/studio-reception.jpg">
   <!-- /BUILD:seo -->
@@ -37,7 +37,7 @@
   <!-- Navigation -->
   <header class="site-nav">
     <div class="container container--wide nav-inner">
-      <a class="nav-logo" href="./index.html" aria-label="Bēsia Beauty Studio — home">
+      <a class="nav-logo" href="./index.html" aria-label="Bēsia Beauty Studio, home">
         <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
           <path d="M15 9.5c-6.5 7-6.5 22 0 29.5" stroke-linecap="round"/>
           <path d="M23.5 6c-8.5 8.5-8.5 27.5 0 36" stroke-linecap="round"/>
@@ -106,12 +106,12 @@
           </div>
           <button type="submit" class="btn btn--gold">Track</button>
         </form>
-        <p class="track-hint">It looks like <strong>BES-260902-880</strong> — it is on your checkout screen and in your receipt.</p>
+        <p class="track-hint">It looks like <strong>BES-260902-880</strong>, it is on your checkout screen and in your receipt.</p>
 
         <div id="my-orders" class="my-orders"></div>
 
         <p id="track-error" class="track-error" style="display:none;">
-          We could not find that order number. Check the spelling — it looks like <strong>BES-260902-880</strong> — or
+          We could not find that order number. Check the spelling, it looks like <strong>BES-260902-880</strong>, or
           call us on <a href="tel:+233240787993">024 078 7993</a>.
         </p>
 
@@ -120,7 +120,7 @@
           <div class="track-head">
             <div>
               <div class="track-id" id="tr-id">BES-000000</div>
-              <div class="track-meta" id="tr-meta">—</div>
+              <div class="track-meta" id="tr-meta">…</div>
             </div>
             <span class="badge-live" id="tr-live">● Live</span>
           </div>
@@ -213,7 +213,7 @@
         document.getElementById('tr-details').innerHTML =
           '<li><span>Name</span><span>' + order.customer + '</span></li>' +
           '<li><span>Phone</span><span>' + order.phone + '</span></li>' +
-          '<li><span>Method</span><span>' + (order.method === 'delivery' ? 'Delivery — ' + (order.area || 'Accra') : 'Pickup') + '</span></li>' +
+          '<li><span>Method</span><span>' + (order.method === 'delivery' ? 'Delivery, ' + (order.area || 'Accra') : 'Pickup') + '</span></li>' +
           '<li><span>Payment</span><span>' + (order.payment.network || 'On pickup') + ' · ' + order.payment.status + '</span></li>';
       }
 
@@ -232,7 +232,7 @@
         if (v) lookup(v);
       });
 
-      // Orders placed on this phone — one-tap reopen
+      // Orders placed on this phone, one-tap reopen
       function renderMine() {
         var mine = S.getOrders().filter(function (o) { return !o.seeded; }).slice(0, 4);
         var box = document.getElementById('my-orders');
@@ -250,7 +250,7 @@
       }
       renderMine();
 
-      // Live refresh — when the admin updates a status this re-renders
+      // Live refresh, when the admin updates a status this re-renders
       S.onChange(function () {
         renderMine();
         if (current) { var o = S.getOrder(current); if (o) render(o); }

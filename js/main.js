@@ -1,5 +1,5 @@
 /* ============================================================
-   BĒSIA BEAUTY STUDIO — main.js
+   BĒSIA BEAUTY STUDIO, main.js
    Shared behaviour: preloader, nav, reveals, counters,
    shimmer canvas, floats, page transitions.
    ============================================================ */
@@ -131,7 +131,7 @@
     track.innerHTML += track.innerHTML;
   });
 
-  /* ---------- Rising shimmer canvas (desktop / tablet only — skipped on phones for smooth scroll) ---------- */
+  /* ---------- Rising shimmer canvas (desktop / tablet only, skipped on phones for smooth scroll) ---------- */
   var canvas = document.getElementById('shimmer-canvas');
   var isNarrow = window.matchMedia('(max-width: 640px)').matches;
   if (canvas && !prefersReduced && !isNarrow) {
@@ -172,7 +172,7 @@
       ctx.save();
       ctx.translate(p.x, p.y);
       ctx.rotate(p.rot + Math.sin(p.sway) * 0.4);
-      // four-point sparkle with a soft halo — reads as light, not dust
+      // four-point sparkle with a soft halo, reads as light, not dust
       var r = p.size * 0.5;
       var a = p.alpha * (0.45 + 0.55 * (0.5 + 0.5 * Math.sin(p.twinkle)));
       var halo = ctx.createRadialGradient(0, 0, 0, 0, 0, r * 2.4);
@@ -275,7 +275,7 @@
       var input = form.querySelector('input');
       var note = form.parentElement.querySelector('.newsletter-note');
       if (input && input.value.indexOf('@') > 0) {
-        if (note) note.textContent = 'Thank you — you are on the list. Fresh inspiration coming your way.';
+        if (note) note.textContent = 'Thank you, you are on the list. Fresh inspiration coming your way.';
         input.value = '';
       } else if (note) {
         note.textContent = 'Please enter a valid email address.';

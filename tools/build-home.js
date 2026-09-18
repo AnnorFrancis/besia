@@ -1,5 +1,5 @@
 /* ============================================================
-   build-home.js — regenerates the two card grids on index.html
+   build-home.js, regenerates the two card grids on index.html
    (service teaser + shop teaser) from js/besia-data.js.
 
    Run:  node tools/build-home.js
@@ -29,17 +29,17 @@ const svg = d => '<svg class="svc-card-icon" viewBox="0 0 24 24" fill="none" str
 /* The six disciplines that lead the home page. */
 const TEASER = [
   { key: 'Extensions',                     icon: I.strands,  img: './images/extensions/ext-2.jpg',      alt: 'Honey-brown fusion extensions worn long',
-    copy: 'Seamless KTips and microlinks, UK-certified. Length and density that move like your own hair — and come out without taking it with them.' },
+    copy: 'Seamless KTips and microlinks, UK-certified. Length and density that move like your own hair, and come out without taking it with them.' },
   { key: 'Texture Systems + Treatments',   icon: I.drop,     img: './images/studio/studio-wash.jpg',    alt: 'Steam treatment at the Bēsia wash basin',
-    copy: 'Nanoplasty and Hair Botox. Vegan, formaldehyde-free smoothing — the first system of its kind in Ghana.' },
+    copy: 'Nanoplasty and Hair Botox. Vegan, formaldehyde-free smoothing, the first system of its kind in Ghana.' },
   { key: 'Scalp + Bond Repair Treatments', icon: I.bottle,   img: './images/services/svc-treat.jpg',    alt: 'A scalp treatment being worked through at the basin',
-    copy: 'Flaxseed and aloe, GRO hot oil, Olaplex and K18 — matched to what your scalp and your bonds actually need.' },
+    copy: 'Flaxseed and aloe, GRO hot oil, Olaplex and K18, matched to what your scalp and your bonds actually need.' },
   { key: 'Color Service',                  icon: I.brush,    img: './images/wigs/wig-4.jpg',            alt: 'Honey ginger colour with a dark root melt',
     copy: 'All-over colour, balayage and full highlights, blended against your natural depth instead of fighting it.' },
   { key: 'Naturals | Curls & Coils',       icon: I.curl,     img: './images/salon-studio/about-2.jpg',  alt: 'Natural afro texture, defined and shaped',
     copy: 'Curl Revive wash-and-go with our in-house flaxseed, rosemary and olive blends, plus cutting shaped to your curl pattern.' },
   { key: 'Cut Service',                    icon: I.scissors, img: './images/salon-studio/studio-2.jpg', alt: 'A cut being finished with a blow dry',
-    copy: 'Precision, curly and coily cutting. Shape first, length second — so it still sits right six weeks later.' }
+    copy: 'Precision, curly and coily cutting. Shape first, length second, so it still sits right six weeks later.' }
 ];
 
 const SHOP = [
@@ -51,7 +51,7 @@ const SHOP = [
 ];
 
 const SHOP_COPY = {
-  extensions:  'Fusion KTips, tape-in wefts and raw bundles — the same hair we install in the chair.',
+  extensions:  'Fusion KTips, tape-in wefts and raw bundles, the same hair we install in the chair.',
   closures:    'HD lace closures and frontals that melt clean at the parting.',
   wigs:        'Glueless ready-to-wear units, adjustable and cut into shape.',
   care:        'The flaxseed masks, hot oils, K18 and Olaplex we treat with, to take home.',
@@ -106,4 +106,4 @@ for (const [open, close, fn] of [
   html = html.slice(0, a + open.length) + '\n' + fn() + '\n' + html.slice(b);
 }
 fs.writeFileSync(file, html);
-console.log('index.html rebuilt — ' + TEASER.length + ' service cards, ' + SHOP.length + ' shop cards.');
+console.log('index.html rebuilt, ' + TEASER.length + ' service cards, ' + SHOP.length + ' shop cards.');

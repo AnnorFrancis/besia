@@ -1,5 +1,5 @@
 /* ============================================================
-   BĒSIA BEAUTY STUDIO — besia-data.js
+   BĒSIA BEAUTY STUDIO, besia-data.js
    SINGLE SOURCE OF TRUTH for the whole system.
 
    Every page, the booking estimator, the shop, the chat
@@ -41,12 +41,12 @@
     lat: 5.57959508895874,
     lng: -0.1650283932685852,
 
-    /* When — Mon–Sat 9am–7pm, closed Sunday */
+    /* When, Mon–Sat 9am–7pm, closed Sunday */
     openDays: [1, 2, 3, 4, 5, 6],
     openHour: 9,
     closeHour: 19,
-    hoursLabel: 'Mon–Sat · 9am – 7pm',
-    hoursShort: 'Mon–Sat, 9–7',
+    hoursLabel: 'Mon-Sat · 9am-7pm',
+    hoursShort: 'Mon-Sat, 9-7',
     closedLabel: 'Sunday',
 
     /* Money */
@@ -64,23 +64,23 @@
     rating: 5.0,
     reviewCount: 16,
 
-    /* Storage namespace — MUST stay unique per client build.
+    /* Storage namespace, MUST stay unique per client build.
        localStorage is scoped per ORIGIN, not per path, so two
        demos on the same host would collide without this. */
     ns: 'besia'
   };
 
   var SERVICE_CATEGORIES = [
-    { key: "Extensions", label: "Fusion Extensions", blurb: "KTips, microlinks, tape-ins and weaves — the work Bēsia is known for.", slug: "ext" },
+    { key: "Extensions", label: "Fusion Extensions", blurb: "KTips, microlinks, tape-ins and weaves, the work Bēsia is known for.", slug: "ext" },
     { key: "Texture Systems + Treatments", label: "Texture Systems", blurb: "Vegan, formaldehyde-free straightening and texture release.", slug: "tex" },
     { key: "Scalp + Bond Repair Treatments", label: "Scalp + Bond Repair", blurb: "Treatment-led care: flaxseed, GRO hot oil, Olaplex and K18.", slug: "scalp" },
     { key: "Color Service", label: "Colour", blurb: "All-over colour, balayage, highlights and custom blends.", slug: "color" },
     { key: "Naturals | Curls & Coils", label: "Naturals, Curls & Coils", blurb: "Curl Revive wash-and-go and cutting for natural texture.", slug: "nat" },
     { key: "Cut Service", label: "Cutting", blurb: "Precision, curly and coily cutting, layers and trims.", slug: "cut" },
     { key: "Braids | Cornrows", label: "Braids & Cornrows", blurb: "Cornrow updos and large braids, finished clean.", slug: "braid" },
-    { key: "Hair Styling", label: "Styling", blurb: "Silkpress Xpress — signature wash, blow dry, press and style.", slug: "style" },
+    { key: "Hair Styling", label: "Styling", blurb: "Silkpress Xpress: signature wash, blow dry, press and style.", slug: "style" },
     { key: "Wig Service", label: "Wig Service", blurb: "Frontal installation, fitted and blended.", slug: "wig" },
-    { key: "General", label: "Consultations & Basics", blurb: "Start with a consultation — the first one is free.", slug: "gen" }
+    { key: "General", label: "Consultations & Basics", blurb: "Start with a consultation. The first one is free.", slug: "gen" }
   ];
   
   var SERVICES = [
@@ -119,7 +119,7 @@
       desc: "Transform your look with 300 grams of KTips, adding impressive volume and length that blends beautifully with your natural hair. Ideal for anyone craving a bold change or extra fullness. Pricing increases by 500 cedis for every additional 50 grams of KTip bonds." },
     { cat: "Extensions", name: "Invisible KTips", price: null, from: 7000, to: null, mins: 600, dur: "10 hr", featured: false,
       short: "Transform your appearance effortlessly with our innovative hair extensions, designed to blend seamlessly with your natural locks.",
-      desc: "Transform your appearance effortlessly with our innovative hair extensions, designed to blend seamlessly with your natural locks. Invisibles are micro KTips that are extremely undetectable. Experience the joy of stunning, fuller hair without the fuss—ideal for any occasion. Our extensions provide a luxurious look and feel, enhancing your style while maintaining a natural appearance. Discover the perfect balance of beauty and convenience at Bēsia Beauty Studio." },
+      desc: "Transform your appearance effortlessly with our innovative hair extensions, designed to blend seamlessly with your natural locks. Invisibles are micro KTips that are extremely undetectable. Experience the joy of stunning, fuller hair without the fuss, ideal for any occasion. Our extensions provide a luxurious look and feel, enhancing your style while maintaining a natural appearance. Discover the perfect balance of beauty and convenience at Bēsia Beauty Studio." },
     { cat: "Texture Systems + Treatments", name: "Perm Retouch and Style", price: 850, from: null, to: null, mins: 60, dur: "1 hr", featured: false,
       short: "Perm Retouch and Style at Bēsia Beauty Studio, available to book online.",
       desc: "Perm Retouch and Style at Bēsia Beauty Studio, available to book online." },
@@ -140,7 +140,7 @@
       desc: "Our flaxseed hair mask is a hair treatment made from flaxseed and aloe which can be used to moisturize, style, and edge hair. Follow with a wash and go, twist out or rinse and style. Strengthens hair: Flaxseed contains fiber and omega-3 fatty acids, which can make hair stronger and more elastic. Promotes hair growth: Flaxseed can nourish hair follicles and encourage hair growth. Reduces breakage and split ends Soothes scalp: Flaxseed contains alpha-linolenic acid (ALA), which can help calm scalp irritations. Hydrates hair Reduces dandruff Prevents premature graying Adds shine Maintains curly hair Reduces hair thinning" },
     { cat: "Scalp + Bond Repair Treatments", name: "Scalp + Dandruff Intensive Detox", price: 550, from: null, to: null, mins: 45, dur: "45 min", featured: false,
       short: "Scalp & Dandruff Intensive Treatment Give your scalp the ultimate reset with our Scalp & Dandruff Intensive Treatment, designed to deeply cleanse, exf…",
-      desc: "Scalp & Dandruff Intensive Treatment Give your scalp the ultimate reset with our Scalp & Dandruff Intensive Treatment, designed to deeply cleanse, exfoliate, and restore balance for a healthier scalp and stronger hair. This multi-step treatment targets buildup, flaking, and irritation, leaving you with a refreshed, soothed scalp and revitalized strands. ✨ Custom Scalp Serum Treatment – Our in-house formula penetrates deeply to nourish, rebalance, and soothe dryness or excessive oil production. ✨ Wet & Dry Salt Scrub – A gentle yet effective exfoliation to lift away dead skin, product buildup, and dandruff, promoting better scalp circulation. ✨ Head Spa & Massage – A luxurious experience that stimulates hair growth, relieves tension, and enhances product absorption. ✨ Clarifying Wash & Condition Perfect for anyone struggling with dandruff, scalp irritation, or buildup—this treatment leaves your scalp refreshed and your hair ready to thrive." },
+      desc: "Scalp & Dandruff Intensive Treatment Give your scalp the ultimate reset with our Scalp & Dandruff Intensive Treatment, designed to deeply cleanse, exfoliate, and restore balance for a healthier scalp and stronger hair. This multi-step treatment targets buildup, flaking, and irritation, leaving you with a refreshed, soothed scalp and revitalized strands. ✨ Custom Scalp Serum Treatment – Our in-house formula penetrates deeply to nourish, rebalance, and soothe dryness or excessive oil production. ✨ Wet & Dry Salt Scrub – A gentle yet effective exfoliation to lift away dead skin, product buildup, and dandruff, promoting better scalp circulation. ✨ Head Spa & Massage – A luxurious experience that stimulates hair growth, relieves tension, and enhances product absorption. ✨ Clarifying Wash & Condition Perfect for anyone struggling with dandruff, scalp irritation, or buildup, this treatment leaves your scalp refreshed and your hair ready to thrive." },
     { cat: "Scalp + Bond Repair Treatments", name: "K18 Treatment and Bond Repair", price: 550, from: null, to: null, mins: 60, dur: "1 hr", featured: false,
       short: "Reverse hair damage with the K18 Leave-in Molecular Repair Hair Mask, a leave-in treatment mask designed to restore the hair in just four minutes.",
       desc: "Reverse hair damage with the K18 Leave-in Molecular Repair Hair Mask, a leave-in treatment mask designed to restore the hair in just four minutes. Bleach, colour treatment, chemical services and heat can all wreak havoc on the hair. Powered by the K18PEPTIDE™, this haircare treatment can help repair the damage." },
@@ -187,8 +187,8 @@
       short: "Custom balayage and highlights. Baby lights on crown Includes Toning",
       desc: "Custom balayage and highlights. Baby lights on crown Includes Toning" },
     { cat: "Naturals | Curls & Coils", name: "Curl Revive | Wash + Go", price: 550, from: null, to: null, mins: 90, dur: "1 hr 30 min", featured: true,
-      short: "Curl Revive – Bēsia Beauty Studio Our Curl Revive service is a luxurious wash-and-go experience designed to enhance your natural curls with definition…",
-      desc: "Curl Revive – Bēsia Beauty Studio Our Curl Revive service is a luxurious wash-and-go experience designed to enhance your natural curls with definition, hydration, and shine. Infusing Bēsia’s in-house natural products, we cleanse, condition, and style your curls with nourishing flaxseed, rosemary, and olive oil blends. A gentle steam treatment infuses moisture, reducing frizz and promoting healthy, bouncy curls. Perfect for all curl types, this service leaves your hair soft, defined, and beautifully refreshed." },
+      short: "Our Curl Revive service is a luxurious wash-and-go experience designed to enhance your natural curls with definition…",
+      desc: "Our Curl Revive service is a luxurious wash-and-go experience designed to enhance your natural curls with definition, hydration, and shine. Infusing Bēsia’s in-house natural products, we cleanse, condition, and style your curls with nourishing flaxseed, rosemary, and olive oil blends. A gentle steam treatment infuses moisture, reducing frizz and promoting healthy, bouncy curls. Perfect for all curl types, this service leaves your hair soft, defined, and beautifully refreshed." },
     { cat: "Naturals | Curls & Coils", name: "Curly Cut", price: 585, from: null, to: null, mins: 105, dur: "1 hr 45 min", featured: false,
       short: "Our Curly Cut is a specialized dry or wet cutting technique designed to shape and enhance your natural curls.",
       desc: "Our Curly Cut is a specialized dry or wet cutting technique designed to shape and enhance your natural curls. We customize each cut based on your unique curl pattern, density, and desired style to create a balanced, flattering shape that grows out beautifully. Finished with our signature Curl Revive wash-and-go service, your curls will be refreshed, defined, and full of life. Perfect for anyone looking to maintain healthy, well-shaped curls with maximum volume and movement." },
@@ -230,7 +230,7 @@
   /* ---------- The shop ----------
      Bēsia sells hair as well as service. Categories mirror what the
      studio actually installs: fusion KTips, tape-ins, raw bundles, HD
-     closures and frontals, glueless units — plus a home-care shelf built
+     closures and frontals, glueless units, plus a home-care shelf built
      from the exact products named in the treatment menu (flaxseed, GRO
      hot oil, K18, Olaplex) and the Moringa line the studio has announced.
 
@@ -247,24 +247,24 @@
   ];
 
   var PRODUCTS = [
-    { cat:'extensions', name:'KTip Fusion Bundle — 100g',      price:1850, img:'images/extensions/ext-1.jpg',         blurb:'Salon-grade keratin tips — the same hair we use for the 100g install.' },
-    { cat:'extensions', name:'KTip Fusion Bundle — 150g',      price:2600, img:'images/extensions/ext-2.jpg',         blurb:'Fuller density for longer or thicker natural hair.' },
+    { cat:'extensions', name:'KTip Fusion Bundle, 100g',      price:1850, img:'images/extensions/ext-1.jpg',         blurb:'Salon-grade keratin tips, the same hair we use for the 100g install.' },
+    { cat:'extensions', name:'KTip Fusion Bundle, 150g',      price:2600, img:'images/extensions/ext-2.jpg',         blurb:'Fuller density for longer or thicker natural hair.' },
     { cat:'extensions', name:'Seamless Tape-In Weft Set',      price:1450, img:'images/bundles/bundle-1.jpg',         blurb:'Ultra-thin medical-grade wefts. Reusable two to three times.' },
-    { cat:'extensions', name:'Raw Straight Bundle — 3 pack',   price:1200, img:'images/bundles/bundle-2.jpg',         blurb:'Unprocessed raw hair. Holds colour and heat without shedding.' },
+    { cat:'extensions', name:'Raw Straight Bundle, 3 pack',   price:1200, img:'images/bundles/bundle-2.jpg',         blurb:'Unprocessed raw hair. Holds colour and heat without shedding.' },
 
-    { cat:'closures',   name:'HD Lace Closure — 5×5',          price:980,  img:'images/closures-frontals/unit-1.jpg', blurb:'Melts clean at the parting. Knots bleached on request.' },
-    { cat:'closures',   name:'HD Lace Frontal — 13×4',         price:1350, img:'images/closures-frontals/unit-2.jpg', blurb:'Ear-to-ear frontal for full styling freedom.' },
+    { cat:'closures',   name:'HD Lace Closure, 5×5',          price:980,  img:'images/closures-frontals/unit-1.jpg', blurb:'Melts clean at the parting. Knots bleached on request.' },
+    { cat:'closures',   name:'HD Lace Frontal, 13×4',         price:1350, img:'images/closures-frontals/unit-2.jpg', blurb:'Ear-to-ear frontal for full styling freedom.' },
     { cat:'closures',   name:'Curly Illusion Crochet Set',     price:720,  img:'images/closures-frontals/unit-3.jpg', blurb:'Pre-looped curls for the 360 Illusion Crochet look.' },
 
-    { cat:'wigs',       name:'Glueless Unit — Body Wave',      price:2400, img:'images/wigs/wig-1.jpg',               blurb:'Adjustable band, no glue. Ready to wear out of the box.' },
-    { cat:'wigs',       name:'Glueless Unit — Kinky Straight', price:2650, img:'images/wigs/wig-2.jpg',               blurb:'Blends with relaxed and silk-pressed natural hair.' },
+    { cat:'wigs',       name:'Glueless Unit, Body Wave',      price:2400, img:'images/wigs/wig-1.jpg',               blurb:'Adjustable band, no glue. Ready to wear out of the box.' },
+    { cat:'wigs',       name:'Glueless Unit, Kinky Straight', price:2650, img:'images/wigs/wig-2.jpg',               blurb:'Blends with relaxed and silk-pressed natural hair.' },
     { cat:'wigs',       name:'Curly Bob Unit',                 price:1900, img:'images/wigs/wig-3.jpg',               blurb:'Shoulder-skimming curl, light enough for every day.' },
     { cat:'wigs',       name:'Silk Press Straight Unit',       price:2200, img:'images/wigs/wig-4.jpg',               blurb:'Bone straight with movement, cut into soft layers.' },
     { cat:'wigs',       name:'Deep Wave Unit',                 price:2500, img:'images/wigs/wig-5.jpg',               blurb:'Defined deep wave that revives with water and product.' },
     { cat:'wigs',       name:'Pixie Curl Unit',                price:1650, img:'images/wigs/wig-6.jpg',               blurb:'Short, light and low maintenance. A holiday favourite.' },
 
-    { cat:'care', name:'Moringa Ginseng Follicle Fuel Beard Oil', price:180, img:'images/hair-care-cosmetics/care-1.jpg', blurb:'Moringa and ginseng for follicle strength. Launching soon — reserve yours.', preorder:true },
-    { cat:'care', name:'Moringa Root Fuel Scalp Oil',             price:220, img:'images/hair-care-cosmetics/care-2.jpg', blurb:'The scalp half of the Moringa line. Launching soon — reserve yours.', preorder:true },
+    { cat:'care', name:'Moringa Ginseng Follicle Fuel Beard Oil', price:180, img:'images/hair-care-cosmetics/care-1.jpg', blurb:'Moringa and ginseng for follicle strength. Launching soon, reserve yours.', preorder:true },
+    { cat:'care', name:'Moringa Root Fuel Scalp Oil',             price:220, img:'images/hair-care-cosmetics/care-2.jpg', blurb:'The scalp half of the Moringa line. Launching soon, reserve yours.', preorder:true },
     { cat:'care', name:'Flax Seed + Aloe Hair Mask',              price:190, img:'images/hair-care-cosmetics/care-3.jpg', blurb:'The in-house mask from our Flax Seed + Aloe treatment. Take it home.' },
     { cat:'care', name:'K18 Molecular Repair Leave-In',           price:650, img:'images/hair-care-cosmetics/care-4.jpg', blurb:'Keeps bond repair working between salon treatments.' },
     { cat:'care', name:'Olaplex No.3 Hair Perfector',             price:480, img:'images/hair-care-cosmetics/care-5.jpg', blurb:'The weekly at-home step after colour or texture work.' },
@@ -284,11 +284,11 @@
     { name:'Hair Club', role:'The Hair Club at Bēsia',                skills:'Scalp care, treatments, naturals',   since:2025 }
   ];
 
-  /* ---------- What clients actually said (Fresha — 5.0 from 16) ---------- */
+  /* ---------- What clients actually said (Fresha, 5.0 from 16) ---------- */
   var REVIEWS = [
-    { name:'Joyce F',    date:'2026-08-10', stars:5, service:'Two services with Rabs', text:'Always a 100/10 experience!! It feels like coming home — resetting mind, spirit and obviously looks! They eat every blessed time!! Thank you.' },
+    { name:'Joyce F',    date:'2026-08-10', stars:5, service:'Two services with Rabs', text:'Always a 100/10 experience!! It feels like coming home, resetting mind, spirit and obviously looks! They eat every blessed time!! Thank you.' },
     { name:'Judith O',   date:'2026-04-17', stars:5, service:'Silk press with Francis', text:'Very calm environment, great personalised service. I met the lovely owner, Dana, who was very thoughtful and a breath of fresh air. Clearly very knowledgeable.' },
-    { name:'Akosua A',   date:'2026-08-05', stars:5, service:'Hybrid lash set with Rabs', text:'Great service! Very receptive and personable — willing to adjust whatever needs tweaking to achieve customer satisfaction. Keep up the good work, Rabs!' },
+    { name:'Akosua A',   date:'2026-08-05', stars:5, service:'Hybrid lash set with Rabs', text:'Great service! Very receptive and personable, willing to adjust whatever needs tweaking to achieve customer satisfaction. Keep up the good work, Rabs!' },
     { name:'Afia A',     date:'2026-08-05', stars:5, service:'Lala set with Rabs', text:'Loooooooved it! Everyone is so friendly and very skilled.' },
     { name:'Nana Aba A', date:'2026-06-15', stars:5, service:'Scalp treatment', text:'Relaxing, informative and so worth it.' },
     { name:'Ama O',      date:'2026-04-16', stars:5, service:'Regular client', text:'Great service as always.' }
@@ -378,7 +378,7 @@
   function priceLabel(s) {
     if (s.price === 0) return 'Free';
     if (s.price != null) return money(s.price);
-    if (s.from != null && s.to != null && s.to !== s.from) return money(s.from) + ' – ' + money(s.to);
+    if (s.from != null && s.to != null && s.to !== s.from) return money(s.from) + ' to ' + money(s.to);
     if (s.from != null) return 'from ' + money(s.from);
     return 'On consultation';
   }

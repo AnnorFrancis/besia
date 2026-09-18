@@ -1,10 +1,10 @@
 /* ============================================================
-   BĒSIA — classes.js
+   BĒSIA, classes.js
    The enrolment form on classes.html.
 
    Shows what the student will pay now, gives them a reference,
    and drops the enrolment into the same list the Studio Manager
-   reads on its Classes page — the identical handoff the shop
+   reads on its Classes page, the identical handoff the shop
    uses between checkout and Shop Orders.
    ============================================================ */
 (function () {
@@ -104,7 +104,7 @@
           '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">' +
           '<path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>' +
         '</div>' +
-        '<h3>Seat requested — thank you, ' + name.split(' ')[0].replace(/[<>]/g, '') + '</h3>' +
+        '<h3>Seat requested. Thank you, ' + name.split(' ')[0].replace(/[<>]/g, '') + '</h3>' +
         '<p>Your reference is <strong>' + ref + '</strong>. Keep it for when we call.</p>' +
         '<p>You chose <strong>' + c.name + '</strong>, paying <strong>' + B.money(payingNow) + '</strong> now' +
           (c.fee - payingNow > 0 ? ' and <strong>' + B.money(c.fee - payingNow) + '</strong> before the last day' : '') +

@@ -1,16 +1,16 @@
 /* ============================================================
-   BĒSIA BEAUTY STUDIO — store.js
+   BĒSIA BEAUTY STUDIO, store.js
    The shop engine shared by shop.html, checkout.html, track.html
    and admin/orders.html: cart, orders, order numbers, status
    timeline and the demo payment flow. Everything lives in
    localStorage so the customer pages and the admin stay in sync
-   on the same device — exactly how the real backend will behave.
+   on the same device, exactly how the real backend will behave.
    ============================================================ */
 (function () {
   'use strict';
 
   /* Keys are namespaced through js/besia-data.js. localStorage is scoped
-     per ORIGIN, not per path — without a namespace, two demos hosted on
+     per ORIGIN, not per path, without a namespace, two demos hosted on
      the same domain would silently share one cart and one order book. */
   var NS = window.BESIA ? BESIA.key : function (n) { return 'besia-' + n; };
   var CART_KEY = NS('cart');
@@ -109,7 +109,7 @@
   }
 
   /* Confirming an online order takes the goods off the shelf, exactly as
-     selling them over the counter does. Done once per order — the flag on
+     selling them over the counter does. Done once per order, the flag on
      the order stops a second confirmation double-counting. */
   function releaseStock(order) {
     if (!order || order.stockTaken) return;
@@ -174,7 +174,7 @@
         id: 'BES-DEMO-101', seeded: true, placedAt: Date.now() - 26 * h,
         customer: 'Efua Boakye', phone: '030 277 4410', method: 'delivery', area: 'East Legon',
         payment: { type: 'momo', network: 'MTN MoMo', number: '024 xxx 4410', status: 'Paid' },
-        items: [{ name: 'KTip Fusion Bundle — 100g', price: 1850, qty: 1, cat: 'extensions' }],
+        items: [{ name: 'KTip Fusion Bundle, 100g', price: 1850, qty: 1, cat: 'extensions' }],
         subtotal: 1850, deliveryFee: 30, total: 1880,
         status: 'Out for delivery',
         timeline: [
@@ -188,7 +188,7 @@
         customer: 'Adjoa Serwaa', phone: '024 118 7745', method: 'pickup', area: '',
         payment: { type: 'pickup', network: '', number: '', status: 'Pay on pickup' },
         items: [
-          { name: 'HD Lace Frontal — 13×4', price: 1350, qty: 1, cat: 'closures' },
+          { name: 'HD Lace Frontal, 13×4', price: 1350, qty: 1, cat: 'closures' },
           { name: 'K18 Molecular Repair Leave-In', price: 650, qty: 1, cat: 'care' }
         ],
         subtotal: 2000, deliveryFee: 0, total: 2000,
@@ -214,7 +214,7 @@
         id: 'BES-DEMO-104', seeded: true, placedAt: Date.now() - 50 * h,
         customer: 'Linda Mensah', phone: '055 302 6614', method: 'pickup', area: '',
         payment: { type: 'momo', network: 'MTN MoMo', number: '055 xxx 6614', status: 'Paid' },
-        items: [{ name: 'Glueless Unit — Body Wave', price: 2400, qty: 1, cat: 'wigs' }],
+        items: [{ name: 'Glueless Unit, Body Wave', price: 2400, qty: 1, cat: 'wigs' }],
         subtotal: 2400, deliveryFee: 0, total: 2400,
         status: 'Picked up',
         timeline: [

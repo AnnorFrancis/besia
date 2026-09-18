@@ -1,5 +1,5 @@
 /* ============================================================
-   BĒSIA BEAUTY STUDIO — Editorial layer
+   BĒSIA BEAUTY STUDIO, Editorial layer
    The magazine issue of the site. Loaded after style.css on the
    public pages, this file changes how things look, never what
    they do: every hook the JavaScript uses stays exactly where it
@@ -41,7 +41,7 @@ body { background: var(--paper); color: var(--ink); font-weight: 400; letter-spa
 .section + .section { border-top: 1px solid var(--rule); }
 .section--espresso + .section, .section + .section--espresso { border-top: 0; }
 
-/* Decorative light shows are switched off — the magazine is still. */
+/* Decorative light shows are switched off, the magazine is still. */
 .aura::before, .aura::after { display: none !important; }
 #shimmer-canvas { display: none !important; }
 
@@ -126,8 +126,8 @@ body { counter-reset: issue; }
   position: absolute; z-index: 3; left: 0; right: 0;
   top: calc(var(--nav-height) + clamp(1.5rem, 5vh, 4rem));
   text-align: center; pointer-events: none;
-  font-weight: 200; font-size: clamp(4.2rem, 17vw, 17rem); line-height: 0.9;
-  letter-spacing: 0.06em; text-transform: uppercase; color: var(--paper);
+  font-weight: 200; font-size: clamp(3rem, 10vw, 9rem); line-height: 0.9;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--paper);
   opacity: 0.94; mix-blend-mode: screen;
 }
 .cover-masthead::after {
@@ -141,7 +141,7 @@ body { counter-reset: issue; }
   font-style: normal; font-size: 0.66rem; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase;
   color: var(--gold-pale);
 }
-.hero-title { font-weight: 300; font-size: var(--text-hero); line-height: 1.02; letter-spacing: -0.02em; max-width: 14ch; margin-bottom: 1.4rem; }
+.hero-title { font-weight: 300; font-size: clamp(1.55rem, 2.6vw, 2.5rem); line-height: 1.15; letter-spacing: -0.01em; max-width: 24ch; margin-bottom: 1.8rem; }
 .hero-title em { font-style: italic; font-weight: 300; color: var(--paper); }
 .hero-sub { font-weight: 400; font-size: 0.98rem; max-width: 46ch; color: rgba(251, 247, 241, 0.82); margin-bottom: 2rem; }
 .hero-meta { bottom: 0; }
@@ -170,7 +170,7 @@ body { counter-reset: issue; }
   font-size: 0.68rem; font-weight: 500; font-style: normal; letter-spacing: 0.26em; text-transform: uppercase;
   color: var(--ink); -webkit-text-stroke: 0; gap: 2.2rem; padding-inline: 1.1rem;
 }
-.marquee span::after { content: '—'; color: var(--ink-3); font-size: 1em; }
+.marquee span::after { content: '·'; color: var(--ink-3); font-size: 1em; }
 .marquee-track { animation-duration: 60s; }
 
 /* ---------- Cards become plates: hairline, square, image-led ---------- */
@@ -261,8 +261,8 @@ input, select, textarea { border-radius: 0 !important; }
 
 /* ---------- The intro: five letters, one rule, a curtain ----------
    Runs once per visit on the home page. The letters rise out of a
-   mask while their weight thickens from hairline to medium — a
-   variable-font move that costs nothing to run — then a rule draws
+   mask while their weight thickens from hairline to medium, a
+   variable-font move that costs nothing to run, then a rule draws
    beneath them and the whole curtain lifts to reveal the cover.  */
 .preloader {
   background: var(--paper); color: var(--ink);
@@ -341,7 +341,22 @@ input, select, textarea { border-radius: 0 !important; }
 
 /* The cover title on a phone: whole words, never a word broken across lines. */
 @media (max-width: 640px) {
-  .hero-title { font-size: clamp(1.9rem, 9.6vw, 2.5rem); line-height: 1.08; }
+  .hero-title { font-size: clamp(1.35rem, 6.5vw, 1.8rem); line-height: 1.2; }
   .hero-title .line, .hero-title .line > span { white-space: normal; overflow: visible; }
-  .cover-masthead { font-size: clamp(3.6rem, 20vw, 5rem); }
+  .cover-masthead { font-size: clamp(2.5rem, 14vw, 3.4rem); }
 }
+
+/* ---------- Last non-editorial survivors, caught by audit ---------- */
+/* The chat assistant dresses like the rest of the issue. */
+.chat-window { border-radius: 0; box-shadow: none; border: 1px solid var(--rule-strong); }
+.chat-head, .chat-messages, .chat-input-row, .chat-window * { border-radius: 0 !important; }
+.chat-bubble { border: 1px solid var(--rule); }
+/* Occasion chips on the services page match the other pills. */
+.reco-chip { border-radius: 0; font-weight: 500; letter-spacing: 0.14em; }
+.reco-chip.is-active { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+/* Value cards on About: hairline plates, no glass. */
+.value-card { border-radius: 0; background: transparent; border: 1px solid var(--rule-light); backdrop-filter: none; -webkit-backdrop-filter: none; transform: none !important; }
+/* Overlays: plain ink, no blur. Blur is heavy on phones and soft on the eye. */
+.swiper-slide, .lightbox, .lightbox-btn, .pay-modal { backdrop-filter: none !important; -webkit-backdrop-filter: none !important; }
+.lightbox { background: rgba(18, 15, 12, 0.94); }
+.pay-modal { background: rgba(18, 15, 12, 0.6); }

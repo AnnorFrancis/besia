@@ -1,5 +1,5 @@
 /* ============================================================
-   build-shop.js — regenerates the shop grid on shop.html from
+   build-shop.js, regenerates the shop grid on shop.html from
    js/besia-data.js. Same contract as build-services.js: one
    source of truth, static HTML out.
 
@@ -89,7 +89,7 @@ fs.writeFileSync(file, html);
 const byCat = B.productCategories
   .map(c => c.label + ' ' + B.products.filter(p => p.cat === c.key).length)
   .join(', ');
-console.log('shop.html rebuilt — ' + B.products.length + ' products across ' +
+console.log('shop.html rebuilt, ' + B.products.length + ' products across ' +
   B.productCategories.length + ' categories.');
 console.log('  ' + byCat);
 

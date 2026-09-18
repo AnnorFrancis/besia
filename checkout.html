@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Checkout — Bēsia Beauty Studio</title>
+  <title>Checkout · Bēsia Beauty Studio</title>
   <meta name="description" content="Review your bag, choose pickup or delivery, and pay by Mobile Money, card or on collection.">
   <meta name="theme-color" content="#17140F">
   <meta name="robots" content="noindex">
@@ -18,7 +18,7 @@
   <meta name="robots" content="noindex,follow">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Bēsia Beauty Studio">
-  <meta property="og:title" content="Checkout — Bēsia Beauty Studio">
+  <meta property="og:title" content="Checkout · Bēsia Beauty Studio">
   <meta property="og:description" content="Review your bag, choose pickup or delivery, and pay by Mobile Money, card or on collection.">
   <meta property="og:url" content="https://annorfrancis.github.io/besia/checkout.html">
   <meta property="og:image" content="https://annorfrancis.github.io/besia/images/studio/studio-reception.jpg">
@@ -26,7 +26,7 @@
   <meta property="og:image:height" content="1080">
   <meta property="og:locale" content="en_GH">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Checkout — Bēsia Beauty Studio">
+  <meta name="twitter:title" content="Checkout · Bēsia Beauty Studio">
   <meta name="twitter:description" content="Review your bag, choose pickup or delivery, and pay by Mobile Money, card or on collection.">
   <meta name="twitter:image" content="https://annorfrancis.github.io/besia/images/studio/studio-reception.jpg">
   <!-- /BUILD:seo -->
@@ -38,7 +38,7 @@
   <!-- Navigation -->
   <header class="site-nav">
     <div class="container container--wide nav-inner">
-      <a class="nav-logo" href="./index.html" aria-label="Bēsia Beauty Studio — home">
+      <a class="nav-logo" href="./index.html" aria-label="Bēsia Beauty Studio, home">
         <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
           <path d="M15 9.5c-6.5 7-6.5 22 0 29.5" stroke-linecap="round"/>
           <path d="M23.5 6c-8.5 8.5-8.5 27.5 0 36" stroke-linecap="round"/>
@@ -97,7 +97,7 @@
           <a href="./shop.html">Shop</a><span class="sep">·</span><span>Checkout</span>
         </nav>
         <div class="eyebrow">Checkout</div>
-        <h1 class="section-title" style="margin-bottom:2rem;"><span class="script">Almost yours —</span>Confirm Your Order</h1>
+        <h1 class="section-title" style="margin-bottom:2rem;"><span class="script">Almost yours,</span>Confirm Your Order</h1>
 
         <!-- Empty state -->
         <div id="empty-state" class="checkout-empty" style="display:none;">
@@ -136,12 +136,12 @@
               <div class="co-choice" role="radiogroup" aria-label="Pickup or delivery">
                 <label class="co-chip is-active">
                   <input type="radio" name="method" value="pickup" checked>
-                  <strong>Pickup — free</strong>
+                  <strong>Pickup, free</strong>
                   <span>Collect from the shop, Cantonments, Accra</span>
                 </label>
                 <label class="co-chip">
                   <input type="radio" name="method" value="delivery">
-                  <strong>Delivery — GHS 30</strong>
+                  <strong>Delivery, GHS 30</strong>
                   <span>Within Accra, same day where possible</span>
                 </label>
               </div>
@@ -209,7 +209,7 @@
                 </div>
               </div>
 
-              <p class="co-demo-note">Demo payment — no real money moves. The live site connects to Paystack / Hubtel for real MoMo and card charges.</p>
+              <p class="co-demo-note">Demo payment, no real money moves. The live site connects to Paystack / Hubtel for real MoMo and card charges.</p>
             </div>
           </div>
 
@@ -235,7 +235,7 @@
           <div class="mark">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M4 12.5l5 5L20 6.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </div>
-          <h2>Order placed — thank you!</h2>
+          <h2>Order placed, thank you!</h2>
           <p>Your order number is</p>
           <div class="co-order-id" id="success-id">BES-000000</div>
           <p id="success-sub">We have received your order and will confirm it shortly.</p>
@@ -257,7 +257,7 @@
       <div class="pay-spinner" aria-hidden="true"></div>
       <h3 id="pay-step">Contacting your network…</h3>
       <p id="pay-detail">Please wait</p>
-      <span class="pay-demo-tag">Demo — no real charge</span>
+      <span class="pay-demo-tag">Demo, no real charge</span>
     </div>
   </div>
 
@@ -342,7 +342,7 @@
         document.getElementById('co-total').textContent = money(sub + fee);
         var btn = document.getElementById('co-pay');
         btn.textContent = payType() === 'pickup'
-          ? 'Place Order — ' + money(sub + fee)
+          ? 'Place Order, ' + money(sub + fee)
           : 'Pay ' + money(sub + fee) + ' & Place Order';
       }
 
@@ -418,7 +418,7 @@
         modal.setAttribute('aria-hidden', 'false');
         if (pay === 'momo') {
           step('Contacting ' + document.getElementById('co-network').value + '…', 'Sending a payment prompt to ' + document.getElementById('co-momo').value);
-          setTimeout(function () { step('Prompt sent to your phone', 'Approve the payment with your PIN — in this demo it approves itself'); }, 1400);
+          setTimeout(function () { step('Prompt sent to your phone', 'Approve the payment with your PIN, in this demo it approves itself'); }, 1400);
           setTimeout(function () { step('Payment received ✓', 'Placing your order…'); }, 3000);
           setTimeout(finish, 4000);
         } else {

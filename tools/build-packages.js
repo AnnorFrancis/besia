@@ -1,5 +1,5 @@
 /* ============================================================
-   build-packages.js — rebuilds the three packages and the service
+   build-packages.js, rebuilds the three packages and the service
    builder on packages.html from js/besia-data.js.
 
    The packages are Bēsia's OWN published multi-service bundles
@@ -33,7 +33,7 @@ const PACKS = [
       'Gentle steam to lock in moisture',
       'Finish and style'
     ],
-    note: 'Our most-booked pairing — hydration and definition in one sitting. Listed on our booking system with a 15% saving against booking the two separately.',
+    note: 'Our most-booked pairing, hydration and definition in one sitting. Listed on our booking system with a 15% saving against booking the two separately.',
     cta: 'Book the Reset'
   },
   {
@@ -50,7 +50,7 @@ const PACKS = [
     cta: 'Book the Restore'
   },
   {
-    tier: 'Signature', name: 'Vegan Keratin — Nanoplasty', featured: false,
+    tier: 'Signature', name: 'Vegan Keratin Nanoplasty', featured: false,
     source: 'Vegan Keratin Treatment - Nanoplasty',
     features: [
       'Vegan, formaldehyde-free formula',
@@ -140,7 +140,7 @@ for (const [open, close, fn] of [
   html = html.slice(0, a + open.length) + '\n' + fn() + '\n' + html.slice(b);
 }
 fs.writeFileSync(file, html);
-console.log('packages.html rebuilt — ' + PACKS.length + ' packages, ' + BUILDER.length + ' builder options.');
+console.log('packages.html rebuilt, ' + PACKS.length + ' packages, ' + BUILDER.length + ' builder options.');
 PACKS.forEach(pk => {
   const s = find(pk.source);
   console.log('  ' + pk.name.padEnd(30) + B.priceLabel(s));

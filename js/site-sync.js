@@ -1,5 +1,5 @@
 /* ============================================================
-   BĒSIA — site-sync.js
+   BĒSIA, site-sync.js
    Makes the public website obey the Studio Manager.
 
    The pages ship as finished HTML, which is what search engines
@@ -141,7 +141,7 @@
   }
 
   /* =========================================================
-     SERVICES — price list and tiles
+     SERVICES, price list and tiles
      ========================================================= */
   function syncServices() {
     var rows = document.querySelectorAll('.price-row[data-item]');
@@ -191,7 +191,7 @@
   }
 
   /* =========================================================
-     HOME — teaser "from" figures follow the same rule
+     HOME, teaser "from" figures follow the same rule
      ========================================================= */
   function syncTeasers() {
     document.querySelectorAll('.svc-card .text-link[href*="services.html#"]').forEach(function (a) {
@@ -206,7 +206,7 @@
   }
 
   /* =========================================================
-     PACKAGES — the builder options carry their own price in the
+     PACKAGES, the builder options carry their own price in the
      markup, so they have to follow the manager too. An option for
      something taken off the website is removed rather than left
      sitting there quotable.
@@ -252,7 +252,7 @@
   }
 
   /* =========================================================
-     BOOKING FORM — do not offer a discipline that has nothing
+     BOOKING FORM, do not offer a discipline that has nothing
      published left in it.
      ========================================================= */
   function syncBookingPills() {
@@ -298,7 +298,7 @@
   }
 
   /* The bar is fixed, so the nav and the page have to be pushed down by
-     exactly its height — which changes when the text wraps on a phone. */
+     exactly its height, which changes when the text wraps on a phone. */
   function measureOffer() {
     var bar = document.getElementById('live-offer');
     if (!bar) {

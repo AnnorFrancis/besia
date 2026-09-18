@@ -1,5 +1,5 @@
 /* ============================================================
-   BĒSIA BEAUTY STUDIO — animations.js
+   BĒSIA BEAUTY STUDIO, animations.js
    GSAP-powered cinematic layer: hero text choreography,
    slideshow, parallax, 3D card tilt.
    Everything degrades gracefully if a CDN fails.
@@ -28,7 +28,7 @@
       lineSpan.textContent = '';
       lineSpan.setAttribute('aria-hidden', 'true');
       // Letters live inside word groups, so a line can only wrap between
-      // words — never leaving a stray letter or full stop on its own line.
+      // words, never leaving a stray letter or full stop on its own line.
       var word = null, i = 0;
       Array.prototype.forEach.call(text, function (ch) {
         if (ch === ' ') {

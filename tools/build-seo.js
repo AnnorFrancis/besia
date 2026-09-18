@@ -1,5 +1,5 @@
 /* ============================================================
-   build-seo.js — titles, meta descriptions, canonical URLs,
+   build-seo.js, titles, meta descriptions, canonical URLs,
    Open Graph / Twitter cards, JSON-LD, robots.txt and sitemap.xml.
 
    Change SITE_URL below to the live domain before deploying.
@@ -27,47 +27,47 @@ const OG_IMAGE = '/images/studio/studio-reception.jpg';
 
 const PAGES = {
   'index.html': {
-    title: 'Bēsia Beauty Studio — Fusion Extensions & Hair Care, Cantonments Accra',
+    title: 'Bēsia Beauty Studio · Fusion Extensions & Hair Care, Cantonments Accra',
     desc: "Ghana's home of fusion extensions. UK-certified KTips and microlinks, vegan formaldehyde-free Nanoplasty, and treatment-led scalp and bond care at 54 Fifth Circular Road, Cantonments, Accra.",
     prio: '1.0'
   },
   'services.html': {
-    title: 'Services & Prices — Bēsia Beauty Studio, Accra',
+    title: 'Services & Prices · Bēsia Beauty Studio, Accra',
     desc: 'All 47 services with published prices and durations: fusion extensions, Nanoplasty and Hair Botox, Olaplex and K18 bond repair, colour, cutting, Curl Revive and silk press.',
     prio: '0.9'
   },
   'shop.html': {
-    title: 'Shop — Hair, Units & Home Care | Bēsia Beauty Studio',
+    title: 'Shop · Bēsia Beauty Studio',
     desc: 'The same hair we install and the products we treat with: KTip bundles, tape-in wefts, HD closures and frontals, glueless units, flaxseed masks, K18 and Olaplex. Pay by Mobile Money or card.',
     prio: '0.9'
   },
   'gallery.html': {
-    title: 'Look Book — Bēsia Beauty Studio, Cantonments',
-    desc: 'Client looks and the studio itself — fusion extensions, braids and cornrows, lashes and brows, photographed at 54 Fifth Circular Road, Cantonments, Accra.',
+    title: 'Look Book · Bēsia Beauty Studio, Cantonments',
+    desc: 'Client looks and the studio itself, fusion extensions, braids and cornrows, lashes and brows, photographed at 54 Fifth Circular Road, Cantonments, Accra.',
     prio: '0.7'
   },
   'about.html': {
-    title: 'About — Bēsia Beauty Studio, Accra',
+    title: 'About · Bēsia Beauty Studio, Accra',
     desc: "Ghana's home of fusion extensions and the first studio in the country to offer a vegan, formaldehyde-free straightening system. A beauty collaborative in Cantonments, Accra.",
     prio: '0.7'
   },
   'packages.html': {
-    title: 'Packages & Price Builder — Bēsia Beauty Studio',
-    desc: 'Our own multi-service bundles — Curl Revive + Flax, Curl Revive with FlaxGRO and the Nanoplasty signature — or build your own combination and see the total update live.',
+    title: 'Packages & Price Builder · Bēsia Beauty Studio',
+    desc: 'Our own multi-service bundles: Curl Revive + Flax, Curl Revive with FlaxGRO and the Nanoplasty signature. Or build your own combination and see the total update live.',
     prio: '0.8'
   },
   'classes.html': {
-    title: 'Classes — Learn Fusion Extensions & Hair Care at Bēsia, Accra',
-    desc: 'Train at Bēsia Beauty Studio in Cantonments, Accra. Six hands-on courses — fusion extensions, braiding, silk press, natural hair, colour, lashes and brows. Pay in full or pay half to reserve your seat.',
+    title: 'Classes · Learn Fusion Extensions & Hair Care at Bēsia, Accra',
+    desc: 'Train at Bēsia Beauty Studio in Cantonments, Accra. Six hands-on courses, fusion extensions, braiding, silk press, natural hair, colour, lashes and brows. Pay in full or pay half to reserve your seat.',
     prio: '0.8'
   },
   'contact.html': {
-    title: 'Book an Appointment — Bēsia Beauty Studio, Cantonments Accra',
-    desc: 'Book at 54 Fifth Circular Road, Cantonments. Open Mon–Sat 9am–7pm. Get an instant estimate from our published prices — the first consultation is free.',
+    title: 'Book an Appointment · Bēsia Beauty Studio, Cantonments Accra',
+    desc: 'Book at 54 Fifth Circular Road, Cantonments. Open Mon-Sat, 9am to 7pm. Get an instant estimate from our published prices, the first consultation is free.',
     prio: '0.9'
   },
-  'checkout.html': { title: 'Checkout — Bēsia Beauty Studio', desc: 'Review your bag, choose pickup or delivery, and pay by Mobile Money, card or on collection.', prio: '0.4', noindex: true },
-  'track.html': { title: 'Track Your Order — Bēsia Beauty Studio', desc: 'Enter your order number to follow it live, from confirmed through to collected or delivered.', prio: '0.4' }
+  'checkout.html': { title: 'Checkout · Bēsia Beauty Studio', desc: 'Review your bag, choose pickup or delivery, and pay by Mobile Money, card or on collection.', prio: '0.4', noindex: true },
+  'track.html': { title: 'Track Your Order · Bēsia Beauty Studio', desc: 'Enter your order number to follow it live, from confirmed through to collected or delivered.', prio: '0.4' }
 };
 
 const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');

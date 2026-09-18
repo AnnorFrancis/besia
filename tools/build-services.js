@@ -1,5 +1,5 @@
 /* ============================================================
-   build-services.js — regenerates the service menu on services.html
+   build-services.js, regenerates the service menu on services.html
    straight from js/besia-data.js.
 
    Why this exists: the sample this was built from kept prices in
@@ -36,14 +36,14 @@ const ART = {
 
 /* A short human line under each tile heading. */
 const LEAD = {
-  'Extensions': 'KTips, microlinks, tape-ins and weaves — installed to sit flat, move naturally and leave your own hair intact.',
+  'Extensions': 'KTips, microlinks, tape-ins and weaves, installed to sit flat, move naturally and leave your own hair intact.',
   'Texture Systems + Treatments': 'Vegan and formaldehyde-free. Nanoplasty and Hair Botox that smooth texture without stripping the hair.',
-  'Scalp + Bond Repair Treatments': 'Treatment-led care. Flaxseed, GRO hot oil, Olaplex and K18 — chosen for what your scalp and bonds actually need.',
+  'Scalp + Bond Repair Treatments': 'Treatment-led care. Flaxseed, GRO hot oil, Olaplex and K18, chosen for what your scalp and bonds actually need.',
   'Color Service': 'All-over colour, balayage and highlights, blended against your natural depth rather than fighting it.',
   'Naturals | Curls & Coils': 'Curl Revive wash-and-go and cutting shaped to your curl pattern, with definition that survives the week.',
   'Cut Service': 'Precision, curly and coily cutting. Shape first, length second.',
   'Braids | Cornrows': 'Parted clean and tensioned gently, so your edges outlive the style.',
-  'Hair Styling': 'Silkpress Xpress — signature wash, brush blow dry, press and style.',
+  'Hair Styling': 'Silkpress Xpress: signature wash, brush blow dry, press and style.',
   'Wig Service': 'Frontal installation, fitted flat and blended so the parting reads as scalp.',
   'General': 'Not sure where to start? The first consultation is free, and there is no pressure to book on the day.'
 };
@@ -123,7 +123,7 @@ for (const [open, close, fn] of MARKERS) {
 fs.writeFileSync(file, html);
 
 const total = B.serviceCategories.reduce((n, c) => n + B.byCategory(c.key).length, 0);
-console.log('services.html rebuilt — ' + ok + ' blocks, ' +
+console.log('services.html rebuilt, ' + ok + ' blocks, ' +
   B.serviceCategories.length + ' categories, ' + total + ' priced services.');
 
 /* Guard: every tile's "From" must equal the cheapest line in its own

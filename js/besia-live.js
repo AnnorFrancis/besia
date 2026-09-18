@@ -1,8 +1,8 @@
 /* ============================================================
-   BĒSIA — besia-live.js
+   BĒSIA, besia-live.js
    THE LINK BETWEEN THE STUDIO MANAGER AND THE WEBSITE.
 
-   js/besia-data.js is the baseline — the menu and catalogue as
+   js/besia-data.js is the baseline, the menu and catalogue as
    first published. This file layers on top of it everything the
    owner has since changed in the Studio Manager:
 
@@ -13,7 +13,7 @@
      · discounts, running or paused
      · stock, so a finished item cannot be ordered
 
-   Every page — public and manager — reads the catalogue through
+   Every page, public and manager, reads the catalogue through
    here, so the website can never show something the manager has
    hidden, or a price the manager has changed.
 
@@ -75,7 +75,7 @@
   function seedDiscounts() {
     return [{
       id: 'D-1001',
-      label: 'Treatment week — 15% off scalp and bond repair',
+      label: 'Treatment week: 15% off scalp and bond repair',
       kind: 'percent', value: 15,
       scope: 'category', target: 'Scalp + Bond Repair Treatments',
       active: false

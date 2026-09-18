@@ -1,5 +1,5 @@
 /* ============================================================
-   build-admin.js — builds every Studio Manager page from ONE
+   build-admin.js, builds every Studio Manager page from ONE
    definition, so the sidebar, the header and the one-line
    explanation at the top of each section can never drift apart.
 
@@ -53,13 +53,13 @@ const PAGES = [
     title: 'Sell Now',    intro: 'Someone is at the counter. Add what they are having, then take the money.' },
 
   { id: 'sales',     file: 'sales.html',     group: 'Money', nav: 'Sales',       icon: 'sales',
-    title: 'Sales',       intro: 'Every sale you have made — in the chair, at the counter and online.' },
+    title: 'Sales',       intro: 'Every sale you have made, in the chair, at the counter and online.' },
   { id: 'balances',  file: 'balances.html',  group: 'Money', nav: 'Balances',    icon: 'balances',
     title: 'Balances',    intro: 'Who still owes you money, and how much. Record a payment when it comes in.' },
   { id: 'cash',      file: 'cash.html',      group: 'Money', nav: 'Cash Drawer', icon: 'cash',
     title: 'Cash Drawer', intro: 'Count the cash when you open, and again when you close.' },
   { id: 'expenses',  file: 'expenses.html',  group: 'Money', nav: 'Expenses',    icon: 'expenses',
-    title: 'Expenses',    intro: 'Money going out — rent, stock, salaries, transport.' },
+    title: 'Expenses',    intro: 'Money going out: rent, stock, salaries, transport.' },
 
   { id: 'orders', countId: 'orders-count',     file: 'orders.html',    group: 'Shop',  nav: 'Shop Orders', icon: 'orders',
     title: 'Shop Orders', intro: 'Orders from the website. Confirm each one, then get it ready.' },
@@ -86,14 +86,14 @@ const PAGES = [
   { id: 'discounts', file: 'discounts.html', group: 'Shop', nav: 'Discounts', icon: 'discounts',
     title: 'Discounts',   intro: 'Run an offer on the website. Switch it on when you want it, off when it ends.' },
   { id: 'settings',  file: 'settings.html',  group: 'Set up', nav: 'Settings',   icon: 'settings',
-    title: 'Settings',    intro: 'Your studio details — address, phone, opening hours.' },
+    title: 'Settings',    intro: 'Your studio details: address, phone, opening hours.' },
   { id: 'payments', action: ['pay-record', 'Record a payment'],  file: 'payments.html',  group: 'Money',  nav: 'Payments',   icon: 'cash', hidden: true,
     title: 'Payments',    intro: 'Deposits taken and balances still owed.' },
   { id: 'help',      file: 'help.html',      group: 'Set up', nav: 'Help',       icon: 'help',
     title: 'Help',        intro: 'Short answers to “how do I…?”' }
 ];
 
-/* payments is folded into Balances — keep the file working, hide the nav row */
+/* payments is folded into Balances, keep the file working, hide the nav row */
 const NAV = PAGES.filter(p => !p.hidden);
 const GROUPS = [];
 NAV.forEach(p => {
@@ -156,7 +156,7 @@ function shell(p, body) {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>${p.title} — Bēsia Studio Manager</title>
+  <title>${p.title} · Bēsia Studio Manager</title>
   <meta name="robots" content="noindex">
   <link rel="icon" type="image/svg+xml" href="../assets/icons/favicon.svg">
   <link rel="preload" href="../fonts/montserrat-latin.woff2" as="font" type="font/woff2" crossorigin>
@@ -177,7 +177,7 @@ ${sidebar(p.id)}
         <p class="topbar-intro">${p.intro}</p>
       </div>
       <div class="topbar-spacer"></div>
-      ${p.countId ? '<span class="topbar-meta" id="' + p.countId + '">—</span>' : '<div class="topbar-date" id="today-date">—</div>'}
+      ${p.countId ? '<span class="topbar-meta" id="' + p.countId + '">…</span>' : '<div class="topbar-date" id="today-date">…</div>'}
       ${p.action ? '<button class="a-btn a-btn--gold a-btn--sm" id="' + p.action[0] + '" type="button">' + p.action[1] + '</button>' : ''}
       <div class="topbar-avatar">B</div>
     </header>
@@ -222,7 +222,7 @@ for (const p of PAGES) {
     const b = cur.indexOf('</main>', a);
     if (a !== -1 && b !== -1) {
       let body = cur.slice(a + '<main class="admin-content">'.length, b);
-      /* drop the old free-text greeting line — the intro replaces it */
+      /* drop the old free-text greeting line, the intro replaces it */
       body = body.replace(/\s*<p class="dash-hello"[^>]*>[\s\S]*?<\/p>/, '');
       fs.writeFileSync(partialPath, body.replace(/^\n+|\s+$/g, '') + '\n');
       lifted++;
@@ -235,6 +235,6 @@ for (const p of PAGES) {
   built++;
 }
 
-console.log('Studio Manager rebuilt — ' + built + ' pages' + (lifted ? ', ' + lifted + ' bodies lifted into partials' : '') + '.');
+console.log('Studio Manager rebuilt, ' + built + ' pages' + (lifted ? ', ' + lifted + ' bodies lifted into partials' : '') + '.');
 console.log('  nav: ' + GROUPS.map(g => g.name + ' (' + g.items.length + ')').join(' · '));
 if (missing.length) console.log('  MISSING PARTIAL for: ' + missing.join(', ') + '  -> tools/admin-partials/<id>.html');

@@ -1,11 +1,11 @@
 /* ============================================================
-   BĒSIA — offline.js
+   BĒSIA, offline.js
    Registers the service worker, and tells the owner plainly when
    the connection has gone.
 
    Power cuts and patchy data are normal in Accra. The Studio
    Manager holds real money in real time, so the person using it
-   needs to know whether what they are seeing is live — not guess.
+   needs to know whether what they are seeing is live, not guess.
    ============================================================ */
 (function () {
   'use strict';
@@ -16,7 +16,7 @@
       var base = location.pathname.replace(/\/(admin\/)?[^\/]*$/, '/');
       navigator.serviceWorker.register(base + 'sw.js', { scope: base })
         .then(function (reg) {
-          /* A new build is waiting — take it on the next page view. */
+          /* A new build is waiting, take it on the next page view. */
           reg.addEventListener('updatefound', function () {
             var sw = reg.installing;
             if (!sw) return;
@@ -46,7 +46,7 @@
     var p = ensure();
     p.className = 'net-pill is-off is-in';
     p.innerHTML = '<span class="net-dot"></span>' +
-      '<span><strong>No internet.</strong> You can carry on — everything you enter is ' +
+      '<span><strong>No internet.</strong> You can carry on, everything you enter is ' +
       'saved on this device and will be here when you are back online.</span>';
   }
 
