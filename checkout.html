@@ -374,6 +374,23 @@
         document.getElementById('pay-detail').textContent = detail;
       }
 
+      /* Name, phone and area survive a trip back to the shop.
+         Session only, and cleared the moment the order lands. */
+      (function () {
+        var KEY = 'besia-checkout-form';
+        var ids = ['co-name', 'co-phone', 'co-area'];
+        var m;
+        try { m = JSON.parse(sessionStorage.getItem(KEY) || '{}'); } catch (e) { m = {}; }
+        ids.forEach(function (id) {
+          var el = document.getElementById(id);
+          if (el && m[id] && !el.value) el.value = m[id];
+          if (el) el.addEventListener('input', function () {
+            m[id] = el.value;
+            try { sessionStorage.setItem(KEY, JSON.stringify(m)); } catch (e) {}
+          });
+        });
+      })();
+
       document.getElementById('co-pay').addEventListener('click', function () {
         var ok = fieldOk('co-name', function (v) { return v.length > 1; });
         ok = fieldOk('co-phone', function (v) { return /^[\d\s+()-]{9,}$/.test(v); }) && ok;
@@ -398,6 +415,7 @@
             payment: payment
           });
           try { localStorage.setItem('besia-last-order', order.id); } catch (e) {}
+          try { sessionStorage.removeItem('besia-checkout-form'); } catch (e) {}
           modal.classList.remove('is-open');
           modal.setAttribute('aria-hidden', 'true');
           shell.style.display = 'none';

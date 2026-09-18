@@ -464,7 +464,8 @@ input, select, textarea { border-radius: 0 !important; }
 /* Narrow screens: menu rows align on a quiet grid, long names wrap
    inside their own column, figures stay whole on the right. */
 @media (max-width: 760px) {
-  .price-row { display: grid; grid-template-columns: 1fr auto auto; column-gap: 0.8rem; align-items: baseline; }
+  .price-row { display: grid; grid-template-columns: minmax(0, 1fr) auto auto; column-gap: 0.8rem; align-items: baseline; }
+  .price-row .name { overflow-wrap: anywhere; }
   .price-row .dots { display: none; }
   .price-row .amt { white-space: nowrap; }
   .row-book { margin-left: 0; }
@@ -472,3 +473,13 @@ input, select, textarea { border-radius: 0 !important; }
 
 /* The gentle nudge when the services step is left empty. */
 .pick-error { margin-top: 1rem; font-size: 0.8rem; color: #8A4B3B; }
+
+/* ---------- One-trip booking ---------- */
+/* A Book link that has been tapped turns into a small ink chip. */
+.row-book.is-added {
+  background: var(--ink); color: var(--paper);
+  padding-inline: 0.7rem; min-height: 28px; margin-block: 6px;
+  text-decoration: none;
+}
+/* The selection bar borrows the cart bar's dress; only the width differs. */
+.book-bar { width: min(560px, calc(100vw - 1.6rem)); }
