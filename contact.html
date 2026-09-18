@@ -222,6 +222,14 @@
                 <div class="form-step">
                   <h3>What would you like done?</h3>
                   <p class="step-hint">Pick as many as you need, your estimate updates as you go.</p>
+                  <div id="picked-panel" class="picked-panel" hidden>
+                    <p class="picked-title">Your services</p>
+                    <ul id="picked-list" class="picked-list"></ul>
+                    <p class="picked-links">
+                      <a class="text-link" href="./services.html#prices">Add another service</a>
+                      <button type="button" class="picked-clear" id="picked-clear">Choose by discipline instead</button>
+                    </p>
+                  </div>
                   <div class="check-grid">
                     <label class="check-pill is-checked"><input type="checkbox" value="ext" checked><span class="dot">✓</span>Fusion Extensions</label>
                     <label class="check-pill"><input type="checkbox" value="tex"><span class="dot">✓</span>Texture Systems</label>

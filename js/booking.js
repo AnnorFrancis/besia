@@ -11,6 +11,32 @@
     return window.BESIA ? BESIA.money(n) : ('GHS ' + Math.round(n).toLocaleString());
   }
 
+  function escHtml(t) { return String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+
+  /* ---------- Chosen exact services ----------
+     A customer can book one precise service (a Book link on the price
+     list, or the builder on the packages page) instead of estimating
+     by discipline. The choice travels in localStorage under one key,
+     and only names that are still published survive the read. */
+  var PICK_KEY = 'besia-picked';
+  function readPicked() {
+    var raw;
+    try { raw = JSON.parse(localStorage.getItem(PICK_KEY) || '[]'); } catch (e) { raw = []; }
+    if (!Array.isArray(raw) || !window.BESIA || !BESIA.live) return [];
+    var out = [];
+    raw.forEach(function (name) {
+      var it = BESIA.live.find('service', name);
+      if (it && it.published && out.indexOf(name) === -1) out.push(name);
+    });
+    return out;
+  }
+  function savePicked(list) {
+    try {
+      if (list.length) localStorage.setItem(PICK_KEY, JSON.stringify(list));
+      else localStorage.removeItem(PICK_KEY);
+    } catch (e) {}
+  }
+
   /* ============================================================
      MULTI-STEP BOOKING FORM (contact.html)
      ============================================================ */
@@ -88,6 +114,57 @@
     }
     var SERVICE_PRICES = servicePrices();
 
+    /* exact services chosen on the menu or the packages builder;
+       a ?book= link on a price row adds one more */
+    try {
+      var fromUrl = new URLSearchParams(location.search).get('book');
+      if (fromUrl) {
+        var cur;
+        try { cur = JSON.parse(localStorage.getItem(PICK_KEY) || '[]'); } catch (e) { cur = []; }
+        if (!Array.isArray(cur)) cur = [];
+        if (cur.indexOf(fromUrl) === -1) cur.push(fromUrl);
+        localStorage.setItem(PICK_KEY, JSON.stringify(cur));
+      }
+    } catch (e) {}
+    var picked = readPicked();
+
+    var pickedPanel = document.getElementById('picked-panel');
+    var pickedList = document.getElementById('picked-list');
+    var pillGrid = form.querySelector('.check-grid');
+    function renderPicked() {
+      var exact = picked.length > 0;
+      if (pickedPanel) pickedPanel.hidden = !exact;
+      if (pillGrid) pillGrid.hidden = exact;
+      if (!exact || !pickedList) return;
+      pickedList.innerHTML = '';
+      picked.forEach(function (name) {
+        var it = BESIA.live.find('service', name);
+        if (!it) return;
+        var openPrice = it.raw && it.raw.price == null;
+        var li = document.createElement('li');
+        li.innerHTML =
+          '<span class="pk-name">' + escHtml(name) +
+            (it.raw && it.raw.dur ? '<em>' + escHtml(it.raw.dur) + '</em>' : '') + '</span>' +
+          '<span class="pk-price">' + (openPrice ? 'from ' : '') + fmtGHS(it.price) + '</span>' +
+          '<button type="button" class="pk-x" aria-label="Remove ' + escHtml(name) + '">\u00D7</button>';
+        li.querySelector('.pk-x').addEventListener('click', function () {
+          picked = picked.filter(function (n) { return n !== name; });
+          savePicked(picked);
+          renderPicked();
+          buildQuote();
+        });
+        pickedList.appendChild(li);
+      });
+    }
+    var clearBtn = document.getElementById('picked-clear');
+    if (clearBtn) clearBtn.addEventListener('click', function () {
+      picked = [];
+      savePicked(picked);
+      renderPicked();
+      buildQuote();
+    });
+    renderPicked();
+
     var OCCASION_MULTIPLIER = {
       'Regular Appointment': 1, 'Bridal / Wedding Party': 1.35,
       'Birthday or Event Glam': 1.1, 'Photoshoot / Content': 1.15,
@@ -106,27 +183,46 @@
       people = Math.max(1, Math.min(people, 20));
       var mult = OCCASION_MULTIPLIER[evType] || 1;
 
-      var checked = Array.prototype.slice.call(form.querySelectorAll('.check-pill input:checked'));
-      if (!checked.length) checked = [{ value: 'braids' }];
-
       lines.innerHTML = '';
       var total = 0;
-      checked.forEach(function (cb) {
-        var svc = PRICES[cb.value];
-        if (!svc) return;
-        var price = svc.price * mult * people;
-        total += price;
-        var li = document.createElement('li');
-        li.innerHTML = '<span>' + svc.label + (people > 1 ? ' \u00D7 ' + people : '') +
-                       '</span><span>' + fmtGHS(price) + '</span>';
-        lines.appendChild(li);
-      });
+      var count = 0;
+
+      if (picked.length) {
+        /* Exact services: each line is the published price itself, so
+           the occasion multiplier does not apply. The price is the price. */
+        picked.forEach(function (name) {
+          var it = BESIA.live && BESIA.live.find('service', name);
+          if (!it) return;
+          var openPrice = it.raw && it.raw.price == null;
+          var price = it.price * people;
+          total += price;
+          count++;
+          var li = document.createElement('li');
+          li.innerHTML = '<span>' + escHtml(name) + (people > 1 ? ' \u00D7 ' + people : '') +
+                         '</span><span>' + (openPrice ? 'from ' : '') + fmtGHS(price) + '</span>';
+          lines.appendChild(li);
+        });
+      } else {
+        var checked = Array.prototype.slice.call(form.querySelectorAll('.check-pill input:checked'));
+        if (!checked.length) checked = [{ value: 'ext' }];
+        checked.forEach(function (cb) {
+          var svc = PRICES[cb.value];
+          if (!svc) return;
+          var price = svc.price * mult * people;
+          total += price;
+          count++;
+          var li = document.createElement('li');
+          li.innerHTML = '<span>' + svc.label + (people > 1 ? ' \u00D7 ' + people : '') +
+                         '</span><span>' + fmtGHS(price) + '</span>';
+          lines.appendChild(li);
+        });
+      }
       // Booking two or more services in one visit earns a bundle discount.
-      if (checked.length >= 2) {
-        var bundle = total * (checked.length >= 4 ? 0.12 : 0.07);
+      if (count >= 2) {
+        var bundle = total * (count >= 4 ? 0.12 : 0.07);
         total -= bundle;
         var liB = document.createElement('li');
-        liB.innerHTML = '<span>Bundle saving (' + checked.length + ' services)</span><span>\u2212 ' + fmtGHS(bundle) + '</span>';
+        liB.innerHTML = '<span>Bundle saving (' + count + ' services)</span><span>\u2212 ' + fmtGHS(bundle) + '</span>';
         lines.appendChild(liB);
       }
 
@@ -150,6 +246,7 @@
         var date = (form.querySelector('[name="event-date"]') || {}).value || 'Not given';
         var slot = (form.querySelector('[name="venue"]') || {}).value || 'Any time';
         review.innerHTML =
+          (picked.length ? '<li><span>Services</span><span>' + escHtml(picked.join(', ')) + '</span></li>' : '') +
           '<li><span>Name</span><span>' + name.replace(/</g, '&lt;') + '</span></li>' +
           '<li><span>Occasion</span><span>' + evType + '</span></li>' +
           '<li><span>Date</span><span>' + date + '</span></li>' +
@@ -184,7 +281,7 @@
         /* Carry the services she actually ticked, and what we quoted her,
            so the manager opens a booking that is ready to confirm rather
            than one that has to be phoned about. */
-        var picked = Array.prototype.slice
+        var svcNames = picked.length ? picked.slice() : Array.prototype.slice
           .call(form.querySelectorAll('.check-pill input:checked'))
           .map(function (cb) { return (servicePrices()[cb.value] || {}).label; })
           .filter(Boolean);
@@ -200,13 +297,14 @@
         list.push({
           id: bookingId,
           name: name, phone: phone,
-          service: picked.length ? picked.join(', ') : (evType || 'Appointment'),
+          service: svcNames.length ? svcNames.join(', ') : (evType || 'Appointment'),
           occasion: evType || '',
           slot: slotVal, people: people,
           amount: quoted,
           date: date, notes: notes, status: 'Pending', ts: Date.now()
         });
         localStorage.setItem(KEY, JSON.stringify(list));
+        savePicked([]);
       } catch (err) {}
 
       // The booking is already saved above, WhatsApp is only for a follow-up
@@ -218,20 +316,6 @@
       }
     });
 
-    // Selection carried over from the packages page builder
-    try {
-      var carried = JSON.parse(localStorage.getItem('besia-builder') || '[]');
-      if (carried.length) {
-        var MAP = { 'Knotless braids': 'braids', 'Frontal install': 'frontal', 'Hair coloring': 'colour', 'Nail extensions, full set': 'nails', 'Manicure & pedicure': 'manipedi', 'Mink lash set': 'lashes', 'Ombré brows': 'brows', 'Make-up': 'makeup', 'Deep-cleansing facial': 'facial', 'Piercing': 'piercing', 'Wig revamp': 'revamp', 'Ready-made wig unit': 'frontal', 'Spa pedicure': 'pedicure', 'Full body massage': 'massage', 'Hair treatment': 'treatment', 'Retwist & maintenance': 'locs', 'Waxing session': 'waxing' };
-        form.querySelectorAll('.check-pill input').forEach(function (cb) { cb.checked = false; cb.closest('.check-pill').classList.remove('is-checked'); });
-        carried.forEach(function (name) {
-          var key = MAP[name];
-          var cb = key && form.querySelector('.check-pill input[value="' + key + '"]');
-          if (cb) { cb.checked = true; cb.closest('.check-pill').classList.add('is-checked'); }
-        });
-        localStorage.removeItem('besia-builder');
-      }
-    } catch (e) {}
 
     showStep(0);
   }
@@ -242,6 +326,8 @@
   var builder = document.getElementById('package-builder');
   if (builder) {
     var opts = builder.querySelectorAll('.builder-opt');
+    var builderTouched = false;
+    builder.addEventListener('change', function () { builderTouched = true; });
     var linesEl = document.getElementById('builder-lines');
     var totalEl = document.getElementById('builder-total');
     var goBtn = document.getElementById('builder-go');
@@ -282,7 +368,7 @@
       requestAnimationFrame(tick);
       window.setTimeout(function () { displayed = to; totalEl.textContent = fmtGHS(to); }, dur + 150);
 
-      try { localStorage.setItem('besia-builder', JSON.stringify(chosen.map(function (c) { return c.name; }))); } catch (e) {}
+      if (builderTouched) savePicked(chosen.map(function (c) { return c.name; }));
       if (goBtn) goBtn.textContent = chosen.length ? 'Request This Appointment · ' + fmtGHS(to) : 'Request This Appointment';
     }
 

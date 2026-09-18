@@ -76,7 +76,7 @@ ${pk.badge ? '            <div class="pkg-badge">' + esc(pk.badge) + '</div>\n' 
             <ul class="pkg-features">
 ${pk.features.map(f => '              <li>' + f + '</li>').join('\n')}
             </ul>
-            <p style="font-size:0.85rem; color:var(--ink-soft); margin-bottom:1.4rem;">${pk.note}</p>
+            <p class="pkg-desc">${pk.note}</p>
             <div class="pkg-cta"><a href="./contact.html" class="btn btn--ghost-dark">${esc(pk.cta)}</a></div>
           </article>`;
   }).join('\n\n');

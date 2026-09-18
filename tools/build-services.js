@@ -96,7 +96,7 @@ function priceGroups() {
   return B.serviceCategories.map((c, i) => {
     const items = B.byCategory(c.key);
     const rows = items.map(s =>
-      `            <div class="price-row" data-kind="service" data-item="${esc(s.name)}"><span class="name">${esc(s.name)}<em class="price-dur">${esc(s.dur)}</em></span><span class="dots"></span><span class="amt" data-price-slot>${esc(B.priceLabel(s))}</span></div>`
+      `            <div class="price-row" data-kind="service" data-item="${esc(s.name)}"><span class="name">${esc(s.name)}<em class="price-dur">${esc(s.dur)}</em></span><span class="dots"></span><span class="amt" data-price-slot>${esc(B.priceLabel(s))}</span><a class="row-book" href="./contact.html?book=${encodeURIComponent(s.name)}" aria-label="Book ${esc(s.name)}">Book</a></div>`
     ).join('\n');
     return `          <details class="price-group" id="prices-${c.slug}"${i === 0 ? ' open' : ''}>
             <summary><h3>${esc(c.label)}</h3><span class="price-count" data-count-slot>${items.length}</span></summary>
