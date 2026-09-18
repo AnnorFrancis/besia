@@ -75,7 +75,7 @@
         var price;
         if (BESIA.live) {
           var on = BESIA.live.published(BESIA.live.services())
-            .filter(function (s) { return s.cat === c.key; })
+            .filter(function (s) { return s.cat === c.key && !(s.raw && s.raw.aux); })
             .map(function (s) { return s.price; })
             .filter(function (n) { return n > 0; });
           price = on.length ? Math.min.apply(null, on) : null;

@@ -184,7 +184,11 @@
       if (!inCat.length) { tile.hidden = true; return; }
       tile.hidden = false;
       if (slot) {
-        var low = Math.min.apply(null, inCat.map(function (s) { return s.price; }).filter(function (n) { return n > 0; }));
+        /* aux services (take-downs, removals) never set the From figure,
+           the same rule besia-data.fromPrice applies at build time. */
+        var pool = inCat.filter(function (s) { return !(s.raw && s.raw.aux); });
+        if (!pool.length) pool = inCat;
+        var low = Math.min.apply(null, pool.map(function (s) { return s.price; }).filter(function (n) { return n > 0; }));
         if (isFinite(low)) slot.innerHTML = '<em>From</em> ' + money(low);
       }
     });
@@ -200,7 +204,9 @@
       if (!cat) return;
       var inCat = B.live.published(B.live.services()).filter(function (s) { return s.cat === cat; });
       if (!inCat.length) return;
-      var low = Math.min.apply(null, inCat.map(function (s) { return s.price; }).filter(function (n) { return n > 0; }));
+      var pool = inCat.filter(function (s) { return !(s.raw && s.raw.aux); });
+      if (!pool.length) pool = inCat;
+      var low = Math.min.apply(null, pool.map(function (s) { return s.price; }).filter(function (n) { return n > 0; }));
       if (isFinite(low)) a.textContent = 'From ' + money(low);
     });
   }

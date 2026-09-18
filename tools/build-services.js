@@ -31,6 +31,10 @@ const ART = {
   'Braids | Cornrows':              ['./images/image4.jpg',                  'Patterned cornrows finished with curly ends'],
   'Hair Styling':                   ['./images/salon-studio/studio-1.jpg',   'Styling stations with lit mirrors inside the studio'],
   'Wig Service':                    ['./images/wig3.jpeg',                   'A lace-front unit prepared for installation'],
+  'Eyelashes & Eyebrows':           ['./images/l1.jpg',                      'Mink lash extensions being applied by our lash artist'],
+  'Facials':                        ['./images/services/svc-facial.jpg',     'A brightening facial mid-treatment'],
+  'Wax Service':                    ['./images/services/svc-waxing.jpg',     'Warm wax smoothed onto the skin'],
+  'Makeup Service':                 ['./images/b1.jpg',                      'Soft glam make-up with lashes, finished'],
   'General':                        ['./images/studio/studio-corner.jpg',    'The consultation corner at Bēsia']
 };
 
@@ -45,6 +49,10 @@ const LEAD = {
   'Braids | Cornrows': 'Parted clean and tensioned gently, so your edges outlive the style.',
   'Hair Styling': 'Silkpress Xpress: signature wash, brush blow dry, press and style.',
   'Wig Service': 'Frontal installation, fitted flat and blended so the parting reads as scalp.',
+  'Eyelashes & Eyebrows': 'Classic to hybrid sets, lifts and tints, and brows waxed, laminated and tinted.',
+  'Facials': 'The Bēsia Glow, custom facials and deep cleanses, built around your skin rather than a set routine.',
+  'Wax Service': 'Gentle, sensitive-skin waxing from brow to Brazilian, with the vajacial for after-care.',
+  'Makeup Service': 'Soft glam to full glam by our make-up artist, plus one-to-one lessons in your own make-up bag.',
   'General': 'Not sure where to start? The first consultation is free, and there is no pressure to book on the day.'
 };
 
@@ -130,7 +138,11 @@ console.log('services.html rebuilt, ' + ok + ' blocks, ' +
    group, or a client comparing tile and list finds a contradiction. */
 let bad = 0;
 B.serviceCategories.forEach(c => {
-  const low = Math.min.apply(null, B.byCategory(c.key).map(B.priceOf).filter(n => n > 0));
+  /* aux services (take-downs, removals) are shown in the list but do not
+     set the tile's From figure, so exclude them here the same way
+     fromPrice() does. */
+  const pool = B.byCategory(c.key).filter(s => !s.aux);
+  const low = Math.min.apply(null, (pool.length ? pool : B.byCategory(c.key)).map(B.priceOf).filter(n => n > 0));
   if (low !== B.fromPrice(c.key)) { console.error('  MISMATCH in ' + c.label); bad++; }
 });
 console.log(bad ? '  ' + bad + ' tile/list price mismatches!' : '  tile "From" figures verified against every price list.');

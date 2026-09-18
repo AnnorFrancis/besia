@@ -183,7 +183,7 @@
     var b = (window.BESIA && BESIA.business) || {};
     INTENT_REPLIES = {
       prices:
-        'Here is the shape of our menu. All <strong>47 prices</strong> are published in full:<br><br>' +
+        'Here is the shape of our menu. All <strong>83 prices</strong> are published in full:<br><br>' +
         '\u2022 Fusion extensions \u00B7 from ' + P('Extensions') + '<br>' +
         '\u2022 Texture systems \u00B7 from ' + P('Texture Systems + Treatments') + '<br>' +
         '\u2022 Scalp &amp; bond repair \u00B7 from ' + P('Scalp + Bond Repair Treatments') + '<br>' +
@@ -191,7 +191,11 @@
         '\u2022 Naturals, curls &amp; coils \u00B7 from ' + P('Naturals | Curls & Coils') + '<br>' +
         '\u2022 Cutting \u00B7 from ' + P('Cut Service') + '<br>' +
         '\u2022 Braids &amp; cornrows \u00B7 from ' + P('Braids | Cornrows') + '<br>' +
-        '\u2022 Wig service \u00B7 from ' + P('Wig Service') + '<br><br>' +
+        '\u2022 Wig service \u00B7 from ' + P('Wig Service') + '<br>' +
+        '\u2022 Lashes &amp; brows \u00B7 from ' + P('Eyelashes & Eyebrows') + '<br>' +
+        '\u2022 Facials \u00B7 from ' + P('Facials') + '<br>' +
+        '\u2022 Waxing \u00B7 from ' + P('Wax Service') + '<br>' +
+        '\u2022 Make-up \u00B7 from ' + P('Makeup Service') + '<br><br>' +
         'Full list with durations on the <a href="./services.html#prices" ' + LINK + '>Services page</a>. A consultation is free.',
 
       ext:
@@ -241,7 +245,7 @@
         '\u2022 Trim \u00B7 ' + S('Trim') + '<br>' +
         '\u2022 Precision cut \u00B7 ' + S('Precision Cut') + '<br>' +
         '\u2022 Layers \u00B7 ' + S('Layers') + '<br>' +
-        '\u2022 Coily curly cut \u00B7 ' + S('Coily Curly Cut') + '<br>' +
+        '\u2022 Layers \u00B7 ' + S('Layers') + '<br>' +
         '\u2022 Curly cut \u00B7 ' + S('Curly Cut') + '<br><br>' +
         'Every cut is dry-checked at the end so it sits right when you leave.',
 
@@ -256,9 +260,14 @@
         'We also sell ready-to-wear glueless units on the <a href="./shop.html#wigs" ' + LINK + '>Shop page</a>, from GHS 1,650.',
 
       beauty:
-        'Yes! Alongside hair we look after <strong>brows, lashes, waxing and facials</strong> \uD83D\uDC41\uFE0F<br><br>' +
-        'These are booked directly with the artist rather than through the online menu, and priced at consultation. ' +
-        'Message us on <a href="' + (b.whatsappLink || '#') + '" ' + LINK + '>WhatsApp</a> or call <strong>' + (b.phone || '') + '</strong> and we will match you with the right person.',
+        'Yes! Alongside hair we look after <strong>lashes, brows, facials, waxing and make-up</strong>:<br><br>' +
+        '\u2022 Lash sets \u00B7 from ' + S('Classic Set') + '<br>' +
+        '\u2022 Lash lift + tint \u00B7 ' + S('Lash Lift + Tint') + '<br>' +
+        '\u2022 Brow lamination + wax \u00B7 ' + S('Brow Lamination + Wax') + '<br>' +
+        '\u2022 B\u0113sia Glow facial \u00B7 ' + S('B\u0113sia Glow') + '<br>' +
+        '\u2022 Brazilian wax \u00B7 ' + S('Brazilian') + '<br>' +
+        '\u2022 Soft glam make-up \u00B7 from ' + S('Soft Glam [No Lashes]') + '<br><br>' +
+        'Every price is on the <a href="./services.html" ' + LINK + '>Services page</a>.',
 
       packages:
         'Booking two services together is cheaper than booking them apart \uD83D\uDC9D Our own bundles:<br><br>' +

@@ -22,7 +22,9 @@ const I = {
   wefts:    '<path d="M7 4c-1.5 5.5-1.5 10.5 0 16M12 4c-1.5 5.5-1.5 10.5 0 16M17 4c-1.5 5.5-1.5 10.5 0 16" stroke-linecap="round"/>',
   lace:     '<rect x="4" y="4" width="16" height="16" rx="3"/><path d="M4 9h16M9 9v11M15 9v11" stroke-linecap="round"/>',
   jar:      '<path d="M9 3h6v4l2 3v10a1.5 1.5 0 01-1.5 1.5h-7A1.5 1.5 0 017 20V10l2-3z" stroke-linejoin="round"/><path d="M7 13h10" stroke-linecap="round"/>',
-  star:     '<path d="M12 3l2.2 4.5 5 .7-3.6 3.5.9 4.9L12 14.3l-4.5 2.3.9-4.9L4.8 8.2l5-.7z" stroke-linejoin="round"/>'
+  star:     '<path d="M12 3l2.2 4.5 5 .7-3.6 3.5.9 4.9L12 14.3l-4.5 2.3.9-4.9L4.8 8.2l5-.7z" stroke-linejoin="round"/>',
+  lash:     '<path d="M3 12c2.8-3.6 6-5.4 9-5.4s6.2 1.8 9 5.4c-2.8 3.6-6 5.4-9 5.4S5.8 15.6 3 12z" stroke-linejoin="round"/><path d="M7 15.5l-1 2.2M12 17v2.4M17 15.5l1 2.2" stroke-linecap="round"/>',
+  glow:     '<circle cx="12" cy="12" r="4.2"/><path d="M12 3v2.4M12 18.6V21M3 12h2.4M18.6 12H21M5.6 5.6l1.7 1.7M16.7 16.7l1.7 1.7M18.4 5.6l-1.7 1.7M7.3 16.7l-1.7 1.7" stroke-linecap="round"/>'
 };
 const svg = d => '<svg class="svc-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">' + d + '</svg>';
 
@@ -34,12 +36,12 @@ const TEASER = [
     copy: 'Nanoplasty and Hair Botox. Vegan, formaldehyde-free smoothing, the first system of its kind in Ghana.' },
   { key: 'Scalp + Bond Repair Treatments', icon: I.bottle,   img: './images/services/svc-treat.jpg',    alt: 'A scalp treatment being worked through at the basin',
     copy: 'Flaxseed and aloe, GRO hot oil, Olaplex and K18, matched to what your scalp and your bonds actually need.' },
-  { key: 'Color Service',                  icon: I.brush,    img: './images/wigs/wig-4.jpg',            alt: 'Honey ginger colour with a dark root melt',
-    copy: 'All-over colour, balayage and full highlights, blended against your natural depth instead of fighting it.' },
   { key: 'Naturals | Curls & Coils',       icon: I.curl,     img: './images/salon-studio/about-2.jpg',  alt: 'Natural afro texture, defined and shaped',
     copy: 'Curl Revive wash-and-go with our in-house flaxseed, rosemary and olive blends, plus cutting shaped to your curl pattern.' },
-  { key: 'Cut Service',                    icon: I.scissors, img: './images/salon-studio/studio-2.jpg', alt: 'A cut being finished with a blow dry',
-    copy: 'Precision, curly and coily cutting. Shape first, length second, so it still sits right six weeks later.' }
+  { key: 'Eyelashes & Eyebrows',           icon: I.lash,     img: './images/l1.jpg',                    alt: 'Mink lash extensions being applied by our lash artist',
+    copy: 'Classic to hybrid lash sets, lifts and tints, and brows waxed, laminated and tinted.' },
+  { key: 'Facials',                        icon: I.glow,     img: './images/services/svc-facial.jpg',   alt: 'A brightening facial mid-treatment',
+    copy: 'The Bēsia Glow, custom facials and waxing, alongside soft-to-full glam make-up.' }
 ];
 
 const SHOP = [

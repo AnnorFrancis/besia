@@ -33,7 +33,7 @@ const PAGES = {
   },
   'services.html': {
     title: 'Services & Prices · Bēsia Beauty Studio, Accra',
-    desc: 'All 47 services with published prices and durations: fusion extensions, Nanoplasty and Hair Botox, Olaplex and K18 bond repair, colour, cutting, Curl Revive and silk press.',
+    desc: 'All 83 services with published prices and durations: fusion extensions, Nanoplasty and Hair Botox, Olaplex and K18 bond repair, colour, cutting, Curl Revive and silk press.',
     prio: '0.9'
   },
   'shop.html': {

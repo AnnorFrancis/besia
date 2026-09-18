@@ -91,7 +91,11 @@
           io.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+      /* threshold 0, not a ratio: a section taller than the screen can
+         never show 12% of itself at once, so a ratio threshold would
+         leave it invisible forever. Instead, reveal as soon as 80px of
+         it has actually entered the viewport. */
+    }, { threshold: 0, rootMargin: '0px 0px -80px 0px' });
     revealables.forEach(function (el) { io.observe(el); });
   } else {
     revealables.forEach(function (el) { el.classList.add('is-inview'); });

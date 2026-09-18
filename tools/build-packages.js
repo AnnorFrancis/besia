@@ -91,7 +91,8 @@ const BUILDER = [
   'Frontal Installation', 'Classic Weave Install - One Part Leave Out',
   'Seamless Tape-Ins', '100 grams - KTips',
   'All Over Color - Medium', 'Precision Cut', 'Large Braids',
-  'Texture Release - Hair Botox'
+  'Texture Release - Hair Botox',
+  'Classic Set', 'Brow Lamination + Wax', 'B\u0113sia Glow', 'Brazilian'
 ];
 
 

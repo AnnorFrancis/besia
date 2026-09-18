@@ -14,7 +14,7 @@ const path = require('path');
      step that rewrites a head.
    - add-image-dims runs last, to catch images the builders emitted. */
 const STEPS = [
-  ['build-services.js', 'Services page + the 47-line price list'],
+  ['build-services.js', 'Services page + the 83-line price list'],
   ['build-shop.js',     'Shop grid and filters'],
   ['build-home.js',     'Home page teasers'],
   ['build-packages.js', 'Packages and the price builder'],
