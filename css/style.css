@@ -85,6 +85,9 @@
 /* ---------- Reset & Base ---------- */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+/* The hidden attribute must always win, even against display rules. */
+[hidden] { display: none !important; }
+
 /* `clip` (not `hidden`) contains the off-screen reveal transforms without
    creating a scroll container, so position:sticky keeps working. */
 html { scroll-behavior: smooth; overflow-x: clip; }

@@ -72,6 +72,16 @@
     form.querySelectorAll('[data-next]').forEach(function (btn) {
       btn.addEventListener('click', function () {
         if (!validateStep(current)) return;
+        /* The services step must carry a choice before it lets go. */
+        if (steps[current] && steps[current].querySelector('.check-grid')) {
+          var chosen = (mode === 'exact' && picked.length) ||
+                       form.querySelector('.check-pill input:checked');
+          if (!chosen) {
+            var pe = document.getElementById('pick-error');
+            if (pe) pe.hidden = false;
+            return;
+          }
+        }
         if (current === steps.length - 2) buildQuote(); // entering review step
         showStep(current + 1);
       });
@@ -130,11 +140,29 @@
 
     var pickedPanel = document.getElementById('picked-panel');
     var pickedList = document.getElementById('picked-list');
+    var pickedLinks = document.getElementById('picked-links');
+    var pickedAdd = document.getElementById('picked-add');
+    var modeBtn = document.getElementById('picked-clear');
     var pillGrid = form.querySelector('.check-grid');
-    function renderPicked() {
-      var exact = picked.length > 0;
+    var pickError = document.getElementById('pick-error');
+
+    /* Two ways to choose, one visible at a time. 'exact' lists the
+       services picked on the menu or the packages builder; 'category'
+       is the discipline grid. Switching views never deletes the
+       selection, only the crosses on the list do. */
+    var mode = picked.length ? 'exact' : 'category';
+
+    function renderServices() {
+      if (!picked.length) mode = 'category';
+      var exact = mode === 'exact';
       if (pickedPanel) pickedPanel.hidden = !exact;
       if (pillGrid) pillGrid.hidden = exact;
+      if (pickedLinks) pickedLinks.hidden = !picked.length;
+      if (pickedAdd) pickedAdd.hidden = !exact;
+      if (modeBtn) modeBtn.textContent = exact
+        ? 'Choose by discipline instead'
+        : 'Back to your selected service' + (picked.length > 1 ? 's (' + picked.length + ')' : '');
+      if (pickError) pickError.hidden = true;
       if (!exact || !pickedList) return;
       pickedList.innerHTML = '';
       picked.forEach(function (name) {
@@ -150,20 +178,21 @@
         li.querySelector('.pk-x').addEventListener('click', function () {
           picked = picked.filter(function (n) { return n !== name; });
           savePicked(picked);
-          renderPicked();
+          renderServices();
           buildQuote();
         });
         pickedList.appendChild(li);
       });
     }
-    var clearBtn = document.getElementById('picked-clear');
-    if (clearBtn) clearBtn.addEventListener('click', function () {
-      picked = [];
-      savePicked(picked);
-      renderPicked();
+    if (modeBtn) modeBtn.addEventListener('click', function () {
+      mode = (mode === 'exact') ? 'category' : 'exact';
+      renderServices();
       buildQuote();
     });
-    renderPicked();
+    if (pillGrid) pillGrid.addEventListener('change', function () {
+      if (pickError) pickError.hidden = true;
+    });
+    renderServices();
 
     var OCCASION_MULTIPLIER = {
       'Regular Appointment': 1, 'Bridal / Wedding Party': 1.35,
@@ -187,7 +216,7 @@
       var total = 0;
       var count = 0;
 
-      if (picked.length) {
+      if (mode === 'exact' && picked.length) {
         /* Exact services: each line is the published price itself, so
            the occasion multiplier does not apply. The price is the price. */
         picked.forEach(function (name) {
@@ -204,7 +233,12 @@
         });
       } else {
         var checked = Array.prototype.slice.call(form.querySelectorAll('.check-pill input:checked'));
-        if (!checked.length) checked = [{ value: 'ext' }];
+        if (!checked.length) {
+          /* Nothing chosen: say so instead of guessing on her behalf. */
+          var liNone = document.createElement('li');
+          liNone.innerHTML = '<span>Nothing chosen yet</span><span>' + fmtGHS(0) + '</span>';
+          lines.appendChild(liNone);
+        }
         checked.forEach(function (cb) {
           var svc = PRICES[cb.value];
           if (!svc) return;
@@ -281,7 +315,7 @@
         /* Carry the services she actually ticked, and what we quoted her,
            so the manager opens a booking that is ready to confirm rather
            than one that has to be phoned about. */
-        var svcNames = picked.length ? picked.slice() : Array.prototype.slice
+        var svcNames = (mode === 'exact' && picked.length) ? picked.slice() : Array.prototype.slice
           .call(form.querySelectorAll('.check-pill input:checked'))
           .map(function (cb) { return (servicePrices()[cb.value] || {}).label; })
           .filter(Boolean);

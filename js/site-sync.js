@@ -274,12 +274,9 @@
       if (!left) { box.checked = false; box.disabled = true; pill.hidden = true; }
       else { box.disabled = false; pill.hidden = false; }
     });
-    /* if everything the customer had ticked went away, tick the first one left */
-    var form = document.getElementById('booking-form') || document.querySelector('form');
-    if (form && !form.querySelector('.check-pill input:checked')) {
-      var first = form.querySelector('.check-pill:not([hidden]) input');
-      if (first) { first.checked = true; first.closest('.check-pill').classList.add('is-checked'); }
-    }
+    /* Nothing re-ticks itself. If what the customer chose has been
+       taken off the website, the choice simply disappears and the
+       estimate follows; choosing again is theirs to do. */
   }
 
   /* =========================================================

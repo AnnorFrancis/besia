@@ -451,3 +451,24 @@ input, select, textarea { border-radius: 0 !important; }
 /* Package descriptions, previously inline-styled by the generator. */
 .pkg-desc { font-size: 0.85rem; color: var(--ink-2); margin-bottom: 1.4rem; }
 .pkg-card--featured .pkg-desc { color: rgba(251, 247, 241, 0.75); }
+
+/* ---------- Booking logic polish ---------- */
+/* The Book link underlines its word, not the floor of its tap area. */
+.row-book {
+  border-bottom: 0; align-items: center;
+  text-decoration: underline; text-underline-offset: 4px;
+  text-decoration-color: var(--rule-strong);
+}
+.row-book:hover { text-decoration-color: var(--ink); }
+
+/* Narrow screens: menu rows align on a quiet grid, long names wrap
+   inside their own column, figures stay whole on the right. */
+@media (max-width: 760px) {
+  .price-row { display: grid; grid-template-columns: 1fr auto auto; column-gap: 0.8rem; align-items: baseline; }
+  .price-row .dots { display: none; }
+  .price-row .amt { white-space: nowrap; }
+  .row-book { margin-left: 0; }
+}
+
+/* The gentle nudge when the services step is left empty. */
+.pick-error { margin-top: 1rem; font-size: 0.8rem; color: #8A4B3B; }
