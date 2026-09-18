@@ -77,7 +77,7 @@ ${pk.badge ? '            <div class="pkg-badge">' + esc(pk.badge) + '</div>\n' 
 ${pk.features.map(f => '              <li>' + f + '</li>').join('\n')}
             </ul>
             <p class="pkg-desc">${pk.note}</p>
-            <div class="pkg-cta"><a href="./contact.html" class="btn btn--ghost-dark">${esc(pk.cta)}</a></div>
+            <div class="pkg-cta"><a href="./contact.html" class="btn btn--ghost-dark" data-add-service="${esc(pk.source)}">Add to my booking</a></div>
           </article>`;
   }).join('\n\n');
 }
@@ -141,6 +141,18 @@ for (const [open, close, fn] of [
   html = html.slice(0, a + open.length) + '\n' + fn() + '\n' + html.slice(b);
 }
 fs.writeFileSync(file, html);
+/* The home page teaser carries the same three packages, so it can never
+   advertise something the packages page does not. */
+{
+  const homeFile = path.join(ROOT, 'index.html');
+  let home = fs.readFileSync(homeFile, 'utf8');
+  const o = '<!--BUILD:homepacks-->', c = '<!--/BUILD:homepacks-->';
+  const a = home.indexOf(o), b = home.indexOf(c);
+  if (a === -1 || b === -1 || b < a) { console.error('MISSING MARKER in index.html: ' + o); process.exit(1); }
+  home = home.slice(0, a + o.length) + '\n' + packages() + '\n' + home.slice(b);
+  fs.writeFileSync(homeFile, home);
+}
+
 console.log('packages.html rebuilt, ' + PACKS.length + ' packages, ' + BUILDER.length + ' builder options.');
 PACKS.forEach(pk => {
   const s = find(pk.source);

@@ -303,6 +303,9 @@
     veil.className = 'page-veil';
     document.body.appendChild(veil);
     document.addEventListener('click', function (e) {
+      /* Another feature (the booking cart, for one) may already have
+         claimed this click. If so, this is not a navigation. */
+      if (e.defaultPrevented) return;
       var a = e.target.closest('a[href]');
       if (!a) return;
       var href = a.getAttribute('href');

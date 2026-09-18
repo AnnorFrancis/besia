@@ -124,19 +124,9 @@
     }
     var SERVICE_PRICES = servicePrices();
 
-    /* exact services chosen on the menu or the packages builder;
-       a ?book= link on a price row adds one more */
-    try {
-      var fromUrl = new URLSearchParams(location.search).get('book');
-      if (fromUrl) {
-        var cur;
-        try { cur = JSON.parse(localStorage.getItem(PICK_KEY) || '[]'); } catch (e) { cur = []; }
-        if (!Array.isArray(cur)) cur = [];
-        if (cur.indexOf(fromUrl) === -1) cur.push(fromUrl);
-        localStorage.setItem(PICK_KEY, JSON.stringify(cur));
-      }
-    } catch (e) {}
-    var picked = readPicked();
+    /* Exact services live in the booking cart (booking-cart.js). This
+       form estimates by discipline, for customers who are not sure yet. */
+    var picked = [];
 
     /* What has been typed survives a trip back to the menu. Session
        only: it is forgotten when the tab closes or the booking lands. */
@@ -360,7 +350,6 @@
           date: date, notes: notes, status: 'Pending', ts: Date.now()
         });
         localStorage.setItem(KEY, JSON.stringify(list));
-        savePicked([]);
         try { sessionStorage.removeItem(MEM_KEY); } catch (err) {}
       } catch (err) {}
 
@@ -391,11 +380,16 @@
   var builder = document.getElementById('package-builder');
   if (builder) {
     var opts = builder.querySelectorAll('.builder-opt');
-    var builderTouched = false;
-    builder.addEventListener('change', function () { builderTouched = true; });
     var linesEl = document.getElementById('builder-lines');
     var totalEl = document.getElementById('builder-total');
     var goBtn = document.getElementById('builder-go');
+    if (goBtn) goBtn.addEventListener('click', function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      if (!window.BesiaBooking) return;
+      BesiaBooking.addMany(builder._chosen || []);
+      BesiaBooking.open();
+    });
     var displayed = 0;
 
     function refresh() {
@@ -433,8 +427,8 @@
       requestAnimationFrame(tick);
       window.setTimeout(function () { displayed = to; totalEl.textContent = fmtGHS(to); }, dur + 150);
 
-      if (builderTouched) savePicked(chosen.map(function (c) { return c.name; }));
-      if (goBtn) goBtn.textContent = chosen.length ? 'Request This Appointment · ' + fmtGHS(to) : 'Request This Appointment';
+      builder._chosen = chosen.map(function (c) { return c.name; });
+      if (goBtn) goBtn.textContent = chosen.length ? 'Add to my booking · ' + fmtGHS(to) : 'Add to my booking';
     }
 
     // The options are <label> elements, so the browser toggles the
@@ -443,72 +437,6 @@
       opt.querySelector('input').addEventListener('change', refresh);
     });
     refresh();
-  }
-
-  /* ============================================================
-     THE MENU (services.html)
-     Book does not leave the page any more: each tap adds that
-     service to the selection, the bar under the page totals it,
-     and one tap on the bar carries everything to the form at once.
-     Tapping Added takes it out again.
-     ============================================================ */
-  var rowLinks = document.querySelectorAll('.row-book');
-  if (rowLinks.length) {
-    var bookBar = null;
-
-    function rowName(a) {
-      return decodeURIComponent((a.getAttribute('href').split('book=')[1] || ''));
-    }
-
-    function syncRows(names) {
-      rowLinks.forEach(function (a) {
-        var on = names.indexOf(rowName(a)) !== -1;
-        a.classList.toggle('is-added', on);
-        a.textContent = on ? 'Added' : 'Book';
-      });
-    }
-
-    function renderBookBar() {
-      var names = readPicked();
-      syncRows(names);
-      if (!names.length) { if (bookBar) bookBar.classList.remove('is-shown'); return; }
-      if (!bookBar) {
-        bookBar = document.createElement('div');
-        bookBar.className = 'cart-bar book-bar';
-        document.body.appendChild(bookBar);
-      }
-      var total = 0, open = false;
-      names.forEach(function (n) {
-        var it = BESIA.live.find('service', n);
-        if (!it) return;
-        total += it.price;
-        if (it.raw && it.raw.price == null) open = true;
-      });
-      bookBar.innerHTML =
-        '<span class="cart-bar-count">' + names.length + '</span>' +
-        '<span class="cart-bar-label">' + (names.length === 1 ? '1 service chosen' : names.length + ' services chosen') + '</span>' +
-        '<span class="cart-bar-total">' + (open ? 'from ' : '') + fmtGHS(total) + '</span>' +
-        '<a class="cart-bar-cta" href="./contact.html">Book now <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>';
-      bookBar.classList.add('is-shown');
-    }
-
-    rowLinks.forEach(function (a) {
-      a.addEventListener('click', function (e) {
-        if (!window.BESIA || !BESIA.live) return;   /* no JS state, follow the link */
-        e.preventDefault();
-        var name = rowName(a);
-        var names = readPicked();
-        if (names.indexOf(name) === -1) names.push(name);
-        else names = names.filter(function (n) { return n !== name; });
-        savePicked(names);
-        renderBookBar();
-      });
-    });
-
-    if (window.BESIA && BESIA.live) {
-      renderBookBar();
-      if (BESIA.live.onChange) BESIA.live.onChange(renderBookBar);
-    }
   }
 
 })();
