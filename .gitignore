@@ -15,3 +15,7 @@ node_modules/
 
 # Unused source images (watermarked / collages / duplicates)
 images/_unused/
+
+# Raw client media as received (WhatsApp originals). Processed web versions live in /media.
+NEW VIDEOS AND IMAGES/
+media/_masters/
