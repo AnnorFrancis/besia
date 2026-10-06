@@ -238,7 +238,7 @@
         '\u2022 Curly cut \u00B7 ' + S('Curly Cut') + '<br>' +
         '\u2022 Silkpress Xpress \u00B7 ' + S('Silkpress Xpress') + '<br>' +
         '\u2022 Basic wash + blow dry \u00B7 ' + S('Basic Wash + Blowdry') + '<br><br>' +
-        'Curl Revive pairs beautifully with the Flax treatment. See <a href="./packages.html" ' + LINK + '>Packages</a>.',
+        'Curl Revive pairs beautifully with the Flax treatment. See <a href="./packages.html#pairings" ' + LINK + '>the Hair Club</a>.',
 
       cut:
         'Shape first, length second \u2702\uFE0F<br><br>' +
@@ -257,7 +257,7 @@
 
       wig:
         'Frontal installation is ' + S('Frontal Installation') + ' \u00B7 1 hr 30 min, fitted flat and blended so the parting reads as scalp<br><br>' +
-        'We also sell ready-to-wear glueless units on the <a href="./shop.html#wigs" ' + LINK + '>Shop page</a>, from GHS 1,650.',
+        'Already have a unit that has seen better days? Ask for a <strong>Wig Revamp</strong>: wash, restyle and re-customise, priced when we see it. Our 5x5 HD frontals are arriving in the <a href="./shop.html#frontals" ' + LINK + '>Shop</a>.',
 
       beauty:
         'We do. Alongside hair we look after <strong>lashes, brows, facials, waxing and make-up</strong>:<br><br>' +
@@ -274,25 +274,24 @@
         '\u2022 Curl Revive + Flax \u00B7 ' + S('Curl Revive + Flax') + '<br>' +
         '\u2022 Curl Revive with FlaxGRO \u00B7 ' + S('Curl Revive with FlaxGRO') + '<br>' +
         '\u2022 Deep Moisture + Curl Revive \u00B7 ' + S('Deep Moisture Treatment + Curl Revive') + '<br><br>' +
-        'Build your own combination on the <a href="./packages.html" ' + LINK + '>Packages page</a> and watch the total update live.',
+        'Build your own combination on the <a href="./packages.html#builder-section" ' + LINK + '>Hair Club page</a> and watch the total update live.',
 
       shop:
-        'We sell the same hair we install, and the same products we treat with\uFE0F<br><br>' +
-        '\u2022 Extensions &amp; bundles \u00B7 from GHS 1,200<br>' +
-        '\u2022 Closures &amp; frontals \u00B7 from GHS 720<br>' +
-        '\u2022 Wigs &amp; units \u00B7 from GHS 1,650<br>' +
-        '\u2022 Home care \u00B7 from GHS 180<br>' +
-        '\u2022 Studio accessories \u00B7 from GHS 85<br><br>' +
+        'We are a beauty supply as well as a studio<br><br>' +
+        '\u2022 <strong>B\u0113sia Lab</strong>, our own products \u00B7 Follicle Fuel, Scalp Polish, Clay Mask, Hydra-Oil and more<br>' +
+        '\u2022 Professional care \u00B7 Mizani and Olaplex, as we prescribe them<br>' +
+        '\u2022 Our hair, arriving now \u00B7 bundles, KTip, ITip and nanobead bundles, crochet, tape-ins and 5x5 HD frontals, priced by length<br><br>' +
+        'Lifestyle pieces and books are on the way. ' +
         'Browse the <a href="./shop.html" ' + LINK + '>Shop</a>, add to your bag and check out with Mobile Money or card \u00B7 then follow it on <a href="./track.html" ' + LINK + '>Track Order</a>.',
 
       moringa:
-        'Our own <strong>Moringa line</strong> is launching soon Moringa Ginseng Follicle Fuel and a Moringa Root Fuel scalp oil, formulated around the same botanicals we already use in treatment.<br><br>' +
-        'You can reserve yours now on the <a href="./shop.html#care" ' + LINK + '>Shop page</a>, pre-orders ship first.',
+        '<strong>Follicle Fuel Hair Growth Oil</strong>: moringa and ginseng, made to wake the follicle and grow your hair faster and fuller. Welcome to your new growth era.<br><br>' +
+        'It is on the <a href="./shop.html#lab" ' + LINK + '>Shop page</a> with the rest of Bēsia Lab. The Beard Oil is launching soon, and you can reserve it there too.',
 
       consult:
         'Let us get you booked We are open <strong>' + (b.hoursLabel || 'Mon-Sat \u00B7 9am-7pm') + '</strong>, closed Sundays. Saturdays fill first, so midweek is easier.<br><br>' +
         'The <strong>first consultation is free</strong>, 30 minutes to look at your hair and plan properly. ' +
-        'Use the <a href="./contact.html" ' + LINK + '>booking form</a> for an instant estimate, or call <strong>' + (b.phone || '') + '</strong>.',
+        'Tap <strong>Book</strong> anywhere on the site, choose your services, and pay on the page by Mobile Money or card. Or call <strong>' + (b.phone || '') + '</strong>.',
 
       availability:
         'Rough timings so you can plan your day \u23F1\uFE0F<br><br>' +

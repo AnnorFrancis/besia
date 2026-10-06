@@ -19,7 +19,7 @@
 
   function esc(s) {
     return String(s == null ? '' : s)
-      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
   }
 
   function build(html) {
@@ -119,6 +119,43 @@
     });
   }
 
-  root.BesiaAsk = { amount: amount, confirm: confirm };
+  /* A price for each length of a product sold by length. Blank means
+     "price to follow" on the website. Resolves to { '16"': 1200, ... }
+     or null if cancelled. */
+  function lengths(opts) {
+    opts = opts || {};
+    return new Promise(function (resolve) {
+      if (open) return resolve(null);
+      var vals = opts.values || {};
+      var wrap = build(
+        '<h2 class="ask-title">' + esc(opts.title || 'Prices by length') + '</h2>' +
+        (opts.message ? '<p class="ask-msg">' + opts.message + '</p>' : '') +
+        '<div class="ask-lengths">' + (opts.lengths || []).map(function (len) {
+          return '<label class="ask-len"><span>' + esc(len) + '</span>' +
+            '<span class="ask-field"><span class="ask-unit">GHS</span>' +
+            '<input class="ask-input" type="number" inputmode="decimal" min="0" step="10" data-len="' + esc(len) + '" value="' + esc(vals[len] == null ? '' : vals[len]) + '" aria-label="Price for ' + esc(len) + '"></span></label>';
+        }).join('') + '</div>' +
+        '<p class="ask-error" hidden></p>' +
+        '<div class="ask-actions">' +
+          '<button class="a-btn" type="button" data-ask-cancel>Cancel</button>' +
+          '<button class="a-btn a-btn--gold" type="button" data-ask-ok>' + esc(opts.confirmLabel || 'Save prices') + '</button>' +
+        '</div>');
+      var err = wrap.querySelector('.ask-error');
+      function ok() {
+        var out = {}, bad = null;
+        wrap.querySelectorAll('[data-len]').forEach(function (inp) {
+          if (inp.value === '') return;
+          var n = Number(inp.value);
+          if (!isFinite(n) || n <= 0) bad = bad || inp; else out[inp.getAttribute('data-len')] = Math.round(n);
+        });
+        if (bad) { err.textContent = 'Leave a length blank, or type a price above zero.'; err.hidden = false; bad.focus(); return; }
+        close(wrap, resolve, out);
+      }
+      wire(wrap, resolve, null, ok);
+      setTimeout(function () { var f = wrap.querySelector('[data-len]'); if (f) f.focus(); }, 60);
+    });
+  }
+
+  root.BesiaAsk = { amount: amount, confirm: confirm, lengths: lengths };
 
 })(typeof window !== 'undefined' ? window : globalThis);

@@ -87,16 +87,27 @@
     return data;
   }
 
+  /* A believable spread for what is on the shelf, a couple low; hair that
+     is still arriving starts at nothing. Anything added to the catalogue
+     since the shelf was first counted is counted in too, so a new product
+     never shows as finished just because it is new. */
+  function seedQty(p, i) {
+    if (p.soon) return 0;
+    var qty = [8, 5, 12, 3, 6, 9, 2, 14, 7, 4, 11][i % 11];
+    return qty;
+  }
   function seedStock() {
-    return seedOnce('stock', function () {
+    var stock = seedOnce('stock', function () {
       var out = {};
-      B.products.forEach(function (p, i) {
-        // a believable spread, with a couple low and one finished
-        var qty = [8, 5, 12, 3, 6, 9, 2, 14, 7, 4, 11, 6, 0, 10, 5, 8, 3, 9, 6, 12, 4, 7, 5][i];
-        out[p.name] = qty == null ? 6 : qty;
-      });
+      B.products.forEach(function (p, i) { out[p.name] = seedQty(p, i); });
       return out;
     });
+    var added = false;
+    B.products.forEach(function (p, i) {
+      if (!Object.prototype.hasOwnProperty.call(stock, p.name)) { stock[p.name] = seedQty(p, i); added = true; }
+    });
+    if (added) write('stock', stock);
+    return stock;
   }
 
   function seedStudents() {
@@ -118,7 +129,7 @@
       var now = Date.now(), h = 3600000;
       return [
         { id: 'SL-3012', at: now - 2 * h, customer: 'Linda Mensah',  phone: '055 302 6614', where: 'In the chair', method: 'MTN MoMo', items: [{ name: 'Silkpress Xpress', price: 550, qty: 1 }], total: 550, paid: 550 },
-        { id: 'SL-3011', at: now - 4 * h, customer: 'Walk-in',       phone: '',             where: 'Counter',      method: 'Cash',     items: [{ name: 'Satin-Lined Bonnet', price: 120, qty: 1 }, { name: 'Silk Scrunchie Set', price: 95, qty: 1 }], total: 215, paid: 215 },
+        { id: 'SL-3011', at: now - 4 * h, customer: 'Walk-in',       phone: '',             where: 'Counter',      method: 'Cash',     items: [{ name: 'Bēsia Cara Scalp Refresh', price: 250, qty: 1 }, { name: 'Flax Seed + Aloe Hair Mask', price: 190, qty: 1 }], total: 440, paid: 440 },
         { id: 'SL-3010', at: now - 6 * h, customer: 'Ama Owusu',     phone: '026 909 2288', where: 'In the chair', method: 'Cash',     items: [{ name: 'Frontal Installation', price: 500, qty: 1 }], total: 500, paid: 300 },
         { id: 'SL-3009', at: now - 27 * h, customer: 'Rita Agyeman', phone: '024 866 2299', where: 'In the chair', method: 'Card',     items: [{ name: 'Olaplex Treatment', price: 850, qty: 1 }], total: 850, paid: 850 },
         { id: 'SL-3008', at: now - 50 * h, customer: 'Walk-in',      phone: '',             where: 'Counter',      method: 'Cash',     items: [{ name: 'Flax Seed + Aloe Hair Mask', price: 190, qty: 2 }], total: 380, paid: 380 }
@@ -161,9 +172,22 @@
         });
       } else {
         var stock = read('stock', {});
-        rows = B.products.map(function (p) {
+        rows = [];
+        /* live prices; hair sold by length gets one line per priced length,
+           and nothing without a price can be rung up */
+        B.products.forEach(function (p) {
+          var it = B.live ? B.live.find('product', p.name) : null;
           var left = stock[p.name];
-          return { name: p.name, sub: (left === 0 ? 'Finished' : left + ' on the shelf'), price: p.price, out: left === 0 };
+          var shelf = left === 0 ? 'Finished' : (left == null ? 'Not counted yet' : left + ' on the shelf');
+          if (it && it.lengths) {
+            var priced = it.lengths.filter(function (l) { return l.price != null; });
+            if (!priced.length) rows.push({ name: p.name, sub: 'Price to follow, set it in Items', price: 0, out: true });
+            priced.forEach(function (l) { rows.push({ name: p.name + ', ' + l.len, sub: shelf, price: l.price, out: left === 0 }); });
+            return;
+          }
+          var price = it ? it.price : p.price;
+          if (typeof price !== 'number') { rows.push({ name: p.name, sub: 'Price to follow, set it in Items', price: 0, out: true }); return; }
+          rows.push({ name: p.name, sub: shelf, price: price, out: left === 0 });
         });
       }
       if (q) rows = rows.filter(function (r) { return r.name.toLowerCase().indexOf(q) !== -1; });
@@ -172,7 +196,7 @@
         return '<button type="button" class="pick-item' + (r.out ? ' is-out' : '') + '" data-pick="' + esc(r.name) + '" data-price="' + r.price + '"' + (r.out ? ' disabled' : '') + '>' +
           '<span class="pick-name">' + esc(r.name) + '</span>' +
           '<span class="pick-sub">' + esc(r.sub) + '</span>' +
-          '<span class="pick-price">' + money(r.price) + '</span>' +
+          '<span class="pick-price">' + (r.price > 0 || !r.out ? money(r.price) : '') + '</span>' +
           '</button>';
       }).join('') : '<p class="form-help">Nothing matches that.</p>';
     }
@@ -616,7 +640,7 @@
       var low = B.lowStockAt;
       var rows = B.products.map(function (p) {
         var qty = stock[p.name] == null ? 0 : stock[p.name];
-        return { p: p, qty: qty, state: qty === 0 ? 'out' : (qty <= low ? 'low' : 'ok') };
+        return { p: p, qty: qty, state: qty === 0 ? (p.soon ? 'soon' : 'out') : (qty <= low ? 'low' : 'ok') };
       });
 
       el('stock-stats').innerHTML =
@@ -625,8 +649,8 @@
         statCard('Finished', String(rows.filter(function (r) { return r.state === 'out'; }).length), 'Reorder these first');
 
       var view = rows.filter(function (r) { return filter === 'all' || r.state === filter; });
-      var label = { ok: 'In stock', low: 'Running low', out: 'Finished' };
-      var badge = { ok: 'available', low: 'low', out: 'out' };
+      var label = { ok: 'In stock', low: 'Running low', out: 'Finished', soon: 'Arriving soon' };
+      var badge = { ok: 'available', low: 'low', out: 'out', soon: 'low' };
       var catLabel = {};
       B.productCategories.forEach(function (c) { catLabel[c.key] = c.label; });
 
@@ -634,7 +658,7 @@
         return '<tr>' +
           '<td><strong>' + esc(r.p.name) + '</strong></td>' +
           '<td>' + esc(catLabel[r.p.cat] || r.p.cat) + '</td>' +
-          '<td class="num">' + money(r.p.price) + '</td>' +
+          '<td class="num">' + (typeof r.p.price === 'number' ? money(r.p.price) : (r.p.lengths ? 'By length' : 'Price to follow')) + '</td>' +
           '<td class="num"><strong>' + r.qty + '</strong></td>' +
           '<td><span class="badge badge--' + badge[r.state] + '">' + label[r.state] + '</span></td>' +
           '<td class="num"><span class="row-actions">' +

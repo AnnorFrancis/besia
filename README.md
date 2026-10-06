@@ -34,10 +34,11 @@ live in **`js/besia-data.js`**. Nothing else needs editing to change a fact.
 ```
 js/besia-data.js
   BUSINESS            name, phone, email, address, hours, socials, storage namespace
-  SERVICE_CATEGORIES  the 14 disciplines (the chapters)
-  SERVICES            all 83 services from her official Fresha export: price, duration, description
-  PRODUCTS            24 retail items across 5 categories, including her own Follicle Fuel and Hair Botox
-  COURSES             the 9 courses of The School at Bēsia, fees and what each covers
+  SERVICE_CATEGORIES  the 14 disciplines (the chapters of the complete menu)
+  SERVICES            her official Fresha export (83) plus ITips, Wig Revamp and the Hair Club Blueprint
+  CORE_SERVICES       Dana's 13 core services (6 Oct), each mapped to the services beneath it
+  PRODUCTS            30 items: Bēsia Lab, professional care, and her hair by texture (and length)
+  COURSES             The School at Bēsia / Bēsia Beauty Academy: 3 certifications and 7 more courses
   SUPPLIERS           who the studio buys hair and product from
   TEAM / REVIEWS      the collaborative, and her real 5.0 reviews
 ```
@@ -54,8 +55,8 @@ The steps, in the order build-all runs them:
 ```bash
 node tools/build-services.js   # the chapter rail and the 14 chapters, every price inside its chapter
 node tools/build-shop.js       # the hair library: filters and 24 product cards
-node tools/build-home.js       # "In this issue", the six signature treatments
-node tools/build-packages.js   # the three pairings, the price builder, the home teaser
+node tools/build-home.js       # 02 Core services and the ticker, from CORE_SERVICES
+node tools/build-packages.js   # the Hair Club pairings (with Hair CPR), the price builder
 node tools/build-classes.js    # classes.html, written whole from the course data
 node tools/build-gallery.js    # the contact sheet from her pictures
 node tools/build-admin.js      # all 20 Studio Manager pages
@@ -180,7 +181,7 @@ formaldehyde-free straightening and texturising system.*
 
 ---
 
-## The service menu: 83 services, 14 disciplines
+## The service menu: 14 disciplines (her Fresha export, plus three she added on 6 Oct)
 
 Real, published prices and durations.
 
@@ -211,7 +212,7 @@ consultation, rather than inventing figures.
 
 Bēsia teaches as well as styles, so the school is a first-class part of both halves.
 
-**`classes.html`** lists six hands-on courses built from her own disciplines , 
+**`classes.html`** (see "Round 2" below for the Academy structure) lists hands-on courses built from her own disciplines, 
 Fusion Extensions, Braiding & Cornrows, Silk Press, Natural Hair & Curl Care,
 Colour Fundamentals, and Lashes & Brows, with what each one covers, how many days
 it runs and how many seats there are.
@@ -234,7 +235,7 @@ there is only ever one list of money owed.
 
 **Shop → Bag → Checkout → Payment → Order number → Tracking → Studio Manager**
 
-1. `shop.html`: 23 products; the Moringa line shows as **Pre-order / Launching soon**.
+1. `shop.html`: 30 products. Bēsia Lab and professional care sell now; hair is priced by length and shows "Price to follow" until the studio prices it in Items.
 2. `checkout.html`: quantities, pickup (free) or delivery (GHS 30), then Mobile Money
    (MTN / Telecel / AT), card, or pay on pickup.
 3. A simulated gateway runs, then an order number like `BES-260902-630`.
@@ -307,7 +308,7 @@ changes**, every page already reads the catalogue through that one file.
   gone and that their work is saved on the device.
 - **Light on data.** Images are compressed and lazy-loaded; the shell is under
   a megabyte.
-- **WhatsApp is the channel**: order confirmations, supplier reorders, class
+- **WhatsApp is a channel, not the till**: clients pay for bookings, classes and orders on the site (Dana, 6 Oct); WhatsApp stays for the studio's own confirmations, supplier reorders, class
   enquiries and the contract all hand off to it.
 
 ## The studio manager
@@ -432,3 +433,38 @@ cross-checked against the published menu.
   `images/CREDITS.md`.
 - `styleguide.html` is a development page showing every ground and every control;
   it is `noindex` and left out of the service worker.
+
+
+---
+
+## Round 2: Dana's feedback, 6 October 2026
+
+Everything she asked for in the chat and her voice notes, and where it lives.
+The voice-note transcript and her files are in `MORE CONTENT/` (not committed).
+
+| She asked | Done in |
+|---|---|
+| "Beauty with intention" centred beneath Bēsia, equal spacing | `pages.css` `.cover-mast` (centred, tracking compensated) |
+| Remove 01 / 07; keep open or closed and the address | `index.html` cover folio |
+| A weather update on the cover | `site.js` (Open-Meteo, Cantonments, cached 30 min, hidden if offline) |
+| "On the cover" becomes "Who we are" | `index.html` |
+| Intro line says we supply beauty: products, extensions, lifestyle, books | `index.html` cover deck, shop copy, chat |
+| Bēsia Beauty Studio logo where appointments are | booking sheet head, home 06 Appointments, Hair Club form |
+| Two spaces more between the Menu rule and the word | `components.css` `.nav-toggle` gap |
+| Section 02 "Core services", her list, tap through to book | `CORE_SERVICES` in data, `build-home.js`, `booking-cart.js` (`?core=`) |
+| The ticker says where to book, without sounding desperate | home ticker is one link, "Book here" between her services |
+| The complete menu stays | `services.html` unchanged in structure |
+| Pay on the site instead of WhatsApp; studio sorts conflicts after | booking sheet has a pay step (MoMo or card, simulated); paid bookings land in Appointments with amount and reference |
+| Follicle Fuel: "Our signature products", no band over the film, rapid growth and nourishment, "Welcome to your new growth era", bold | home 03, shop opener, chat |
+| Black Star Gate film continues that section; the rest of that section goes | home 03 second film; old 05 campaign section removed |
+| Every video: see more of it, on phones too, and keep any words readable | `build-reels.js` writes each film's own shape; captions moved under the film; films excluded from the phone 4:3 crop and from desktop parallax zoom |
+| Keep "The School at Bēsia", slip in Bēsia Beauty Academy | home 04 and classes opener |
+| A one-to-one option for training | classes 07, enrol form format, no payment until agreed |
+| Use her Academy brief to fill the blanks | classes: campaign line, 3 certifications, Fusion by method with pathways, methodology, upgrade path, Healthy Hair + Growth, Hair Botox + Nanoplasty, how it works, founder note, FAQ (with the licensing caveat), closing call |
+| Hair Club (her PDF) | packages.html is now the Hair Club: Blueprint GHS 500, membership GHS 200 a month, journey, growth timeline, pairings, her consultation form online |
+| Hair CPR as "detox + nourish" | `build-packages.js` pairing, steps from her plan |
+| Her consultation form (HW Client Form) | packages.html #consult; answers travel with the Blueprint booking into Appointments |
+| Shop: her list of hair, by texture, 16 to 30 inches, each length its own price | data `PRODUCTS`, `build-shop.js` length chips, `besia-live.js` `setLengthPrices`, manager Items "Set prices" |
+
+Prices verified on her live Fresha page on 6 Oct and corrected: Curl Revive + Flax
+GHS 850, Deep Moisture + Curl Revive GHS 855.

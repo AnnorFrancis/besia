@@ -8,8 +8,11 @@ the rules learned the hard way.
 ## Where things stand (6 Oct 2026)
 - The client (Dana, owner of Bēsia Beauty Studio, Cantonments, Accra) has
   chosen this version: the magazine redesign ("The Issue").
-- Next: make the changes she points out, then, once she is happy, build the
-  whole system properly for production (real backend, logins, payments).
+- Round 2 of her feedback (chat + voice notes + PDFs, 6 Oct) is integrated;
+  README.md "Round 2" maps every request to where it was done. Her files
+  and the voice-note transcript are in `MORE CONTENT/` (gitignored, local).
+- Next: she reviews, then the whole system is built properly for production
+  (real backend, logins, Paystack payments, encrypted consultation forms).
 - The older pre-magazine version is NOT part of this project. It lives in
   `../BESIA-classic` (its own repo, `AnnorFrancis/besia-classic`) and will be
   reworked for a different client. Do not edit it from here.
@@ -51,11 +54,34 @@ node tools/build-video.js      # rebuilds films from tools/media-manifest.js (ne
 10. Same domain as `besia-classic`: storage keys and caches here use `besia-`,
     the classic site uses `besia-classic-`. The service worker only deletes
     its own `besia-` caches. Keep it that way.
-11. Never kill processes by image name (e.g. `taskkill /IM python.exe`).
+11. **Films are shown in their own shape**, never cropped to the page and
+    never covered: build-reels.js writes --arw/--arh and puts captions under
+    the film. Dana's rule: "we need to see more of the video".
+12. **Clients pay on the site**, never via WhatsApp (bookings, classes, shop).
+    Payment is a labelled simulation until Paystack is wired in.
+13. **Never invent a price.** Unpriced items say "Price to follow" (hair by
+    length) or "At consultation" (ITips, Wig Revamp) and cannot be paid for.
+    A product without a real photograph is a label card, never a borrowed photo.
+14. **Core services** (home 02) come from `CORE_SERVICES` in besia-data.js, in
+    Dana's order; the complete menu (services.html) stays as it is.
+15. Never kill processes by image name (e.g. `taskkill /IM python.exe`).
     Stop only what you started.
-12. Do not claim something works until it has been exercised in a browser.
+16. Do not claim something works until it has been exercised in a browser.
+17. In this Windows Git Bash, heredocs lose backslashes: edit files with the
+    Edit/Write tools, not shell heredocs, when the text contains a backslash.
 
 ## Open items for the client
+- Hair prices by length (she said "will send pricing"): enter them in the
+  manager, Items, Products, "Set prices". Also confirm the frontal textures,
+  and photos for the hair (she sent one, Asian Loose Curl double drawn).
+- ITips and Wig Revamp prices and durations (now "at consultation").
+- Her 13 core-service pictures (she is generating them): swap the `img` /
+  `poster` / `lib` names in CORE_SERVICES.
+- Course fees (placeholders), the Healthy Hair & Growth fee, Fusion bundle
+  prices, the Blueprint duration (set at 1 hr 30 min), and Beard Oil, Hair
+  Botox 250ml and Flax mask retail prices.
+- Facials, waxing and make-up are no longer on her Fresha; they are still on
+  the complete menu because she said the complete menu can stay. Ask.
 - Confirm shop prices, course fees, and that hello@besia.co is a live inbox.
 - Ask for her original videos and photos sent as WhatsApp *Documents*
   (current media is WhatsApp-compressed; drop originals into

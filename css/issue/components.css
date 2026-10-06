@@ -141,7 +141,8 @@
 @media (hover: hover) and (pointer: fine) { .nav-cta .btn:hover { background: var(--p-brass-lit); border-color: var(--p-brass-lit); color: var(--p-ink); } }
 
 .nav-toggle {
-  display: inline-flex; align-items: center; gap: var(--s-2); min-height: 48px; min-width: 48px; padding: 0 var(--s-2);
+  /* the brass rule and the word sit about two spaces further apart than they did (Dana, 6 Oct) */
+  display: inline-flex; align-items: center; gap: calc(var(--s-2) + 0.9em); min-height: 48px; min-width: 48px; padding: 0 var(--s-2);
   font-size: var(--t-label); font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: inherit;
   position: relative;
 }
@@ -360,6 +361,37 @@ body.bk-open { overflow: hidden; }
 .bk-done-ref { font-size: 1.5rem; font-weight: 300; letter-spacing: 0.04em; margin-bottom: var(--s-4); }
 .bk-done p { color: var(--fg-2); margin: 0 auto var(--s-5); }
 
+/* The studio's full mark sits on the sheet where appointments are made
+   (Dana: the Bēsia Beauty Studio logo comes in at the appointments). */
+.bk-mark { display: inline-flex; flex-direction: column; align-items: center; gap: 4px; margin-bottom: var(--s-4); line-height: 1; }
+.bk-mark-name { font-size: 1.125rem; font-weight: 400; letter-spacing: 0.42em; padding-left: 0.42em; text-transform: uppercase; }
+.bk-mark-sub { font-size: 0.5625rem; font-weight: 500; letter-spacing: 0.46em; padding-left: 0.46em; text-transform: uppercase; }
+
+/* Opened on a core service: its services first. */
+.bk-core-title { font-size: var(--t-h3); font-weight: 400; letter-spacing: -0.01em; line-height: 1.2; }
+.bk-core .bk-hint { margin-top: var(--s-2); }
+.bk-label { font-size: var(--t-label); font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--fg-2); margin-bottom: var(--s-2); }
+.bk-attached { margin-top: var(--s-2); }
+
+/* Payment */
+.bk-methods { display: grid; gap: var(--s-3); margin-bottom: var(--s-5); }
+.bk-method { position: relative; display: grid; grid-template-columns: 22px minmax(0, 1fr); align-items: center; gap: var(--s-4); min-height: 64px; padding: var(--s-3) var(--s-4); border: 1px solid var(--rule); cursor: pointer; }
+.bk-method input { position: absolute; opacity: 0; pointer-events: none; }
+.bk-method::before { content: ''; width: 18px; height: 18px; border: 1px solid var(--p-ink); border-radius: 50%; box-shadow: inset 0 0 0 4px var(--p-ivory); }
+.bk-method.is-active { border-color: var(--p-ink); }
+.bk-method.is-active::before { background: var(--p-ink); }
+.bk-method:focus-within { outline: 2px solid var(--focus); outline-offset: 2px; }
+.bk-method strong { display: block; font-weight: 500; font-size: var(--t-body); }
+.bk-method em { display: block; font-size: var(--t-cap); color: var(--fg-2); margin-top: 2px; }
+.bk-demo { font-size: var(--t-label); font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-top: var(--s-3); }
+.bk-paying { text-align: center; padding-top: var(--s-9); }
+.bk-paying .bk-hint { margin-top: var(--s-2); }
+.bk-pay-step { font-size: var(--t-h3); font-weight: 300; margin-top: var(--s-5); }
+.bk-spin { width: 44px; height: 44px; margin: 0 auto; border: 1px solid var(--rule); border-top-color: var(--p-ink); border-radius: 50%; animation: bk-spin 900ms linear infinite; }
+@keyframes bk-spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .bk-spin { animation-duration: 2400ms; } }
+.bk-inline { color: var(--p-ink); border-bottom: 1px solid var(--rule-ui); }
+
 /* ============================================================
    Live flags written by site-sync.js (new, sold out, offer)
    ============================================================ */
@@ -384,9 +416,39 @@ body.bk-open { overflow: hidden; }
 .reel.is-ready .reel-ctl, .reel.is-paused .reel-ctl, .reel.is-held .reel-ctl, .reel.is-blocked .reel-ctl, .reel.is-idle .reel-ctl, .reel:focus-within .reel-ctl { opacity: 1; }
 @media (hover: hover) and (pointer: fine) { .reel.is-playing .reel-ctl { opacity: 0; } .reel.is-playing:hover .reel-ctl { opacity: 1; } }
 html[data-fx="lite"] .reel .reel-ctl, .reel.is-blocked .reel-ctl, .reel.is-idle .reel-ctl { opacity: 1; width: 56px; height: 56px; right: 50%; bottom: 50%; transform: translate(50%, 50%); }
-.reel .foot { z-index: 2; }
-.reel .foot + .reel-ctl { bottom: calc(96px + var(--s-3)); }
-@media (min-width: 1024px) { .reel .foot + .reel-ctl { bottom: calc(112px + var(--s-3)); } }
+/* Her films in their own shape (Dana, 6 Oct: "we need to see more of the
+   video"). A film is never cropped to the page's 4:5; it keeps its own
+   proportions (--arw / --arh, written by build-reels.js) and narrows
+   rather than grow taller than the screen allows. Nothing is laid over
+   it: the caption sits beneath the frame, so the words inside her
+   campaign films stay readable. */
+.reel[data-native] {
+  aspect-ratio: var(--arw) / var(--arh);
+  width: min(100%, calc(var(--film-h) * var(--arw) / var(--arh)));
+  max-height: none;
+  margin-inline: auto;
+  --film-h: 86svh;
+}
+@media (min-width: 1024px) { .reel[data-native] { --film-h: min(84svh, 780px); } }
+/* In a row of films each one has the same tall frame and is shown whole
+   inside it, so the captions under the row sit on one line. */
+.t-rail .reel[data-native] { aspect-ratio: 9 / 16; width: 100%; }
+.t-rail .reel[data-native] .reel-poster, .t-rail .reel[data-native] .reel-video { object-fit: contain; }
+.reel-cap { display: grid; gap: var(--s-1); margin-top: var(--s-3); padding-inline: var(--page); text-align: left; }
+.reel-cap .t-credit { color: var(--fg-3); }
+.reel-cap .t-credit .n { color: var(--accent); }
+.reel-cap p:not(.t-credit) { font-size: var(--t-cap); color: var(--fg-2); max-width: 44ch; }
+@media (min-width: 1024px) { .reel-cap { padding-inline: 0; } }
+/* A plate-wrap holding a film gives it room: the 4:5 page cap is for photographs. */
+.t-spread > .plate-wrap:has(> .reel[data-native]),
+.t-opener > .plate-wrap:has(> .reel[data-native]) { max-height: none; max-width: none; }
+@media (min-width: 1024px) {
+  .t-spread > .plate-wrap:has(> .reel[data-native]),
+  .t-opener > .plate-wrap:has(> .reel[data-native]) { width: 100%; justify-self: stretch; }
+  .t-spread > .plate-wrap > .reel[data-native],
+  .t-opener > .plate-wrap > .reel[data-native] { max-height: none; }
+  .plate-wrap > .reel[data-native] + .reel-cap { text-align: center; justify-items: center; }
+}
 .reel-watch { position: absolute; left: var(--s-4); bottom: var(--s-4); z-index: 3; }
 
 /* Watch the film, with sound: a dialog with native controls */
@@ -604,7 +666,11 @@ html.js [data-split].is-inview .w:nth-child(n+7) > span { transition-delay: 360m
 @keyframes ghost-drift { from { transform: translateY(12%); } to { transform: translateY(-18%); } }
 
 /* The ticker: the fourteen chapters passing slowly, paused on hover. */
-.ticker { overflow: hidden; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); padding: var(--s-3) 0; }
+.ticker { display: block; overflow: hidden; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); padding: var(--s-3) 0; color: inherit; }
+a.ticker { min-height: 48px; }
+.ticker-track .tk-book { color: var(--accent); }
+.ticker-track .tk-book::before { content: ''; display: inline-block; width: 6px; height: 6px; margin-right: var(--s-3); background: var(--accent); transform: rotate(45deg); }
+.ticker:focus-visible { outline: 2px solid var(--focus); outline-offset: -4px; }
 .ticker-track { display: flex; gap: var(--s-7); width: max-content; animation: ticker 70s linear infinite; }
 .ticker-track span { display: inline-flex; align-items: center; gap: var(--s-3); font-size: var(--t-label); font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; white-space: nowrap; color: var(--fg-2); }
 .ticker-track span .n { color: var(--accent); font-variant-numeric: tabular-nums; }

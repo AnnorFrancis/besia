@@ -98,20 +98,67 @@
       if (item.soldOut) imgWrap.appendChild(badge('out', 'Sold out'));
     }
 
-    var btn = card.querySelector('[data-add]');
+    var raw = item.raw || {};
+    if (raw.custom) return;   /* made to order: the quote link stays as it is */
+
+    /* Sold by length: the price and the button follow the chosen length. */
+    var price = item.price, name = item.name;
+    if (item.lengths) {
+      var chosen = card.getAttribute('data-len') || item.lengths[0].len;
+      var hit = item.lengths.filter(function (l) { return l.len === chosen; })[0] || item.lengths[0];
+      card.setAttribute('data-len', hit.len);
+      card.querySelectorAll('.len[data-len]').forEach(function (b) {
+        var row = item.lengths.filter(function (l) { return l.len === b.getAttribute('data-len'); })[0];
+        b.setAttribute('aria-pressed', b.getAttribute('data-len') === hit.len ? 'true' : 'false');
+        b.classList.toggle('has-price', !!(row && row.price != null));
+      });
+      price = hit.price;
+      name = item.name + ', ' + hit.len;
+      if (priceSlot) priceSlot.innerHTML = price != null ? money(price) : 'Price to follow';
+    } else if (typeof price !== 'number') {
+      if (priceSlot) priceSlot.textContent = 'Price to follow';
+    }
+
+    var cta = card.querySelector('[data-cta-slot]');
+    var btn = cta ? cta.querySelector('button') : null;
     if (btn) {
-      btn.setAttribute('data-add', item.name + '|' + item.price);
-      if (item.soldOut) {
+      if (typeof price !== 'number') {
+        btn.removeAttribute('data-add');
+        btn.disabled = true;
+        btn.textContent = 'Coming soon';
+        btn.classList.remove('is-out');
+      } else if (item.soldOut) {
+        btn.setAttribute('data-add', name + '|' + price);
         btn.disabled = true;
         btn.textContent = 'Sold out';
         btn.classList.add('is-out');
       } else {
+        btn.setAttribute('data-add', name + '|' + price);
         btn.disabled = false;
         btn.classList.remove('is-out');
-        var raw = item.raw || {};
-        btn.textContent = raw.preorder ? 'Reserve' : 'Add to bag';
+        btn.textContent = raw.preorder || raw.soon ? 'Reserve' : 'Add to bag';
       }
     }
+  }
+
+  /* A length chip: choose it, and the card's price and button follow. */
+  document.addEventListener('click', function (e) {
+    var chip = e.target.closest('.len[data-len]');
+    if (!chip) return;
+    var card = chip.closest('.product-card[data-item]');
+    if (!card) return;
+    card.setAttribute('data-len', chip.getAttribute('data-len'));
+    var item = B.live.find('product', card.getAttribute('data-item'));
+    if (item) applyProductCard(card, item);
+  });
+
+  /* A product's price named anywhere else on the site (the home page's
+     Follicle Fuel), kept to the live figure. */
+  function syncProductPrices() {
+    document.querySelectorAll('[data-product-price]').forEach(function (el) {
+      var item = B.live.find('product', el.getAttribute('data-product-price'));
+      if (item && typeof item.price === 'number') el.textContent = Math.round(item.price).toLocaleString('en-GB');
+    });
   }
 
   function buildProductCard(item) {
@@ -208,6 +255,20 @@
       if (!pool.length) pool = inCat;
       var low = Math.min.apply(null, pool.map(function (s) { return s.price; }).filter(function (n) { return n > 0; }));
       if (isFinite(low)) a.textContent = 'From ' + money(low);
+    });
+
+    /* Core service cards: the "from" figure follows the owner's prices,
+       and a card whose services are all switched off leaves the page. */
+    document.querySelectorAll('.core-card[data-core]').forEach(function (card) {
+      var core = (B.coreServices || []).filter(function (c) { return c.slug === card.getAttribute('data-core'); })[0];
+      if (!core) return;
+      var live = core.services.map(function (n) { return B.live.find('service', n); })
+        .filter(function (s) { return s && s.published; });
+      card.hidden = !live.length;
+      var lows = live.filter(function (s) { return !(s.raw && s.raw.aux); })
+        .map(function (s) { return s.price; }).filter(function (n) { return n > 0; });
+      var slot = card.querySelector('.core-from');
+      if (slot) slot.textContent = lows.length ? 'From ' + money(Math.min.apply(null, lows)) : 'Priced at consultation';
     });
   }
 
@@ -332,6 +393,7 @@
     try { syncBanner(); } catch (e) {}
     try { syncShop(); } catch (e) {}
     try { syncServices(); } catch (e) {}
+    try { syncProductPrices(); } catch (e) {}
     try { syncTeasers(); } catch (e) {}
     try { syncBuilder(); } catch (e) {}
     try { syncBookingPills(); } catch (e) {}

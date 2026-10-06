@@ -22,3 +22,6 @@ media/_masters/
 
 # Local AI upscaler binary (Real-ESRGAN ncnn), fetched by tools/build-video.js instructions, never committed
 tools/_bin/
+
+# Client correspondence (voice notes, PDFs as received). Never committed.
+MORE CONTENT/

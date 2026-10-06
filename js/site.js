@@ -212,9 +212,72 @@
   doc.querySelectorAll('[data-open-pill]').forEach(function (host) {
     var now = new Date();
     var open = window.BESIA && BESIA.isOpenNow ? BESIA.isOpenNow(now) : (now.getDay() !== 0 && now.getHours() >= 9 && now.getHours() < 19);
-    host.textContent = open ? 'Open now, until 7pm' : (now.getDay() === 6 && now.getHours() >= 19 ? 'Closed, opens Monday 9am' : 'Closed, opens 9am');
+    var day = now.getDay(), hr = now.getHours();
+    host.textContent = open ? 'Open now, until 7pm'
+      : (day === 0 || (day === 6 && hr >= 19)) ? 'Closed, opens Monday 9am'
+      : hr >= 19 ? 'Closed, opens tomorrow 9am' : 'Closed, opens 9am';
     host.classList.toggle('is-closed', !open);
   });
+
+  /* ---------- the weather in Cantonments, on the cover ----------
+     Dana, 6 Oct: "women get in their head and want to know what the
+     weather is going to look like". Open-Meteo, free and keyless, asked
+     once per half hour per visitor; if it cannot be reached the line
+     simply stays hidden. The request carries only the studio's own
+     coordinates. */
+  var wxHosts = doc.querySelectorAll('[data-weather]');
+  if (wxHosts.length && window.fetch) {
+    var WX_KEY = 'besia-weather';
+    var ICON = {
+      sun: '<circle cx="8" cy="8" r="3"/><path d="M8 1v1.6M8 13.4V15M1 8h1.6M13.4 8H15M3 3l1.1 1.1M11.9 11.9L13 13M3 13l1.1-1.1M11.9 4.1L13 3"/>',
+      moon: '<path d="M12.5 10.2A5 5 0 0 1 5.8 3.5a5 5 0 1 0 6.7 6.7z"/>',
+      part: '<path d="M6 3.2a2.6 2.6 0 0 1 4.2 2"/><path d="M4.5 13h7a2.5 2.5 0 0 0 .3-5 3.4 3.4 0 0 0-6.5.8A2.1 2.1 0 0 0 4.5 13z"/>',
+      cloud: '<path d="M4 12.5h7.5a2.8 2.8 0 0 0 .3-5.6A3.8 3.8 0 0 0 4.6 8 2.3 2.3 0 0 0 4 12.5z"/>',
+      rain: '<path d="M4 10h7.5a2.6 2.6 0 0 0 .3-5.2A3.6 3.6 0 0 0 4.6 6 2 2 0 0 0 4 10z"/><path d="M5.5 12l-.7 2M8.5 12l-.7 2M11.3 12l-.7 2"/>',
+      storm: '<path d="M4 9.5h7.5a2.6 2.6 0 0 0 .3-5.2A3.6 3.6 0 0 0 4.6 5.5 2 2 0 0 0 4 9.5z"/><path d="M8.6 10.5L7 13h2l-1.4 2.5"/>',
+      haze: '<path d="M2 6h12M3 9h10M2 12h12"/>'
+    };
+    var wxRead = function (code, isDay) {
+      if (code === 0) return [isDay ? 'sun' : 'moon', isDay ? 'Sunny' : 'Clear'];
+      if (code === 1) return [isDay ? 'sun' : 'moon', 'Mostly clear'];
+      if (code === 2) return ['part', 'Partly cloudy'];
+      if (code === 3) return ['cloud', 'Cloudy'];
+      if (code === 45 || code === 48) return ['haze', 'Hazy'];
+      if (code >= 51 && code <= 57) return ['rain', 'Drizzle'];
+      if ((code >= 61 && code <= 67) || (code >= 80 && code <= 82)) return ['rain', code >= 80 ? 'Showers' : 'Rain'];
+      if (code >= 95) return ['storm', 'Thunderstorms'];
+      return ['cloud', 'Cloudy'];
+    };
+    var wxPaint = function (w) {
+      var r = wxRead(w.code, w.day);
+      var rain = w.rain != null && w.rain >= 30 && r[0] !== 'rain' && r[0] !== 'storm' ? ' · ' + w.rain + '% rain later' : '';
+      wxHosts.forEach(function (host) {
+        host.innerHTML = '<svg class="wx-icon" viewBox="0 0 16 16" aria-hidden="true">' + ICON[r[0]] + '</svg>' +
+          '<span>' + Math.round(w.temp) + '°C, ' + r[1].toLowerCase() + rain + '</span>';
+        host.setAttribute('aria-label', 'Cantonments now: ' + Math.round(w.temp) + ' degrees, ' + r[1].toLowerCase() + rain.replace(' · ', ', '));
+        host.hidden = false;
+      });
+    };
+    var cached = null;
+    try { cached = JSON.parse(store('session', WX_KEY) || 'null'); } catch (e) {}
+    if (cached && Date.now() - cached.at < 30 * 60 * 1000) wxPaint(cached);
+    else {
+      var lat = (window.BESIA && BESIA.business.lat) || 5.5796, lng = (window.BESIA && BESIA.business.lng) || -0.165;
+      var ctl = 'AbortController' in window ? new AbortController() : null;
+      if (ctl) setTimeout(function () { ctl.abort(); }, 6000);
+      fetch('https://api.open-meteo.com/v1/forecast?latitude=' + lat.toFixed(3) + '&longitude=' + lng.toFixed(3) +
+            '&current=temperature_2m,weather_code,is_day&daily=precipitation_probability_max&timezone=Africa%2FAccra&forecast_days=1',
+            ctl ? { signal: ctl.signal } : {})
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .then(function (j) {
+          if (!j || !j.current) return;
+          var w = { at: Date.now(), temp: j.current.temperature_2m, code: j.current.weather_code, day: j.current.is_day === 1,
+                    rain: j.daily && j.daily.precipitation_probability_max ? j.daily.precipitation_probability_max[0] : null };
+          store('session', WX_KEY, JSON.stringify(w));
+          wxPaint(w);
+        }).catch(function () {});
+    }
+  }
 
   /* ---------- small helpers ---------- */
   doc.querySelectorAll('.newsletter-form').forEach(function (form) {
@@ -306,7 +369,9 @@
   document.addEventListener('besia:gsap', function () {
     if (!window.gsap || !window.ScrollTrigger || fxLite || reduce) return;
     gsap.registerPlugin(ScrollTrigger);
-    document.querySelectorAll('.t-spread > .plate img, .t-spread > .plate-wrap .reel-poster, .t-spread > .plate-wrap .reel-video, .t-opener .plate img, .t-opener .plate-wrap .reel-poster, .t-opener .plate-wrap .reel-video').forEach(function (img) {
+    /* photographs only: a film is shown whole, never zoomed (Dana, 6 Oct) */
+    document.querySelectorAll('.t-spread > .plate img, .t-opener .plate img').forEach(function (img) {
+      if (img.closest('.reel')) return;
       var holder = img.closest('.plate') || img.parentElement;
       gsap.fromTo(img, { yPercent: -5, scale: 1.1 }, { yPercent: 5, scale: 1.1, ease: 'none',
         scrollTrigger: { trigger: holder, start: 'top bottom', end: 'bottom top', scrub: 0.6 } });

@@ -22,6 +22,9 @@
     subMark: 'BEAUTY STUDIO',
     tagline: 'Beauty with intention',
     positioning: "Ghana's home of fusion extensions",
+    /* The cover's intro line. Dana, 6 Oct: say that we supply beauty
+       as well as do it: our products, extensions, lifestyle pieces, books. */
+    intro: "Ghana's home of fusion extensions and the first vegan, formaldehyde-free texture system in the country. And a beauty supply: our own products, extensions, lifestyle pieces and books.",
     strapline: 'Nourish your roots. Protect your peace.',
 
     /* Contact */
@@ -104,6 +107,8 @@
       short: "Light-cured, nearly invisible bonds along the hairline. Ideal for fine hair or covering alopecia." },
     { cat: "Extensions", name: "V-Light Extensions/Invisibles - Full Head", price: null, from: 4000, to: null, mins: 240, dur: "4 hr",
       short: "A full head of V-Light extensions: lightweight, seamless bonds set by UV light in seconds." },
+    { cat: "Extensions", name: "ITips", price: null, from: null, to: null, mins: 240, dur: "Timed at consultation",
+      short: "I-tip strands fitted with fine beads, no heat and no glue on your own hair. Priced at your consultation, by density and length." },
     { cat: "Extensions", name: "Seamless Tape-Ins", price: 1500, from: null, to: null, mins: 150, dur: "2 hr 30 min",
       short: "Wash, install and style. Ultra-thin adhesive strips that lay flat and move naturally. Hair excluded." },
     { cat: "Extensions", name: "Classic Weave Install - One Part Leave Out", price: 680, from: null, to: null, mins: 120, dur: "2 hr",
@@ -138,9 +143,9 @@
       short: "K18 molecular repair mask that reverses damage from bleach, colour, chemicals and heat." },
     { cat: "Scalp + Bond Repair Treatments", name: "Deep Moisture Treatment", price: 400, from: null, to: null, mins: 60, dur: "1 hr",
       short: "Deep hydration that leaves dry, damaged strands soft, smooth and full of life." },
-    { cat: "Scalp + Bond Repair Treatments", name: "Deep Moisture Treatment + Curl Revive", bundle: true, price: 950, from: null, to: null, mins: 150, dur: "2 hr 30 min",
+    { cat: "Scalp + Bond Repair Treatments", name: "Deep Moisture Treatment + Curl Revive", bundle: true, price: 855, was: 950, from: null, to: null, mins: 150, dur: "2 hr 30 min",
       short: "Deep hydration followed by our signature Curl Revive wash-and-go." },
-    { cat: "Scalp + Bond Repair Treatments", name: "Curl Revive + Flax", bundle: true, price: 1000, from: null, to: null, mins: 90, dur: "1 hr 30 min",
+    { cat: "Scalp + Bond Repair Treatments", name: "Curl Revive + Flax", bundle: true, price: 850, was: 1000, from: null, to: null, mins: 90, dur: "1 hr 30 min",
       short: "Curl Revive paired with the flaxseed and aloe treatment: hydration and definition in one sitting." },
     { cat: "Scalp + Bond Repair Treatments", name: "Curl Revive with FlaxGRO", bundle: true, price: 1350, from: null, to: null, mins: 210, dur: "3 hr 30 min",
       short: "Curl Revive plus flax and GRO hot oil, deep conditioning and scalp repair in one session." },
@@ -180,6 +185,8 @@
       short: "Signature wash, brush blow dry, press and style." },
     { cat: "Wig Service", name: "Frontal Installation", price: 500, from: null, to: null, mins: 90, dur: "1 hr 30 min",
       short: "A seamless frontal application, customised and styled to match the occasion." },
+    { cat: "Wig Service", name: "Wig Revamp", price: null, from: null, to: null, mins: 120, dur: "Timed at consultation",
+      short: "Wash, deep condition, restyle and re-customise a unit you already own, so it wears like new. Priced when we see the unit." },
     { cat: "Eyelashes & Eyebrows", name: "Classic Set", price: 400, from: null, to: null, mins: 150, dur: "2 hr 30 min",
       short: "One extension per natural lash for a longer, still-natural look. Best with plenty of natural lashes." },
     { cat: "Eyelashes & Eyebrows", name: "Angel Set", price: 430, from: null, to: null, mins: 150, dur: "2 hr 30 min",
@@ -252,60 +259,144 @@
       short: "Hair and scalp analysis, custom recommendations and extension guidance. Free, with no pressure to book." },
     { cat: "General", name: "Hair Wellness/Extension Consultation", price: 200, from: null, to: null, mins: 60, dur: "1 hr",
       short: "A full assessment and a personalised plan for your hair health and extensions." },
+    { cat: "General", name: "The Hair Club Blueprint", price: 500, from: null, to: null, mins: 90, dur: "1 hr 30 min",
+      short: "Your one-time hair wellness plan: a full consultation, hair and scalp assessment, a written strategy, product prescription and growth timeline." },
     { cat: "General", name: "Basic Wash + Blowdry", price: 350, from: null, to: null, mins: 60, dur: "1 hr",
       short: "A refreshing wash and blow dry, styled to perfection." }
   ];
 
-  /* ---------- The shop ----------
-     Bēsia sells hair as well as service. Categories mirror what the
-     studio actually installs: fusion KTips, tape-ins, raw bundles, HD
-     closures and frontals, glueless units, plus a home-care shelf built
-     from the exact products named in the treatment menu (flaxseed, GRO
-     hot oil, K18, Olaplex) and the Moringa line the studio has announced.
+  /* ---------- Core services ----------
+     Dana's own list (6 Oct 2026), in her order: the services the studio
+     leads with. The home page shows one card each; a tap opens the
+     booking on exactly the services beneath it. The complete menu
+     above stays as it is, she asked for that too.
 
-     NOTE: retail prices below are INDICATIVE PLACEHOLDERS and must be
-     confirmed with the owner before launch. The SERVICE prices above are
-     the studio's real published menu and are accurate.
-  */
-  var PRODUCT_CATEGORIES = [
-    { key: 'extensions',  label: 'Extensions & Bundles' },
-    { key: 'closures',    label: 'Closures & Frontals' },
-    { key: 'wigs',        label: 'Wigs & Units' },
-    { key: 'care',        label: 'Home Care' },
-    { key: 'accessories', label: 'Studio Accessories' }
+     `services` are exact names from SERVICES. `img` names a picture in
+     media/img, `poster` a film still in media/video, `lib` a file in
+     images/. They are stand-ins: she is generating one picture per
+     core service, and swapping one is a one-word change here. */
+  var CORE_SERVICES = [
+    { slug: 'extensions', label: 'Extensions', subs: ['KTips', 'ITips', 'Tape-Ins', 'V-Light', 'Sew-Ins'], img: 'product-model-waves',
+      services: ['100 grams - KTips', '150 grams - KTips', '200 grams - KTips', '250 grams - KTips', '300 grams - KTips', 'Invisible KTips', 'ITips',
+                 'Seamless Tape-Ins', 'V-Light Extensions/Invisibles - Hairline', 'V-Light Extensions/Invisibles - Full Head',
+                 'Classic Weave Install - One Part Leave Out', 'Closure Weave Install', 'KTip Removal', 'Weave/Ponytail Take Down'] },
+    { slug: 'treatments', label: 'Treatments', subs: ['Hair CPR', 'Scalp detox', 'Flax + Aloe', 'GRO hot oil', 'Bond repair'], poster: 'wash-ritual',
+      services: ['Bēsia Hair CPR Treatment', 'Scalp + Dandruff Intensive Detox', 'Flax Seed + Aloe Treatment', 'GRO Hot Oil Treatment',
+                 'Hair Loss + Growth Treatment', 'Olaplex Treatment', 'K18 Treatment and Bond Repair', 'Deep Moisture Treatment'] },
+    { slug: 'natural', label: 'Natural Styling', subs: ['Curl Revive', 'Styling'], img: 'editorial-curls-smile',
+      services: ['Curl Revive | Wash + Go', 'Curl Revive + Flax', 'Curl Revive + GRO Hot Oil Treatment', 'Curl Revive with FlaxGRO',
+                 'Deep Moisture Treatment + Curl Revive', 'Curly Cut'] },
+    { slug: 'texture', label: 'Texture System', subs: ['Nanoplasty', 'Hair Botox'], img: 'model-profile-sleek',
+      services: ['Vegan Keratin Treatment - Nanoplasty', 'Texture Release - Hair Botox'] },
+    { slug: 'silkpress', label: 'Silk Press', subs: ['Wash, blow dry, press and style'], img: 'editorial-hair-story',
+      services: ['Silkpress Xpress'] },
+    { slug: 'braids', label: 'Braids', subs: ['Large braids', 'Goddess, Bora Bora, Boho'], poster: 'braid-finish',
+      services: ['Large Braids', 'Braids Take Down'] },
+    { slug: 'crochet', label: 'Crochet', subs: ['Illusion crochet'], img: 'texture-curls',
+      services: ['Illusion Crochet'] },
+    { slug: 'cornrows', label: 'Cornrows', subs: ['Cornrow updo'], img: 'abeauty-ritual', pos: 'center 30%',
+      services: ['Cornrow Updo'] },
+    { slug: 'wig-installs', label: 'Wig Installs', subs: ['Frontal installation'], img: 'studio-mirror-chair',
+      services: ['Frontal Installation'] },
+    { slug: 'wig-revamp', label: 'Wig Revamp', subs: ['Wash, restyle, re-customise'], lib: 'images/services/svc-revamp-after.jpg',
+      services: ['Wig Revamp'] },
+    { slug: 'colour', label: 'Colour', subs: ['All over', 'Balayage', 'Highlights', 'Custom'], img: 'moodboard-model', pos: '30% center',
+      services: ['All Over Color - Short', 'All Over Color - Medium', 'All Over Color - Long', 'Balayage - Short', 'Balayage - Medium', 'Full Highlights', 'Custom Color'] },
+    { slug: 'cut', label: 'Cut', subs: ['Trim', 'Precision', 'Layers'], img: 'still-tools',
+      services: ['Trim', 'Precision Cut', 'Layers'] },
+    { slug: 'lashes', label: 'Lashes', subs: ['Classic', 'Angel', 'Lala', 'Hybrid', 'Lifts'], img: 'product-model-blush',
+      services: ['Classic Set', 'Angel Set', 'Lala Set', 'Hybrid Set', 'Classic/Angel Refill', 'Lala Refill', 'Hybrid Refill',
+                 'Lash Touch Up', 'Bottom Lashes', 'Lash Lift', 'Lash Lift + Tint', 'Lash Removal', 'Patch Test'] }
   ];
 
+  /* ---------- The shop ----------
+     Rebuilt from Dana's own list (6 Oct 2026). Three shelves:
+
+       Bēsia Lab      her own products, made in the studio. Prices are
+                      the ones on her Hair Club plan (the investment
+                      pages); Beard Oil, Hair Botox and the flax mask
+                      are still placeholders until she prices them.
+       Professional   the salon brands her plans prescribe.
+       Hair           the extensions she is bringing in: bundles, fusion
+                      bundles, crochet, tape-ins and frontals, by texture,
+                      and for bundles by length, 16 to 30 inches. Every
+                      length has its own price; she is sending them, so
+                      until a length is priced the site says "Price to
+                      follow" and nothing can be ordered at a made-up figure.
+
+     A product with `lengths` is priced per length (`lengthPrices`, and
+     the Studio Manager can set each one). `soon` marks hair that is
+     arriving; `custom` is made to order, priced on request. A product
+     with no `img` is set as a label card in the shop, never a borrowed
+     photograph of something else. */
+  var LENGTHS = ['16"', '18"', '20"', '22"', '24"', '26"', '28"', '30"'];
+
+  var PRODUCT_CATEGORIES = [
+    { key: 'lab',      label: 'Bēsia Lab' },
+    { key: 'care',     label: 'Professional Care' },
+    { key: 'bundles',  label: 'Extensions & Bundles' },
+    { key: 'fusion',   label: 'KTip, ITip & Nanobead Bundles' },
+    { key: 'crochet',  label: 'Crochet' },
+    { key: 'tapeins',  label: 'Tape-Ins' },
+    { key: 'frontals', label: 'Frontals' }
+  ];
+
+  /* One line about each hair shelf, for the shop's label cards. */
+  var HAIR_NOTES = {
+    bundles: 'Sixteen to thirty inches. Each length has its own price.',
+    fusion: 'For KTips, ITips and nanobeads. Sixteen to thirty inches.',
+    crochet: 'Pre-looped, for the Illusion Crochet look.',
+    tapeins: 'Ultra-thin wefts that lay flat and move naturally.',
+    frontals: '5x5 HD lace that melts at the hairline.'
+  };
+
+  function hair(cat, kind, texture, extra) {
+    var p = { cat: cat, name: kind + ', ' + texture, title: texture, price: null, soon: true, img: '', blurb: HAIR_NOTES[cat] };
+    for (var k in extra) p[k] = extra[k];
+    return p;
+  }
+  function lengthed() { return { lengths: LENGTHS.slice(), lengthPrices: {} }; }
+
   var PRODUCTS = [
-    { cat:'extensions', name:'KTip Fusion Bundle, 100g',      price:1850, img:'images/extensions/ext-1.jpg',         blurb:'Salon-grade keratin tips, the same hair we use for the 100g install.' },
-    { cat:'extensions', name:'KTip Fusion Bundle, 150g',      price:2600, img:'images/extensions/ext-2.jpg',         blurb:'Fuller density for longer or thicker natural hair.' },
-    { cat:'extensions', name:'Seamless Tape-In Weft Set',      price:1450, img:'images/bundles/bundle-1.jpg',         blurb:'Ultra-thin medical-grade wefts. Reusable two to three times.' },
-    { cat:'extensions', name:'Raw Straight Bundle, 3 pack',   price:1200, img:'images/bundles/bundle-2.jpg',         blurb:'Unprocessed raw hair. Holds colour and heat without shedding.' },
+    /* Bēsia Lab, her own line */
+    { cat:'lab', name:'Moringa Ginseng Follicle Fuel Hair Growth Oil', title:'Follicle Fuel Hair Growth Oil', price:380, img:'media/video/bottle-specimen-poster.webp', blurb:'Moringa and ginseng, for the scalp first. Feeds the follicle and calms the scalp, for faster, fuller growth.' },
+    { cat:'lab', name:'Moringa Ginseng Follicle Fuel Beard Oil', title:'Follicle Fuel Beard Oil', price:180, img:'media/video/beard-oil-poster.webp', blurb:'The same formula in amber glass, for him. Launching soon, reserve yours.', preorder:true },
+    { cat:'lab', name:'Bēsia Scalp Polish', price:350, img:'', blurb:'The Root Revival scalp polish from our Hair CPR: lifts dead skin and build-up so new growth has room.' },
+    { cat:'lab', name:'Bēsia Chelating Clay Mask', price:380, img:'', blurb:'The detox step of Hair CPR. A clarifying clay that draws out build-up and hard-water minerals.' },
+    { cat:'lab', name:'Bēsia Cara Scalp Refresh', price:250, img:'', blurb:'For the scalp between wash days. Made by hand in the Bēsia Lab.' },
+    { cat:'lab', name:'Bēsia Hydra-Oil', price:450, img:'', blurb:'Moisture, sealed in. Our in-house oil for dry lengths and ends.' },
+    { cat:'lab', name:'Bēsia Hair Botox, 250ml', title:'Bēsia Hair Botox', price:650, img:'media/img/product-hair-botox.webp', blurb:'A vegan, formaldehyde-free deep treatment, no botulinum toxin. The studio formula, to take home.', preorder:true },
+    { cat:'lab', name:'Flax Seed + Aloe Hair Mask', price:190, img:'', blurb:'The in-house mask from our Flax Seed + Aloe treatment. Take it home.' },
 
-    { cat:'closures',   name:'HD Lace Closure, 5×5',          price:980,  img:'images/closures-frontals/unit-1.jpg', blurb:'Melts clean at the parting. Knots bleached on request.' },
-    { cat:'closures',   name:'HD Lace Frontal, 13×4',         price:1350, img:'images/closures-frontals/unit-2.jpg', blurb:'Ear-to-ear frontal for full styling freedom.' },
-    { cat:'closures',   name:'Curly Illusion Crochet Set',     price:720,  img:'images/closures-frontals/unit-3.jpg', blurb:'Pre-looped curls for the 360 Illusion Crochet look.' },
+    /* Professional care, as prescribed on her Hair Club plans */
+    { cat:'care', name:'Mizani Hydrating Shampoo, 1L', title:'Mizani Hydrating Shampoo', price:850, img:'', blurb:'One litre. The wash-day shampoo we prescribe for dry, thirsty hair.' },
+    { cat:'care', name:'Olaplex No.5 Bond Maintenance Conditioner, 250ml', title:'Olaplex No.5 Conditioner', price:850, img:'', blurb:'Keeps bond repair working between treatments. 250ml.' },
+    { cat:'care', name:'Olaplex Bond Smoothing Leave-In', title:'Olaplex Smoothing Leave-In', price:850, img:'', blurb:'A leave-in that smooths and protects the bonds after every wash.' },
 
-    { cat:'wigs',       name:'Glueless Unit, Body Wave',      price:2400, img:'images/wigs/wig-1.jpg',               blurb:'Adjustable band, no glue. Ready to wear out of the box.' },
-    { cat:'wigs',       name:'Glueless Unit, Kinky Straight', price:2650, img:'images/wigs/wig-2.jpg',               blurb:'Blends with relaxed and silk-pressed natural hair.' },
-    { cat:'wigs',       name:'Curly Bob Unit',                 price:1900, img:'images/wigs/wig-3.jpg',               blurb:'Shoulder-skimming curl, light enough for every day.' },
-    { cat:'wigs',       name:'Silk Press Straight Unit',       price:2200, img:'images/wigs/wig-4.jpg',               blurb:'Bone straight with movement, cut into soft layers.' },
-    { cat:'wigs',       name:'Deep Wave Unit',                 price:2500, img:'images/wigs/wig-5.jpg',               blurb:'Defined deep wave that revives with water and product.' },
-    { cat:'wigs',       name:'Pixie Curl Unit',                price:1650, img:'images/wigs/wig-6.jpg',               blurb:'Short, light and low maintenance. A holiday favourite.' },
+    /* Hair: her list, by texture. Pricing to follow. */
+    hair('bundles', 'Bundles', 'Raw Straight',       lengthed()),
+    hair('bundles', 'Bundles', 'Donor Straight',     lengthed()),
+    hair('bundles', 'Bundles', 'Virgin Loose Curl',  lengthed()),
 
-    /* Her own line. Names as printed on the bottles; prices are placeholders until she gives them.
-       The pictures are stills from her own films (media/video) and her Hair Botox slide. */
-    { cat:'care', name:'Moringa Ginseng Follicle Fuel Hair Growth Oil', price:220, img:'media/video/bottle-specimen-poster.webp', blurb:'Moringa and ginseng, for follicle strength and scalp health. Launching soon, reserve yours.', preorder:true },
-    { cat:'care', name:'Moringa Ginseng Follicle Fuel Beard Oil',       price:180, img:'media/video/beard-oil-poster.webp',       blurb:'The same formula in amber glass, for him. Launching soon, reserve yours.', preorder:true },
-    { cat:'care', name:'Bēsia Hair Botox, 250ml',                    price:650, img:'media/img/product-hair-botox.webp',        blurb:'A vegan, formaldehyde-free deep treatment, no botulinum toxin. The studio formula, to take home.', preorder:true },
-    { cat:'care', name:'Flax Seed + Aloe Hair Mask',              price:190, img:'images/hair-care-cosmetics/care-3.jpg', blurb:'The in-house mask from our Flax Seed + Aloe treatment. Take it home.' },
-    { cat:'care', name:'K18 Molecular Repair Leave-In',           price:650, img:'images/hair-care-cosmetics/care-4.jpg', blurb:'Keeps bond repair working between salon treatments.' },
-    { cat:'care', name:'Olaplex No.3 Hair Perfector',             price:480, img:'images/hair-care-cosmetics/care-5.jpg', blurb:'The weekly at-home step after colour or texture work.' },
+    hair('fusion', 'Fusion Bundles', 'Donor Straight',    lengthed()),
+    hair('fusion', 'Fusion Bundles', 'Virgin Loose Curl', lengthed()),
+    hair('fusion', 'Fusion Bundles', 'Kinky Straight',    lengthed()),
+    hair('fusion', 'Fusion Bundles', 'Custom',            { custom: true, title: 'Custom Fusion Bundles', blurb: 'Made to your colour, texture and length. Tell us what you want and we quote it.' }),
 
-    { cat:'accessories', name:'Satin-Lined Bonnet',         price:120, img:'images/accessories/acc-1.jpg', blurb:'Protects a fresh silk press or install overnight.' },
-    { cat:'accessories', name:'Wide-Tooth Detangling Comb', price:85,  img:'images/accessories/acc-2.jpg', blurb:'Detangles curls wet without snapping the bond.' },
-    { cat:'accessories', name:'Microfibre Curl Towel',      price:140, img:'images/accessories/acc-3.jpg', blurb:'Dries without frizz. Essential for a wash-and-go.' },
-    { cat:'accessories', name:'Silk Scrunchie Set',         price:95,  img:'images/accessories/acc-4.jpg', blurb:'Three silk scrunchies that hold without creasing.' },
-    { cat:'accessories', name:'Bēsia Studio Tote',          price:150, img:'images/accessories/acc-5.jpg', blurb:'The studio tote, in Bēsia black.' }
+    hair('crochet', 'Crochet', 'Burmese Curl',   {}),
+    hair('crochet', 'Crochet', 'Kinky Straight', {}),
+    hair('crochet', 'Crochet', 'French Curl',    {}),
+    hair('crochet', 'Crochet', 'Loose Wave',     {}),
+
+    hair('tapeins', 'Tape-Ins', 'Donor Straight',    {}),
+    hair('tapeins', 'Tape-Ins', 'Raw Straight',      {}),
+    hair('tapeins', 'Tape-Ins', 'Virgin Loose Curl', {}),
+    hair('tapeins', 'Tape-Ins', 'Kinky Straight',    {}),
+
+    hair('frontals', '5x5 HD Frontal', 'Raw Straight',      {}),
+    hair('frontals', '5x5 HD Frontal', 'Donor Straight',    {}),
+    hair('frontals', '5x5 HD Frontal', 'Virgin Loose Curl', {}),
+    hair('frontals', '5x5 HD Frontal', 'Kinky Straight',    {})
   ];
 
   /* ---------- The team ---------- */
@@ -338,27 +429,50 @@
     note: 'Pay in full, or half to reserve your seat and the balance before the final day.'
   };
 
-  /* The School at Bēsia. Nine offerings in three groups; ids are stable
-     because the manager's student records point at them. Fees are
-     indicative bands for Cantonments and need the owner's sign-off. */
+  /* The School at Bēsia, also Bēsia Beauty Academy (Dana, 6 Oct: keep
+     The School at Bēsia, slip the Academy in). Three hero certifications
+     from her Academy brief lead (`hero`), then the other courses. Every
+     course can also be taught one to one. Ids are stable because the
+     manager's student records point at them. Fees are indicative bands
+     for Cantonments and need the owner's sign-off; for Fusion the fee is
+     per method, and two methods or all four are quoted as a bundle. */
+  var COURSE_FORMATS = ['In a small group', 'One to one'];
+  var FUSION_METHODS = ['K-Tip', 'I-Tip', 'Beaded Weft', 'Tape-In'];
+
   var COURSES = [
     {
-      id: 'C-FUSION', name: 'The Fusion Masterclass', group: 'pro', flagship: true,
-      who: 'Working stylists', format: 'Cohort of four, three days, a model day on the third',
-      days: 3, fee: 8500, seats: 4, level: 'Professional',
-      blurb: 'KTips and microlinks, start to finish, the way the studio installs them. Tool kit, hair samples, manual and a certificate of completion from Bēsia Beauty Studio.',
+      id: 'C-FUSION', name: 'Fusion Extension Specialist', group: 'pro', flagship: true, hero: 1,
+      methods: FUSION_METHODS, img: 'product-model-waves',
+      line: 'Choose your method. Build your specialty.',
+      who: 'Working stylists', format: 'Cohort of four, three days per method, a model day on the last',
+      days: 3, fee: 8500, unit: 'per method', seats: 4, level: 'Professional',
+      blurb: 'Seamless, high-value extension services, taught with a focus on technique, hair integrity, consultation and the client experience. K-Tip, I-Tip, Beaded Weft or Tape-In: one method, two, or the complete system.',
       includes: ['Tool kit and hair samples', 'Mannequin day, then a live model', 'Manual and aftercare sheets', 'Lunch, every day', 'Three months of WhatsApp mentoring'],
       learn: ['Reading density and deciding what hair can carry', 'Sectioning and bond placement',
               'KTip application and heat control', 'Microlink fitting and tension',
               'Safe removal without breakage', 'Aftercare you can teach your own clients']
     },
     {
-      id: 'C-TEXTURE', name: 'Texture Systems for Professionals', group: 'pro',
-      who: 'Stylists', format: 'Cohort of four, two days',
+      id: 'C-GROWTH', name: 'Healthy Hair & Growth Specialist', group: 'pro', hero: 2, img: 'editorial-curls-smile',
+      line: 'Build expertise clients can trust.',
+      who: 'Stylists and treatment therapists', format: 'Cohort of four, two days',
+      days: 2, fee: 5500, seats: 4, level: 'Professional',
+      blurb: 'Bēsia’s approach to healthy hair: scalp care, assessment, treatment planning, retention and professional Growth Therapy. More than styling hair; becoming the person clients trust with its health.',
+      includes: ['Bēsia Growth Therapy protocols', 'Treatment kit', 'Model day', 'Certificate of completion'],
+      learn: ['Assess: texture, density, porosity, elasticity, damage, breakage, shedding, scalp condition',
+              'Treat: professional protocols, scalp care, conditioning, strength and moisture balance, retention',
+              'Build: client routines, follow-up, maintenance, home care and long-term relationships',
+              'Bēsia Growth Therapy and its professional products']
+    },
+    {
+      id: 'C-TEXTURE', name: 'Hair Botox + Nanoplasty Specialist', group: 'pro', hero: 3, img: 'model-profile-sleek',
+      line: 'Add premium transformation to your skill set.',
+      who: 'Working stylists', format: 'Cohort of four, two days',
       days: 2, fee: 7200, seats: 4, level: 'Professional',
-      blurb: 'Nanoplasty and Hair Botox: the vegan, formaldehyde-free systems the studio was first to bring to Ghana, taught with their safety protocol.',
+      blurb: 'The vegan, formaldehyde-free smoothing systems the studio was first to bring to Ghana, from consultation to aftercare. For professionals who want to raise the value of every appointment.',
       includes: ['Starter volumes of both systems', 'Safety and ventilation protocol', 'Model day', 'Certificate of completion', 'Trade pricing afterwards'],
-      learn: ['Consultation and strand testing', 'Application and timing', 'Heat sealing without damage', 'Aftercare and rebooking', 'Pricing the service']
+      learn: ['Consultation, hair history, colour and chemical history', 'Suitability assessment and preparation', 'Product selection, application and processing',
+              'Heat technique and finishing', 'Aftercare and maintenance', 'Client experience, pricing and positioning']
     },
     {
       id: 'C-COLOUR', name: 'Colour on Textured Hair', group: 'pro',
@@ -497,11 +611,16 @@
     business: BUSINESS,
     serviceCategories: SERVICE_CATEGORIES,
     services: SERVICES,
+    coreServices: CORE_SERVICES,
     productCategories: PRODUCT_CATEGORIES,
+    lengths: LENGTHS,
+    hairNotes: HAIR_NOTES,
     products: PRODUCTS,
     team: TEAM,
     courses: COURSES,
     coursePayment: COURSE_PAYMENT,
+    courseFormats: COURSE_FORMATS,
+    fusionMethods: FUSION_METHODS,
     suppliers: SUPPLIERS,
     expenseCategories: EXPENSE_CATEGORIES,
     paymentMethods: PAYMENT_METHODS,

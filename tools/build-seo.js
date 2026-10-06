@@ -28,17 +28,17 @@ const OG_IMAGE = '/media/img/abeauty-ritual.webp';   /* her own A-Beauty campaig
 const PAGES = {
   'index.html': {
     title: 'Bēsia Beauty Studio · Fusion Extensions & Hair Care, Cantonments Accra',
-    desc: "Ghana's home of fusion extensions. UK-certified KTips and microlinks, vegan formaldehyde-free Nanoplasty, and treatment-led scalp and bond care at 54 Fifth Circular Road, Cantonments, Accra.",
+    desc: "Ghana's home of fusion extensions. KTips, ITips and tape-ins, vegan formaldehyde-free Nanoplasty, treatment-led scalp care, and a beauty supply with our own Follicle Fuel. 54 Fifth Circular Road, Cantonments, Accra.",
     prio: '1.0'
   },
   'services.html': {
     title: 'Services & Prices · Bēsia Beauty Studio, Cantonments Accra',
-    desc: 'Eighty-three services across fourteen disciplines, every price published: fusion extensions, Nanoplasty and Hair Botox, scalp and bond repair, colour, cutting, braids, lashes, facials and more.',
+    desc: 'The complete menu, every price published: fusion extensions, Nanoplasty and Hair Botox, scalp and bond repair, natural styling, silk press, braids, crochet, wigs, colour, cutting and lashes. Book and pay online.',
     prio: '0.9'
   },
   'shop.html': {
-    title: 'Shop · Follicle Fuel, Hair Botox and the Hair Library · Bēsia Beauty Studio',
-    desc: 'Follicle Fuel hair growth oil and beard oil, Bēsia Hair Botox, and the hair we install: KTip bundles, tape-ins, closures, frontals and glueless units. Mobile Money or card, delivered in Accra.',
+    title: 'Shop · Follicle Fuel, Bēsia Lab and our hair · Bēsia Beauty Studio',
+    desc: 'Welcome to your new growth era. Follicle Fuel Hair Growth Oil and the Bēsia Lab line, the professional care we prescribe, and our hair: bundles, fusion bundles, crochet, tape-ins and 5x5 HD frontals, 16 to 30 inches.',
     prio: '0.9'
   },
   'gallery.html': {
@@ -52,18 +52,18 @@ const PAGES = {
     prio: '0.7'
   },
   'packages.html': {
-    title: 'Packages & The Hair Club · Bēsia Beauty Studio, Cantonments Accra',
-    desc: "Three of Bēsia's own treatment pairings at the price quoted in the studio, with the saving already in, and a price builder that totals any combination from the published menu.",
+    title: 'The Hair Club at Bēsia · Hair wellness plans and membership, Cantonments Accra',
+    desc: 'Start with the Blueprint, your own hair wellness plan, then the membership: a treatment every month, member savings, rewards and first access. Plus the Hair CPR detox and our treatment pairings.',
     prio: '0.8'
   },
   'classes.html': {
-    title: 'Classes · The School at Bēsia, Cantonments Accra',
-    desc: 'Train at Bēsia Beauty Studio in Cantonments, Accra. The Fusion Masterclass, texture systems, colour on textured hair, silk press, braiding, natural hair, lashes and brows, and evenings for clients. Pay in full or half to reserve your seat.',
+    title: 'The School at Bēsia · Bēsia Beauty Academy, Cantonments Accra',
+    desc: 'Your hands can build your life. Certified training in fusion extensions (K-Tip, I-Tip, beaded weft, tape-in), healthy hair and growth, and Hair Botox and Nanoplasty. Small cohorts or one to one, in Cantonments, Accra.',
     prio: '0.8'
   },
   'contact.html': {
     title: 'Book & Contact · Bēsia Beauty Studio, Cantonments Accra',
-    desc: 'Book an appointment at 54 Fifth Circular Road, Cantonments, Accra. Instant estimate from published prices, confirmed on WhatsApp. Open Monday to Saturday, 9am to 7pm.',
+    desc: 'Book an appointment at 54 Fifth Circular Road, Cantonments, Accra. Choose your services at published prices and pay online by Mobile Money or card. Open Monday to Saturday, 9am to 7pm.',
     prio: '0.9'
   },
   'checkout.html': { title: 'Checkout · Bēsia Beauty Studio', desc: 'Confirm your order from the Bēsia shop. Pay by Mobile Money or card, collect in Cantonments or have it delivered in Accra.', prio: '0.4', noindex: true },

@@ -86,6 +86,7 @@
   /* The best running discount that applies to one item. */
   function discountFor(item) {
     var best = null;
+    if (typeof item.price !== 'number') return null;   /* nothing to take off a price still to come */
     discounts().forEach(function (d) {
       if (!d.active) return;
       var hits =
@@ -130,7 +131,23 @@
     if (kind === 'product') {
       var left = stockOf(base.name);
       item.stock = left;
-      item.soldOut = (left === 0);
+      /* hair still arriving is reserved, not sold from the shelf, so an
+         empty shelf does not stop it once the owner has priced it */
+      item.soldOut = (left === 0) && !(base.raw && base.raw.soon);
+      /* Priced by length: the published lengths, each with its own price.
+         The owner's figure for a length wins over the published one. */
+      var raw = base.raw || {};
+      if (raw.lengths && raw.lengths.length) {
+        var own = o.lengthPrices || {}, pub = raw.lengthPrices || {};
+        item.lengths = raw.lengths.map(function (len) {
+          var p = typeof own[len] === 'number' ? own[len] : (typeof pub[len] === 'number' ? pub[len] : null);
+          if (p == null && typeof item.price === 'number') p = item.price;   /* one price set for every length */
+          return { len: len, price: p };
+        });
+        var known = item.lengths.filter(function (l) { return l.price != null; }).map(function (l) { return l.price; });
+        item.from = known.length ? Math.min.apply(null, known) : null;
+      }
+      item.priced = item.lengths ? item.from != null : typeof item.price === 'number';
     }
     return item;
   }
@@ -174,7 +191,8 @@
     o[b][name] = Object.assign({}, o[b][name] || {}, patch);
     /* keep the store tidy: drop an entry that no longer differs */
     var e = o[b][name];
-    if (e.published !== false && !e.isNew && typeof e.price !== 'number') delete o[b][name];
+    var hasLengths = e.lengthPrices && Object.keys(e.lengthPrices).length;
+    if (e.published !== false && !e.isNew && typeof e.price !== 'number' && !hasLengths) delete o[b][name];
     saveOverrides(o);
   }
   function setPublished(kind, name, on) { setFlag(kind, name, { published: !!on }); }
@@ -185,6 +203,20 @@
     setFlag(kind, name, { price: Math.round(n) });
     return true;
   }
+  /* A price for each length of a product sold by length. A blank
+     length goes back to "price to follow". */
+  function setLengthPrices(name, map) {
+    var clean = {};
+    Object.keys(map || {}).forEach(function (len) {
+      var n = Number(map[len]);
+      if (map[len] !== '' && map[len] != null && isFinite(n) && n > 0) clean[len] = Math.round(n);
+    });
+    var o = overrides();
+    o.products[name] = Object.assign({}, o.products[name] || {}, { lengthPrices: clean });
+    saveOverrides(o);
+    return true;
+  }
+
   function resetPrice(kind, name) {
     var o = overrides(), b = bucket(kind);
     if (o[b][name]) { delete o[b][name].price; saveOverrides(o); }
@@ -249,6 +281,7 @@
     setNew: setNew,
     setPrice: setPrice,
     resetPrice: resetPrice,
+    setLengthPrices: setLengthPrices,
     addItem: addItem,
     removeAdded: removeAdded,
     resetAll: resetAll,

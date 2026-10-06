@@ -111,6 +111,25 @@
   }
   function firstName(s) { return String(s || '').split(' ')[0]; }
 
+  /* Is any service in this booking under that core service? */
+  function inCore(type, slug) {
+    var core = ((window.BESIA && BESIA.coreServices) || []).filter(function (c) { return c.slug === slug; })[0];
+    if (!core) return true;
+    return String(type || '').split(', ').some(function (n) { return core.services.indexOf(n) !== -1; });
+  }
+  /* The published menu as <option>s, grouped under her core services, the rest after. */
+  function serviceOptions() {
+    var B = window.BESIA;
+    if (!B) return '<option>Consultation</option>';
+    var used = {};
+    var html = (B.coreServices || []).map(function (c) {
+      return '<optgroup label="' + esc(c.label) + '">' + c.services.map(function (n) { used[n] = 1; return '<option>' + esc(n) + '</option>'; }).join('') + '</optgroup>';
+    }).join('');
+    var rest = B.services.filter(function (s) { return !used[s.name]; });
+    if (rest.length) html += '<optgroup label="Everything else">' + rest.map(function (s) { return '<option>' + esc(s.name) + '</option>'; }).join('') + '</optgroup>';
+    return html;
+  }
+
   function receiptText(b) {
     var balance = b.amount - b.deposit;
     return '*' + SALON_NAME + '*\n' + SALON_LINE + '\n' +
@@ -215,17 +234,34 @@
     BOOKINGS.unshift({
       id: w.id, client: w.name, phone: w.phone, type: w.service,
       date: new Date((w.date || iso(d(2))) + 'T12:00:00'),
-      venue: 'Not assigned', pkg: 'From website', amount: w.amount || 0, deposit: 0,
+      venue: 'Not assigned', pkg: 'From website', amount: w.amount || 0, deposit: w.paid || 0,
       status: w.status || 'Pending', source: 'Website', web: true, webId: w.id,
       notes: [
+        w.paid ? 'Paid online: ' + money(w.paid) + ' by ' + w.payMethod + (w.payDetail ? ' (' + w.payDetail + ')' : '') + (w.payRef ? ', ref ' + w.payRef : '') + '.' : '',
         w.occasion ? 'Occasion: ' + w.occasion : '',
         w.slot ? 'Preferred time: ' + w.slot : '',
         (w.people && String(w.people) !== '1') ? 'People: ' + w.people : '',
         w.notes || '',
-        'Booked through the website. Confirm the time with her.'
+        attachText(w.attach),
+        w.paid ? 'Booked and paid through the website. Confirm the time with her; if it is taken, offer the nearest free slot.'
+               : 'Booked through the website. Confirm the time with her.'
       ].filter(Boolean).join('\n')
     });
+    if (w.paid) PAYMENTS.push({ client: w.name, service: w.service, amount: w.paid, when: new Date(w.ts || Date.now()) });
   });
+
+  /* A form a page sent with the booking (the Hair Club consultation), as plain lines. */
+  function attachText(att) {
+    if (!att || !att.data) return '';
+    var out = [(att.label || 'Form') + ':'];
+    Object.keys(att.data).forEach(function (k) {
+      var v = att.data[k];
+      if (Array.isArray(v)) v = v.join(', ');
+      if (v === '' || v == null) return;
+      out.push('  ' + k + ': ' + v);
+    });
+    return out.join('\n');
+  }
 
   /* ================= GENERIC DRAWER ================= */
   var drawer = document.getElementById('page-drawer');
@@ -334,7 +370,7 @@
     function rows() {
       return BOOKINGS.filter(function (b) {
         if (!matchesChip(b)) return false;
-        if (state.type !== 'all' && b.type !== state.type) return false;
+        if (state.type !== 'all' && !inCore(b.type, state.type)) return false;
         if (state.q) {
           var hay = (b.client + ' ' + b.id + ' ' + b.phone + ' ' + b.type).toLowerCase();
           if (hay.indexOf(state.q.toLowerCase()) === -1) return false;
@@ -376,6 +412,13 @@
     });
     var bkSearch = document.getElementById('bk-search');
     var bkType = document.getElementById('bk-type');
+    /* Filter by her core services: a booking matches when any service in it
+       sits under that core service (a booking can hold several). */
+    var CORES = (window.BESIA && BESIA.coreServices) || [];
+    if (bkType && CORES.length) {
+      bkType.innerHTML = '<option value="all">All services</option>' +
+        CORES.map(function (c) { return '<option value="' + c.slug + '">' + c.label + '</option>'; }).join('');
+    }
     if (bkSearch) bkSearch.addEventListener('input', function () { state.q = bkSearch.value; render(); });
     if (bkType) bkType.addEventListener('change', function () { state.type = bkType.value; render(); });
 
@@ -445,11 +488,19 @@
       openDrawer('New appointment',
         '<div class="a-field"><label>Customer name</label><input class="a-input" id="nb-client" placeholder="e.g. Ama Owusu"></div>' +
         '<div class="a-field"><label>Phone / WhatsApp</label><input class="a-input" id="nb-phone" type="tel" placeholder="024 000 0000"></div>' +
-        '<div class="a-field"><label>Service</label><select class="a-select" id="nb-type"><option>Braids</option><option>Wigs</option><option>Wig Purchase</option><option>Wig Revamp</option><option>Hair Treatment</option><option>Locs</option><option>Nails</option><option>Pedicure</option><option>Lashes</option><option>Brows</option><option>Make-Up</option><option>Facial</option><option>Massage</option><option>Waxing</option><option>Piercing</option></select></div>' +
+        '<div class="a-field"><label>Service</label><select class="a-select" id="nb-type">' + serviceOptions() + '</select></div>' +
         '<div class="a-field"><label>Date</label><input class="a-input" type="date" id="nb-date" value="' + iso(d(2)) + '"></div>' +
         '<div class="a-field"><label>Stylist</label><select class="a-select" id="nb-venue">' + STAFF.map(function (s) { return '<option>' + s.name + '</option>'; }).join('') + '</select></div>' +
         '<div class="a-field"><label>Price (GHS)</label><input class="a-input" type="number" id="nb-amount" inputmode="numeric" placeholder="e.g. 250"></div>' +
         '<button class="a-btn a-btn--gold a-btn--lg" id="nb-save">Save appointment</button>');
+      /* the published price comes in with the service, and can be changed */
+      var nbType = document.getElementById('nb-type'), nbAmount = document.getElementById('nb-amount');
+      var fillPrice = function () {
+        var it = window.BESIA && BESIA.live ? BESIA.live.find('service', nbType.value) : null;
+        if (it && it.price > 0) nbAmount.value = it.price;
+      };
+      nbType.addEventListener('change', fillPrice);
+      fillPrice();
       document.getElementById('nb-save').addEventListener('click', function () {
         var name = document.getElementById('nb-client').value.trim();
         if (!name) { toast('Please enter a customer name'); return; }
@@ -694,7 +745,7 @@
         '<div class="a-field"><label>Name</label><input class="a-input" id="ns-name" placeholder="e.g. Adwoa"></div>' +
         '<div class="a-field"><label>Role</label><input class="a-input" id="ns-role" placeholder="e.g. Nail Technician"></div>' +
         '<div class="a-field"><label>Phone / WhatsApp</label><input class="a-input" id="ns-phone" type="tel" placeholder="024 000 0000"></div>' +
-        '<div class="a-field"><label>What they do</label><input class="a-input" id="ns-skills" placeholder="e.g. Manicure, Pedicure"></div>' +
+        '<div class="a-field"><label>What they do</label><input class="a-input" id="ns-skills" placeholder="e.g. KTips, silk press"></div>' +
         '<button class="a-btn a-btn--gold a-btn--lg" id="ns-save">Save staff</button>');
       document.getElementById('ns-save').addEventListener('click', function () {
         var name = document.getElementById('ns-name').value.trim();

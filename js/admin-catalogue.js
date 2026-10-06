@@ -86,8 +86,22 @@
 
       var list = rows();
       el('items-body').innerHTML = list.length ? list.map(function (i) {
-        var changed = i.basePrice !== (i.was != null ? i.was : i.price);
-        var priceCell = i.was
+        var changed = i.basePrice != null && i.basePrice !== (i.was != null ? i.was : i.price);
+        var priceCell;
+        if (i.lengths) {
+          /* sold by length: how many lengths are priced, and one button to set them */
+          var done = i.lengths.filter(function (l) { return l.price != null; }).length;
+          return '<tr' + (i.published ? '' : ' class="is-hidden-row"') + '>' +
+            '<td><strong>' + esc(i.name) + '</strong><br><span class="mini-info">Priced by length</span></td>' +
+            '<td>' + esc(catLabel(i.kind, i.cat)) + '</td>' +
+            '<td class="num"><strong>' + (done ? done + ' of ' + i.lengths.length + ' priced' : 'Price to follow') + '</strong>' +
+              ' <button class="a-btn a-btn--ghost a-btn--sm" type="button" data-lengths="' + esc(i.name) + '">Set prices</button></td>' +
+            '<td>' + toggle('new', i.name, i.isNew) + '</td>' +
+            '<td>' + toggle('pub', i.name, i.published) + '</td>' +
+            '<td class="num"></td></tr>';
+        }
+        if (typeof i.price !== 'number') priceCell = '<strong>Price to follow</strong>';
+        else priceCell = i.was
           ? '<span class="live-was-a">' + money(i.was) + '</span> <strong>' + money(i.price) + '</strong>'
           : '<strong>' + money(i.price) + '</strong>';
         return '<tr' + (i.published ? '' : ' class="is-hidden-row"') + '>' +
@@ -149,7 +163,7 @@
       var item = L.find(kind, name);
       BesiaAsk.amount({
         title: 'New price for ' + name,
-        message: 'The published price is <strong>' + money(item.basePrice) + '</strong>. ' +
+        message: (item.basePrice != null ? 'The published price is <strong>' + money(item.basePrice) + '</strong>. ' : 'There is no price on the website yet. ') +
                  'Changing it here changes it on the website, the booking form and the chat at the same time.',
         value: item.was != null ? item.was : item.price,
         confirmLabel: 'Change the price'
@@ -158,6 +172,28 @@
         if (!L.setPrice(kind, name, v)) { toast('That is not a valid amount.'); return; }
         log('Price changed', name + ' → ' + money(v));
         toast(name + ' is now ' + money(v) + ' everywhere.');
+        render();
+      });
+    });
+
+    /* Hair sold by length: one box per length, blank means price to follow. */
+    on(el('items-body'), 'click', '[data-lengths]', function (e, t) {
+      var name = t.getAttribute('data-lengths');
+      var item = L.find('product', name);
+      if (!item || !item.lengths) return;
+      var now = {};
+      item.lengths.forEach(function (l) { if (l.price != null) now[l.len] = l.price; });
+      BesiaAsk.lengths({
+        title: 'Prices for ' + name,
+        message: 'Each length has its own price. Leave a length blank and the website says "Price to follow" for it, and nobody can order it yet.',
+        lengths: item.lengths.map(function (l) { return l.len; }),
+        values: now
+      }).then(function (map) {
+        if (!map) return;
+        L.setLengthPrices(name, map);
+        var n = Object.keys(map).length;
+        log('Prices by length set', name + ' · ' + n + ' of ' + item.lengths.length + ' lengths');
+        toast(n ? name + ': ' + n + ' lengths priced, on the website now.' : name + ' is back to "Price to follow".');
         render();
       });
     });

@@ -174,8 +174,8 @@
         id: 'BES-DEMO-101', seeded: true, placedAt: Date.now() - 26 * h,
         customer: 'Efua Boakye', phone: '030 277 4410', method: 'delivery', area: 'East Legon',
         payment: { type: 'momo', network: 'MTN MoMo', number: '024 xxx 4410', status: 'Paid' },
-        items: [{ name: 'KTip Fusion Bundle, 100g', price: 1850, qty: 1, cat: 'extensions' }],
-        subtotal: 1850, deliveryFee: 30, total: 1880,
+        items: [{ name: 'Moringa Ginseng Follicle Fuel Hair Growth Oil', price: 380, qty: 2, cat: 'lab' }],
+        subtotal: 760, deliveryFee: 30, total: 790,
         status: 'Out for delivery',
         timeline: [
           { status: 'Order placed', at: Date.now() - 26 * h },
@@ -188,10 +188,10 @@
         customer: 'Adjoa Serwaa', phone: '024 118 7745', method: 'pickup', area: '',
         payment: { type: 'pickup', network: '', number: '', status: 'Pay on pickup' },
         items: [
-          { name: 'HD Lace Frontal, 13×4', price: 1350, qty: 1, cat: 'closures' },
-          { name: 'K18 Molecular Repair Leave-In', price: 650, qty: 1, cat: 'care' }
+          { name: 'Bēsia Scalp Polish', price: 350, qty: 1, cat: 'lab' },
+          { name: 'Mizani Hydrating Shampoo, 1L', price: 850, qty: 1, cat: 'care' }
         ],
-        subtotal: 2000, deliveryFee: 0, total: 2000,
+        subtotal: 1200, deliveryFee: 0, total: 1200,
         status: 'Confirmed',
         timeline: [
           { status: 'Order placed', at: Date.now() - 8 * h },
@@ -203,10 +203,10 @@
         customer: 'Yaa Pokuaa', phone: '027 233 8181', method: 'delivery', area: 'Madina',
         payment: { type: 'momo', network: 'Telecel Cash', number: '020 xxx 8181', status: 'Paid' },
         items: [
-          { name: 'Satin-Lined Bonnet', price: 120, qty: 2, cat: 'accessories' },
-          { name: 'Flax Seed + Aloe Hair Mask', price: 190, qty: 1, cat: 'care' }
+          { name: 'Bēsia Hydra-Oil', price: 450, qty: 1, cat: 'lab' },
+          { name: 'Flax Seed + Aloe Hair Mask', price: 190, qty: 1, cat: 'lab' }
         ],
-        subtotal: 430, deliveryFee: 30, total: 460,
+        subtotal: 640, deliveryFee: 30, total: 670,
         status: 'Order placed',
         timeline: [{ status: 'Order placed', at: Date.now() - 2 * h }]
       },
@@ -214,8 +214,11 @@
         id: 'BES-DEMO-104', seeded: true, placedAt: Date.now() - 50 * h,
         customer: 'Linda Mensah', phone: '055 302 6614', method: 'pickup', area: '',
         payment: { type: 'momo', network: 'MTN MoMo', number: '055 xxx 6614', status: 'Paid' },
-        items: [{ name: 'Glueless Unit, Body Wave', price: 2400, qty: 1, cat: 'wigs' }],
-        subtotal: 2400, deliveryFee: 0, total: 2400,
+        items: [
+          { name: 'Bēsia Chelating Clay Mask', price: 380, qty: 1, cat: 'lab' },
+          { name: 'Olaplex No.5 Bond Maintenance Conditioner, 250ml', price: 850, qty: 1, cat: 'care' }
+        ],
+        subtotal: 1230, deliveryFee: 0, total: 1230,
         status: 'Picked up',
         timeline: [
           { status: 'Order placed', at: Date.now() - 50 * h },

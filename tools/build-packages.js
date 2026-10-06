@@ -37,6 +37,21 @@ const PACKS = [
     cta: 'Book the Reset'
   },
   {
+    /* Dana, 6 Oct: "Hair CPR can be included here as a detox + nourish".
+       The steps are hers, from the Hair Club plan. */
+    tier: 'Detox + Nourish', name: 'Bēsia Hair CPR', featured: false,
+    source: 'Bēsia Hair CPR Treatment',
+    features: [
+      'Chelating clay mask, a clarifying detox',
+      'Root Revival scalp polish, clears dead skin and build-up',
+      'Flax Seed + Aloe treatment, follicle prep and restoration',
+      'GRO hot oil treatment, for growth',
+      'Made in-house in the Bēsia Lab'
+    ],
+    note: 'Our signature ritual, layered to revive the scalp and nourish the hair. Every two weeks, or as your plan sets it, to calm shedding and bring growth back.',
+    cta: 'Book Hair CPR'
+  },
+  {
     tier: 'Restore', name: 'Curl Revive with FlaxGRO', featured: true, badge: 'Most Loved',
     source: 'Curl Revive with FlaxGRO',
     features: [
@@ -140,6 +155,11 @@ for (const [open, close, fn] of [
   if (a === -1 || b === -1) { console.error('MISSING MARKER ' + open); process.exit(1); }
   html = html.slice(0, a + open.length) + '\n' + fn() + '\n' + html.slice(b);
 }
+/* The Blueprint's price, wherever the page names it, straight from the menu. */
+html = html.replace(/(<span data-service-price="([^"]+)">)[^<]*(<\/span>)/g, (m, o, name, c) => {
+  const s = find(name);
+  return o + B.priceOf(s).toLocaleString('en-GB') + c;
+});
 fs.writeFileSync(file, html);
 /* The home page teaser carries the same three packages, so it can never
    advertise something the packages page does not. */
