@@ -5,10 +5,10 @@
   "h": 1272,
   "wSm": 480,
   "hSm": 848,
-  "seconds": 9.1,
-  "kb": 1091,
-  "kbSm": 548,
-  "v": "8eeaff35",
+  "seconds": 9.9,
+  "kb": 1165,
+  "kbSm": 586,
+  "v": "08a9f8a4",
   "note": "PUSH door, the owner welcomes you in, oak logo wall, arches"
  },
  "hairclub-mirror": {
@@ -17,10 +17,10 @@
   "h": 960,
   "wSm": 480,
   "hSm": 640,
-  "seconds": 6.1,
-  "kb": 600,
-  "kbSm": 266,
-  "v": "a5bb99be",
+  "seconds": 6.9,
+  "kb": 625,
+  "kbSm": 301,
+  "v": "96875404",
   "note": "The Hair Club film, linen dress at the arched backlit mirror"
  },
  "founder-arrives": {
@@ -29,10 +29,10 @@
   "h": 1292,
   "wSm": 480,
   "hSm": 862,
-  "seconds": 3.3,
-  "kb": 454,
-  "kbSm": 231,
-  "v": "4227e7d2",
+  "seconds": 3.9,
+  "kb": 515,
+  "kbSm": 262,
+  "v": "4c229d85",
   "note": "The founder walking the arched corridor"
  },
  "wash-ritual": {
@@ -42,9 +42,9 @@
   "wSm": 480,
   "hSm": 854,
   "seconds": 5.8,
-  "kb": 700,
-  "kbSm": 354,
-  "v": "fb269168",
+  "kb": 705,
+  "kbSm": 353,
+  "v": "0f4adf7b",
   "note": "Scalp cleanse at the basin"
  },
  "wash-ritual-curls": {
@@ -54,9 +54,9 @@
   "wSm": 480,
   "hSm": 854,
   "seconds": 6.3,
-  "kb": 782,
+  "kb": 776,
   "kbSm": 392,
-  "v": "09925e68",
+  "v": "4db6d449",
   "note": "Curls lathered at the basin"
  },
  "braid-finish": {
@@ -66,9 +66,9 @@
   "wSm": 480,
   "hSm": 862,
   "seconds": 3.4,
-  "kb": 8,
-  "kbSm": 6,
-  "v": "fe35f3f6",
+  "kb": 448,
+  "kbSm": 227,
+  "v": "9f5bb8f6",
   "note": "Finishing braid ends"
  },
  "follicle-campaign": {
@@ -78,9 +78,9 @@
   "wSm": 480,
   "hSm": 680,
   "seconds": 5.1,
-  "kb": 480,
-  "kbSm": 212,
-  "v": "ec08b8e1",
+  "kb": 505,
+  "kbSm": 240,
+  "v": "150f3ff9",
   "note": "The bottle rises through flying hair"
  },
  "beard-oil": {

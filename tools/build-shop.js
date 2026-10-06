@@ -54,10 +54,10 @@ const ALT = {
 };
 
 function filters() {
-  const out = ['          <button class="chip filter-btn is-active" data-shop-filter="all" aria-pressed="true">Everything <span class="n">' + B.products.length + '</span></button>'];
+  const out = ['          <button type="button" class="chip filter-btn is-active" data-shop-filter="all" aria-pressed="true">Everything <span class="n">' + B.products.length + '</span></button>'];
   B.productCategories.forEach(c => {
     const n = B.products.filter(p => p.cat === c.key).length;
-    out.push('          <button class="chip filter-btn" data-shop-filter="' + c.key + '" aria-pressed="false">' + esc(c.label) + ' <span class="n">' + n + '</span></button>');
+    out.push('          <button type="button" class="chip filter-btn" data-shop-filter="' + c.key + '" aria-pressed="false">' + esc(c.label) + ' <span class="n">' + n + '</span></button>');
   });
   out.push('          <span class="t-credit shop-count" id="shop-count" aria-live="polite">Showing ' + B.products.length + ' of ' + B.products.length + '</span>');
   return out.join('\n');

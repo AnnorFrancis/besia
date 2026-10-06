@@ -83,7 +83,7 @@
         <div class="nav-cta">
           <a href="./contact.html" class="btn btn--sm" data-book>Book<span class="n" data-book-count></span></a>
         </div>
-        <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="contents">
+        <button type="button" class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="contents">
           <span class="nav-toggle-word"></span>
         </button>
       </div>
@@ -220,7 +220,7 @@
                   </div>
                   <div class="field">
                     <label for="co-momo">MoMo number</label>
-                    <input type="tel" id="co-momo" inputmode="numeric">
+                    <input type="tel" id="co-momo" inputmode="numeric" autocomplete="tel">
                     <p class="error-msg">Enter the number to bill.</p>
                   </div>
                 </div>
@@ -254,7 +254,7 @@
             <div class="co-line-total"><span>Subtotal</span><span id="co-subtotal">GHS 0</span></div>
             <div class="co-line-total"><span>Delivery</span><span id="co-delivery">Free</span></div>
             <div class="co-grand"><span class="t-label">Total</span><span id="co-total">GHS 0</span></div>
-            <button class="btn btn--wide" id="co-pay">Pay and place order</button>
+            <button type="button" class="btn btn--wide" id="co-pay">Pay and place order</button>
             <p class="co-note t-cap">You get an order number at once and can follow every step on the tracking page.</p>
           </aside>
         </div>

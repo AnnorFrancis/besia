@@ -65,7 +65,6 @@
 .field textarea, .bk-field textarea { min-height: 96px; resize: vertical; line-height: 1.5; }
 .field select, .bk-field select { appearance: none; -webkit-appearance: none; background-image: linear-gradient(45deg, transparent 50%, currentColor 50%), linear-gradient(135deg, currentColor 50%, transparent 50%); background-position: calc(100% - 14px) 50%, calc(100% - 8px) 50%; background-size: 6px 6px; background-repeat: no-repeat; padding-right: var(--s-6); }
 .field input:focus, .field select:focus, .field textarea:focus, .bk-field input:focus, .bk-field select:focus, .bk-field textarea:focus, .bk-search:focus { border-bottom: 2px solid var(--fg); padding-bottom: calc(var(--s-3) - 1px); outline: none; box-shadow: none; }
-.field.is-error input, .field.is-error textarea, .field.is-error select { border-bottom-color: var(--accent); }
 .field .error, .bk-error { font-size: var(--t-cap); color: var(--accent); margin-top: var(--s-2); }
 .field input::placeholder, .bk-field input::placeholder, .bk-search::placeholder, .field textarea::placeholder { color: var(--fg-3); opacity: 1; }
 .row-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--s-5); }
@@ -120,8 +119,6 @@
 
 .nav-logo { display: flex; flex-direction: column; justify-content: center; min-height: 44px; color: inherit; }
 .nav-logo-name { font-size: 1rem; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; line-height: 1; padding-left: 0.3em; }
-.nav-logo-tag, .nav-head { display: block; margin-top: 5px; font-size: 0.6875rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; line-height: 1; opacity: 0.78; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 48vw; }
-.nav-head .n { font-variant-numeric: tabular-nums; }
 .nav-logo svg { display: none; }
 
 .nav-links { display: none; justify-content: center; gap: clamp(var(--s-4), 2vw, var(--s-6)); }
@@ -257,9 +254,8 @@
 @media (max-width: 480px) { .cart-bar-label { display: none; } .cart-bar { grid-template-columns: auto auto minmax(0, 1fr); } .cart-bar-total { text-align: right; } .cart-bar-cta { grid-column: 1 / -1; width: 100%; } }
 @media (max-width: 480px) { .cart-bar { padding: var(--s-2); } }
 
-/* Retired floats: the WhatsApp circle, the chat bubble and the action
-   bar become rows in Contents and the colophon. The chat window stays. */
-body .wa-float, body .action-bar, body .chat-fab { display: none; }
+/* The chat bubble never floats: the Menu and footer rows open the chat window. */
+body .chat-fab { display: none; }
 
 /* Offline notice lives in the dock slot */
 .net-pill {
@@ -368,7 +364,6 @@ body.bk-open { overflow: hidden; }
    Live flags written by site-sync.js (new, sold out, offer)
    ============================================================ */
 .live-flag { display: inline-block; padding: 4px 8px; font-size: var(--t-label); font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--p-ink); background: var(--p-brass-lit); }
-.live-flag--sold { background: var(--p-oatmeal); }
 
 /* ============================================================
    Films: the reel (js/reel.js)
@@ -417,7 +412,6 @@ html[data-fx="full"] .slides.is-running .slide.is-active img { animation: ken-bu
 .slides.is-running .slides-bar { animation: slides-bar 6000ms linear forwards; }
 .slides.is-paused .slides-bar { animation-play-state: paused; }
 @keyframes slides-bar { to { transform: scaleX(1); } }
-.slides-caption { position: absolute; left: var(--s-4); bottom: calc(var(--s-4) + 56px); z-index: 2; color: var(--p-ivory); max-width: 32ch; }
 
 /* ============================================================
    Lightbox (js/gallery.js)
@@ -450,7 +444,7 @@ html[data-fx="full"] .slides.is-running .slide.is-active img { animation: ken-bu
 .chat-close { margin-left: auto; width: 44px; height: 44px; display: grid; place-items: center; color: inherit; font-size: 1.5rem; font-weight: 200; }
 .chat-body { flex: 1; min-height: 0; overflow-y: auto; padding: var(--s-4); display: flex; flex-direction: column; gap: var(--s-3); }
 .chat-msg { max-width: 85%; padding: var(--s-3) var(--s-4); font-size: var(--t-cap); line-height: 1.5; background: var(--p-oatmeal); }
-.chat-msg.is-user, .chat-msg--user { align-self: flex-end; background: var(--p-ink); color: var(--p-ivory); }
+.chat-msg--user { align-self: flex-end; background: var(--p-ink); color: var(--p-ivory); }
 .chat-quick { display: flex; flex-wrap: wrap; gap: var(--s-2); padding: 0 var(--s-4) var(--s-3); }
 .chat-quick button { min-height: 40px; padding: 0 var(--s-3); font-size: var(--t-label); font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; border: 1px solid var(--rule-ui); color: var(--p-ink); }
 .chat-input { display: flex; gap: var(--s-2); padding: var(--s-3) var(--s-4) calc(var(--s-3) + env(safe-area-inset-bottom, 0px)); border-top: 1px solid var(--rule); }
@@ -533,14 +527,6 @@ html.intro .intro-veil { animation: intro-gone 1ms linear 2100ms forwards; }
 .site-footer { padding: var(--section) 0 var(--s-6); overflow: hidden; }
 .foot-logo { display: inline-block; font-size: 1.25rem; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; padding-left: 0.3em; margin-bottom: var(--s-4); }
 .foot-brand p { max-width: 36ch; }
-.foot-line { margin-top: var(--s-4); font-size: var(--t-body); font-weight: 300; color: var(--fg-2); }
-.foot-col .foot-head { color: var(--fg-3); margin-bottom: var(--s-4); }
-.foot-col ul { display: grid; gap: 2px; }
-.foot-col li { font-size: var(--t-cap); line-height: 1.5; color: var(--fg-2); }
-.foot-col li > span { display: block; padding: var(--s-2) 0; }
-.foot-col a { display: inline-flex; align-items: center; min-height: 40px; color: var(--fg); border-bottom: 1px solid transparent; transition: border-color var(--d-hover) var(--ease-soft); }
-@media (hover: hover) and (pointer: fine) { .foot-col a:hover { border-bottom-color: var(--accent); } }
-.foot-mark { margin: var(--s-8) 0 0; font-size: clamp(6rem, 26vw, 24rem); font-weight: 200; letter-spacing: 0.18em; text-transform: uppercase; line-height: 0.72; color: var(--p-oak); opacity: 0.16; white-space: nowrap; padding-left: 0.18em; user-select: none; overflow: hidden; height: 0.52em; }
 .foot-bottom { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--s-2) var(--s-5); padding-top: var(--s-5); border-top: 1px solid var(--rule); font-size: var(--t-label); font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--fg-3); }
 .foot-bottom a { color: var(--fg-2); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--rule-ui); }
 
@@ -553,12 +539,9 @@ html.intro .intro-veil { animation: intro-gone 1ms linear 2100ms forwards; }
    Glass, where it can be seen
    ============================================================ */
 .glass { position: relative; background: rgb(21 27 34 / 0.92); box-shadow: var(--rim), var(--lift); }
-.glass--light { background: rgb(246 240 228 / 0.94); color: var(--p-ink); }
 @supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
   .glass { background: rgb(21 27 34 / 0.52); -webkit-backdrop-filter: blur(18px) saturate(1.35); backdrop-filter: blur(18px) saturate(1.35); }
-  .glass--light { background: rgb(246 240 228 / 0.72); }
   html[data-fx="lite"] .glass { background: rgb(21 27 34 / 0.92); -webkit-backdrop-filter: none; backdrop-filter: none; }
-  html[data-fx="lite"] .glass--light { background: rgb(246 240 228 / 0.94); }
 }
 .glass::after { content: ''; position: absolute; inset: 0; pointer-events: none; opacity: 0.045; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.95' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.7 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
 .glass > * { position: relative; z-index: 1; }

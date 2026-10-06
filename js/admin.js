@@ -135,9 +135,9 @@
   }
   function confirmText(b) {
     return 'Hi ' + firstName(b.client) + ',\n\n' +
-      'Good news! Your appointment at *Bēsia Beauty Studio* is *CONFIRMED*. ✅\n\n' +
+      'Your appointment at *Bēsia Beauty Studio* is confirmed.\n\n' +
       'Date:    ' + pretty(b.date) + '\nService: ' + b.type + '\n\n' +
-      'Please arrive 10 minutes early. Reply here if anything changes. See you soon!';
+      'Please arrive 10 minutes early. Reply here if anything changes. See you soon.';
   }
   function rejectText(b) {
     return 'Hi ' + firstName(b.client) + ',\n\n' +
@@ -569,7 +569,7 @@
           '<td class="num money-owed">' + money(b.amount - b.deposit) + '</td>' +
           '<td class="row-actions"><button class="a-btn a-btn--gold a-btn--sm" data-pay="' + idx + '">Record</button>' +
           '<button class="a-btn a-btn--ghost a-btn--sm" data-remind="' + idx + '">Remind</button></td></tr>';
-      }).join('') : '<tr class="empty-row"><td colspan="4">Everyone is paid up. Nice! ✨</td></tr>';
+      }).join('') : '<tr class="empty-row"><td colspan="4">Everyone is paid up.</td></tr>';
 
       var recent = PAYMENTS.slice().sort(function (a, b) { return b.when - a.when; }).slice(0, 12);
       document.getElementById('paid-body').innerHTML = recent.map(function (p) {

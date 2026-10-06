@@ -246,7 +246,7 @@
         '<p class="bk-done-ref">' + esc(lastRef) + '</p>' +
         '<p>Thank you. Your request is with the studio, and we will confirm your slot and the final price on WhatsApp, usually within the hour.</p>' +
         '<a class="btn btn--ghost-dark" target="_blank" rel="noopener" href="https://wa.me/' + esc((B.business && B.business.whatsapp) || '233240787993') + '?text=' +
-          encodeURIComponent('Hello Bēsia Beauty Studio! I have a question about my booking ' + lastRef + '.') + '">Message us on WhatsApp</a>' +
+          encodeURIComponent('Hello Bēsia Beauty Studio, I have a question about my booking ' + lastRef + '.') + '">Message us on WhatsApp</a>' +
       '</section>';
     foot.innerHTML = '<button type="button" class="btn btn--gold bk-primary" data-bk-close>Done</button>';
   }

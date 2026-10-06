@@ -73,7 +73,7 @@
   var SERVICE_CATEGORIES = [
     { key: "Extensions", label: "Fusion Extensions", blurb: "KTips, tape-ins, weaves and V-Light invisibles, the work Bēsia is known for.", slug: "ext" },
     { key: "Texture Systems + Treatments", label: "Texture Systems", blurb: "Vegan, formaldehyde-free straightening and texture release.", slug: "tex" },
-    { key: "Scalp + Bond Repair Treatments", label: "Scalp + Bond Repair", blurb: "Treatment-led care: flaxseed, GRO hot oil, Olaplex and K18.", slug: "scalp" },
+    { key: "Scalp + Bond Repair Treatments", label: "Scalp and Bond Repair", blurb: "Treatment-led care: flaxseed, GRO hot oil, Olaplex and K18.", slug: "scalp" },
     { key: "Naturals | Curls & Coils", label: "Naturals, Curls & Coils", blurb: "Curl Revive wash-and-go and cutting for natural texture.", slug: "nat" },
     { key: "Color Service", label: "Colour", blurb: "All-over colour, balayage, highlights and custom blends.", slug: "color" },
     { key: "Cut Service", label: "Cutting", blurb: "Precision cutting, layers and trims.", slug: "cut" },

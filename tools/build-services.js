@@ -101,8 +101,8 @@ function rows(items) {
 
 /* One chapter: a plate where she has one, the chapter title and line,
    then every service in it. Chapters with no picture are rows only.
-   The whole chapter is a details element, so a phone can fold the
-   ones it is not reading; all are open from 768px. */
+   Every chapter is a details element, open in the markup; on a phone the
+   page script folds all but the one being read. */
 function tiles() {
   return B.serviceCategories.map((c, i) => {
     const items = B.byCategory(c.key);
@@ -112,13 +112,13 @@ function tiles() {
     const ground = i % 2 ? 'oatmeal' : 'ivory';
     return `      <section class="chapter" data-ground="${ground}" id="${c.slug}" data-svc-cat="${esc(c.key)}">
         <div class="container">
-          <details class="price-group chapter-group" id="prices-${c.slug}"${i === 0 ? ' open' : ''}>
+          <details class="price-group chapter-group" id="prices-${c.slug}" open>
             <summary class="chapter-head">
               <span class="price-num">${num}</span>
               <span class="chapter-title"><h2 class="t-h3">${esc(c.label)}</h2><span class="t-cap">${esc(LEAD[c.key])}</span></span>
               <span class="chapter-meta"><span class="t-price" data-from-slot><em>From</em> ${B.money(from)}</span><span class="price-count" data-count-slot>${items.length}</span></span>
             </summary>
-            <div class="chapter-body${art.plate ? ' has-plate' : ''}">
+            <div class="chapter-body${art.plate ? ' has-plate' : ''}" data-rows="${items.length}">
 ${art.plate ? '              <div class="chapter-plate">' + picture(art, '(min-width: 1024px) 360px, 100vw') + '</div>\n' : ''}              <div class="price-rows">
 ${rows(items)}
               </div>

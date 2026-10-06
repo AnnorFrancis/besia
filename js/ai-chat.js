@@ -260,7 +260,7 @@
         'We also sell ready-to-wear glueless units on the <a href="./shop.html#wigs" ' + LINK + '>Shop page</a>, from GHS 1,650.',
 
       beauty:
-        'Yes! Alongside hair we look after <strong>lashes, brows, facials, waxing and make-up</strong>:<br><br>' +
+        'We do. Alongside hair we look after <strong>lashes, brows, facials, waxing and make-up</strong>:<br><br>' +
         '\u2022 Lash sets \u00B7 from ' + S('Classic Set') + '<br>' +
         '\u2022 Lash lift + tint \u00B7 ' + S('Lash Lift + Tint') + '<br>' +
         '\u2022 Brow lamination + wax \u00B7 ' + S('Brow Lamination + Wax') + '<br>' +
@@ -305,7 +305,7 @@
         'Every service on the <a href="./services.html#prices" ' + LINK + '>menu</a> carries its own published duration, and we book to it.',
 
       team:
-        'Of course! We are a message away:<br><br> <strong>' + (b.phone || '') + '</strong><br><br>' +
+        'Of course. We are a message away:<br><br> <strong>' + (b.phone || '') + '</strong><br><br>' +
         'Or tap the green WhatsApp button to chat instantly. We usually reply within the hour during opening times.',
 
       location:
@@ -317,10 +317,10 @@
         'Hi So glad you are here. Ask me anything: fusion extensions, Nanoplasty, scalp and bond repair, colour, cutting, curls or the shop. Where would you like to start?',
 
       thanks:
-        'You are so welcome! We cannot wait to have you in the chair. Anything else I can help with?',
+        'You are welcome. We look forward to having you in the chair. Anything else I can help with?',
 
       fallback:
-        'Good question! Our team will answer that one best. Reach them on <strong>' + (b.phone || '') + '</strong> or tap <em>Speak to the team</em> below. ' +
+        'Our team will answer that one best. Reach them on <strong>' + (b.phone || '') + '</strong> or tap <em>Speak to the team</em> below. ' +
         'Meanwhile, every price and duration is published on the <a href="./services.html#prices" ' + LINK + '>Services page</a>.'
     };
   }

@@ -52,7 +52,7 @@ node tools/build-all.js
 The steps, in the order build-all runs them:
 
 ```bash
-node tools/build-services.js   # the chapter rail, the 14 chapters and the ledger of 83 prices
+node tools/build-services.js   # the chapter rail and the 14 chapters, every price inside its chapter
 node tools/build-shop.js       # the hair library: filters and 24 product cards
 node tools/build-home.js       # "In this issue", the six signature treatments
 node tools/build-packages.js   # the three pairings, the price builder, the home teaser
@@ -60,7 +60,7 @@ node tools/build-classes.js    # classes.html, written whole from the course dat
 node tools/build-gallery.js    # the contact sheet from her pictures
 node tools/build-admin.js      # all 20 Studio Manager pages
 node tools/build-css.js        # css/issue/*.css joined into one css/issue.css
-node tools/build-chrome.js     # the masthead, Contents sheet and colophon on every page
+node tools/build-chrome.js     # the masthead, Menu sheet and footer on every page
 node tools/build-reels.js      # her films placed wherever a page asks for one
 node tools/build-seo.js        # titles, canonicals, Open Graph, JSON-LD, sitemap, robots
 node tools/add-image-dims.js   # width and height on any new <img>
@@ -73,7 +73,7 @@ is safe and idempotent.
 
 `js/booking-cart.js`, `js/booking.js`, `js/ai-chat.js`, `js/store.js`, `js/site-sync.js`
 and `js/admin.js` read the same file at runtime, through `js/besia-live.js`, which
-merges the owner's changes from the manager. **A price cannot drift**: the ledger,
+merges the owner's changes from the manager. **A price cannot drift**: the chapters,
 the booking sheet, the estimator, the chat and the manager read one number.
 
 ### Checks
@@ -93,8 +93,8 @@ node tools/check-dash.js       # no em or en dash anywhere a visitor could read 
 ## The Issue: how the design is built
 
 The site is Issue 01 of a magazine the studio publishes for its own clients: a
-masthead, a Contents sheet, numbered chapters, plates with credits, a ledger,
-a colophon. It is set in one typeface, Montserrat, at the client's request; the
+masthead, a Menu sheet, numbered chapters, plates with credits, a footer set
+as a colophon. It is set in one typeface, Montserrat, at the client's request; the
 editorial contrast comes from weight, scale, tracking and layout.
 
 - **`css/issue/tokens.css`** is the only file allowed a colour literal. Eight grounds
@@ -109,19 +109,19 @@ editorial contrast comes from weight, scale, tracking and layout.
   `t-chap`, `t-h2`, `t-deck`, `t-pull`, `t-cap`, `t-label`, `t-credit`, `t-price`),
   the macron rule (the brass bar from the Ē, used as every eyebrow's opening and the
   active-page mark), fluting (the oak wall as a CSS ground) and grain.
-- **`components.css`** is the chrome and the controls: the glass masthead, the Contents
+- **`components.css`** is the chrome and the controls: the glass masthead, the Menu
   sheet, buttons, forms, the dock (one slot at the bottom of a phone, nothing else
   floats), the booking sheet (restyled, logic untouched), films, the slideshow, the
   lightbox, the chat window, reveals, the intro and the page transitions.
-- **`templates.css`** is nine spreads that build every page: `t-cover`, `t-spread`,
-  `t-plate`, `t-rail`, `t-opener`, `t-index`, `t-quote`, `t-colophon`, `t-form`.
+- **`templates.css`** is seven spreads that build every page: `t-spread`, `t-plate`,
+  `t-rail`, `t-opener`, `t-index`, `t-quote`, `t-form`.
   Phones first, one column; twelve columns from 1024px. Every column is
   `minmax(0, 1fr)` and every child `min-width: 0`, so nothing can push wider than
   the page.
 - **`pages.css`** is what only one page needs.
 
 Glass is spent on four surfaces and nowhere else: the masthead once it sticks, the
-Contents sheet, the booking sheet and the lightbox chrome. Everything else that
+Menu sheet, the booking sheet and the lightbox chrome. Everything else that
 looks frosted is baked from a blurred still, which costs nothing to scroll.
 
 The intro (ivory, her name, the rule, the studio line, the strapline) is the one the
@@ -170,7 +170,7 @@ plays `once` films through and offers Replay, and loads nothing at all on Save-D
 | Address | 54 Fifth Circular Road, Cantonments, Accra |
 | Phone / WhatsApp | **024 078 7993** |
 | Email | hello@besia.co |
-| Hours | **Mon–Sat, 9am – 7pm** · closed Sunday |
+| Hours | **Monday to Saturday, 9am to 7pm** · closed Sunday |
 | Rating | 5.0 from 16 reviews |
 | Instagram / TikTok | [@besia.hq](https://instagram.com/besia.hq) · [@besiahq](https://www.tiktok.com/@besiahq) |
 
@@ -180,7 +180,7 @@ formaldehyde-free straightening and texturising system.*
 
 ---
 
-## The service menu — 83 services, 14 disciplines
+## The service menu: 83 services, 14 disciplines
 
 Real, published prices and durations.
 
@@ -211,15 +211,15 @@ consultation, rather than inventing figures.
 
 Bēsia teaches as well as styles, so the school is a first-class part of both halves.
 
-**`classes.html`** lists six hands-on courses built from her own disciplines —
+**`classes.html`** lists six hands-on courses built from her own disciplines , 
 Fusion Extensions, Braiding & Cornrows, Silk Press, Natural Hair & Curl Care,
-Colour Fundamentals, and Lashes & Brows — with what each one covers, how many days
+Colour Fundamentals, and Lashes & Brows, with what each one covers, how many days
 it runs and how many seats there are.
 
 Payment works two ways, and the form does the arithmetic in front of the student:
 
-- **Pay in full** — the whole fee, seat confirmed straight away.
-- **Pay half to reserve** — 50% holds the seat, balance due before the final day.
+- **Pay in full**: the whole fee, seat confirmed straight away.
+- **Pay half to reserve**: 50% holds the seat, balance due before the final day.
 
 Reserving a seat produces a reference like `CLS-260902-566` and drops the student
 straight into **Classes** in the manager, where the owner sees the fee, what has
@@ -228,18 +228,18 @@ The outstanding balance also appears in **Balances** alongside customer debts, s
 there is only ever one list of money owed.
 
 > Course content and fees are a considered first draft built from her real service
-> menu. **They need her sign-off** — she has not published a curriculum anywhere.
+> menu. **They need her sign-off**, she has not published a curriculum anywhere.
 
-## Ordering — end to end, on the site
+## Ordering, end to end, on the site
 
 **Shop → Bag → Checkout → Payment → Order number → Tracking → Studio Manager**
 
-1. `shop.html` — 23 products; the Moringa line shows as **Pre-order / Launching soon**.
-2. `checkout.html` — quantities, pickup (free) or delivery (GHS 30), then Mobile Money
+1. `shop.html`: 23 products; the Moringa line shows as **Pre-order / Launching soon**.
+2. `checkout.html`: quantities, pickup (free) or delivery (GHS 30), then Mobile Money
    (MTN / Telecel / AT), card, or pay on pickup.
 3. A simulated gateway runs, then an order number like `BES-260902-630`.
-4. `track.html` — live status timeline; orders placed on that device appear as chips.
-5. `admin/orders.html` — the order is already waiting. Confirm it, advance it, mark it paid.
+4. `track.html`: live status timeline; orders placed on that device appear as chips.
+5. `admin/orders.html`: the order is already waiting. Confirm it, advance it, mark it paid.
 6. **The customer's tracking page moves**, with a timestamp against each step.
 
 *Verified end to end in this build:* order `BES-260902-630` placed for GHS 2,210,
@@ -248,23 +248,23 @@ confirmed in the manager, and the tracker updated with both timestamps.
 Appointments work the same way: the booking form saves a request with a reference
 like `APT-260902`, and it lands in `admin/bookings.html`.
 
-### Payment — what is real and what is not
+### Payment: what is real and what is not
 
 The payment flow is a **working simulation**, labelled on screen. No money moves and
 **no card details are stored or transmitted**. For production, swap the simulated step
-in `checkout.html` for **Paystack** or **Hubtel** — both handle Ghanaian MoMo and
+in `checkout.html` for **Paystack** or **Hubtel**, both handle Ghanaian MoMo and
 cards, and the cart, order and tracking logic around it stays exactly as it is.
 
 ---
 
 ## The manager runs the website
 
-The Studio Manager is not a separate report on the website — it **is** the
+The Studio Manager is not a separate report on the website, it **is** the
 control room. Three files do it:
 
 ```
 js/besia-data.js   the baseline catalogue, as first published
-js/besia-live.js   the live view — baseline + everything changed since
+js/besia-live.js   the live view, baseline + everything changed since
 js/site-sync.js    applies that live view to the public pages
 ```
 
@@ -283,23 +283,23 @@ What the owner controls, and what happens the moment she does it:
 | Stock reaches zero in **Stock** | The card is marked **Sold out** and Add to Cart stops working |
 | Confirm an order in **Shop Orders** | Stock comes off the shelf. Cancelling puts it back |
 
-It reacts live — leave the website open in one tab, change something in the
+It reacts live, leave the website open in one tab, change something in the
 manager in another, and the page updates itself. That is a `storage` event,
 not a poll.
 
 The overrides live in `localStorage` under `besia-catalogue` and
 `besia-discounts`. In production those become two database tables and
 `besia-live.js` becomes the API client. **Nothing else in the codebase
-changes** — every page already reads the catalogue through that one file.
+changes**, every page already reads the catalogue through that one file.
 
 ## Built for how Ghana actually works
 
-- **Mobile Money first** — MTN, Telecel and AT at checkout and at the counter,
+- **Mobile Money first**: MTN, Telecel and AT at checkout and at the counter,
   alongside card and cash.
 - **Part payments everywhere.** A customer can pay half at the counter and a
   student can pay half to hold a seat. Whatever is left lands in **Balances**,
   which is one list covering customers, shop orders and students.
-- **Cash is still king** — the **Cash Drawer** opens with a float, tracks money
+- **Cash is still king**: the **Cash Drawer** opens with a float, tracks money
   in and out, and tells you plainly at close whether it balanced.
 - **Power and data are not guaranteed.** A service worker (`sw.js`, generated
   by `tools/build-sw.js`) precaches the whole shell, so the manager keeps
@@ -307,13 +307,13 @@ changes** — every page already reads the catalogue through that one file.
   gone and that their work is saved on the device.
 - **Light on data.** Images are compressed and lazy-loaded; the shell is under
   a megabyte.
-- **WhatsApp is the channel** — order confirmations, supplier reorders, class
+- **WhatsApp is the channel**: order confirmations, supplier reorders, class
   enquiries and the contract all hand off to it.
 
 ## The studio manager
 
 Eighteen sections, grouped so nothing has to be hunted for. Every one carries a
-**single plain sentence** under its title saying what it is for — written for
+**single plain sentence** under its title saying what it is for, written for
 someone who has never used a management system before.
 
 | Group | Sections |
@@ -328,27 +328,27 @@ someone who has never used a management system before.
 
 What each one does:
 
-- **Overview** — three numbers (taken today, booked in, owed) and eight big buttons.
-- **Sell Now** — the counter. Tap services and products, take cash / MoMo / card,
+- **Overview**: three numbers (taken today, booked in, owed) and eight big buttons.
+- **Sell Now**: the counter. Tap services and products, take cash / MoMo / card,
   in full or in part. Replaces the old Walk-In page, which did half the job.
-- **Sales** — everything sold in the chair, at the counter and online, by period.
-- **Balances** — one list of everyone who owes: part-paid sales, students on an
+- **Sales**: everything sold in the chair, at the counter and online, by period.
+- **Balances**: one list of everyone who owes: part-paid sales, students on an
   instalment, and shop orders due on collection. *Record payment* on each row.
-- **Cash Drawer** — open with a float, log cash in and out, count at close.
+- **Cash Drawer**: open with a float, log cash in and out, count at close.
   It tells you plainly whether the drawer matched, and by how much if not.
-- **Expenses** — rent, stock, salaries, transport, by category. Feeds Reports.
-- **Stock** — quantity per product with − and + buttons; flags anything at 3 or
+- **Expenses**: rent, stock, salaries, transport, by category. Feeds Reports.
+- **Stock**: quantity per product with − and + buttons; flags anything at 3 or
   fewer, and marks what has finished. Selling a product takes it off the shelf.
-- **Suppliers** — who to call or WhatsApp to reorder, with payment terms.
-- **Classes** — the training school. Courses with seats filled, students with fees
+- **Suppliers**: who to call or WhatsApp to reorder, with payment terms.
+- **Classes**: the training school. Courses with seats filled, students with fees
   paid and outstanding, and one button to record an instalment.
-- **Activity** — a plain log of what changed and when.
-- **Items** — everything you sell. Change a price, mark a new arrival, add
+- **Activity**: a plain log of what changed and when.
+- **Items**: everything you sell. Change a price, mark a new arrival, add
   something, or switch it off the website. This page drives the public site.
-- **Discounts** — build an offer, leave it switched off, switch it on when you
+- **Discounts**: build an offer, leave it switched off, switch it on when you
   want it. The website follows instantly.
-- **Settings** — studio details and opening hours, plus a *Reset demo data* button.
-- **Help** — ten "how do I…?" answers in plain English.
+- **Settings**: studio details and opening hours, plus a *Reset demo data* button.
+- **Help**: ten "how do I…?" answers in plain English.
 
 Seeded with Bēsia's real service names, real prices and the real team
 (Dana, Francis, Rabs, The Hair Club). Every seeded appointment amount is
@@ -356,9 +356,9 @@ cross-checked against the published menu.
 
 **Two moments to demo:**
 
-1. Place an order on the site, open **Shop Orders** — it is already there — press
+1. Place an order on the site, open **Shop Orders**, it is already there, press
    *Confirm this order*, then go back to `track.html` and watch the timeline move.
-2. Take a part payment in **Sell Now**, then open **Balances** — the outstanding
+2. Take a part payment in **Sell Now**, then open **Balances**, the outstanding
    amount is already waiting, and **Stock** has come down by what you sold.
 
 ---
@@ -374,8 +374,8 @@ cross-checked against the published menu.
 - **One scroll lock, one dock.** `site.js` counts locks by name, so a sheet opened
   over another cannot unlock the page early. The booking bar and the bag bar share
   one slot at the bottom of a phone; the WhatsApp circle, the chat bubble and the
-  action bar became rows in Contents and the colophon.
-- **Back closes sheets.** Contents and the booking sheet each push a history entry
+  action bar became rows in the Menu and the footer.
+- **Back closes sheets.** The Menu and the booking sheet each push a history entry
   when they open and close on `popstate`, so the phone's Back button hides the sheet
   instead of leaving the page.
 - **Storage namespace.** All keys are prefixed `besia-` via `BESIA.key()`. Storage is

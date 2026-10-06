@@ -358,7 +358,7 @@
       var wa = document.getElementById('success-wa');
       if (wa) {
         wa.href = 'https://wa.me/233240787993?text=' + encodeURIComponent(
-          'Hello Bēsia Beauty Studio! I have a question about my booking ' + bookingId + '.');
+          'Hello Bēsia Beauty Studio, I have a question about my booking ' + bookingId + '.');
       }
     });
 

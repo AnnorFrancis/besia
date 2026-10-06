@@ -56,10 +56,10 @@ const SHEET = [
 ];
 
 function filters() {
-  const out = ['          <button class="chip filter-btn is-active" data-filter="all" aria-pressed="true">Everything <span class="n">' + SHEET.length + '</span></button>'];
+  const out = ['          <button type="button" class="chip filter-btn is-active" data-filter="all" aria-pressed="true">Everything <span class="n">' + SHEET.length + '</span></button>'];
   CATS.forEach(([key, label]) => {
     const n = SHEET.filter(s => s[1] === key).length;
-    if (n) out.push('          <button class="chip filter-btn" data-filter="' + key + '" aria-pressed="false">' + esc(label) + ' <span class="n">' + n + '</span></button>');
+    if (n) out.push('          <button type="button" class="chip filter-btn" data-filter="' + key + '" aria-pressed="false">' + esc(label) + ' <span class="n">' + n + '</span></button>');
   });
   return out.join('\n');
 }

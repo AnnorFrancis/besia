@@ -2,17 +2,16 @@
    build-chrome.js, stamps the shared chrome onto every public page.
 
    Three partials in tools/chrome/ are written once and copied into
-   each page between markers, so the masthead, the Contents sheet,
-   the colophon and the script list can never drift between pages:
+   each page between markers, so the masthead, the Menu sheet,
+   the footer and the script list can never drift between pages:
 
      <!--CHROME:head--> ... <!--/CHROME:head-->   icon, fonts, css, boot
-     <!--CHROME:top-->  ... <!--/CHROME:top-->    skip link, intro, nav, Contents
-     <!--CHROME:foot--> ... <!--/CHROME:foot-->   colophon, scripts
+     <!--CHROME:top-->  ... <!--/CHROME:top-->    skip link, intro, nav, Menu
+     <!--CHROME:foot--> ... <!--/CHROME:foot-->   footer, scripts
 
    The page tells the generator what it is through its <body>:
-     data-page="shop"        marks the current page in nav and Contents
+     data-page="shop"        marks the current page in the nav and the Menu
      data-nav="paper"        a light masthead for pages with no dark cover
-     data-head="Services · 14 chapters"   the running head under the name
      data-scripts="store"    extra scripts after the shared set
      data-core="store"       replaces the shared set (checkout, track)
 
@@ -33,12 +32,6 @@ const SETS = {
   core:  ['besia-data', 'besia-live', 'booking-cart', 'site', 'reel', 'slides', 'site-sync', 'offline'],   /* ai-chat loads on demand */
   store: ['besia-data', 'besia-live', 'store', 'site', 'reel', 'site-sync', 'offline'],
   none:  []
-};
-const HEADS = {
-  index: 'Issue 01 · Cantonments, Accra', services: 'Services · 14 chapters', shop: 'Shop · Follicle Fuel',
-  classes: 'The School at Bēsia', packages: 'Packages · The Hair Club', gallery: 'Gallery · In pictures',
-  about: 'About · The studio', contact: 'Contact · Visit us', checkout: 'Checkout', track: 'Track an order',
-  '404': 'Issue 01', offline: 'Offline', styleguide: 'Style guide'
 };
 
 const counts = {
@@ -75,7 +68,6 @@ for (const name of PAGES) {
 
   const top = part('top')
     .replace('{{navClass}}', a['data-nav'] === 'paper' ? ' site-nav--paper' : '')
-    .replace('{{head}}', a['data-head'] || HEADS[name] || HEADS.index)
     .replace(/\{\{cur:([a-z0-9]+)\}\}/g, (_, k) => cur(k))
     .replace('{{services}}', counts.services)
     .replace('{{products}}', counts.products)
