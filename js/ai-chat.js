@@ -124,14 +124,14 @@
 
   /* ---------- Scripted opening conversation ---------- */
   function playIntro() {
-    botSay('Hi \u2728 Welcome to <strong>B\u0113sia Beauty Studio</strong>, Ghana\u2019s home of fusion extensions. I can help with prices, timings or what to book. What are you thinking of getting done?', 900)
+    botSay('Hi Welcome to <strong>B\u0113sia Beauty Studio</strong>, Ghana\u2019s home of fusion extensions. I can help with prices, timings or what to book. What are you thinking of getting done?', 900)
       .then(function () {
         return new Promise(function (r) { window.setTimeout(r, 1400); });
       })
       .then(function () {
         addMsg('How much are the KTip extensions?', 'user');
         return botSay(
-          'Great choice \uD83D\uDCAB KTips are what we are known for. Price goes by weight, and we work out what your hair can carry at the consultation.<br><br>' +
+          'Great choice KTips are what we are known for. Price goes by weight, and we work out what your hair can carry at the consultation.<br><br>' +
           '\u2022 100 grams \u00B7 ' + S('100 grams - KTips') + ' \u00B7 4 hr<br>' +
           '\u2022 150 grams \u00B7 ' + S('150 grams - KTips') + ' \u00B7 4 hr<br>' +
           '\u2022 200 grams \u00B7 ' + S('200 grams - KTips') + ' \u00B7 5 hr 30 min<br><br>' +
@@ -143,7 +143,7 @@
       .then(function () {
         addMsg('No, first time. Is it safe for my hair?', 'user');
         return botSay(
-          'That is exactly why we start with a consultation, and the first one is <strong>free</strong>. \uD83D\uDC95<br><br>' +
+          'That is exactly why we start with a consultation, and the first one is <strong>free</strong>.<br><br>' +
           'Our specialists are <strong>UK-certified</strong>, and we check your density and scalp before we fit anything. If your hair is not ready, we will say so and start you on a ' +
           '<a href="./services.html#scalp" ' + LINK + '>bond repair treatment</a> instead.<br><br>' +
           'Shall I show you this week\u2019s free slots?', 1700);
@@ -199,7 +199,7 @@
         'Full list with durations on the <a href="./services.html#prices" ' + LINK + '>Services page</a>. A consultation is free.',
 
       ext:
-        'Fusion extensions are our signature \uD83D\uDCAB Seamless <strong>KTips</strong> and <strong>microlinks</strong>, fitted by UK-certified specialists so they move like your own hair.<br><br>' +
+        'Fusion extensions are our signature Seamless <strong>KTips</strong> and <strong>microlinks</strong>, fitted by UK-certified specialists so they move like your own hair.<br><br>' +
         '\u2022 100g KTips \u00B7 ' + S('100 grams - KTips') + '<br>' +
         '\u2022 150g KTips \u00B7 ' + S('150 grams - KTips') + '<br>' +
         '\u2022 Seamless tape-ins \u00B7 ' + S('Seamless Tape-Ins') + '<br>' +
@@ -209,14 +209,14 @@
         'Removal is ' + S('KTip Removal') + '. See the full list on the <a href="./services.html#ext" ' + LINK + '>Services page</a>.',
 
       tex:
-        'This is what makes us different \u2728 We were the <strong>first studio in Ghana</strong> to offer a safe, vegan, <strong>formaldehyde-free</strong> straightening and texturising system.<br><br>' +
+        'This is what makes us different We were the <strong>first studio in Ghana</strong> to offer a safe, vegan, <strong>formaldehyde-free</strong> straightening and texturising system.<br><br>' +
         '\u2022 Vegan Keratin Nanoplasty \u00B7 ' + S('Vegan Keratin Treatment - Nanoplasty') + ' \u00B7 4 hr 30 min<br>' +
         '\u2022 Texture Release (Hair Botox) \u00B7 ' + S('Texture Release - Hair Botox') + ' \u00B7 3 hr 45 min<br>' +
         '\u2022 Perm retouch and style \u00B7 ' + S('Perm Retouch and Style') + '<br><br>' +
         'Smoother, more manageable hair with none of the chemistry that damages it.',
 
       scalp:
-        'Healthy hair first \uD83C\uDF3F We treat the scalp and the bonds before anything else:<br><br>' +
+        'Healthy hair first We treat the scalp and the bonds before anything else:<br><br>' +
         '\u2022 Flax Seed + Aloe \u00B7 ' + S('Flax Seed + Aloe Treatment') + '<br>' +
         '\u2022 GRO hot oil \u00B7 ' + S('GRO Hot Oil Treatment') + '<br>' +
         '\u2022 K18 bond repair \u00B7 ' + S('K18 Treatment and Bond Repair') + '<br>' +
@@ -226,14 +226,14 @@
         'Not sure which? The <a href="./services.html#gen" ' + LINK + '>consultation is free</a>.',
 
       color:
-        'Colour, blended against your natural depth rather than fighting it \uD83C\uDFA8<br><br>' +
+        'Colour, blended against your natural depth rather than fighting it<br><br>' +
         '\u2022 All-over colour \u00B7 short ' + S('All Over Color - Short') + ', medium ' + S('All Over Color - Medium') + ', long ' + S('All Over Color - Long') + '<br>' +
         '\u2022 Balayage \u00B7 from ' + P('Color Service') + '<br>' +
         '\u2022 Full highlights \u00B7 ' + S('Full Highlights') + '<br><br>' +
         'We pair colour with bond repair as standard, so the condition holds.',
 
       nat:
-        'For curls and coils \uD83D\uDC9A Our <strong>Curl Revive</strong> wash-and-go uses in-house flaxseed, rosemary and olive blends with a gentle steam.<br><br>' +
+        'For curls and coils Our <strong>Curl Revive</strong> wash-and-go uses in-house flaxseed, rosemary and olive blends with a gentle steam.<br><br>' +
         '\u2022 Curl Revive | Wash + Go \u00B7 ' + S('Curl Revive | Wash + Go') + ' \u00B7 1 hr 30 min<br>' +
         '\u2022 Curly cut \u00B7 ' + S('Curly Cut') + '<br>' +
         '\u2022 Silkpress Xpress \u00B7 ' + S('Silkpress Xpress') + '<br>' +
@@ -250,13 +250,13 @@
         'Every cut is dry-checked at the end so it sits right when you leave.',
 
       braid:
-        'Parted clean and tensioned gently, so your edges outlive the style \uD83D\uDC51<br><br>' +
+        'Parted clean and tensioned gently, so your edges outlive the style<br><br>' +
         '\u2022 Large braids \u00B7 ' + S('Large Braids') + '<br>' +
         '\u2022 Cornrow updo \u00B7 ' + S('Cornrow Updo') + '<br><br>' +
         'For a protective look with length, ask about the <strong>360 Illusion Crochet</strong>, ' + S('Illusion Crochet') + '.',
 
       wig:
-        'Frontal installation is ' + S('Frontal Installation') + ' \u00B7 1 hr 30 min, fitted flat and blended so the parting reads as scalp \u2728<br><br>' +
+        'Frontal installation is ' + S('Frontal Installation') + ' \u00B7 1 hr 30 min, fitted flat and blended so the parting reads as scalp<br><br>' +
         'We also sell ready-to-wear glueless units on the <a href="./shop.html#wigs" ' + LINK + '>Shop page</a>, from GHS 1,650.',
 
       beauty:
@@ -270,14 +270,14 @@
         'Every price is on the <a href="./services.html" ' + LINK + '>Services page</a>.',
 
       packages:
-        'Booking two services together is cheaper than booking them apart \uD83D\uDC9D Our own bundles:<br><br>' +
+        'Booking two services together is cheaper than booking them apart Our own bundles:<br><br>' +
         '\u2022 Curl Revive + Flax \u00B7 ' + S('Curl Revive + Flax') + '<br>' +
         '\u2022 Curl Revive with FlaxGRO \u00B7 ' + S('Curl Revive with FlaxGRO') + '<br>' +
         '\u2022 Deep Moisture + Curl Revive \u00B7 ' + S('Deep Moisture Treatment + Curl Revive') + '<br><br>' +
         'Build your own combination on the <a href="./packages.html" ' + LINK + '>Packages page</a> and watch the total update live.',
 
       shop:
-        'We sell the same hair we install, and the same products we treat with \uD83D\uDECD\uFE0F<br><br>' +
+        'We sell the same hair we install, and the same products we treat with\uFE0F<br><br>' +
         '\u2022 Extensions &amp; bundles \u00B7 from GHS 1,200<br>' +
         '\u2022 Closures &amp; frontals \u00B7 from GHS 720<br>' +
         '\u2022 Wigs &amp; units \u00B7 from GHS 1,650<br>' +
@@ -286,11 +286,11 @@
         'Browse the <a href="./shop.html" ' + LINK + '>Shop</a>, add to your bag and check out with Mobile Money or card \u00B7 then follow it on <a href="./track.html" ' + LINK + '>Track Order</a>.',
 
       moringa:
-        'Our own <strong>Moringa line</strong> is launching soon \uD83C\uDF3F Moringa Ginseng Follicle Fuel and a Moringa Root Fuel scalp oil, formulated around the same botanicals we already use in treatment.<br><br>' +
+        'Our own <strong>Moringa line</strong> is launching soon Moringa Ginseng Follicle Fuel and a Moringa Root Fuel scalp oil, formulated around the same botanicals we already use in treatment.<br><br>' +
         'You can reserve yours now on the <a href="./shop.html#care" ' + LINK + '>Shop page</a>, pre-orders ship first.',
 
       consult:
-        'Let us get you booked \uD83D\uDCC5 We are open <strong>' + (b.hoursLabel || 'Mon-Sat \u00B7 9am-7pm') + '</strong>, closed Sundays. Saturdays fill first, so midweek is easier.<br><br>' +
+        'Let us get you booked We are open <strong>' + (b.hoursLabel || 'Mon-Sat \u00B7 9am-7pm') + '</strong>, closed Sundays. Saturdays fill first, so midweek is easier.<br><br>' +
         'The <strong>first consultation is free</strong>, 30 minutes to look at your hair and plan properly. ' +
         'Use the <a href="./contact.html" ' + LINK + '>booking form</a> for an instant estimate, or call <strong>' + (b.phone || '') + '</strong>.',
 
@@ -305,19 +305,19 @@
         'Every service on the <a href="./services.html#prices" ' + LINK + '>menu</a> carries its own published duration, and we book to it.',
 
       team:
-        'Of course! We are a message away:<br><br>\uD83D\uDCDE <strong>' + (b.phone || '') + '</strong><br><br>' +
+        'Of course! We are a message away:<br><br> <strong>' + (b.phone || '') + '</strong><br><br>' +
         'Or tap the green WhatsApp button to chat instantly. We usually reply within the hour during opening times.',
 
       location:
-        'You will find us at <strong>54 Fifth Circular Road, Cantonments, Accra</strong> \uD83D\uDCCD<br><br>' +
+        'You will find us at <strong>54 Fifth Circular Road, Cantonments, Accra</strong><br><br>' +
         'Open <strong>' + (b.hoursLabel || '') + '</strong>, closed Sundays. Parking available on site. ' +
         'Directions are on the <a href="./contact.html" ' + LINK + '>Contact page</a>.',
 
       greet:
-        'Hi \u2728 So glad you are here. Ask me anything: fusion extensions, Nanoplasty, scalp and bond repair, colour, cutting, curls or the shop. Where would you like to start?',
+        'Hi So glad you are here. Ask me anything: fusion extensions, Nanoplasty, scalp and bond repair, colour, cutting, curls or the shop. Where would you like to start?',
 
       thanks:
-        'You are so welcome! \uD83D\uDC95 We cannot wait to have you in the chair. Anything else I can help with?',
+        'You are so welcome! We cannot wait to have you in the chair. Anything else I can help with?',
 
       fallback:
         'Good question! Our team will answer that one best. Reach them on <strong>' + (b.phone || '') + '</strong> or tap <em>Speak to the team</em> below. ' +
