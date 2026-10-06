@@ -3,530 +3,676 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Shop · Bēsia Beauty Studio</title>
-  <meta name="description" content="The same hair we install and the products we treat with: KTip bundles, tape-in wefts, HD closures and frontals, glueless units, flaxseed masks, K18 and Olaplex. Pay by Mobile Money or card.">
-  <meta name="theme-color" content="#17140F">
-
+  <title>Shop · Follicle Fuel, Hair Botox and the Hair Library · Bēsia Beauty Studio</title>
+  <meta name="description" content="Follicle Fuel hair growth oil and beard oil, Bēsia Hair Botox, and the hair we install: KTip bundles, tape-ins, closures, frontals and glueless units. Mobile Money or card, delivered in Accra.">
+  <!--CHROME:head-->
+  <meta name="theme-color" content="#151B22">
   <link rel="icon" type="image/svg+xml" href="./assets/icons/favicon.svg">
   <link rel="preload" href="./fonts/montserrat-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="./css/style.css">
-  <link rel="stylesheet" href="./css/animations.css">
-  <link rel="stylesheet" href="./css/editorial.css">
+  <link rel="preload" href="./fonts/montserrat-macron.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="./css/issue.css">
+  <script>
+  /* Boot, inline and tiny: marks the page as scripted, decides the
+     effects tier, and whether the issue opens with its intro. Storage
+     is wrapped because Safari's private mode throws on it. */
+  (function () {
+    var h = document.documentElement, n = navigator, c = n.connection || {};
+    h.classList.add('js');
+    var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var lite = !!(c.saveData || /(^|[^3-9])2g/.test(c.effectiveType || '') || (n.deviceMemory && n.deviceMemory <= 2));
+    h.setAttribute('data-fx', lite || reduce ? 'lite' : 'full');
+    if (reduce) h.setAttribute('data-reduce', '');
+    var home = document.currentScript && /index\.html$|\/$/.test(location.pathname) && !location.hash && !location.search;
+    if (home && !lite && !reduce) {
+      try {
+        if (!sessionStorage.getItem('besia-opened')) { sessionStorage.setItem('besia-opened', '1'); h.classList.add('intro'); }
+      } catch (e) {}
+    }
+  })();
+  </script>
+<!--/CHROME:head-->
   <!-- BUILD:seo -->
   <link rel="canonical" href="https://annorfrancis.github.io/besia/shop.html">
   <meta name="robots" content="noindex,follow">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Bēsia Beauty Studio">
-  <meta property="og:title" content="Shop · Bēsia Beauty Studio">
-  <meta property="og:description" content="The same hair we install and the products we treat with: KTip bundles, tape-in wefts, HD closures and frontals, glueless units, flaxseed masks, K18 and Olaplex. Pay by Mobile Money or card.">
+  <meta property="og:title" content="Shop · Follicle Fuel, Hair Botox and the Hair Library · Bēsia Beauty Studio">
+  <meta property="og:description" content="Follicle Fuel hair growth oil and beard oil, Bēsia Hair Botox, and the hair we install: KTip bundles, tape-ins, closures, frontals and glueless units. Mobile Money or card, delivered in Accra.">
   <meta property="og:url" content="https://annorfrancis.github.io/besia/shop.html">
-  <meta property="og:image" content="https://annorfrancis.github.io/besia/images/studio/studio-reception.jpg">
-  <meta property="og:image:width" content="1920">
-  <meta property="og:image:height" content="1080">
+  <meta property="og:image" content="https://annorfrancis.github.io/besia/media/img/abeauty-ritual.webp">
+  <meta property="og:image:width" content="1600">
+  <meta property="og:image:height" content="900">
   <meta property="og:locale" content="en_GH">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Shop · Bēsia Beauty Studio">
-  <meta name="twitter:description" content="The same hair we install and the products we treat with: KTip bundles, tape-in wefts, HD closures and frontals, glueless units, flaxseed masks, K18 and Olaplex. Pay by Mobile Money or card.">
-  <meta name="twitter:image" content="https://annorfrancis.github.io/besia/images/studio/studio-reception.jpg">
+  <meta name="twitter:title" content="Shop · Follicle Fuel, Hair Botox and the Hair Library · Bēsia Beauty Studio">
+  <meta name="twitter:description" content="Follicle Fuel hair growth oil and beard oil, Bēsia Hair Botox, and the hair we install: KTip bundles, tape-ins, closures, frontals and glueless units. Mobile Money or card, delivered in Accra.">
+  <meta name="twitter:image" content="https://annorfrancis.github.io/besia/media/img/abeauty-ritual.webp">
   <!-- /BUILD:seo -->
 </head>
-<body class="page-shop">
-
+<body data-skin="issue" data-page="shop" data-nav="ink" data-head="Shop · Follicle Fuel" data-scripts="store" data-gsap>
+  <!--CHROME:top-->
   <a class="skip-link" href="#main">Skip to content</a>
+  <div class="intro-veil" aria-hidden="true">
+    <div class="intro-half intro-half--top"></div>
+    <div class="intro-half intro-half--bottom"></div>
+    <div class="intro-card">
+      <div class="intro-word"><span><i>B</i></span><span><i>Ē</i></span><span><i>S</i></span><span><i>I</i></span><span><i>A</i></span></div>
+      <div class="intro-rule"></div>
+      <div class="intro-sub">Beauty Studio, Cantonments, Accra</div>
+    </div>
+    <div class="intro-line">Nourish your roots · Protect your peace</div>
+  </div>
+  <div class="nav-sentinel" aria-hidden="true"></div>
 
-  <!-- Navigation -->
-  <header class="site-nav">
-    <div class="container container--wide nav-inner">
-      <a class="nav-logo" href="./index.html" aria-label="Bēsia Beauty Studio, home">
-        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-          <path d="M15 9.5c-6.5 7-6.5 22 0 29.5" stroke-linecap="round"/>
-          <path d="M23.5 6c-8.5 8.5-8.5 27.5 0 36" stroke-linecap="round"/>
-          <path d="M32 10c-5.5 6.5-5.5 21 0 27.5" stroke-linecap="round"/>
-          <path d="M38.5 11l1.3 3.4 3.4 1.3-3.4 1.3-1.3 3.4-1.3-3.4-3.4-1.3 3.4-1.3z" fill="currentColor" stroke="none"/>
-        </svg>
-        <span class="nav-logo-text">
-          <span class="nav-logo-name">Bēsia</span>
-          <span class="nav-logo-tag">Beauty Studio</span>
-        </span>
+  <header class="site-nav" data-nav>
+    <div class="container nav-inner">
+      <a class="nav-logo" href="./index.html" aria-label="Bēsia, home">
+        <span class="nav-logo-name">Bēsia</span>
+        <span class="nav-head">Shop · Follicle Fuel</span>
       </a>
       <nav class="nav-links" aria-label="Primary">
-        <a href="./index.html">Home</a>
         <a href="./services.html">Services</a>
-        <a href="./shop.html" class="is-active">Shop</a>
+        <a href="./shop.html" class="is-active" aria-current="page">Shop</a>
         <a href="./classes.html">Classes</a>
-        <a href="./gallery.html">Gallery</a>
-        <a href="./about.html">About</a>
         <a href="./packages.html">Packages</a>
-        <a href="./contact.html">Contact</a>
+        <a href="./about.html">About</a>
+        <a href="./gallery.html" data-from="1200">Gallery</a>
+        <a href="./contact.html" data-from="1200">Contact</a>
       </nav>
-      <div class="nav-cta">
-        <a href="./contact.html" class="btn btn--gold btn--sm">Book Now</a>
+      <div class="nav-end">
+        <div class="nav-cta">
+          <a href="./contact.html" class="btn btn--sm" data-book>Book<span class="n" data-book-count></span></a>
+        </div>
+        <button class="nav-toggle" aria-label="Open contents" aria-expanded="false" aria-controls="contents">
+          <span class="nav-toggle-word"></span>
+        </button>
       </div>
-      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
     </div>
+    <div class="nav-progress" aria-hidden="true"></div>
   </header>
 
-  <!-- Mobile overlay nav -->
-  <div class="nav-overlay">
+  <div class="nav-overlay" id="contents" role="dialog" aria-modal="true" aria-label="Contents">
     <div>
-      <nav class="nav-overlay-links" aria-label="Mobile">
-        <a href="./index.html">Home</a>
-        <a href="./services.html">Services</a>
-        <a href="./shop.html" class="is-active">Shop</a>
-        <a href="./classes.html">Classes</a>
-        <a href="./gallery.html">Gallery</a>
-        <a href="./about.html">About</a>
-        <a href="./packages.html">Packages</a>
-        <a href="./contact.html">Contact</a>
+      <div class="nav-overlay-head">
+        <span class="t-label">Contents</span>
+        <span class="t-label quiet">Issue 01 · Cantonments, Accra</span>
+      </div>
+      <nav class="nav-overlay-links" aria-label="Contents">
+        <a href="./index.html"><span>Home</span><span class="dek">The cover, this issue, a note from Dana</span><span class="count">Issue 01</span></a>
+        <a href="./services.html"><span>Services</span><span class="dek">Fourteen chapters, every price</span><span class="count">83 services</span></a>
+        <a href="./shop.html" class="is-active" aria-current="page"><span>Shop</span><span class="dek">Follicle Fuel, Hair Botox, the hair library</span><span class="count">24 items</span></a>
+        <a href="./classes.html"><span>Classes</span><span class="dek">The School at Bēsia</span><span class="count">9 courses</span></a>
+        <a href="./packages.html"><span>Packages</span><span class="dek">Three editions and the Hair Club</span><span class="count">3 editions</span></a>
+        <a href="./gallery.html"><span>Gallery</span><span class="dek">The A-Beauty covers and the work</span><span class="count">In pictures</span></a>
+        <a href="./about.html"><span>About</span><span class="dek">The studio, Dana, the standards</span><span class="count">The studio</span></a>
+        <a href="./contact.html"><span>Contact</span><span class="dek">Visit, call, write</span><span class="count">Cantonments</span></a>
       </nav>
+      <div class="nav-overlay-aside">
+        <div class="plate plate--tall" style="--ar: 4 / 5">
+          <img src="./media/img/studio-logo-wall-2-sm.webp" srcset="./media/img/studio-logo-wall-2-sm.webp 720w, ./media/img/studio-logo-wall-2.webp 1600w" sizes="360px" width="720" height="960" alt="" loading="lazy" decoding="async">
+        </div>
+      </div>
+      <div class="nav-overlay-foot">
+        <a href="./contact.html" data-book>Book</a>
+        <a href="tel:+233240787993">Call 024 078 7993</a>
+        <a href="https://wa.me/233240787993?text=Hello%20B%C4%93sia%20Beauty%20Studio%2C%20I%20would%20like%20to%20book%20an%20appointment." target="_blank" rel="noopener">WhatsApp</a>
+        <a href="#" data-open-chat>Ask the studio</a>
+      </div>
       <div class="nav-overlay-contact">
-        Cantonments, Accra · <a href="tel:+233240787993">024 078 7993</a>
+        <span>54 Fifth Circular Road, Cantonments, Accra · Mon to Sat, 9am to 7pm</span>
       </div>
     </div>
   </div>
+<!--/CHROME:top-->
 
   <main id="main">
 
-    <!-- Page hero -->
-    <section class="page-hero aura">
-      <div class="page-hero-bg">
-        <img width="1300" height="1954" src="./images/salon-studio/about-3.jpg" alt="The wig and bundle aisle inside the Bēsia Beauty Studio store">
-      </div>
-      <div class="container page-hero-content">
-        <nav class="breadcrumb" aria-label="Breadcrumb">
-          <a href="./index.html">Home</a><span class="sep">·</span><span>Shop</span>
-        </nav>
-        <span class="script">The hair we install,</span>
-        <h1>Yours To Take Home</h1>
-        <p>The hair we install and the products we treat with. Pay by Mobile Money or card, and follow your order live.</p>
+    <!-- ============ 01 THE COVER STORY ============ -->
+    <section class="section grain opener" data-ground="ink">
+      <div class="container t t-opener" data-tall>
+        <span class="ghost" aria-hidden="true">01</span>
+        <div class="copy stack">
+          <p class="eyebrow"><span class="n">Shop</span> The cover story</p>
+          <h1 class="t-chap balance">Follicle Fuel.</h1>
+          <p class="t-deck">Moringa and ginseng, for the scalp first. Her own formula, two bottles: the hair growth oil in frosted green glass, and a beard oil in amber for him. Launching soon; reserve yours and nothing is charged until it ships.</p>
+          <div class="cta-row">
+            <a href="#library" class="btn">Reserve a bottle</a>
+            <a class="link" href="#botox">Bēsia Hair Botox</a>
+          </div>
+        </div>
+        <div class="plate-wrap plate--cap">
+          <!--REEL:{"name":"follicle-campaign","class":"plate plate--portrait","hero":true,"alt":"The Follicle Fuel bottle rises through flying hair","foot":"<div class=\"foot-text\"><p class=\"t-credit\"><span class=\"n\">01</span> Follicle Fuel, film</p><p>Welcome to your growth era</p></div>"}-->
+  <figure class="reel plate plate--portrait" data-reel="follicle-campaign" data-mode="loop" data-hero data-src-sm="./media/video/follicle-campaign-480.mp4?v=ec08b8e1" data-src-lg="./media/video/follicle-campaign-720.mp4?v=ec08b8e1">
+    <img class="reel-poster" src="./media/video/follicle-campaign-poster-sm.webp?v=ec08b8e1" srcset="./media/video/follicle-campaign-poster-sm.webp?v=ec08b8e1 480w, ./media/video/follicle-campaign-poster.webp?v=ec08b8e1 720w" sizes="(min-width: 1024px) 576px, 100vw" width="720" height="1020" alt="The Follicle Fuel bottle rises through flying hair" fetchpriority="high" decoding="async">
+    <video class="reel-video" muted playsinline preload="none" aria-hidden="true" tabindex="-1" disablepictureinpicture disableremoteplayback></video>
+    <div class="foot"><div class="foot-text"><p class="t-credit"><span class="n">01</span> Follicle Fuel, film</p><p>Welcome to your growth era</p></div></div>
+    <button type="button" class="reel-ctl" aria-label="Play film" aria-pressed="false"><svg class="i-pause" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2h3v12H4zM9 2h3v12H9z"/></svg><svg class="i-play" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2l10 6-10 6z"/></svg><svg class="i-replay" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 3a5 5 0 1 1-4.6 3H2A6.5 6.5 0 1 0 8 1.5V0L4 3l4 3V3z"/></svg></button>
+  </figure>
+  <!--/REEL:follicle-campaign-->
+        </div>
       </div>
     </section>
 
-    <!-- ============ SHOP ============ -->
-    <section class="section section--cream">
-      <div class="container container--wide">
+    <!-- ============ 02 THE BOTTLE ============ -->
+    <section class="section" data-ground="ivory">
+      <div class="container stack--loose stack">
+        <div class="section-head" data-reveal>
+          <p class="eyebrow"><span class="n">02</span> The bottle</p>
+          <h2 class="t-h2 balance">One formula, four ways of looking at it.</h2>
+          <p class="t-deck">Her product films. A dropper, a hand, a slow push-in, soft flowers on teal. Each plays as it reaches the middle of your screen.</p>
+        </div>
+        <div class="t t-rail t-rail--four" data-reveal-stagger>
+          <div>
+            <!--REEL:{"name":"bottle-specimen","class":"plate plate--portrait","alt":"A slow push-in on the Follicle Fuel bottle"}-->
+  <figure class="reel plate plate--portrait" data-reel="bottle-specimen" data-mode="loop" data-src-sm="./media/video/bottle-specimen-480.mp4?v=7a0f8fe6" data-src-lg="./media/video/bottle-specimen-720.mp4?v=7a0f8fe6">
+    <img class="reel-poster" src="./media/video/bottle-specimen-poster-sm.webp?v=7a0f8fe6" srcset="./media/video/bottle-specimen-poster-sm.webp?v=7a0f8fe6 480w, ./media/video/bottle-specimen-poster.webp?v=7a0f8fe6 720w" sizes="(min-width: 1024px) 576px, 100vw" width="720" height="1280" alt="A slow push-in on the Follicle Fuel bottle" loading="lazy" decoding="async">
+    <video class="reel-video" muted playsinline preload="none" aria-hidden="true" tabindex="-1" disablepictureinpicture disableremoteplayback></video>
+    <button type="button" class="reel-ctl" aria-label="Play film" aria-pressed="false"><svg class="i-pause" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2h3v12H4zM9 2h3v12H9z"/></svg><svg class="i-play" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2l10 6-10 6z"/></svg><svg class="i-replay" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 3a5 5 0 1 1-4.6 3H2A6.5 6.5 0 1 0 8 1.5V0L4 3l4 3V3z"/></svg></button>
+  </figure>
+  <!--/REEL:bottle-specimen-->
+            <p class="credit"><span class="t-credit"><span class="n">02</span> The bottle, film</span></p>
+          </div>
+          <div>
+            <!--REEL:{"name":"dropper","class":"plate plate--portrait","alt":"The dropper, oil falling"}-->
+  <figure class="reel plate plate--portrait" data-reel="dropper" data-mode="loop" data-src-sm="./media/video/dropper-480.mp4?v=df47efd1" data-src-lg="./media/video/dropper-720.mp4?v=df47efd1">
+    <img class="reel-poster" src="./media/video/dropper-poster-sm.webp?v=df47efd1" srcset="./media/video/dropper-poster-sm.webp?v=df47efd1 480w, ./media/video/dropper-poster.webp?v=df47efd1 720w" sizes="(min-width: 1024px) 576px, 100vw" width="720" height="1280" alt="The dropper, oil falling" loading="lazy" decoding="async">
+    <video class="reel-video" muted playsinline preload="none" aria-hidden="true" tabindex="-1" disablepictureinpicture disableremoteplayback></video>
+    <button type="button" class="reel-ctl" aria-label="Play film" aria-pressed="false"><svg class="i-pause" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2h3v12H4zM9 2h3v12H9z"/></svg><svg class="i-play" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2l10 6-10 6z"/></svg><svg class="i-replay" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 3a5 5 0 1 1-4.6 3H2A6.5 6.5 0 1 0 8 1.5V0L4 3l4 3V3z"/></svg></button>
+  </figure>
+  <!--/REEL:dropper-->
+            <p class="credit"><span class="t-credit"><span class="n">03</span> The dropper, film</span></p>
+          </div>
+          <div>
+            <!--REEL:{"name":"bottle-hand","class":"plate plate--square","alt":"A hand with sage nails holds the bottle"}-->
+  <figure class="reel plate plate--square" data-reel="bottle-hand" data-mode="loop" data-src-sm="./media/video/bottle-hand-480.mp4?v=9441d423" data-src-lg="./media/video/bottle-hand-720.mp4?v=9441d423">
+    <img class="reel-poster" src="./media/video/bottle-hand-poster-sm.webp?v=9441d423" srcset="./media/video/bottle-hand-poster-sm.webp?v=9441d423 480w, ./media/video/bottle-hand-poster.webp?v=9441d423 720w" sizes="(min-width: 1024px) 576px, 100vw" width="720" height="720" alt="A hand with sage nails holds the bottle" loading="lazy" decoding="async">
+    <video class="reel-video" muted playsinline preload="none" aria-hidden="true" tabindex="-1" disablepictureinpicture disableremoteplayback></video>
+    <button type="button" class="reel-ctl" aria-label="Play film" aria-pressed="false"><svg class="i-pause" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2h3v12H4zM9 2h3v12H9z"/></svg><svg class="i-play" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2l10 6-10 6z"/></svg><svg class="i-replay" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 3a5 5 0 1 1-4.6 3H2A6.5 6.5 0 1 0 8 1.5V0L4 3l4 3V3z"/></svg></button>
+  </figure>
+  <!--/REEL:bottle-hand-->
+            <p class="credit"><span class="t-credit"><span class="n">04</span> In hand, film</span></p>
+          </div>
+          <div>
+            <!--REEL:{"name":"bottle-teal","class":"plate plate--3x4","alt":"The bottle on teal with soft flowers"}-->
+  <figure class="reel plate plate--3x4" data-reel="bottle-teal" data-mode="loop" data-src-sm="./media/video/bottle-teal-480.mp4?v=dbc45179" data-src-lg="./media/video/bottle-teal-720.mp4?v=dbc45179">
+    <img class="reel-poster" src="./media/video/bottle-teal-poster-sm.webp?v=dbc45179" srcset="./media/video/bottle-teal-poster-sm.webp?v=dbc45179 480w, ./media/video/bottle-teal-poster.webp?v=dbc45179 720w" sizes="(min-width: 1024px) 576px, 100vw" width="720" height="1080" alt="The bottle on teal with soft flowers" loading="lazy" decoding="async">
+    <video class="reel-video" muted playsinline preload="none" aria-hidden="true" tabindex="-1" disablepictureinpicture disableremoteplayback></video>
+    <button type="button" class="reel-ctl" aria-label="Play film" aria-pressed="false"><svg class="i-pause" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2h3v12H4zM9 2h3v12H9z"/></svg><svg class="i-play" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2l10 6-10 6z"/></svg><svg class="i-replay" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 3a5 5 0 1 1-4.6 3H2A6.5 6.5 0 1 0 8 1.5V0L4 3l4 3V3z"/></svg></button>
+  </figure>
+  <!--/REEL:bottle-teal-->
+            <p class="credit"><span class="t-credit"><span class="n">05</span> On teal, film</span></p>
+          </div>
+        </div>
+        <p class="rail-count t-credit"><span>Swipe for the rest</span><span>4 films</span></p>
+      </div>
+    </section>
 
-        <div class="filter-bar" role="group" aria-label="Filter shop by category">
+    <!-- ============ 03 FOR HIM ============ -->
+    <section class="section grain" data-ground="clay">
+      <div class="container t t-spread" data-flip>
+        <div class="copy stack" data-reveal>
+          <p class="eyebrow"><span class="n">03</span> For him</p>
+          <h2 class="t-h2 balance">Follicle Fuel Beard Oil.</h2>
+          <div class="prose flow">
+            <p>The same moringa and ginseng formula in amber glass with a black dropper, shot on terracotta sand. Softens the beard, feeds the skin under it. Launching with the hair oil.</p>
+          </div>
+          <a href="#library" class="btn">Reserve a bottle</a>
+        </div>
+        <div class="plate-wrap plate--cap">
+          <!--REEL:{"name":"beard-oil","class":"plate plate--portrait","alt":"The amber Follicle Fuel Beard Oil bottle on terracotta sand","foot":"<div class=\"foot-text\"><p class=\"t-credit\"><span class=\"n\">06</span> Beard Oil, film</p><p>Follicle Fuel Beard Oil</p></div>"}-->
+  <figure class="reel plate plate--portrait" data-reel="beard-oil" data-mode="loop" data-src-sm="./media/video/beard-oil-480.mp4?v=7df4f2de" data-src-lg="./media/video/beard-oil-720.mp4?v=7df4f2de">
+    <img class="reel-poster" src="./media/video/beard-oil-poster-sm.webp?v=7df4f2de" srcset="./media/video/beard-oil-poster-sm.webp?v=7df4f2de 480w, ./media/video/beard-oil-poster.webp?v=7df4f2de 720w" sizes="(min-width: 1024px) 576px, 100vw" width="720" height="1280" alt="The amber Follicle Fuel Beard Oil bottle on terracotta sand" loading="lazy" decoding="async">
+    <video class="reel-video" muted playsinline preload="none" aria-hidden="true" tabindex="-1" disablepictureinpicture disableremoteplayback></video>
+    <div class="foot"><div class="foot-text"><p class="t-credit"><span class="n">06</span> Beard Oil, film</p><p>Follicle Fuel Beard Oil</p></div></div>
+    <button type="button" class="reel-ctl" aria-label="Play film" aria-pressed="false"><svg class="i-pause" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2h3v12H4zM9 2h3v12H9z"/></svg><svg class="i-play" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2l10 6-10 6z"/></svg><svg class="i-replay" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 3a5 5 0 1 1-4.6 3H2A6.5 6.5 0 1 0 8 1.5V0L4 3l4 3V3z"/></svg></button>
+  </figure>
+  <!--/REEL:beard-oil-->
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 04 HAIR BOTOX ============ -->
+    <section class="section grain" data-ground="moss" id="botox">
+      <div class="container t t-spread">
+        <div class="copy stack" data-reveal>
+          <p class="eyebrow"><span class="n">04</span> The studio formula</p>
+          <h2 class="t-h2 balance">Bēsia Hair Botox.</h2>
+          <div class="prose flow">
+            <p>A vegan, formaldehyde-free deep treatment that releases texture without straightening it away. It contains no botulinum toxin; the name describes what it does for frizz and manageability, not what is in the bottle.</p>
+            <p>In the studio it is the Texture Release service. The 250ml pump bottle lets you keep the result going at home.</p>
+          </div>
+          <div class="cta-row">
+            <a href="#library" class="btn">Reserve a bottle</a>
+            <a class="link" href="./services.html#tex">The treatment, GHS 3,850</a>
+          </div>
+        </div>
+        <figure class="plate plate--tall plate--cap" data-unveil>
+          <img src="./media/img/product-hair-botox-sm.webp" srcset="./media/img/product-hair-botox-sm.webp 720w, ./media/img/product-hair-botox.webp 1600w" sizes="(min-width: 1024px) 576px, 100vw" width="818" height="1600" alt="The Bēsia Hair Botox pump bottle beside a travertine bowl" loading="lazy" decoding="async">
+        </figure>
+      </div>
+    </section>
+
+    <!-- ============ 05 THE HAIR LIBRARY ============ -->
+    <section class="section library" data-ground="oatmeal" id="library">
+      <div class="container stack--loose stack">
+        <div class="section-head" data-reveal>
+          <p class="eyebrow"><span class="n">05</span> The hair library</p>
+          <h2 class="t-h2 balance">The hair we install, and what we treat with.</h2>
+          <p class="t-deck">Everything below is what sits on the studio shelves. Pay by Mobile Money or card at checkout, and follow your order on the tracking page.</p>
+        </div>
+        <div class="chips filter-bar" role="group" aria-label="Filter the shop">
           <!--BUILD:filters-->
-          <button class="filter-btn is-active" data-shop-filter="all">Everything</button>
-          <button class="filter-btn" data-shop-filter="extensions">Extensions &amp; Bundles</button>
-          <button class="filter-btn" data-shop-filter="closures">Closures &amp; Frontals</button>
-          <button class="filter-btn" data-shop-filter="wigs">Wigs &amp; Units</button>
-          <button class="filter-btn" data-shop-filter="care">Home Care</button>
-          <button class="filter-btn" data-shop-filter="accessories">Studio Accessories</button>
+          <button class="chip filter-btn is-active" data-shop-filter="all" aria-pressed="true">Everything <span class="n">24</span></button>
+          <button class="chip filter-btn" data-shop-filter="extensions" aria-pressed="false">Extensions &amp; Bundles <span class="n">4</span></button>
+          <button class="chip filter-btn" data-shop-filter="closures" aria-pressed="false">Closures &amp; Frontals <span class="n">3</span></button>
+          <button class="chip filter-btn" data-shop-filter="wigs" aria-pressed="false">Wigs &amp; Units <span class="n">6</span></button>
+          <button class="chip filter-btn" data-shop-filter="care" aria-pressed="false">Home Care <span class="n">6</span></button>
+          <button class="chip filter-btn" data-shop-filter="accessories" aria-pressed="false">Studio Accessories <span class="n">5</span></button>
+          <span class="t-credit shop-count" id="shop-count" aria-live="polite">Showing 24 of 24</span>
 <!--/BUILD:filters-->
         </div>
-
         <div class="shop-grid" id="shop-grid">
-
-          <!-- Wigs -->
           <!--BUILD:products-->
           <article class="product-card" data-cat="extensions" data-kind="product" data-item="KTip Fusion Bundle, 100g" data-reveal>
-            <div class="product-img"><img src="./images/extensions/ext-1.jpg" alt="Rooted blonde ombré weft extensions laid flat" width="700" height="875" loading="lazy" decoding="async"><span class="product-tag">Extensions &amp; Bundles</span></div>
+            <div class="product-img plate plate--3x4"><img src="./images/extensions/ext-1.jpg" alt="Rooted blonde ombré weft extensions laid flat" width="700" height="933" loading="lazy" decoding="async"><span class="product-tag t-credit"><span class="n">01</span> Extensions &amp; Bundles</span></div>
             <div class="product-body">
-              <h3 class="product-name">KTip Fusion Bundle, 100g</h3>
-              <p class="product-blurb">Salon-grade keratin tips, the same hair we use for the 100g install.</p>
-              <div class="product-price" data-price-slot>GHS 1,850</div>
-              <div class="product-cta" data-cta-slot><button class="btn btn--ghost-dark" type="button" data-add="KTip Fusion Bundle, 100g|1850">Add to Cart</button></div>
+              <h3 class="product-name t-h3">KTip Fusion Bundle, 100g</h3>
+              <p class="product-blurb t-cap">Salon-grade keratin tips, the same hair we use for the 100g install.</p>
+              <div class="product-foot">
+                <div class="product-price t-price" data-price-slot>GHS 1,850</div>
+                <div class="product-cta" data-cta-slot><button class="btn btn--ghost btn--sm" type="button" data-add="KTip Fusion Bundle, 100g|1850">Add to bag</button></div>
+              </div>
             </div>
           </article>
 
           <article class="product-card" data-cat="extensions" data-kind="product" data-item="KTip Fusion Bundle, 150g" data-reveal>
-            <div class="product-img"><img src="./images/extensions/ext-2.jpg" alt="Honey-brown ombré extensions worn long" width="700" height="875" loading="lazy" decoding="async"><span class="product-tag">Extensions &amp; Bundles</span></div>
+            <div class="product-img plate plate--3x4"><img src="./images/extensions/ext-2.jpg" alt="Honey-brown ombré extensions worn long" width="700" height="933" loading="lazy" decoding="async"><span class="product-tag t-credit"><span class="n">02</span> Extensions &amp; Bundles</span></div>
             <div class="product-body">
-              <h3 class="product-name">KTip Fusion Bundle, 150g</h3>
-              <p class="product-blurb">Fuller density for longer or thicker natural hair.</p>
-              <div class="product-price" data-price-slot>GHS 2,600</div>
-              <div class="product-cta" data-cta-slot><button class="btn btn--ghost-dark" type="button" data-add="KTip Fusion Bundle, 150g|2600">Add to Cart</button></div>
+              <h3 class="product-name t-h3">KTip Fusion Bundle, 150g</h3>
+              <p class="product-blurb t-cap">Fuller density for longer or thicker natural hair.</p>
+              <div class="product-foot">
+                <div class="product-price t-price" data-price-slot>GHS 2,600</div>
+                <div class="product-cta" data-cta-slot><button class="btn btn--ghost btn--sm" type="button" data-add="KTip Fusion Bundle, 150g|2600">Add to bag</button></div>
+              </div>
             </div>
           </article>
 
           <article class="product-card" data-cat="extensions" data-kind="product" data-item="Seamless Tape-In Weft Set" data-reveal>
-            <div class="product-img"><img src="./images/bundles/bundle-1.jpg" alt="Ginger straight human-hair bundles laid flat" width="700" height="875" loading="lazy" decoding="async"><span class="product-tag">Extensions &amp; Bundles</span></div>
+            <div class="product-img plate plate--3x4"><img src="./images/bundles/bundle-1.jpg" alt="Ginger straight human-hair bundles laid flat" width="700" height="933" loading="lazy" decoding="async"><span class="product-tag t-credit"><span class="n">03</span> Extensions &amp; Bundles</span></div>
             <div class="product-body">
-              <h3 class="product-name">Seamless Tape-In Weft Set</h3>
-              <p class="product-blurb">Ultra-thin medical-grade wefts. Reusable two to three times.</p>
-              <div class="product-price" data-price-slot>GHS 1,450</div>
-              <div class="product-cta" data-cta-slot><button class="btn btn--ghost-dark" type="button" data-add="Seamless Tape-In Weft Set|1450">Add to Cart</button></div>
+              <h3 class="product-name t-h3">Seamless Tape-In Weft Set</h3>
+              <p class="product-blurb t-cap">Ultra-thin medical-grade wefts. Reusable two to three times.</p>
+              <div class="product-foot">
+                <div class="product-price t-price" data-price-slot>GHS 1,450</div>
+                <div class="product-cta" data-cta-slot><button class="btn btn--ghost btn--sm" type="button" data-add="Seamless Tape-In Weft Set|1450">Add to bag</button></div>
+              </div>
             </div>
           </article>
 
           <article class="product-card" data-cat="extensions" data-kind="product" data-item="Raw Straight Bundle, 3 pack" data-reveal>
-            <div class="product-img"><img src="./images/bundles/bundle-2.jpg" alt="Jet black body-wave bundles installed, back view" width="700" height="875" loading="lazy" decoding="async"><span class="product-tag">Extensions &amp; Bundles</span></div>
+            <div class="product-img plate plate--3x4"><img src="./images/bundles/bundle-2.jpg" alt="Jet black body-wave bundles installed, back view" width="700" height="933" loading="lazy" decoding="async"><span class="product-tag t-credit"><span class="n">04</span> Extensions &amp; Bundles</span></div>
             <div class="product-body">
-              <h3 class="product-name">Raw Straight Bundle, 3 pack</h3>
-              <p class="product-blurb">Unprocessed raw hair. Holds colour and heat without shedding.</p>
-              <div class="product-price" data-price-slot>GHS 1,200</div>
-              <div class="product-cta" data-cta-slot><button class="btn btn--ghost-dark" type="button" data-add="Raw Straight Bundle, 3 pack|1200">Add to Cart</button></div>
+              <h3 class="product-name t-h3">Raw Straight Bundle, 3 pack</h3>
+              <p class="product-blurb t-cap">Unprocessed raw hair. Holds colour and heat without shedding.</p>
+              <div class="product-foot">
+                <div class="product-price t-price" data-price-slot>GHS 1,200</div>
+                <div class="product-cta" data-cta-slot><button class="btn btn--ghost btn--sm" type="button" data-add="Raw Straight Bundle, 3 pack|1200">Add to bag</button></div>
+              </div>
             </div>
           </article>
 
           <article class="product-card" data-cat="closures" data-kind="product" data-item="HD Lace Closure, 5×5" data-reveal>
-            <div class="product-img"><img src="./images/closures-frontals/unit-1.jpg" alt="Highlighted closure unit on a mannequin" width="700" height="875" loading="lazy" decoding="async"><span class="product-tag">Closures &amp; Frontals</span></div>
+            <div class="product-img plate plate--3x4"><img src="./images/closures-frontals/unit-1.jpg" alt="Highlighted closure unit on a mannequin" width="700" height="933" loading="lazy" decoding="async"><span class="product-tag t-credit"><span class="n">05</span> Closures &amp; Frontals</span></div>
             <div class="product-body">
-              <h3 class="product-name">HD Lace Closure, 5×5</h3>
-              <p class="product-blurb">Melts clean at the parting. Knots bleached on request.</p>
-              <div class="product-price" data-price-slot>GHS 980</div>
-              <div class="product-cta" data-cta-slot><button class="btn btn--ghost-dark" type="button" data-add="HD Lace Closure, 5×5|980">Add to Cart</button></div>
+              <h3 class="product-name t-h3">HD Lace Closure, 5×5</h3>
+              <p class="product-blurb t-cap">Melts clean at the parting. Knots bleached on request.</p>
+              <div class="product-foot">
+                <div class="product-price t-price" data-price-slot>GHS 980</div>
+                <div class="product-cta" data-cta-slot><button class="btn btn--ghost btn--sm" type="button" data-add="HD Lace Closure, 5×5|980">Add to bag</button></div>
+              </div>
             </div>
           </article>
 
           <article class="product-card" data-cat="closures" data-kind="product" data-item="HD Lace Frontal, 13×4" data-reveal>
-            <div class="product-img"><img src="./images/closures-frontals/unit-2.jpg" alt="Caramel highlighted straight unit, back view" width="700" height="875" loading="lazy" decoding="async"><span class="product-tag">Closures &amp; Frontals</span></div>
+            <div class="product-img plate plate--3x4"><img src="./images/closures-frontals/unit-2.jpg" alt="Caramel highlighted straight unit, back view" width="700" height="933" loading="lazy" decoding="async"><span class="product-tag t-credit"><span class="n">06</span> Closures &amp; Frontals</span></div>
             <div class="product-body">
-              <h3 class="product-name">HD Lace Frontal, 13×4</h3>
-              <p class="product-blurb">Ear-to-ear frontal for full styling freedom.</p>
-              <div class="product-price" data-price-slot>GHS 1,350</div>
-              <div class="product-cta" data-cta-slot><button class="btn btn--ghost-dark" type="button" data-add="HD Lace Frontal, 13×4|1350">Add to Cart</button></div>
+              <h3 class="product-name t-h3">HD Lace Frontal, 13×4</h3>
+              <p class="product-blurb t-cap">Ear-to-ear frontal for full styling freedom.</p>
+              <div class="product-foot">
+                <div class="product-price t-price" data-price-slot>GHS 1,350</div>
+                <div class="product-cta" data-cta-slot><button class="btn btn--ghost btn--sm" type="button" data-add="HD Lace Frontal, 13×4|1350">Add to bag</button></div>
+              </div>
             </div>
           </article>
 
           <article class="product-card" data-cat="closures" data-kind="product" data-item="Curly Illusion Crochet Set" data-reveal>
-            <div class="product-img"><img src="./images/closures-frontals/unit-3.jpg" alt="Amber ginger ombré straight closure unit, back view" width="700" height="875" loading="lazy" decoding="async"><span class="product-tag">Closures &amp; Frontals</span></div>
+            <div class="product-img plate plate--3x4"><img src="./images/closures-frontals/unit-3.jpg" alt="Amber ginger ombré straight closure unit, back view" width="700" height="933" loading="lazy" decoding="async"><span class="product-tag t-credit"><span class="n">07</span> Closures &amp; Frontals</span></div>
             <div class="product-body">
-              <h3 class="product-name">Curly Illusion Crochet Set</h3>
-              <p class="product-blurb">Pre-looped curls for the 360 Illusion Crochet look.</p>
-              <div class="product-price" data-price-slot>GHS 720</div>
-              <div class="product-cta" data-cta-slot><button class="btn btn--ghost-dark" type="button" data-add="Curly Illusion Crochet Set|720">Add to Cart</button></div>
+              <h3 class="product-name t-h3">Curly Illusion Crochet Set</h3>
+              <p class="product-blurb t-cap">Pre-looped curls for the 360 Illusion Crochet look.</p>
+              <div class="product-foot">
+                <div class="product-price t-price" data-price-slot>GHS 720</div>
+                <div class="product-cta" data-cta-slot><button class="btn btn--ghost btn--sm" type="button" data-add="Curly Illusion Crochet Set|720">Add to bag</button></div>
+              </div>
             </div>
           </article>
 
           <article class="product-card" data-cat="wigs" data-kind="product" data-item="Glueless Unit, Body Wave" data-reveal>
-            <div class="product-img"><img src="./images/wigs/wig-1.jpg" alt="Silky straight lace closure wig on a mannequin" width="700" height="875" loading="lazy" decoding="async"><span class="product-tag">Wigs &amp; Units</span></div>
+            <div class="product-img plate plate--3x4"><img src="./images/wigs/wig-1.jpg" alt="Silky straight lace closure wig on a mannequin" width="700" height="933" loading="lazy" decoding="async"><span class="product-tag t-credit"><span class="n">08</span> Wigs &amp; Units</span></div>
             <div class="product-body">
-              <h3 class="product-name">Glueless Unit, Body Wave</h3>
-              <p class="product-blurb">Adjustable band, no glue. Ready to wear out of the box.</p>
-              <div class="product-price" data-price-slot>GHS 2,400</div>
-              <div class="product-cta" data-cta-slot><button class="btn btn--ghost-dark" type="button" data-add="Glueless Unit, Body Wave|2400">Add to Cart</button></div>
+              <h3 class="product-name t-h3">Glueless Unit, Body Wave</h3>
+              <p class="product-blurb t-cap">Adjustable band, no glue. Ready to wear out of the box.</p>
+              <div class="product-foot">
+                <div class="product-price t-price" data-price-slot>GHS 2,400</div>
+                <div class="product-cta" data-cta-slot><button class="btn btn--ghost btn--sm" type="button" data-add="Glueless Unit, Body Wave|2400">Add to bag</button></div>
+              </div>
             </div>
           </article>
 
           <article class="product-card" data-cat="wigs" data-kind="product" data-item="Glueless Unit, Kinky Straight" data-reveal>
-            <div class="product-img"><img src="./images/wigs/wig-2.jpg" alt="Extra-long jet straight wig, side view on a mannequin" width="700" height="875" loading="lazy" decoding="async"><span class="product-tag">Wigs &amp; Units</span></div>
+            <div class="product-img plate plate--3x4"><img src="./images/wigs/wig-2.jpg" alt="Extra-long jet straight wig, side view on a mannequin" width="700" height="933" loading="lazy" decoding="async"><span class="product-tag t-credit"><span class="n">09</span> Wigs &amp; Units</span></div>
             <div class="product-body">
-              <h3 class="product-name">Glueless Unit, Kinky Straight</h3>
-              <p class="product-blurb">Blends with relaxed and silk-pressed natural hair.</p>
-              <div class="product-price" data-price-slot>GHS 2,650</div>
-              <div class="product-cta" data-cta-slot><button class="btn btn--ghost-dark" type="button" data-add="Glueless Unit, Kinky Straight|2650">Add to Cart</button></div>
+              <h3 class="product-name t-h3">Glueless Unit, Kinky Straight</h3>
+              <p class="product-blurb t-cap">Blends with relaxed and silk-pressed natural hair.</p>
+              <div class="product-foot">
+                <div class="product-price t-price" data-price-slot>GHS 2,650</div>
+                <div class="product-cta" data-cta-slot><button class="btn btn--ghost btn--sm" type="button" data-add="Glueless Unit, Kinky Straight|2650">Add to bag</button></div>
+              </div>
             </div>
           </article>
 
           <article class="product-card" data-cat="wigs" data-kind="product" data-item="Curly Bob Unit" data-reveal>
-            <div class="product-img"><img src="./images/wigs/wig-3.jpg" alt="Ash blonde body-wave lace frontal wig on a mannequin bust" width="700" height="875" loading="lazy" decoding="async"><span class="product-tag">Wigs &amp; Units</span></div>
+            <div class="product-img plate plate--3x4"><img src="./images/wigs/wig-3.jpg" alt="Ash blonde body-wave lace frontal wig on a mannequin bust" width="700" height="933" loading="lazy" decoding="async"><span class="product-tag t-credit"><span class="n">10</span> Wigs &amp; Units</span></div>
             <div class="product-body">
-              <h3 class="product-name">Curly Bob Unit</h3>
-              <p class="product-blurb">Shoulder-skimming curl, light enough for every day.</p>
-              <div class="product-price" data-price-slot>GHS 1,900</div>
-              <div class="product-cta" data-cta-slot><button class="btn btn--ghost-dark" type="button" data-add="Curly Bob Unit|1900">Add to Cart</button></div>
+              <h3 class="product-name t-h3">Curly Bob Unit</h3>
+              <p class="product-blurb t-cap">Shoulder-skimming curl, light enough for every day.</p>
+              <div class="product-foot">
+                <div class="product-price t-price" data-price-slot>GHS 1,900</div>
+                <div class="product-cta" data-cta-slot><button class="btn btn--ghost btn--sm" type="button" data-add="Curly Bob Unit|1900">Add to bag</button></div>
+              </div>
             </div>
           </article>
 
           <article class="product-card" data-cat="wigs" data-kind="product" data-item="Silk Press Straight Unit" data-reveal>
-            <div class="product-img"><img src="./images/wigs/wig-4.jpg" alt="Honey ginger straight wig with a dark root melt" width="700" height="875" loading="lazy" decoding="async"><span class="product-tag">Wigs &amp; Units</span></div>
+            <div class="product-img plate plate--3x4"><img src="./images/wigs/wig-4.jpg" alt="Honey ginger straight wig with a dark root melt" width="700" height="933" loading="lazy" decoding="async"><span class="product-tag t-credit"><span class="n">11</span> Wigs &amp; Units</span></div>
             <div class="product-body">
-              <h3 class="product-name">Silk Press Straight Unit</h3>
-              <p class="product-blurb">Bone straight with movement, cut into soft layers.</p>
-              <div class="product-price" data-price-slot>GHS 2,200</div>
-              <div class="product-cta" data-cta-slot><button class="btn btn--ghost-dark" type="button" data-add="Silk Press Straight Unit|2200">Add to Cart</button></div>
+              <h3 class="product-name t-h3">Silk Press Straight Unit</h3>
+              <p class="product-blurb t-cap">Bone straight with movement, cut into soft layers.</p>
+              <div class="product-foot">
+                <div class="product-price t-price" data-price-slot>GHS 2,200</div>
+                <div class="product-cta" data-cta-slot><button class="btn btn--ghost btn--sm" type="button" data-add="Silk Press Straight Unit|2200">Add to bag</button></div>
+              </div>
             </div>
           </article>
 
           <article class="product-card" data-cat="wigs" data-kind="product" data-item="Deep Wave Unit" data-reveal>
-            <div class="product-img"><img src="./images/wigs/wig-5.jpg" alt="Honey blonde ombré straight wig, back view" width="700" height="875" loading="lazy" decoding="async"><span class="product-tag">Wigs &amp; Units</span></div>
+            <div class="product-img plate plate--3x4"><img src="./images/wigs/wig-5.jpg" alt="Honey blonde ombré straight wig, back view" width="700" height="933" loading="lazy" decoding="async"><span class="product-tag t-credit"><span class="n">12</span> Wigs &amp; Units</span></div>
             <div class="product-body">
-              <h3 class="product-name">Deep Wave Unit</h3>
-              <p class="product-blurb">Defined deep wave that revives with water and product.</p>
-              <div class="product-price" data-price-slot>GHS 2,500</div>
-              <div class="product-cta" data-cta-slot><button class="btn btn--ghost-dark" type="button" data-add="Deep Wave Unit|2500">Add to Cart</button></div>
+              <h3 class="product-name t-h3">Deep Wave Unit</h3>
+              <p class="product-blurb t-cap">Defined deep wave that revives with water and product.</p>
+              <div class="product-foot">
+                <div class="product-price t-price" data-price-slot>GHS 2,500</div>
+                <div class="product-cta" data-cta-slot><button class="btn btn--ghost btn--sm" type="button" data-add="Deep Wave Unit|2500">Add to bag</button></div>
+              </div>
             </div>
           </article>
 
           <article class="product-card" data-cat="wigs" data-kind="product" data-item="Pixie Curl Unit" data-reveal>
-            <div class="product-img"><img src="./images/wigs/wig-6.jpg" alt="Jet black body-wave unit worn long, back view" width="700" height="875" loading="lazy" decoding="async"><span class="product-tag">Wigs &amp; Units</span></div>
+            <div class="product-img plate plate--3x4"><img src="./images/wigs/wig-6.jpg" alt="Jet black body-wave unit worn long, back view" width="700" height="933" loading="lazy" decoding="async"><span class="product-tag t-credit"><span class="n">13</span> Wigs &amp; Units</span></div>
             <div class="product-body">
-              <h3 class="product-name">Pixie Curl Unit</h3>
-              <p class="product-blurb">Short, light and low maintenance. A holiday favourite.</p>
-              <div class="product-price" data-price-slot>GHS 1,650</div>
-              <div class="product-cta" data-cta-slot><button class="btn btn--ghost-dark" type="button" data-add="Pixie Curl Unit|1650">Add to Cart</button></div>
+              <h3 class="product-name t-h3">Pixie Curl Unit</h3>
+              <p class="product-blurb t-cap">Short, light and low maintenance. A holiday favourite.</p>
+              <div class="product-foot">
+                <div class="product-price t-price" data-price-slot>GHS 1,650</div>
+                <div class="product-cta" data-cta-slot><button class="btn btn--ghost btn--sm" type="button" data-add="Pixie Curl Unit|1650">Add to bag</button></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="product-card" data-cat="care" data-kind="product" data-item="Moringa Ginseng Follicle Fuel Hair Growth Oil" data-reveal>
+            <div class="product-img plate plate--3x4"><img src="./media/video/bottle-specimen-poster.webp" alt="The frosted green Follicle Fuel Hair Growth Oil bottle" width="700" height="933" loading="lazy" decoding="async"><span class="product-tag t-credit"><span class="n">14</span> Home Care</span><span class="product-flag">Launching soon</span></div>
+            <div class="product-body">
+              <h3 class="product-name t-h3">Moringa Ginseng Follicle Fuel Hair Growth Oil</h3>
+              <p class="product-blurb t-cap">Moringa and ginseng, for follicle strength and scalp health. Launching soon, reserve yours.</p>
+              <div class="product-foot">
+                <div class="product-price t-price" data-price-slot>GHS 220</div>
+                <div class="product-cta" data-cta-slot><button class="btn btn--ghost btn--sm" type="button" data-add="Moringa Ginseng Follicle Fuel Hair Growth Oil|220">Reserve</button></div>
+              </div>
             </div>
           </article>
 
           <article class="product-card" data-cat="care" data-kind="product" data-item="Moringa Ginseng Follicle Fuel Beard Oil" data-reveal>
-            <div class="product-img"><img src="./images/hair-care-cosmetics/care-1.jpg" alt="Bottle of Moringa Ginseng follicle oil" width="700" height="875" loading="lazy" decoding="async"><span class="product-tag">Home Care</span><span class="product-flag">Launching soon</span></div>
+            <div class="product-img plate plate--3x4"><img src="./media/video/beard-oil-poster.webp" alt="The amber Follicle Fuel Beard Oil bottle on terracotta sand" width="700" height="933" loading="lazy" decoding="async"><span class="product-tag t-credit"><span class="n">15</span> Home Care</span><span class="product-flag">Launching soon</span></div>
             <div class="product-body">
-              <h3 class="product-name">Moringa Ginseng Follicle Fuel Beard Oil</h3>
-              <p class="product-blurb">Moringa and ginseng for follicle strength. Launching soon, reserve yours.</p>
-              <div class="product-price" data-price-slot>GHS 180</div>
-              <div class="product-cta" data-cta-slot><button class="btn btn--ghost-dark" type="button" data-add="Moringa Ginseng Follicle Fuel Beard Oil|180">Pre-order</button></div>
+              <h3 class="product-name t-h3">Moringa Ginseng Follicle Fuel Beard Oil</h3>
+              <p class="product-blurb t-cap">The same formula in amber glass, for him. Launching soon, reserve yours.</p>
+              <div class="product-foot">
+                <div class="product-price t-price" data-price-slot>GHS 180</div>
+                <div class="product-cta" data-cta-slot><button class="btn btn--ghost btn--sm" type="button" data-add="Moringa Ginseng Follicle Fuel Beard Oil|180">Reserve</button></div>
+              </div>
             </div>
           </article>
 
-          <article class="product-card" data-cat="care" data-kind="product" data-item="Moringa Root Fuel Scalp Oil" data-reveal>
-            <div class="product-img"><img src="./images/hair-care-cosmetics/care-2.jpg" alt="Moringa scalp oil jar with serum bottle" width="700" height="875" loading="lazy" decoding="async"><span class="product-tag">Home Care</span><span class="product-flag">Launching soon</span></div>
+          <article class="product-card" data-cat="care" data-kind="product" data-item="Bēsia Hair Botox, 250ml" data-reveal>
+            <div class="product-img plate plate--3x4"><img src="./media/img/product-hair-botox.webp" alt="The Bēsia Hair Botox pump bottle" width="700" height="933" loading="lazy" decoding="async"><span class="product-tag t-credit"><span class="n">16</span> Home Care</span><span class="product-flag">Launching soon</span></div>
             <div class="product-body">
-              <h3 class="product-name">Moringa Root Fuel Scalp Oil</h3>
-              <p class="product-blurb">The scalp half of the Moringa line. Launching soon, reserve yours.</p>
-              <div class="product-price" data-price-slot>GHS 220</div>
-              <div class="product-cta" data-cta-slot><button class="btn btn--ghost-dark" type="button" data-add="Moringa Root Fuel Scalp Oil|220">Pre-order</button></div>
+              <h3 class="product-name t-h3">Bēsia Hair Botox, 250ml</h3>
+              <p class="product-blurb t-cap">A vegan, formaldehyde-free deep treatment, no botulinum toxin. The studio formula, to take home.</p>
+              <div class="product-foot">
+                <div class="product-price t-price" data-price-slot>GHS 650</div>
+                <div class="product-cta" data-cta-slot><button class="btn btn--ghost btn--sm" type="button" data-add="Bēsia Hair Botox, 250ml|650">Reserve</button></div>
+              </div>
             </div>
           </article>
 
           <article class="product-card" data-cat="care" data-kind="product" data-item="Flax Seed + Aloe Hair Mask" data-reveal>
-            <div class="product-img"><img src="./images/hair-care-cosmetics/care-3.jpg" alt="Amber dropper bottle of flaxseed and aloe hair mask" width="700" height="875" loading="lazy" decoding="async"><span class="product-tag">Home Care</span></div>
+            <div class="product-img plate plate--3x4"><img src="./images/hair-care-cosmetics/care-3.jpg" alt="Amber dropper bottle of flaxseed and aloe hair mask" width="700" height="933" loading="lazy" decoding="async"><span class="product-tag t-credit"><span class="n">17</span> Home Care</span></div>
             <div class="product-body">
-              <h3 class="product-name">Flax Seed + Aloe Hair Mask</h3>
-              <p class="product-blurb">The in-house mask from our Flax Seed + Aloe treatment. Take it home.</p>
-              <div class="product-price" data-price-slot>GHS 190</div>
-              <div class="product-cta" data-cta-slot><button class="btn btn--ghost-dark" type="button" data-add="Flax Seed + Aloe Hair Mask|190">Add to Cart</button></div>
+              <h3 class="product-name t-h3">Flax Seed + Aloe Hair Mask</h3>
+              <p class="product-blurb t-cap">The in-house mask from our Flax Seed + Aloe treatment. Take it home.</p>
+              <div class="product-foot">
+                <div class="product-price t-price" data-price-slot>GHS 190</div>
+                <div class="product-cta" data-cta-slot><button class="btn btn--ghost btn--sm" type="button" data-add="Flax Seed + Aloe Hair Mask|190">Add to bag</button></div>
+              </div>
             </div>
           </article>
 
           <article class="product-card" data-cat="care" data-kind="product" data-item="K18 Molecular Repair Leave-In" data-reveal>
-            <div class="product-img"><img src="./images/hair-care-cosmetics/care-4.jpg" alt="K18 leave-in molecular repair pump bottle" width="700" height="875" loading="lazy" decoding="async"><span class="product-tag">Home Care</span></div>
+            <div class="product-img plate plate--3x4"><img src="./images/hair-care-cosmetics/care-4.jpg" alt="K18 leave-in molecular repair pump bottle" width="700" height="933" loading="lazy" decoding="async"><span class="product-tag t-credit"><span class="n">18</span> Home Care</span></div>
             <div class="product-body">
-              <h3 class="product-name">K18 Molecular Repair Leave-In</h3>
-              <p class="product-blurb">Keeps bond repair working between salon treatments.</p>
-              <div class="product-price" data-price-slot>GHS 650</div>
-              <div class="product-cta" data-cta-slot><button class="btn btn--ghost-dark" type="button" data-add="K18 Molecular Repair Leave-In|650">Add to Cart</button></div>
+              <h3 class="product-name t-h3">K18 Molecular Repair Leave-In</h3>
+              <p class="product-blurb t-cap">Keeps bond repair working between salon treatments.</p>
+              <div class="product-foot">
+                <div class="product-price t-price" data-price-slot>GHS 650</div>
+                <div class="product-cta" data-cta-slot><button class="btn btn--ghost btn--sm" type="button" data-add="K18 Molecular Repair Leave-In|650">Add to bag</button></div>
+              </div>
             </div>
           </article>
 
           <article class="product-card" data-cat="care" data-kind="product" data-item="Olaplex No.3 Hair Perfector" data-reveal>
-            <div class="product-img"><img src="./images/hair-care-cosmetics/care-5.jpg" alt="Olaplex bond-repair bottle with botanicals" width="700" height="875" loading="lazy" decoding="async"><span class="product-tag">Home Care</span></div>
+            <div class="product-img plate plate--3x4"><img src="./images/hair-care-cosmetics/care-5.jpg" alt="Olaplex bond-repair bottle with botanicals" width="700" height="933" loading="lazy" decoding="async"><span class="product-tag t-credit"><span class="n">19</span> Home Care</span></div>
             <div class="product-body">
-              <h3 class="product-name">Olaplex No.3 Hair Perfector</h3>
-              <p class="product-blurb">The weekly at-home step after colour or texture work.</p>
-              <div class="product-price" data-price-slot>GHS 480</div>
-              <div class="product-cta" data-cta-slot><button class="btn btn--ghost-dark" type="button" data-add="Olaplex No.3 Hair Perfector|480">Add to Cart</button></div>
+              <h3 class="product-name t-h3">Olaplex No.3 Hair Perfector</h3>
+              <p class="product-blurb t-cap">The weekly at-home step after colour or texture work.</p>
+              <div class="product-foot">
+                <div class="product-price t-price" data-price-slot>GHS 480</div>
+                <div class="product-cta" data-cta-slot><button class="btn btn--ghost btn--sm" type="button" data-add="Olaplex No.3 Hair Perfector|480">Add to bag</button></div>
+              </div>
             </div>
           </article>
 
           <article class="product-card" data-cat="accessories" data-kind="product" data-item="Satin-Lined Bonnet" data-reveal>
-            <div class="product-img"><img src="./images/accessories/acc-1.jpg" alt="Satin-lined bonnet in Bēsia black" width="700" height="875" loading="lazy" decoding="async"><span class="product-tag">Studio Accessories</span></div>
+            <div class="product-img plate plate--3x4"><img src="./images/accessories/acc-1.jpg" alt="Satin-lined bonnet in Bēsia black" width="700" height="933" loading="lazy" decoding="async"><span class="product-tag t-credit"><span class="n">20</span> Studio Accessories</span></div>
             <div class="product-body">
-              <h3 class="product-name">Satin-Lined Bonnet</h3>
-              <p class="product-blurb">Protects a fresh silk press or install overnight.</p>
-              <div class="product-price" data-price-slot>GHS 120</div>
-              <div class="product-cta" data-cta-slot><button class="btn btn--ghost-dark" type="button" data-add="Satin-Lined Bonnet|120">Add to Cart</button></div>
+              <h3 class="product-name t-h3">Satin-Lined Bonnet</h3>
+              <p class="product-blurb t-cap">Protects a fresh silk press or install overnight.</p>
+              <div class="product-foot">
+                <div class="product-price t-price" data-price-slot>GHS 120</div>
+                <div class="product-cta" data-cta-slot><button class="btn btn--ghost btn--sm" type="button" data-add="Satin-Lined Bonnet|120">Add to bag</button></div>
+              </div>
             </div>
           </article>
 
           <article class="product-card" data-cat="accessories" data-kind="product" data-item="Wide-Tooth Detangling Comb" data-reveal>
-            <div class="product-img"><img src="./images/accessories/acc-2.jpg" alt="Wide-tooth detangling comb" width="700" height="875" loading="lazy" decoding="async"><span class="product-tag">Studio Accessories</span></div>
+            <div class="product-img plate plate--3x4"><img src="./images/accessories/acc-2.jpg" alt="Wide-tooth detangling comb" width="700" height="933" loading="lazy" decoding="async"><span class="product-tag t-credit"><span class="n">21</span> Studio Accessories</span></div>
             <div class="product-body">
-              <h3 class="product-name">Wide-Tooth Detangling Comb</h3>
-              <p class="product-blurb">Detangles curls wet without snapping the bond.</p>
-              <div class="product-price" data-price-slot>GHS 85</div>
-              <div class="product-cta" data-cta-slot><button class="btn btn--ghost-dark" type="button" data-add="Wide-Tooth Detangling Comb|85">Add to Cart</button></div>
+              <h3 class="product-name t-h3">Wide-Tooth Detangling Comb</h3>
+              <p class="product-blurb t-cap">Detangles curls wet without snapping the bond.</p>
+              <div class="product-foot">
+                <div class="product-price t-price" data-price-slot>GHS 85</div>
+                <div class="product-cta" data-cta-slot><button class="btn btn--ghost btn--sm" type="button" data-add="Wide-Tooth Detangling Comb|85">Add to bag</button></div>
+              </div>
             </div>
           </article>
 
           <article class="product-card" data-cat="accessories" data-kind="product" data-item="Microfibre Curl Towel" data-reveal>
-            <div class="product-img"><img src="./images/accessories/acc-3.jpg" alt="Rolled microfibre curl towel" width="700" height="875" loading="lazy" decoding="async"><span class="product-tag">Studio Accessories</span></div>
+            <div class="product-img plate plate--3x4"><img src="./images/accessories/acc-3.jpg" alt="Rolled microfibre curl towel" width="700" height="933" loading="lazy" decoding="async"><span class="product-tag t-credit"><span class="n">22</span> Studio Accessories</span></div>
             <div class="product-body">
-              <h3 class="product-name">Microfibre Curl Towel</h3>
-              <p class="product-blurb">Dries without frizz. Essential for a wash-and-go.</p>
-              <div class="product-price" data-price-slot>GHS 140</div>
-              <div class="product-cta" data-cta-slot><button class="btn btn--ghost-dark" type="button" data-add="Microfibre Curl Towel|140">Add to Cart</button></div>
+              <h3 class="product-name t-h3">Microfibre Curl Towel</h3>
+              <p class="product-blurb t-cap">Dries without frizz. Essential for a wash-and-go.</p>
+              <div class="product-foot">
+                <div class="product-price t-price" data-price-slot>GHS 140</div>
+                <div class="product-cta" data-cta-slot><button class="btn btn--ghost btn--sm" type="button" data-add="Microfibre Curl Towel|140">Add to bag</button></div>
+              </div>
             </div>
           </article>
 
           <article class="product-card" data-cat="accessories" data-kind="product" data-item="Silk Scrunchie Set" data-reveal>
-            <div class="product-img"><img src="./images/accessories/acc-4.jpg" alt="Set of three silk scrunchies" width="700" height="875" loading="lazy" decoding="async"><span class="product-tag">Studio Accessories</span></div>
+            <div class="product-img plate plate--3x4"><img src="./images/accessories/acc-4.jpg" alt="Set of three silk scrunchies" width="700" height="933" loading="lazy" decoding="async"><span class="product-tag t-credit"><span class="n">23</span> Studio Accessories</span></div>
             <div class="product-body">
-              <h3 class="product-name">Silk Scrunchie Set</h3>
-              <p class="product-blurb">Three silk scrunchies that hold without creasing.</p>
-              <div class="product-price" data-price-slot>GHS 95</div>
-              <div class="product-cta" data-cta-slot><button class="btn btn--ghost-dark" type="button" data-add="Silk Scrunchie Set|95">Add to Cart</button></div>
+              <h3 class="product-name t-h3">Silk Scrunchie Set</h3>
+              <p class="product-blurb t-cap">Three silk scrunchies that hold without creasing.</p>
+              <div class="product-foot">
+                <div class="product-price t-price" data-price-slot>GHS 95</div>
+                <div class="product-cta" data-cta-slot><button class="btn btn--ghost btn--sm" type="button" data-add="Silk Scrunchie Set|95">Add to bag</button></div>
+              </div>
             </div>
           </article>
 
           <article class="product-card" data-cat="accessories" data-kind="product" data-item="Bēsia Studio Tote" data-reveal>
-            <div class="product-img"><img src="./images/accessories/acc-5.jpg" alt="The Bēsia studio tote in black" width="700" height="875" loading="lazy" decoding="async"><span class="product-tag">Studio Accessories</span></div>
+            <div class="product-img plate plate--3x4"><img src="./images/accessories/acc-5.jpg" alt="The Bēsia studio tote in black" width="700" height="933" loading="lazy" decoding="async"><span class="product-tag t-credit"><span class="n">24</span> Studio Accessories</span></div>
             <div class="product-body">
-              <h3 class="product-name">Bēsia Studio Tote</h3>
-              <p class="product-blurb">The studio tote, in Bēsia black.</p>
-              <div class="product-price" data-price-slot>GHS 150</div>
-              <div class="product-cta" data-cta-slot><button class="btn btn--ghost-dark" type="button" data-add="Bēsia Studio Tote|150">Add to Cart</button></div>
+              <h3 class="product-name t-h3">Bēsia Studio Tote</h3>
+              <p class="product-blurb t-cap">The studio tote, in Bēsia black.</p>
+              <div class="product-foot">
+                <div class="product-price t-price" data-price-slot>GHS 150</div>
+                <div class="product-cta" data-cta-slot><button class="btn btn--ghost btn--sm" type="button" data-add="Bēsia Studio Tote|150">Add to bag</button></div>
+              </div>
             </div>
           </article>
 <!--/BUILD:products-->
-
         </div>
-
-        <p style="text-align:center; margin-top:2.6rem; color:var(--ink-soft); font-size:0.9rem;" data-reveal>
-          All prices are demo starting points, final pricing depends on length, lace size and current stock. Checkout and payment below are a working demo of the real flow.
-        </p>
+        <p class="t-cap">Retail prices are indicative until the studio confirms them. Delivery in Accra, GHS 30.</p>
       </div>
     </section>
 
-    <!-- ============ HOW IT WORKS ============ -->
-    <section class="section section--champagne">
-      <div class="container">
-        <div class="section-head section-head--center" data-reveal>
-          <div class="eyebrow eyebrow--center">How It Works</div>
-          <h2 class="section-title"><span class="script">From our shelf</span>To Your Mirror</h2>
-        </div>
-        <div class="contact-cards" data-reveal-stagger>
-          <div class="contact-card">
-            <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 7h12l1.5 13h-15z" stroke-linejoin="round"/><path d="M9 9V6a3 3 0 016 0v3" stroke-linecap="round"/></svg></div>
-            <h3>1 · Order Online</h3>
-            <p>Add to your bag and check out right here, Mobile Money, card, or pay when you pick up. No back-and-forth.</p>
-          </div>
-          <div class="contact-card">
-            <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 7h13v10H3zM16 10h3l2 3v4h-5z" stroke-linejoin="round"/><circle cx="7.5" cy="17" r="1.6"/><circle cx="17.5" cy="17" r="1.6"/></svg></div>
-            <h3>2 · Track It Live</h3>
-            <p>Every order gets a number. Follow it from Confirmed to Delivered on the <a href="./track.html" style="color:var(--gold-ink);font-weight:700;">Track Order</a> page.</p>
-          </div>
-          <div class="contact-card">
-            <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M8 3c-3 4-3 14 0 18M12 2c-3.5 5-3.5 15 0 20M16 3c-3 4-3 14 0 18" stroke-linecap="round"/></svg></div>
-            <h3>3 · Pickup or Delivery</h3>
-            <p>Collect from the shop free, or delivery within Accra for GHS 30, same day where possible.</p>
-          </div>
-          <div class="contact-card">
-            <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l7 4v5c0 4.4-3 8-7 9-4-1-7-4.6-7-9V7l7-4z" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-            <h3>4 · Add an Install</h3>
-            <p>Buying a unit? <a href="./contact.html" style="color:var(--gold-ink);font-weight:700;">Book an install</a> in the same visit, bundle pricing applies when you do both.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ CTA ============ -->
-    <section class="section section--espresso cta-band aura">
-      <div class="container" data-reveal>
-        <span class="script">Already ordered?</span>
-        <h2>Follow It to Your Door</h2>
-        <p>Enter your order number and watch it move from Confirmed to Delivered, updated live by the shop.</p>
-        <div class="btn-row">
-          <a href="./track.html" class="btn btn--gold">
-            Track Your Order
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </a>
-          <a href="./contact.html" class="btn btn--ghost">Book an Install</a>
-        </div>
-      </div>
-    </section>
   </main>
 
-  <!-- ============ FOOTER ============ -->
-  <footer class="site-footer">
+  <!--CHROME:foot-->
+  <footer class="site-footer grain" data-ground="ink">
     <div class="container">
-      <div class="footer-grid">
-        <div class="footer-brand">
-          <a class="nav-logo" href="./index.html">
-            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-              <path d="M15 9.5c-6.5 7-6.5 22 0 29.5" stroke-linecap="round"/>
-              <path d="M23.5 6c-8.5 8.5-8.5 27.5 0 36" stroke-linecap="round"/>
-              <path d="M32 10c-5.5 6.5-5.5 21 0 27.5" stroke-linecap="round"/>
-              <path d="M38.5 11l1.3 3.4 3.4 1.3-3.4 1.3-1.3 3.4-1.3-3.4-3.4-1.3 3.4-1.3z" fill="currentColor" stroke="none"/>
-            </svg>
-            <span class="nav-logo-text">
-              <span class="nav-logo-name">Bēsia</span>
-              <span class="nav-logo-tag">Beauty Studio</span>
-            </span>
-          </a>
-          <p>Ghana&rsquo;s home of fusion extensions. UK-certified KTips and microlinks, vegan formaldehyde-free texture systems, and treatment-led scalp and bond care, at 54 Fifth Circular Road, Cantonments.</p>
-          <div class="footer-social">
-            <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3.5" y="3.5" width="17" height="17" rx="4.5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/></svg></a>
-            <a href="#" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.6 3c.4 2 1.7 3.4 3.9 3.6v2.9c-1.4.1-2.7-.3-3.9-1.1v5.7c0 3.7-2.6 6-6 6-3 0-5.6-2.3-5.6-5.5 0-3.4 3-5.8 6.4-5.3v3c-.4-.1-.8-.2-1.2-.1-1.3.1-2.2 1.1-2.2 2.4 0 1.4 1.1 2.5 2.6 2.5 1.6 0 2.7-1.1 2.7-2.9V3h3.3z"/></svg></a>
-            <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-7h2.4l.4-3h-2.8V9.1c0-.9.3-1.5 1.6-1.5H16.5V4.9c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4V11H7.9v3h2.4v7h3.2z"/></svg></a>
-          </div>
+      <div class="t t-colophon">
+        <div class="foot-brand">
+          <a class="foot-logo" href="./index.html" aria-label="Bēsia, home">Bēsia</a>
+          <p class="t-cap">Ghana's home of fusion extensions. UK-certified KTips and microlinks, a vegan, formaldehyde-free texture system, and treatment-led scalp and bond care.</p>
+          <p class="foot-line">Nourish your roots. Protect your peace.</p>
         </div>
-
-        <div class="footer-col">
-          <h4>Explore</h4>
+        <div class="foot-col">
+          <p class="t-label foot-head">In this issue</p>
           <ul>
             <li><a href="./services.html">Services</a></li>
-            <li><a href="./shop.html" class="is-active">Shop</a></li>
-            <li><a href="./track.html">Track Your Order</a></li>
-            <li><a href="./gallery.html">Look Book</a></li>
-            <li><a href="./about.html">About Us</a></li>
+            <li><a href="./shop.html">Shop</a></li>
+            <li><a href="./classes.html">Classes</a></li>
             <li><a href="./packages.html">Packages</a></li>
-            <li><a href="./contact.html">Book Now</a></li>
+            <li><a href="./gallery.html">Gallery</a></li>
+            <li><a href="./about.html">About</a></li>
+            <li><a href="./track.html">Track an order</a></li>
           </ul>
         </div>
-
-        <div class="footer-col">
-          <h4>Contact</h4>
-          <ul class="footer-contact">
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7-5.5-7-11a7 7 0 0114 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg><span>54 Fifth Circular Road<br>Cantonments, Accra</span></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 4h4l2 5-2.5 1.5c1 2.3 2.7 4 5 5L15 13l5 2v4a2 2 0 01-2 2C9.7 20.5 3.5 14.3 3 6a2 2 0 012-2z"/></svg><span><a href="tel:+233240787993">024 078 7993</a></span></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg><span><a href="mailto:hello@besia.co">hello@besia.co</a></span></li>
+        <div class="foot-col">
+          <p class="t-label foot-head">Visit</p>
+          <ul>
+            <li><span>54 Fifth Circular Road<br>Cantonments, Accra</span></li>
+            <li><span>Monday to Saturday, 9am to 7pm<br>Closed Sunday</span></li>
+            <li><a href="https://maps.google.com/?q=54+Fifth+Circular+Road+Cantonments+Accra" target="_blank" rel="noopener">Directions</a></li>
           </ul>
         </div>
-
-        <div class="footer-col">
-          <h4>Beauty Notes</h4>
-          <p style="font-size:0.9rem;">Join our list for restock alerts, aftercare tips and early access to promo slots.</p>
-          <form class="newsletter-form">
-            <input type="email" placeholder="Your email address" aria-label="Email address">
-            <button type="submit">Join</button>
-          </form>
-          <p class="newsletter-note">No spam, aftercare, new services and the Moringa launch.</p>
+        <div class="foot-col">
+          <p class="t-label foot-head">Write</p>
+          <ul>
+            <li><a href="tel:+233240787993">024 078 7993</a></li>
+            <li><a href="https://wa.me/233240787993?text=Hello%20B%C4%93sia%20Beauty%20Studio%2C%20I%20would%20like%20to%20book%20an%20appointment." target="_blank" rel="noopener">WhatsApp</a></li>
+            <li><a href="mailto:hello@besia.co">hello@besia.co</a></li>
+            <li><a href="#" data-open-chat>Ask the studio</a></li>
+            <li><a href="https://instagram.com/besia.hq" target="_blank" rel="noopener">Instagram</a></li>
+            <li><a href="https://www.tiktok.com/@besiahq" target="_blank" rel="noopener">TikTok</a></li>
+          </ul>
         </div>
       </div>
-
-      <div class="footer-bottom">
-        <span>© <span data-year>2026</span> Bēsia Beauty Studio. All rights reserved.</span>
-        <span class="footer-credit">Designed &amp; Developed by <a href="https://perkins-swart.vercel.app" target="_blank" rel="noopener">Perkins Creative</a></span>
+      <div class="foot-mark" aria-hidden="true">Bēsia</div>
+      <div class="foot-bottom">
+        <span>Bēsia Beauty Studio, Cantonments, Accra. Issue 01. All rights reserved, <span data-year>2026</span>.</span>
+        <span class="foot-credit">Designed and built by <a href="https://perkins-swart.vercel.app" target="_blank" rel="noopener">Perkins Creative</a></span>
       </div>
     </div>
   </footer>
 
-  <!-- Scripts -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer integrity="sha384-g4NTh/Iv5PPU4xPyhEWqPcwtNXOvdaDI8LLnyYfyNZOjKJeYQyjzQ9X5275eBjpt" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer integrity="sha384-Z3REaz79l2IaAZqJsSABtTbhjgOUYyV3p90XNnAPCSHg3EMTz1fouunq9WZRtj3d" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <!-- data first: every other script reads from it -->
   <script src="./js/besia-data.js" defer></script>
   <script src="./js/besia-live.js" defer></script>
   <script src="./js/booking-cart.js" defer></script>
-  <script src="./js/main.js" defer></script>
-  <script src="./js/animations.js" defer></script>
+  <script src="./js/site.js" defer></script>
+  <script src="./js/reel.js" defer></script>
+  <script src="./js/slides.js" defer></script>
   <script src="./js/ai-chat.js" defer></script>
-  <script src="./js/store.js" defer></script>
   <script src="./js/site-sync.js" defer></script>
   <script src="./js/offline.js" defer></script>
+  <script src="./js/store.js" defer></script>
+<!--/CHROME:foot-->
   <script>
-    // Shop filter + add-to-cart (page-local, tiny)
+    /* Page-local: the filter and Add to bag. The bag itself is js/store.js. */
     document.addEventListener('DOMContentLoaded', function () {
       var cards = Array.prototype.slice.call(document.querySelectorAll('.product-card'));
       var buttons = document.querySelectorAll('[data-shop-filter]');
+      var count = document.getElementById('shop-count');
 
       function applyFilter(cat) {
+        var shown = 0;
         buttons.forEach(function (b) {
-          b.classList.toggle('is-active', b.getAttribute('data-shop-filter') === cat);
+          var on = b.getAttribute('data-shop-filter') === cat;
+          b.classList.toggle('is-active', on);
+          b.setAttribute('aria-pressed', on ? 'true' : 'false');
         });
         cards.forEach(function (card) {
-          card.classList.toggle('is-hidden', cat !== 'all' && card.getAttribute('data-cat') !== cat);
+          var hide = cat !== 'all' && card.getAttribute('data-cat') !== cat;
+          card.classList.toggle('is-hidden', hide);
+          if (!hide) shown++;
         });
+        if (count) count.textContent = 'Showing ' + shown + ' of ' + cards.length;
       }
       buttons.forEach(function (btn) {
         btn.addEventListener('click', function () { applyFilter(btn.getAttribute('data-shop-filter')); });
       });
-      // Deep links like shop.html#wigs preselect a category
+      /* deep links like shop.html#wigs preselect a category */
       var hash = (location.hash || '').replace('#', '');
-      if (hash && document.querySelector('[data-shop-filter="' + hash + '"]')) applyFilter(hash);
+      if (hash && document.querySelector('[data-shop-filter="' + hash + '"]')) applyFilter(hash); else applyFilter('all');
 
-      document.querySelectorAll('[data-add]').forEach(function (btn) {
-        btn.addEventListener('click', function () {
-          var parts = btn.getAttribute('data-add').split('|');
-          var card = btn.closest('.product-card');
-          BesiaStore.addItem({
-            name: parts[0],
-            price: parseInt(parts[1], 10),
-            img: card.querySelector('img').getAttribute('src'),
-            cat: card.getAttribute('data-cat')
-          });
-          BesiaStore.renderCartBar();
-          BesiaStore.toast(parts[0] + ' added to your bag');
+      document.addEventListener('click', function (e) {
+        var btn = e.target.closest('[data-add]');
+        if (!btn || !window.BesiaStore) return;
+        var parts = btn.getAttribute('data-add').split('|');
+        var card = btn.closest('.product-card');
+        BesiaStore.addItem({
+          name: parts[0],
+          price: parseInt(parts[1], 10),
+          img: card.querySelector('img').getAttribute('src'),
+          cat: card.getAttribute('data-cat')
         });
+        BesiaStore.renderCartBar();
+        BesiaStore.toast(parts[0] + ' added to your bag');
       });
 
-      BesiaStore.renderCartBar();
-      BesiaStore.onChange(BesiaStore.renderCartBar);
+      if (window.BesiaStore) { BesiaStore.renderCartBar(); BesiaStore.onChange(BesiaStore.renderCartBar); }
     });
   </script>
 </body>

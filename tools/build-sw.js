@@ -28,28 +28,28 @@ function walk(dir, out = []) {
   return out;
 }
 
-const shell = walk(ROOT)
+const all = walk(ROOT)
   .map(p => path.relative(ROOT, p).split(path.sep).join('/'))
   .filter(f => /\.(html|css|js|svg|woff2)$/i.test(f))
-  .filter(f => !f.startsWith('sw.js'))
+  .filter(f => !f.startsWith('sw.js') && !f.startsWith('media/') && !f.startsWith('js/vendor/') &&
+               f !== 'styleguide.html' && !/\.(spec|test)\.js$/.test(f))
   .sort();
+/* The public shell is precached on first visit. The Studio Manager's
+   own pages and scripts are cached the first time the owner opens the
+   manager, so a client browsing on mobile data never downloads it. */
+const shell = all.filter(f => !f.startsWith('admin/') && !/^js\/admin/.test(f) && f !== 'css/admin.css');
+const adminShell = all.filter(f => !shell.includes(f));
 
 /* The five studio photographs carry the hero on every page, worth
    having offline. The rest of the library is cached as it is browsed. */
-const keyImages = [
-  'images/studio/studio-reception.jpg',
-  'images/studio/studio-nook.jpg',
-  'images/studio/studio-wash.jpg',
-  'images/studio/studio-corner.jpg',
-  'images/studio/studio-branding.jpg'
-].filter(f => fs.existsSync(path.join(ROOT, f)));
+const keyImages = [].filter(f => fs.existsSync(path.join(ROOT, f)));
 
 const precache = ['./'].concat(shell, keyImages);
 
 /* A hash of the shell, so a deploy replaces the old cache rather than
    leaving somebody on a stale copy. */
 const hash = crypto.createHash('sha1');
-shell.forEach(f => hash.update(f + fs.statSync(path.join(ROOT, f)).size));
+all.forEach(f => hash.update(f).update(fs.readFileSync(path.join(ROOT, f))));
 const version = hash.digest('hex').slice(0, 8);
 
 const sw = `/* ============================================================
@@ -62,6 +62,11 @@ const VERSION = '${version}';
 const CACHE = 'besia-' + VERSION;
 
 const PRECACHE = ${JSON.stringify(precache, null, 2)};
+
+/* The Studio Manager's shell, fetched into the cache the first time an
+   admin page is opened, never on the public site. */
+const ADMIN = ${JSON.stringify(adminShell, null, 2)};
+const IMAGE_CACHE_MAX = 80;
 
 self.addEventListener('install', event => {
   event.waitUntil(
@@ -84,6 +89,16 @@ self.addEventListener('message', e => {
   if (e.data === 'skip-waiting') self.skipWaiting();
 });
 
+/* Photographs are cached as they are seen; keep the newest eighty so
+   the cache cannot grow without limit on a phone. */
+function trimImages(c) {
+  return c.keys().then(keys => {
+    const imgs = keys.filter(k => /\\.(webp|jpe?g|png|gif|avif)$/i.test(new URL(k.url).pathname));
+    const extra = imgs.length - IMAGE_CACHE_MAX;
+    return extra > 0 ? Promise.all(imgs.slice(0, extra).map(k => c.delete(k))) : null;
+  });
+}
+
 self.addEventListener('fetch', event => {
   const req = event.request;
   if (req.method !== 'GET') return;
@@ -91,9 +106,21 @@ self.addEventListener('fetch', event => {
   const url = new URL(req.url);
   if (url.origin !== self.location.origin) return;   /* fonts and CDNs handle themselves */
 
+  /* Films are never answered here. Safari asks for them in byte ranges
+     and expects 206 replies; a cached full 200 breaks playback. They
+     are also the heaviest thing on the site, not worth a cache slot. */
+  if (req.headers.has('range') || /\\.(mp4|webm)$/i.test(url.pathname)) return;
+
   /* Pages: try the network so a fresh deploy is picked up, fall back to
      the cache when there is nothing to reach. */
   if (req.mode === 'navigate') {
+    if (/\\/admin\\//.test(url.pathname)) {
+      event.waitUntil(caches.open(CACHE).then(c => c.keys().then(keys => {
+        const have = new Set(keys.map(k => new URL(k.url).pathname));
+        const missing = ADMIN.filter(f => !have.has(new URL(f, self.location.href).pathname));
+        return Promise.allSettled(missing.map(f => c.add(f)));
+      })));
+    }
     event.respondWith(
       fetch(req)
         .then(res => {
@@ -111,7 +138,7 @@ self.addEventListener('fetch', event => {
      hundred milliseconds of latency, it means a deploy lands with the
      new HTML calling into the old JavaScript, and buttons quietly stop
      working. These files are small; correctness wins. */
-  if (/\.(js|css)$/i.test(url.pathname)) {
+  if (/\\.(js|css)$/i.test(url.pathname)) {
     event.respondWith(
       fetch(req)
         .then(res => {
@@ -134,7 +161,7 @@ self.addEventListener('fetch', event => {
         .then(res => {
           if (res && res.status === 200 && res.type === 'basic') {
             const copy = res.clone();
-            caches.open(CACHE).then(c => c.put(req, copy));
+            caches.open(CACHE).then(c => c.put(req, copy).then(() => trimImages(c)));
           }
           return res;
         })
@@ -147,4 +174,4 @@ self.addEventListener('fetch', event => {
 
 fs.writeFileSync(path.join(ROOT, 'sw.js'), sw);
 console.log('sw.js written, version ' + version + ', ' + precache.length + ' files precached.');
-console.log('  (' + shell.length + ' shell files + ' + keyImages.length + ' studio photographs)');
+console.log('  (' + shell.length + ' public shell files; ' + adminShell.length + ' manager files cached on first manager visit)');

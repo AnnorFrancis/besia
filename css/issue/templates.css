@@ -1,0 +1,178 @@
+/* ============================================================
+   BĒSIA, THE ISSUE: templates
+   Nine spreads build every page. Phones first: every template is a
+   single column that stacks. From 1024px it becomes twelve columns,
+   every column minmax(0, 1fr) and every child min-width 0, so nothing
+   can push wider than the page. Plates are portrait and capped at
+   --plate-max so her 576px films stay sharp.
+   ============================================================ */
+
+.t { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--gap); align-items: start; }
+.t > * { min-width: 0; }
+@media (min-width: 1024px) { .t { grid-template-columns: repeat(12, minmax(0, 1fr)); } }
+
+/* ---------- the plate: a photograph or a film, framed ---------- */
+.plate {
+  position: relative; overflow: hidden; isolation: isolate;
+  background: var(--p-ink); color: var(--p-ivory);
+  aspect-ratio: var(--ar, 4 / 5);
+  width: 100%;
+}
+.plate > img, .plate > picture > img, .plate > video, .plate .reel-poster, .plate .reel-video {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: var(--pos, center);
+}
+.plate--portrait { --ar: 9 / 16; }
+.plate--tall { --ar: 4 / 5; }
+.plate--square { --ar: 1 / 1; }
+.plate--wide { --ar: 16 / 9; }
+.plate--3x4 { --ar: 3 / 4; }
+.plate--arch { border-radius: 50% 50% 0 0 / 28% 28% 0 0; }
+.plate--framed { box-shadow: inset 0 0 0 1px var(--rule); }
+.plate .scrim {
+  position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background: linear-gradient(to top, var(--scrim) 0%, rgb(21 27 34 / 0.35) 45%, rgb(21 27 34 / 0) 75%);
+}
+.plate .scrim--top { background: linear-gradient(to bottom, rgb(21 27 34 / 0.55) 0%, rgb(21 27 34 / 0) 40%); }
+.plate-wrap { position: relative; min-width: 0; }
+@media (min-width: 1024px) { .plate--cap { max-width: var(--plate-max); } }
+/* a 9:16 film on a phone is cropped to 4:5 so the page keeps moving */
+@media (max-width: 1023px) { .plate--portrait { --ar: 4 / 5; } }
+
+/* Plate credit: "04 · Follicle Fuel, film", beneath the plate on the ground. */
+.credit { display: flex; gap: var(--s-3); align-items: baseline; margin-top: var(--s-3); }
+.credit .n { color: var(--accent); font-variant-numeric: tabular-nums; }
+
+/* Frosted foot: baked glass over the plate's own blurred still, holding
+   caption and one link. No live blur, never over a form field. */
+.foot {
+  position: absolute; left: 0; right: 0; bottom: 0; z-index: 2;
+  min-height: 96px; padding: var(--s-4) var(--s-5);
+  display: flex; align-items: flex-end; justify-content: space-between; gap: var(--s-4);
+  color: var(--p-ivory);
+  background-color: rgb(21 27 34 / 0.78);
+  background-image: var(--baked, none);
+  background-size: cover; background-position: bottom;
+  background-blend-mode: multiply;
+  box-shadow: var(--rim);
+}
+.foot::before { content: ''; position: absolute; inset: 0; pointer-events: none; background: rgb(21 27 34 / 0.5); }
+.foot > * { position: relative; }
+.foot .foot-text { min-width: 0; }
+.foot .foot-text .t-credit { color: rgb(246 240 228 / 0.7); margin-bottom: var(--s-1); }
+.foot .foot-text p { font-size: var(--t-body); line-height: 1.45; max-width: 36ch; color: var(--p-ivory); }
+@media (min-width: 1024px) { .foot { min-height: 112px; padding: var(--s-5) var(--s-6); } }
+
+/* ---------- t-cover ---------- */
+.t-cover { position: relative; }
+@media (min-width: 1024px) {
+  .t-cover { min-height: 100svh; }
+  .t-cover > .cover-plate { grid-column: 7 / -1; }
+  .t-cover > .cover-copy { grid-column: 1 / 7; align-self: end; padding-bottom: var(--s-8); }
+}
+
+/* ---------- t-spread: copy beside a 4:5 plate ---------- */
+.t-spread > .plate, .t-spread > .plate-wrap { order: -1; margin-inline: calc(-1 * var(--page)); }
+.t-spread > .copy { padding-top: var(--s-6); }
+@media (min-width: 1024px) {
+  .t-spread > .plate, .t-spread > .plate-wrap { order: 0; margin-inline: 0; grid-column: 7 / -1; justify-self: end; }
+  .t-spread > .copy { padding-top: 0; grid-column: 1 / 6; align-self: center; }
+  .t-spread[data-flip] > .copy { grid-column: 8 / -1; }
+  .t-spread[data-flip] > .plate, .t-spread[data-flip] > .plate-wrap { grid-column: 1 / 7; justify-self: start; }
+}
+
+/* ---------- t-plate: one film or photograph as the page ---------- */
+.t-plate > .plate, .t-plate > .plate-wrap { margin-inline: calc(-1 * var(--page)); }
+.t-plate > .aside { padding-top: var(--s-5); }
+@media (min-width: 1024px) {
+  .t-plate > .plate, .t-plate > .plate-wrap { margin-inline: 0; grid-column: 3 / 11; justify-self: center; }
+  .t-plate > .aside { padding-top: 0; grid-column: 1 / 3; align-self: end; }
+  .t-plate > .aside--right { grid-column: 11 / -1; }
+  .t-plate--full > .plate { grid-column: 1 / -1; }
+}
+
+/* ---------- t-rail: three plates, a snap rail on phones ---------- */
+.t-rail {
+  display: flex; gap: var(--gap);
+  overflow-x: auto; overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory; scroll-padding-inline: var(--page);
+  margin-inline: calc(-1 * var(--page)); padding-inline: var(--page);
+  scrollbar-width: none;
+}
+.t-rail::-webkit-scrollbar { display: none; }
+.t-rail > * { flex: 0 0 78%; scroll-snap-align: start; }
+.t-rail > :last-child { margin-right: var(--page); }
+.rail-count { display: flex; justify-content: space-between; align-items: baseline; margin-top: var(--s-4); }
+@media (min-width: 1024px) {
+  .t-rail { display: grid; overflow: visible; margin-inline: 0; padding-inline: 0; scroll-snap-type: none; }
+  .t-rail > * { flex: none; }
+  .t-rail > :last-child { margin-right: 0; }
+  .t-rail > * { grid-column: span 4; }
+  .t-rail > :nth-child(2) { margin-top: var(--s-7); }
+  .t-rail--six > :nth-child(5) { margin-top: var(--s-7); }
+  .t-rail--four > * { grid-column: span 3; }
+  .t-rail--four > :nth-child(2), .t-rail--four > :nth-child(4) { margin-top: var(--s-7); }
+  .rail-count { display: none; }
+}
+
+/* ---------- t-opener: a chapter ---------- */
+.t-opener { position: relative; }
+.t-opener > .plate, .t-opener > .plate-wrap { order: -1; margin-inline: calc(-1 * var(--page)); }
+.t-opener > .copy { padding-top: var(--s-6); position: relative; z-index: 1; }
+.t-opener .ghost {
+  position: absolute; right: 0; top: var(--s-4); z-index: 0; pointer-events: none; user-select: none;
+  font-size: 30vw; font-weight: 100; line-height: 0.8; letter-spacing: -0.04em;
+  color: var(--fg); opacity: 0.07; font-variant-numeric: tabular-nums;
+}
+@media (min-width: 1024px) {
+  .t-opener { min-height: 70svh; align-items: center; }
+  .t-opener[data-tall] { min-height: calc(100svh - var(--nav-h)); }
+  .t-opener > .plate, .t-opener > .plate-wrap { order: 0; margin-inline: 0; grid-column: 8 / -1; justify-self: end; }
+  .t-opener > .copy { padding-top: 0; grid-column: 1 / 7; }
+  .t-opener[data-flip] > .copy { grid-column: 7 / -1; }
+  .t-opener[data-flip] > .plate, .t-opener[data-flip] > .plate-wrap { grid-column: 1 / 6; justify-self: start; }
+  .t-opener .ghost { top: 0; font-size: clamp(8rem, 24vw, 22rem); }
+  .t-opener[data-flip] .ghost { right: auto; left: 0; }
+}
+
+/* ---------- t-index: ruled rows ---------- */
+.t-index { display: block; }
+.ix-row {
+  display: grid; grid-template-columns: 3.5rem minmax(0, 1fr) auto; align-items: center; gap: var(--s-4);
+  min-height: 72px; padding-block: var(--s-3); border-bottom: 1px solid var(--rule);
+  color: inherit;
+}
+.ix-row:first-child { border-top: 1px solid var(--rule); }
+.ix-row .ix-n { font-size: var(--t-cap); font-weight: 500; color: var(--accent); font-variant-numeric: tabular-nums; letter-spacing: 0.1em; }
+.ix-row .ix-title { display: block; font-size: var(--t-h3); font-weight: calc(500 + var(--wc) / 2); line-height: 1.25; letter-spacing: -0.005em; }
+.ix-row .ix-dek { display: block; font-size: var(--t-cap); color: var(--fg-3); margin-top: 2px; }
+.ix-row .ix-end { text-align: right; font-size: var(--t-cap); color: var(--fg-2); font-variant-numeric: tabular-nums; white-space: nowrap; }
+@media (min-width: 1024px) {
+  .ix-row { grid-template-columns: 4rem minmax(0, 1fr) auto; }
+}
+a.ix-row { transition: background var(--d-hover) var(--ease-soft); }
+@media (hover: hover) and (pointer: fine) {
+  a.ix-row:hover { background: rgb(21 27 34 / 0.04); }
+  [data-ground="ink"] a.ix-row:hover, [data-ground="moss"] a.ix-row:hover, [data-ground="espresso"] a.ix-row:hover, [data-ground="clay"] a.ix-row:hover { background: rgb(246 240 228 / 0.06); }
+}
+
+/* ---------- t-quote ---------- */
+.t-quote blockquote { position: relative; }
+.t-quote blockquote .t-quote-text { text-wrap: balance; }
+.t-quote cite { display: block; margin-top: var(--s-5); }
+@media (min-width: 1024px) {
+  .t-quote > .q { grid-column: 2 / 11; }
+  .t-quote blockquote::before { content: '\201C'; position: absolute; left: -0.6em; top: -0.1em; font-size: var(--t-quote); font-weight: 200; color: var(--accent); line-height: 1; }
+}
+
+/* ---------- t-colophon ---------- */
+@media (min-width: 1024px) { .t-colophon > * { grid-column: span 3; } }
+
+/* ---------- t-form: copy beside a form on opaque paper ---------- */
+.t-form > .copy { padding-bottom: var(--s-6); }
+@media (min-width: 1024px) {
+  .t-form > .copy { padding-bottom: 0; grid-column: 1 / 5; }
+  .t-form > .form { grid-column: 6 / -1; }
+}
+
+/* A chapter-sized headline beside a plate wraps too far; a spread caps it. */
+.t-spread > .copy > .t-chap, .t-opener:not([data-tall]) > .copy > .t-chap { font-size: clamp(2.375rem, 1.4rem + 3.4vw, 4.5rem); }

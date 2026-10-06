@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Style guide · Bēsia, The Issue</title>
+  <meta name="description" content="Development page: every ground and component of the Bēsia issue.">
+  <meta name="robots" content="noindex,nofollow">
+  <!--CHROME:head-->
+  <meta name="theme-color" content="#151B22">
+  <link rel="icon" type="image/svg+xml" href="./assets/icons/favicon.svg">
+  <link rel="preload" href="./fonts/montserrat-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="./fonts/montserrat-macron.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="./css/issue.css">
+  <script>
+  /* Boot, inline and tiny: marks the page as scripted, decides the
+     effects tier, and whether the issue opens with its intro. Storage
+     is wrapped because Safari's private mode throws on it. */
+  (function () {
+    var h = document.documentElement, n = navigator, c = n.connection || {};
+    h.classList.add('js');
+    var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var lite = !!(c.saveData || /(^|[^3-9])2g/.test(c.effectiveType || '') || (n.deviceMemory && n.deviceMemory <= 2));
+    h.setAttribute('data-fx', lite || reduce ? 'lite' : 'full');
+    if (reduce) h.setAttribute('data-reduce', '');
+    var home = document.currentScript && /index\.html$|\/$/.test(location.pathname) && !location.hash && !location.search;
+    if (home && !lite && !reduce) {
+      try {
+        if (!sessionStorage.getItem('besia-opened')) { sessionStorage.setItem('besia-opened', '1'); h.classList.add('intro'); }
+      } catch (e) {}
+    }
+  })();
+  </script>
+<!--/CHROME:head-->
+</head>
+<body data-skin="issue" data-page="styleguide" data-nav="paper" data-head="Style guide · every ground">
+  <!--CHROME:top-->
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="intro-veil" aria-hidden="true">
+    <div class="intro-half intro-half--top"></div>
+    <div class="intro-half intro-half--bottom"></div>
+    <div class="intro-card">
+      <div class="intro-word"><span><i>B</i></span><span><i>Ē</i></span><span><i>S</i></span><span><i>I</i></span><span><i>A</i></span></div>
+      <div class="intro-rule"></div>
+      <div class="intro-sub">Beauty Studio, Cantonments, Accra</div>
+    </div>
+    <div class="intro-line">Nourish your roots · Protect your peace</div>
+  </div>
+  <div class="nav-sentinel" aria-hidden="true"></div>
+
+  <header class="site-nav site-nav--paper" data-nav>
+    <div class="container nav-inner">
+      <a class="nav-logo" href="./index.html" aria-label="Bēsia, home">
+        <span class="nav-logo-name">Bēsia</span>
+        <span class="nav-head">Style guide · every ground</span>
+      </a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="./services.html">Services</a>
+        <a href="./shop.html">Shop</a>
+        <a href="./classes.html">Classes</a>
+        <a href="./packages.html">Packages</a>
+        <a href="./about.html">About</a>
+        <a href="./gallery.html" data-from="1200">Gallery</a>
+        <a href="./contact.html" data-from="1200">Contact</a>
+      </nav>
+      <div class="nav-end">
+        <div class="nav-cta">
+          <a href="./contact.html" class="btn btn--sm" data-book>Book<span class="n" data-book-count></span></a>
+        </div>
+        <button class="nav-toggle" aria-label="Open contents" aria-expanded="false" aria-controls="contents">
+          <span class="nav-toggle-word"></span>
+        </button>
+      </div>
+    </div>
+    <div class="nav-progress" aria-hidden="true"></div>
+  </header>
+
+  <div class="nav-overlay" id="contents" role="dialog" aria-modal="true" aria-label="Contents">
+    <div>
+      <div class="nav-overlay-head">
+        <span class="t-label">Contents</span>
+        <span class="t-label quiet">Issue 01 · Cantonments, Accra</span>
+      </div>
+      <nav class="nav-overlay-links" aria-label="Contents">
+        <a href="./index.html"><span>Home</span><span class="dek">The cover, this issue, a note from Dana</span><span class="count">Issue 01</span></a>
+        <a href="./services.html"><span>Services</span><span class="dek">Fourteen chapters, every price</span><span class="count">83 services</span></a>
+        <a href="./shop.html"><span>Shop</span><span class="dek">Follicle Fuel, Hair Botox, the hair library</span><span class="count">24 items</span></a>
+        <a href="./classes.html"><span>Classes</span><span class="dek">The School at Bēsia</span><span class="count">9 courses</span></a>
+        <a href="./packages.html"><span>Packages</span><span class="dek">Three editions and the Hair Club</span><span class="count">3 editions</span></a>
+        <a href="./gallery.html"><span>Gallery</span><span class="dek">The A-Beauty covers and the work</span><span class="count">In pictures</span></a>
+        <a href="./about.html"><span>About</span><span class="dek">The studio, Dana, the standards</span><span class="count">The studio</span></a>
+        <a href="./contact.html"><span>Contact</span><span class="dek">Visit, call, write</span><span class="count">Cantonments</span></a>
+      </nav>
+      <div class="nav-overlay-aside">
+        <div class="plate plate--tall" style="--ar: 4 / 5">
+          <img src="./media/img/studio-logo-wall-2-sm.webp" srcset="./media/img/studio-logo-wall-2-sm.webp 720w, ./media/img/studio-logo-wall-2.webp 1600w" sizes="360px" width="720" height="960" alt="" loading="lazy" decoding="async">
+        </div>
+      </div>
+      <div class="nav-overlay-foot">
+        <a href="./contact.html" data-book>Book</a>
+        <a href="tel:+233240787993">Call 024 078 7993</a>
+        <a href="https://wa.me/233240787993?text=Hello%20B%C4%93sia%20Beauty%20Studio%2C%20I%20would%20like%20to%20book%20an%20appointment." target="_blank" rel="noopener">WhatsApp</a>
+        <a href="#" data-open-chat>Ask the studio</a>
+      </div>
+      <div class="nav-overlay-contact">
+        <span>54 Fifth Circular Road, Cantonments, Accra · Mon to Sat, 9am to 7pm</span>
+      </div>
+    </div>
+  </div>
+<!--/CHROME:top-->
+
+  <main id="main">
+
+    <section class="section" data-ground="ivory" style="padding-top: calc(var(--nav-h) + var(--section))">
+      <div class="container stack">
+        <p class="eyebrow"><span class="n">00</span> Style guide</p>
+        <h1 class="t-chap">Every ground, every control, one typeface.</h1>
+        <p class="t-deck">A development page, not in the issue. Each band below is one ground; everything on it reads its colour from the ground, so nothing can be written light on light.</p>
+        <p class="t-mast" style="margin-top: var(--s-6)">Bēsia</p>
+      </div>
+    </section>
+
+    <section class="section" data-ground="ink" id="g-ink"></section>
+    <section class="section" data-ground="ivory" id="g-ivory"></section>
+    <section class="section" data-ground="moss" id="g-moss"></section>
+    <section class="section" data-ground="oatmeal" id="g-oatmeal"></section>
+    <section class="section" data-ground="espresso" id="g-espresso"></section>
+    <section class="section" data-ground="oak" id="g-oak"></section>
+    <section class="section" data-ground="clay" id="g-clay"></section>
+    <section class="section" data-ground="sage" id="g-sage"></section>
+
+    <section class="section" data-ground="ivory">
+      <div class="container stack--loose stack">
+        <p class="eyebrow">Templates</p>
+        <div class="t t-spread">
+          <div class="copy stack">
+            <p class="eyebrow"><span class="n">02</span> A note from Dana</p>
+            <h2 class="t-h2">A spread: copy beside a plate.</h2>
+            <p>The plate is the right-hand page, capped at 576 pixels so her portrait films stay sharp. On a phone it comes first, full bleed, and the copy follows.</p>
+            <a class="link" href="#">Read the note</a>
+          </div>
+          <div class="plate plate--tall" data-unveil>
+            <img src="./media/img/studio-logo-wall-2-sm.webp" srcset="./media/img/studio-logo-wall-2-sm.webp 720w, ./media/img/studio-logo-wall-2.webp 1600w" sizes="(min-width: 1024px) 576px, 100vw" width="1200" height="1600" alt="" loading="lazy">
+          </div>
+        </div>
+        <div class="t t-rail">
+          <div><div class="plate plate--tall"><img src="./media/img/product-model-waves-sm.webp" width="720" height="1082" alt="" loading="lazy"></div><p class="credit"><span class="t-credit"><span class="n">01</span> KTips, full head</span></p></div>
+          <div><div class="plate plate--tall"><img src="./media/img/model-profile-sleek-sm.webp" width="720" height="1354" alt="" loading="lazy"></div><p class="credit"><span class="t-credit"><span class="n">02</span> Nanoplasty</span></p></div>
+          <div><div class="plate plate--tall"><img src="./media/img/texture-curls-sm.webp" width="720" height="1304" alt="" loading="lazy"></div><p class="credit"><span class="t-credit"><span class="n">03</span> Hair Botox</span></p></div>
+        </div>
+        <div class="t t-index">
+          <a class="ix-row" href="#"><span class="ix-n">01</span><span><span class="ix-title">Fusion Extensions</span><span class="ix-dek">KTips and microlinks, UK-certified</span></span><span class="ix-end">12 services · from GHS 680</span></a>
+          <a class="ix-row" href="#"><span class="ix-n">02</span><span><span class="ix-title">Texture Systems</span><span class="ix-dek">Nanoplasty and Hair Botox</span></span><span class="ix-end">6 services · from GHS 850</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" data-ground="clay">
+      <div class="container t t-quote">
+        <blockquote class="q">
+          <p class="t-pull t-quote-text">The first salon in Accra where my hair was treated before it was styled.</p>
+          <cite class="t-credit">Joyce, KTips, full head</cite>
+        </blockquote>
+      </div>
+    </section>
+
+  </main>
+
+  <!--CHROME:foot-->
+  <footer class="site-footer grain" data-ground="ink">
+    <div class="container">
+      <div class="t t-colophon">
+        <div class="foot-brand">
+          <a class="foot-logo" href="./index.html" aria-label="Bēsia, home">Bēsia</a>
+          <p class="t-cap">Ghana's home of fusion extensions. UK-certified KTips and microlinks, a vegan, formaldehyde-free texture system, and treatment-led scalp and bond care.</p>
+          <p class="foot-line">Nourish your roots. Protect your peace.</p>
+        </div>
+        <div class="foot-col">
+          <p class="t-label foot-head">In this issue</p>
+          <ul>
+            <li><a href="./services.html">Services</a></li>
+            <li><a href="./shop.html">Shop</a></li>
+            <li><a href="./classes.html">Classes</a></li>
+            <li><a href="./packages.html">Packages</a></li>
+            <li><a href="./gallery.html">Gallery</a></li>
+            <li><a href="./about.html">About</a></li>
+            <li><a href="./track.html">Track an order</a></li>
+          </ul>
+        </div>
+        <div class="foot-col">
+          <p class="t-label foot-head">Visit</p>
+          <ul>
+            <li><span>54 Fifth Circular Road<br>Cantonments, Accra</span></li>
+            <li><span>Monday to Saturday, 9am to 7pm<br>Closed Sunday</span></li>
+            <li><a href="https://maps.google.com/?q=54+Fifth+Circular+Road+Cantonments+Accra" target="_blank" rel="noopener">Directions</a></li>
+          </ul>
+        </div>
+        <div class="foot-col">
+          <p class="t-label foot-head">Write</p>
+          <ul>
+            <li><a href="tel:+233240787993">024 078 7993</a></li>
+            <li><a href="https://wa.me/233240787993?text=Hello%20B%C4%93sia%20Beauty%20Studio%2C%20I%20would%20like%20to%20book%20an%20appointment." target="_blank" rel="noopener">WhatsApp</a></li>
+            <li><a href="mailto:hello@besia.co">hello@besia.co</a></li>
+            <li><a href="#" data-open-chat>Ask the studio</a></li>
+            <li><a href="https://instagram.com/besia.hq" target="_blank" rel="noopener">Instagram</a></li>
+            <li><a href="https://www.tiktok.com/@besiahq" target="_blank" rel="noopener">TikTok</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="foot-mark" aria-hidden="true">Bēsia</div>
+      <div class="foot-bottom">
+        <span>Bēsia Beauty Studio, Cantonments, Accra. Issue 01. All rights reserved, <span data-year>2026</span>.</span>
+        <span class="foot-credit">Designed and built by <a href="https://perkins-swart.vercel.app" target="_blank" rel="noopener">Perkins Creative</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- data first: every other script reads from it -->
+  <script src="./js/besia-data.js" defer></script>
+  <script src="./js/besia-live.js" defer></script>
+  <script src="./js/booking-cart.js" defer></script>
+  <script src="./js/site.js" defer></script>
+  <script src="./js/reel.js" defer></script>
+  <script src="./js/slides.js" defer></script>
+  <script src="./js/ai-chat.js" defer></script>
+  <script src="./js/site-sync.js" defer></script>
+  <script src="./js/offline.js" defer></script>
+<!--/CHROME:foot-->
+  <script>
+  /* fills the eight ground bands with the same set of controls */
+  (function () {
+    var tpl = function (g) {
+      return '<div class="container stack">' +
+        '<p class="eyebrow"><span class="n">' + g.toUpperCase() + '</span> ground</p>' +
+        '<h2 class="t-h2">Beauty with intention, on ' + g + '.</h2>' +
+        '<p class="t-deck">A standfirst at 300, a line or two under the heading.</p>' +
+        '<p>Body text at 400, 16 to 17 pixels, a measure of about 58 characters. Ghana\'s home of fusion extensions, UK-certified KTips and microlinks, and the first vegan, formaldehyde-free texture system in the country. <a class="link" href="#">A drawn link</a></p>' +
+        '<p class="t-cap">A caption in the third colour, 12 to 13 pixels.</p>' +
+        '<p class="t-credit"><span class="n">04</span> Follicle Fuel, film</p>' +
+        '<p class="t-price">from GHS 2,500</p>' +
+        '<div style="display:flex;gap:var(--s-3);flex-wrap:wrap"><a class="btn" href="./contact.html" data-book>Book</a><a class="btn btn--ghost" href="#">Watch the film</a><button class="btn" disabled>Choose a service first</button></div>' +
+        '<div class="chips"><span class="chip is-active">All <span class="n">83</span></span><span class="chip">Extensions <span class="n">12</span></span><span class="chip">Texture <span class="n">6</span></span></div>' +
+        '<label class="field"><span>Your name</span><input type="text" placeholder="Ama Mensah"></label>' +
+        '<hr class="rule">' +
+        '</div>';
+    };
+    ['ink', 'ivory', 'moss', 'oatmeal', 'espresso', 'oak', 'clay', 'sage'].forEach(function (g) {
+      var el = document.getElementById('g-' + g); if (el) el.innerHTML = tpl(g);
+    });
+  })();
+  </script>
+</body>
+</html>

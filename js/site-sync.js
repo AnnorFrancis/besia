@@ -109,7 +109,7 @@
         btn.disabled = false;
         btn.classList.remove('is-out');
         var raw = item.raw || {};
-        btn.textContent = raw.preorder ? 'Pre-order' : 'Add to Cart';
+        btn.textContent = raw.preorder ? 'Reserve' : 'Add to bag';
       }
     }
   }
@@ -133,7 +133,7 @@
         '<p class="product-blurb">' + esc(raw.blurb || '') + '</p>' +
         '<div class="product-price" data-price-slot></div>' +
         '<div class="product-cta" data-cta-slot>' +
-          '<button class="btn btn--ghost-dark" type="button" data-add="' + esc(item.name) + '|' + item.price + '">Add to Cart</button>' +
+          '<button class="btn btn--ghost-dark" type="button" data-add="' + esc(item.name) + '|' + item.price + '">Add to bag</button>' +
         '</div>' +
       '</div>';
     applyProductCard(art, item);

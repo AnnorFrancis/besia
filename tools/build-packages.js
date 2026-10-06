@@ -3,7 +3,7 @@
    builder on packages.html from js/besia-data.js.
 
    The packages are Bēsia's OWN published multi-service bundles
-   (Fresha lists them with their saving), not invented offers —
+   (Fresha lists them with their saving), not invented offers,
    so the figures here match what a client is quoted in the studio.
 
    Run:  node tools/build-packages.js

@@ -1,6 +1,12 @@
 /* ============================================================
-   build-home.js, regenerates the two card grids on index.html
-   (service teaser + shop teaser) from js/besia-data.js.
+   build-home.js, regenerates "In this issue" on index.html, the six
+   signature treatments, from js/besia-data.js.
+
+   Each card carries the hooks js/site-sync.js and js/booking-cart.js
+   already understand: a .price-row[data-item] with a [data-price-slot]
+   that follows the owner's live price, and an Add button
+   (data-add-service, class row-book) that puts the exact service in
+   the booking without leaving the page.
 
    Run:  node tools/build-home.js
    ============================================================ */
@@ -9,88 +15,53 @@ const path = require('path');
 
 const ROOT = path.join(__dirname, '..');
 const B = require(path.join(ROOT, 'js', 'besia-data.js'));
-const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+const IMG = JSON.parse(fs.readFileSync(path.join(ROOT, 'media', 'img', 'index.json'), 'utf8'));
+const esc = s => String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
-const I = {
-  strands:  '<path d="M8 3c-3 4-3 14 0 18M12 2c-3.5 5-3.5 15 0 20M16 3c-3 4-3 14 0 18" stroke-linecap="round"/>',
-  drop:     '<path d="M12 3c4 4 6 7 6 10a6 6 0 01-12 0c0-3 2-6 6-10z" stroke-linejoin="round"/>',
-  bottle:   '<rect x="8.5" y="3" width="7" height="13" rx="3.5"/><path d="M8.5 16.5c0 2.5 1.6 4.5 3.5 4.5s3.5-2 3.5-4.5" stroke-linecap="round"/>',
-  brush:    '<path d="M14 3.5l6.5 6.5-9 9-6.5-6.5z" stroke-linejoin="round"/><path d="M5 12.5L3 21l8.5-2" stroke-linejoin="round"/>',
-  curl:     '<path d="M2.5 14c3-5 6.5-7.5 9.5-7.5S18.5 9 21.5 14" stroke-linecap="round"/><path d="M5 15.5l-1 3M9 17l-.5 3.2M15 17l.5 3.2M19 15.5l1 3" stroke-linecap="round"/>',
-  scissors: '<circle cx="6" cy="18" r="2.6"/><circle cx="18" cy="18" r="2.6"/><path d="M7.8 16.2L18 4M16.2 16.2L6 4" stroke-linecap="round"/>',
-  wig:      '<path d="M12 3c-4.5 0-7 3.2-7 7.5 0 3 1 5.5 1 8.5h12c0-3 1-5.5 1-8.5C19 6.2 16.5 3 12 3z" stroke-linejoin="round"/><path d="M9 9c.4 3 .4 7-.6 10M15 9c-.4 3-.4 7 .6 10" stroke-linecap="round"/>',
-  wefts:    '<path d="M7 4c-1.5 5.5-1.5 10.5 0 16M12 4c-1.5 5.5-1.5 10.5 0 16M17 4c-1.5 5.5-1.5 10.5 0 16" stroke-linecap="round"/>',
-  lace:     '<rect x="4" y="4" width="16" height="16" rx="3"/><path d="M4 9h16M9 9v11M15 9v11" stroke-linecap="round"/>',
-  jar:      '<path d="M9 3h6v4l2 3v10a1.5 1.5 0 01-1.5 1.5h-7A1.5 1.5 0 017 20V10l2-3z" stroke-linejoin="round"/><path d="M7 13h10" stroke-linecap="round"/>',
-  star:     '<path d="M12 3l2.2 4.5 5 .7-3.6 3.5.9 4.9L12 14.3l-4.5 2.3.9-4.9L4.8 8.2l5-.7z" stroke-linejoin="round"/>',
-  lash:     '<path d="M3 12c2.8-3.6 6-5.4 9-5.4s6.2 1.8 9 5.4c-2.8 3.6-6 5.4-9 5.4S5.8 15.6 3 12z" stroke-linejoin="round"/><path d="M7 15.5l-1 2.2M12 17v2.4M17 15.5l1 2.2" stroke-linecap="round"/>',
-  glow:     '<circle cx="12" cy="12" r="4.2"/><path d="M12 3v2.4M12 18.6V21M3 12h2.4M18.6 12H21M5.6 5.6l1.7 1.7M16.7 16.7l1.7 1.7M18.4 5.6l-1.7 1.7M7.3 16.7l-1.7 1.7" stroke-linecap="round"/>'
-};
-const svg = d => '<svg class="svc-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">' + d + '</svg>';
-
-/* The six disciplines that lead the home page. */
-const TEASER = [
-  { key: 'Extensions',                     icon: I.strands,  img: './images/extensions/ext-2.jpg',      alt: 'Honey-brown fusion extensions worn long',
-    copy: 'Seamless KTips and microlinks, UK-certified. Length and density that move like your own hair, and come out without taking it with them.' },
-  { key: 'Texture Systems + Treatments',   icon: I.drop,     img: './images/studio/studio-wash.jpg',    alt: 'Steam treatment at the Bēsia wash basin',
-    copy: 'Nanoplasty and Hair Botox. Vegan, formaldehyde-free smoothing, the first system of its kind in Ghana.' },
-  { key: 'Scalp + Bond Repair Treatments', icon: I.bottle,   img: './images/services/svc-treat.jpg',    alt: 'A scalp treatment being worked through at the basin',
-    copy: 'Flaxseed and aloe, GRO hot oil, Olaplex and K18, matched to what your scalp and your bonds actually need.' },
-  { key: 'Naturals | Curls & Coils',       icon: I.curl,     img: './images/salon-studio/about-2.jpg',  alt: 'Natural afro texture, defined and shaped',
-    copy: 'Curl Revive wash-and-go with our in-house flaxseed, rosemary and olive blends, plus cutting shaped to your curl pattern.' },
-  { key: 'Eyelashes & Eyebrows',           icon: I.lash,     img: './images/l1.jpg',                    alt: 'Mink lash extensions being applied by our lash artist',
-    copy: 'Classic to hybrid lash sets, lifts and tints, and brows waxed, laminated and tinted.' },
-  { key: 'Facials',                        icon: I.glow,     img: './images/services/svc-facial.jpg',   alt: 'A brightening facial mid-treatment',
-    copy: 'The Bēsia Glow, custom facials and waxing, alongside soft-to-full glam make-up.' }
+/* The six. `label` is how the name reads on the card; `service` is the
+   exact menu name the booking and the manager use. */
+const SIX = [
+  { service: '100 grams - KTips',                    label: 'KTips, 100 grams',   img: 'product-model-waves',      line: 'Seamless fusion extensions, UK-certified, bonded strand by strand so they move like your own hair.' },
+  { service: 'Vegan Keratin Treatment - Nanoplasty', label: 'Nanoplasty',         img: 'model-profile-sleek',      line: 'Vegan, formaldehyde-free smoothing. The first system of its kind in Ghana; months of manageability.' },
+  { service: 'Texture Release - Hair Botox',         label: 'Hair Botox',         img: 'texture-curls',            line: 'A deep treatment that releases texture without straightening it away. No botulinum toxin, no formaldehyde.' },
+  { service: 'Bēsia Hair CPR Treatment',             label: 'Hair CPR',           img: 'studio-lounge',            line: 'Intensive repair for hair that has been through heat, colour or tension. Bond repair, moisture, protein, in order.' },
+  { service: 'Silkpress Xpress',                     label: 'Silk Press',         img: 'editorial-hair-story',     line: 'A silk press that respects the curl underneath, so it comes back when you wash it.' },
+  { service: 'Bēsia Glow',                           label: 'The Bēsia Glow',     img: 'editorial-curls-portrait', line: 'Her signature facial: cleanse, exfoliate, mask and massage, finished with light.' }
 ];
 
-const SHOP = [
-  { key: 'extensions',  icon: I.wefts, img: './images/extensions/ext-1.jpg',           alt: 'Rooted blonde ombré weft extensions laid flat' },
-  { key: 'closures',    icon: I.lace,  img: './images/closures-frontals/unit-2.jpg',   alt: 'Caramel highlighted straight unit, back view' },
-  { key: 'wigs',        icon: I.wig,   img: './images/wigs/wig-1.jpg',                 alt: 'Silky straight lace closure wig on a mannequin' },
-  { key: 'care',        icon: I.jar,   img: './images/hair-care-cosmetics/care-3.jpg', alt: 'Amber dropper bottle of flaxseed and aloe hair mask' },
-  { key: 'accessories', icon: I.star,  img: './images/accessories/acc-1.jpg',          alt: 'Satin-lined bonnet in Bēsia black' }
-];
-
-const SHOP_COPY = {
-  extensions:  'Fusion KTips, tape-in wefts and raw bundles, the same hair we install in the chair.',
-  closures:    'HD lace closures and frontals that melt clean at the parting.',
-  wigs:        'Glueless ready-to-wear units, adjustable and cut into shape.',
-  care:        'The flaxseed masks, hot oils, K18 and Olaplex we treat with, to take home.',
-  accessories: 'Satin bonnets, silk scrunchies, detangling combs and the Bēsia tote.'
-};
-
-function teaserCards() {
-  return TEASER.map(t => {
-    const cat = B.categoryOf(t.key);
-    const from = B.fromPrice(t.key);
-    return `          <article class="svc-card" data-tilt>
-            <div class="svc-card-img"><img src="${t.img}" alt="${esc(t.alt)}" width="800" height="1000" loading="lazy" decoding="async"></div>
-            <div class="svc-card-body">
-              <div class="svc-card-glass">
-                ${svg(t.icon)}
-                <h3>${esc(cat.label)}</h3>
-                <p>${esc(t.copy)}</p>
-                <a class="text-link" href="./services.html#${cat.slug}">From ${B.money(from)}</a>
-              </div>
-            </div>
-          </article>`;
-  }).join('\n');
+function hours(dur) {
+  if (!dur) return '';
+  const h = (dur.match(/(\d+)\s*hr/) || [])[1], m = (dur.match(/(\d+)\s*min/) || [])[1];
+  if (h && m) return 'allow ' + h + ' to ' + (Number(h) + 1) + ' hours';
+  if (h) return 'allow ' + h + (h === '1' ? ' hour' : ' hours');
+  if (m) return 'allow ' + m + ' minutes';
+  return '';
 }
 
-function shopCards() {
-  return SHOP.map(s => {
-    const cat = B.productCategories.find(c => c.key === s.key);
-    const prices = B.products.filter(p => p.cat === s.key).map(p => p.price);
-    const from = Math.min.apply(null, prices);
-    return `          <article class="svc-card" data-tilt>
-            <div class="svc-card-img"><img src="${s.img}" alt="${esc(s.alt)}" width="800" height="1000" loading="lazy" decoding="async"></div>
+function cards() {
+  return SIX.map((t, i) => {
+    const s = B.services.find(x => x.name === t.service);
+    if (!s) throw new Error('service not found: ' + t.service);
+    const cat = B.categoryOf(s.cat);
+    const im = IMG[t.img];
+    if (!im) throw new Error('picture not built: ' + t.img);
+    const n = String(i + 1).padStart(2, '0');
+    return `          <article class="svc-card" data-svc="${esc(s.name)}">
+            <a class="plate plate--tall" href="./services.html#${cat.slug}" aria-label="${esc(cat.label)}">
+              <img src="./media/img/${t.img}-sm.webp" srcset="./media/img/${t.img}-sm.webp ${im.wSm}w, ./media/img/${t.img}.webp ${im.w}w" sizes="(min-width: 1024px) 30vw, 78vw" width="${im.w}" height="${im.h}" alt="" loading="lazy" decoding="async">
+            </a>
             <div class="svc-card-body">
-              <div class="svc-card-glass">
-                ${svg(s.icon)}
-                <h3>${esc(cat.label)}</h3>
-                <p>${esc(SHOP_COPY[s.key])}</p>
-                <a class="text-link" href="./shop.html#${s.key}">From ${B.money(from)}</a>
+              <p class="t-credit"><span class="n">${n}</span> ${esc(cat.label)}</p>
+              <h3 class="t-h3">${esc(t.label)}</h3>
+              <p class="t-cap">${esc(t.line)}</p>
+              <p class="price-row" data-item="${esc(s.name)}">
+                <span class="name sr-only">${esc(s.name)}</span>
+                <span class="amt t-price" data-price-slot>${esc(B.priceLabel(s))}</span>
+                <span class="t-cap">${esc(hours(s.dur))}</span>
+              </p>
+              <div class="svc-card-actions">
+                <button type="button" class="btn btn--ghost btn--sm row-book" data-add-service="${esc(s.name)}">Add</button>
+                <a class="text-link" href="./services.html#${cat.slug}">From ${esc(B.money(B.fromPrice(s.cat)))}</a>
               </div>
             </div>
           </article>`;
@@ -99,13 +70,9 @@ function shopCards() {
 
 const file = path.join(ROOT, 'index.html');
 let html = fs.readFileSync(file, 'utf8');
-for (const [open, close, fn] of [
-  ['<!--BUILD:teaser-->', '<!--/BUILD:teaser-->', teaserCards],
-  ['<!--BUILD:shopteaser-->', '<!--/BUILD:shopteaser-->', shopCards]
-]) {
-  const a = html.indexOf(open), b = html.indexOf(close);
-  if (a === -1 || b === -1) { console.error('MISSING MARKER ' + open); process.exit(1); }
-  html = html.slice(0, a + open.length) + '\n' + fn() + '\n' + html.slice(b);
-}
+const open = '<!--BUILD:teaser-->', close = '<!--/BUILD:teaser-->';
+const a = html.indexOf(open), b = html.indexOf(close);
+if (a === -1 || b === -1) { console.error('MISSING MARKER ' + open); process.exit(1); }
+html = html.slice(0, a + open.length) + '\n' + cards() + '\n' + html.slice(b);
 fs.writeFileSync(file, html);
-console.log('index.html rebuilt, ' + TEASER.length + ' service cards, ' + SHOP.length + ' shop cards.');
+console.log('index.html rebuilt, ' + SIX.length + ' signature treatments.');

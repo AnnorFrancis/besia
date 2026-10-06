@@ -10,14 +10,19 @@
    in/out  seconds to keep. Ranges were chosen frame by frame to
          avoid the captions burned into her campaign films.
    crop  w:h:x:y applied before scaling (removes caption bands)
-   loop  crossfade the tail into the head so it repeats seamlessly
-   poster  second to grab the still frame from (after trimming)
+   mode  loop (default): repeats forever, crossfaded by "loop" seconds
+         once: plays through and holds its last frame (someone walks
+               in, a smile at the end); never crossfaded, poster is
+               the first frame
+   loop  seconds of crossfade for mode loop
+   poster  second to grab the still frame from (after trimming);
+         ignored for mode once
    ============================================================ */
 module.exports = [
   /* The studio */
-  { name: 'entry-film',        src: 'ff.mp4',                                          in: 0,   out: 9.9,  loop: 0.8, poster: 1.3, note: 'PUSH door, the owner welcomes you in, oak logo wall, arches' },
-  { name: 'hairclub-mirror',   src: 'WhatsApp Video 2026-10-05 at 1.01.04 PM.mp4',     in: 4.0, out: 10.9, crop: '576:768:0:0', loop: 0.8, poster: 0.6, note: 'The Hair Club film, linen dress at the arched backlit mirror' },
-  { name: 'founder-arrives',   src: 'WhatsApp Video 2026-10-05 at 1.01.36 PM.mp4',     in: 0,   out: 3.9,  loop: 0.6, poster: 1.0, note: 'The founder walking the arched corridor' },
+  { name: 'entry-film',        src: 'ff.mp4',                                          in: 0,   out: 9.9,  mode: 'once',           note: 'PUSH door, the owner welcomes you in, oak logo wall, arches' },
+  { name: 'hairclub-mirror',   src: 'WhatsApp Video 2026-10-05 at 1.01.04 PM.mp4',     in: 4.0, out: 10.9, crop: '576:768:0:0', mode: 'once',           note: 'The Hair Club film, linen dress at the arched backlit mirror' },
+  { name: 'founder-arrives',   src: 'WhatsApp Video 2026-10-05 at 1.01.36 PM.mp4',     in: 0,   out: 3.9,  mode: 'once',           note: 'The founder walking the arched corridor' },
   { name: 'wash-ritual',       src: 'WhatsApp Video 2026-10-05 at 1.01.16 PM.mp4',     in: 0,   out: 6.6,  loop: 0.8, poster: 2.0, note: 'Scalp cleanse at the basin' },
   { name: 'wash-ritual-curls', src: 'WhatsApp Video 2026-10-05 at 1.01.21 PM.mp4',     in: 0,   out: 7.1,  loop: 0.8, poster: 2.6, note: 'Curls lathered at the basin' },
   { name: 'braid-finish',      src: 'WhatsApp Video 2026-10-05 at 1.01.06 PMo.mp4',    in: 0,   out: 4.0,  loop: 0.6, poster: 1.5, note: 'Finishing braid ends' },
@@ -27,8 +32,8 @@ module.exports = [
   { name: 'beard-oil',         src: 'WhatsApp Video 2026-10-05 at 12.45.14 PM.mp4',    in: 0.5, out: 10.5, loop: 0.8, poster: 4.0, note: 'Follicle Fuel Beard Oil on terracotta sand' },
   { name: 'velvet',            src: 'WhatsApp Video 2026-10-05 at 12.45.42 PM.mp4',    in: 4.0, out: 10.0, loop: 0.8, poster: 1.5, note: 'Bottle on black velvet with rose-gold combs' },
   { name: 'dandelion-field',   src: 'WhatsApp Video 2026-10-05 at 12.45.49 PM.mp4',    in: 5.0, out: 14.8, loop: 0.8, poster: 6.0, note: 'Good things grow here, the bottle rises from the field' },
-  { name: 'growth-era',        src: 'WhatsApp Video 2026-10-05 at 12.46.02 PM.mp4',    in: 0,   out: 10.0, loop: 0.8, poster: 7.4, note: 'Black Star Gate, Accra: welcome to your new growth era' },
-  { name: 'growth-era-b',      src: 'WhatsApp Video 2026-10-05 at 12.45.59 PM.mp4',    in: 0,   out: 10.0, loop: 0.8, poster: 7.4, note: 'Black Star Gate, alternate take' },
+  { name: 'growth-era',        src: 'WhatsApp Video 2026-10-05 at 12.46.02 PM.mp4',    in: 0,   out: 10.0, mode: 'once',           note: 'Black Star Gate, Accra: welcome to your new growth era' },
+  { name: 'growth-era-b',      src: 'WhatsApp Video 2026-10-05 at 12.45.59 PM.mp4',    in: 0,   out: 10.0, mode: 'once',           note: 'Black Star Gate, alternate take' },
   { name: 'dropper',           src: 'WhatsApp Video 2026-10-05 at 12.46.05 PM.mp4',    in: 0,   out: 6.0,  loop: 0.6, poster: 3.2, note: 'Dropper macro, oil falling' },
   { name: 'bottle-hand',       src: 'WhatsApp Video 2026-10-05 at 12.46.07 PM.mp4',    in: 0,   out: 6.0,  loop: 0.6, poster: 1.0, note: 'Hand with sage nails, bottle' },
   { name: 'bottle-specimen',   src: 'WhatsApp Video 2026-10-05 at 12.46.09 PM.mp4',    in: 0,   out: 6.0,  loop: 0.6, poster: 2.0, note: 'Slow push-in on the bottle' },

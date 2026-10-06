@@ -20,10 +20,16 @@ const STEPS = [
   ['build-packages.js', 'Packages and the price builder'],
   ['build-classes.js',  'Classes page + nav link'],
   ['build-admin.js',    'Studio Manager, all pages'],
+  ['build-css.js',      'The issue stylesheet, one file from css/issue/'],
+  ['build-chrome.js',   'Masthead, Contents and colophon on every public page'],
+  ['build-reels.js',    'Her films placed on the pages'],
   ['build-seo.js',      'Titles, canonicals, OG, JSON-LD, sitemap'],
   ['add-image-dims.js', 'Image width/height'],
   ['build-sw.js',       'Offline service worker (must be last, it fingerprints the shell)'],
-  ['check-assets.js',   'Every local asset resolves, exact case']
+  ['check-assets.js',   'Every local asset resolves, exact case'],
+  ['check-css.js',      'House rules for css/issue'],
+  ['check-contrast.js', 'Every ground passes WCAG'],
+  ['check-dash.js',     'No em or en dashes where a visitor could read one']
 ];
 
 let failed = 0;

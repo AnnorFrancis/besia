@@ -3,708 +3,749 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Services &amp; Prices · Bēsia Beauty Studio, Accra</title>
-  <meta name="description" content="All 83 services with published prices and durations: fusion extensions, Nanoplasty and Hair Botox, Olaplex and K18 bond repair, colour, cutting, Curl Revive and silk press.">
-  <meta name="theme-color" content="#17140F">
-
+  <title>Services &amp; Prices · Bēsia Beauty Studio, Cantonments Accra</title>
+  <meta name="description" content="Eighty-three services across fourteen disciplines, every price published: fusion extensions, Nanoplasty and Hair Botox, scalp and bond repair, colour, cutting, braids, lashes, facials and more.">
+  <!--CHROME:head-->
+  <meta name="theme-color" content="#151B22">
   <link rel="icon" type="image/svg+xml" href="./assets/icons/favicon.svg">
   <link rel="preload" href="./fonts/montserrat-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="./css/style.css">
-  <link rel="stylesheet" href="./css/animations.css">
-  <link rel="stylesheet" href="./css/editorial.css">
+  <link rel="preload" href="./fonts/montserrat-macron.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="./css/issue.css">
+  <script>
+  /* Boot, inline and tiny: marks the page as scripted, decides the
+     effects tier, and whether the issue opens with its intro. Storage
+     is wrapped because Safari's private mode throws on it. */
+  (function () {
+    var h = document.documentElement, n = navigator, c = n.connection || {};
+    h.classList.add('js');
+    var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var lite = !!(c.saveData || /(^|[^3-9])2g/.test(c.effectiveType || '') || (n.deviceMemory && n.deviceMemory <= 2));
+    h.setAttribute('data-fx', lite || reduce ? 'lite' : 'full');
+    if (reduce) h.setAttribute('data-reduce', '');
+    var home = document.currentScript && /index\.html$|\/$/.test(location.pathname) && !location.hash && !location.search;
+    if (home && !lite && !reduce) {
+      try {
+        if (!sessionStorage.getItem('besia-opened')) { sessionStorage.setItem('besia-opened', '1'); h.classList.add('intro'); }
+      } catch (e) {}
+    }
+  })();
+  </script>
+<!--/CHROME:head-->
   <!-- BUILD:seo -->
   <link rel="canonical" href="https://annorfrancis.github.io/besia/services.html">
   <meta name="robots" content="noindex,follow">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Bēsia Beauty Studio">
-  <meta property="og:title" content="Services &amp; Prices · Bēsia Beauty Studio, Accra">
-  <meta property="og:description" content="All 83 services with published prices and durations: fusion extensions, Nanoplasty and Hair Botox, Olaplex and K18 bond repair, colour, cutting, Curl Revive and silk press.">
+  <meta property="og:title" content="Services &amp; Prices · Bēsia Beauty Studio, Cantonments Accra">
+  <meta property="og:description" content="Eighty-three services across fourteen disciplines, every price published: fusion extensions, Nanoplasty and Hair Botox, scalp and bond repair, colour, cutting, braids, lashes, facials and more.">
   <meta property="og:url" content="https://annorfrancis.github.io/besia/services.html">
-  <meta property="og:image" content="https://annorfrancis.github.io/besia/images/studio/studio-reception.jpg">
-  <meta property="og:image:width" content="1920">
-  <meta property="og:image:height" content="1080">
+  <meta property="og:image" content="https://annorfrancis.github.io/besia/media/img/abeauty-ritual.webp">
+  <meta property="og:image:width" content="1600">
+  <meta property="og:image:height" content="900">
   <meta property="og:locale" content="en_GH">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Services &amp; Prices · Bēsia Beauty Studio, Accra">
-  <meta name="twitter:description" content="All 83 services with published prices and durations: fusion extensions, Nanoplasty and Hair Botox, Olaplex and K18 bond repair, colour, cutting, Curl Revive and silk press.">
-  <meta name="twitter:image" content="https://annorfrancis.github.io/besia/images/studio/studio-reception.jpg">
+  <meta name="twitter:title" content="Services &amp; Prices · Bēsia Beauty Studio, Cantonments Accra">
+  <meta name="twitter:description" content="Eighty-three services across fourteen disciplines, every price published: fusion extensions, Nanoplasty and Hair Botox, scalp and bond repair, colour, cutting, braids, lashes, facials and more.">
+  <meta name="twitter:image" content="https://annorfrancis.github.io/besia/media/img/abeauty-ritual.webp">
   <!-- /BUILD:seo -->
 </head>
-<body class="page-services">
-
+<body data-skin="issue" data-page="services" data-nav="ink" data-head="Services · 14 chapters" data-gsap>
+  <!--CHROME:top-->
   <a class="skip-link" href="#main">Skip to content</a>
+  <div class="intro-veil" aria-hidden="true">
+    <div class="intro-half intro-half--top"></div>
+    <div class="intro-half intro-half--bottom"></div>
+    <div class="intro-card">
+      <div class="intro-word"><span><i>B</i></span><span><i>Ē</i></span><span><i>S</i></span><span><i>I</i></span><span><i>A</i></span></div>
+      <div class="intro-rule"></div>
+      <div class="intro-sub">Beauty Studio, Cantonments, Accra</div>
+    </div>
+    <div class="intro-line">Nourish your roots · Protect your peace</div>
+  </div>
+  <div class="nav-sentinel" aria-hidden="true"></div>
 
-  <!-- Navigation -->
-  <header class="site-nav">
-    <div class="container container--wide nav-inner">
-      <a class="nav-logo" href="./index.html" aria-label="Bēsia Beauty Studio, home">
-        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-          <path d="M15 9.5c-6.5 7-6.5 22 0 29.5" stroke-linecap="round"/>
-          <path d="M23.5 6c-8.5 8.5-8.5 27.5 0 36" stroke-linecap="round"/>
-          <path d="M32 10c-5.5 6.5-5.5 21 0 27.5" stroke-linecap="round"/>
-          <path d="M38.5 11l1.3 3.4 3.4 1.3-3.4 1.3-1.3 3.4-1.3-3.4-3.4-1.3 3.4-1.3z" fill="currentColor" stroke="none"/>
-        </svg>
-        <span class="nav-logo-text">
-          <span class="nav-logo-name">Bēsia</span>
-          <span class="nav-logo-tag">Beauty Studio</span>
-        </span>
+  <header class="site-nav" data-nav>
+    <div class="container nav-inner">
+      <a class="nav-logo" href="./index.html" aria-label="Bēsia, home">
+        <span class="nav-logo-name">Bēsia</span>
+        <span class="nav-head">Services · 14 chapters</span>
       </a>
       <nav class="nav-links" aria-label="Primary">
-        <a href="./index.html">Home</a>
-        <a href="./services.html" class="is-active">Services</a>
+        <a href="./services.html" class="is-active" aria-current="page">Services</a>
         <a href="./shop.html">Shop</a>
         <a href="./classes.html">Classes</a>
-        <a href="./gallery.html">Gallery</a>
-        <a href="./about.html">About</a>
         <a href="./packages.html">Packages</a>
-        <a href="./contact.html">Contact</a>
+        <a href="./about.html">About</a>
+        <a href="./gallery.html" data-from="1200">Gallery</a>
+        <a href="./contact.html" data-from="1200">Contact</a>
       </nav>
-      <div class="nav-cta">
-        <a href="./contact.html" class="btn btn--gold btn--sm">Book Now</a>
+      <div class="nav-end">
+        <div class="nav-cta">
+          <a href="./contact.html" class="btn btn--sm" data-book>Book<span class="n" data-book-count></span></a>
+        </div>
+        <button class="nav-toggle" aria-label="Open contents" aria-expanded="false" aria-controls="contents">
+          <span class="nav-toggle-word"></span>
+        </button>
       </div>
-      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
     </div>
+    <div class="nav-progress" aria-hidden="true"></div>
   </header>
 
-  <!-- Mobile overlay nav -->
-  <div class="nav-overlay">
+  <div class="nav-overlay" id="contents" role="dialog" aria-modal="true" aria-label="Contents">
     <div>
-      <nav class="nav-overlay-links" aria-label="Mobile">
-        <a href="./index.html">Home</a>
-        <a href="./services.html" class="is-active">Services</a>
-        <a href="./shop.html">Shop</a>
-        <a href="./classes.html">Classes</a>
-        <a href="./gallery.html">Gallery</a>
-        <a href="./about.html">About</a>
-        <a href="./packages.html">Packages</a>
-        <a href="./contact.html">Contact</a>
+      <div class="nav-overlay-head">
+        <span class="t-label">Contents</span>
+        <span class="t-label quiet">Issue 01 · Cantonments, Accra</span>
+      </div>
+      <nav class="nav-overlay-links" aria-label="Contents">
+        <a href="./index.html"><span>Home</span><span class="dek">The cover, this issue, a note from Dana</span><span class="count">Issue 01</span></a>
+        <a href="./services.html" class="is-active" aria-current="page"><span>Services</span><span class="dek">Fourteen chapters, every price</span><span class="count">83 services</span></a>
+        <a href="./shop.html"><span>Shop</span><span class="dek">Follicle Fuel, Hair Botox, the hair library</span><span class="count">24 items</span></a>
+        <a href="./classes.html"><span>Classes</span><span class="dek">The School at Bēsia</span><span class="count">9 courses</span></a>
+        <a href="./packages.html"><span>Packages</span><span class="dek">Three editions and the Hair Club</span><span class="count">3 editions</span></a>
+        <a href="./gallery.html"><span>Gallery</span><span class="dek">The A-Beauty covers and the work</span><span class="count">In pictures</span></a>
+        <a href="./about.html"><span>About</span><span class="dek">The studio, Dana, the standards</span><span class="count">The studio</span></a>
+        <a href="./contact.html"><span>Contact</span><span class="dek">Visit, call, write</span><span class="count">Cantonments</span></a>
       </nav>
+      <div class="nav-overlay-aside">
+        <div class="plate plate--tall" style="--ar: 4 / 5">
+          <img src="./media/img/studio-logo-wall-2-sm.webp" srcset="./media/img/studio-logo-wall-2-sm.webp 720w, ./media/img/studio-logo-wall-2.webp 1600w" sizes="360px" width="720" height="960" alt="" loading="lazy" decoding="async">
+        </div>
+      </div>
+      <div class="nav-overlay-foot">
+        <a href="./contact.html" data-book>Book</a>
+        <a href="tel:+233240787993">Call 024 078 7993</a>
+        <a href="https://wa.me/233240787993?text=Hello%20B%C4%93sia%20Beauty%20Studio%2C%20I%20would%20like%20to%20book%20an%20appointment." target="_blank" rel="noopener">WhatsApp</a>
+        <a href="#" data-open-chat>Ask the studio</a>
+      </div>
       <div class="nav-overlay-contact">
-        Cantonments, Accra · <a href="tel:+233240787993">024 078 7993</a>
+        <span>54 Fifth Circular Road, Cantonments, Accra · Mon to Sat, 9am to 7pm</span>
       </div>
     </div>
   </div>
+<!--/CHROME:top-->
 
   <main id="main">
 
-    <!-- Page hero -->
-    <section class="page-hero aura">
-      <div class="page-hero-bg">
-        <img width="600" height="900" src="./images/ghana-braids-hairstyles.jpg" alt="Ghana cornrows finished with a sculpted bun">
-      </div>
-      <div class="container page-hero-content">
-        <nav class="breadcrumb" aria-label="Breadcrumb">
-          <a href="./index.html">Home</a><span class="sep">·</span><span>Services</span>
-        </nav>
-        <span class="script">Everything we do,</span>
-        <h1>We Do With Care</h1>
-        <p>Eighty-three services, every price published. Book any of them right here.</p>
+    <!-- ============ OPENER ============ -->
+    <section class="section grain opener" data-ground="ink">
+      <div class="container t t-opener" data-tall>
+        <div class="copy stack">
+          <p class="eyebrow"><span class="n">Services</span> Fourteen chapters</p>
+          <h1 class="t-chap balance">Begin with a conversation.</h1>
+          <p class="t-deck">Eighty-three services, fourteen disciplines, one place to start: a free consultation. Every price on this page is the price you pay in the chair.</p>
+          <div class="cta-row">
+            <a href="./contact.html" class="btn" data-book>Book</a>
+            <a href="#prices" class="btn btn--ghost">Every price</a>
+          </div>
+        </div>
+        <figure class="plate plate--tall plate--cap" data-unveil>
+          <img src="./media/img/studio-push-door-sm.webp" srcset="./media/img/studio-push-door-sm.webp 720w, ./media/img/studio-push-door.webp 1600w" sizes="(min-width: 1024px) 576px, 100vw" width="1200" height="1600" alt="A woman at the PUSH door of the studio" fetchpriority="high" decoding="async">
+        </figure>
       </div>
     </section>
 
-    <!-- ============ SERVICES GRID ============ -->
-    <section class="section section--cream">
-      <div class="container container--wide">
-        <div class="section-head section-head--center" data-reveal>
-          <div class="eyebrow eyebrow--center">The Menu</div>
-          <h2 class="section-title"><span class="script">Fourteen disciplines,</span>One Studio</h2>
-          <p class="section-lede">Extensions, texture systems, scalp and bond repair, colour and cutting, the full menu at a glance, with every price published below. Each Book button opens the booking form with that service already chosen.</p>
-        </div>
-
-        <nav class="jump-bar" aria-label="Jump to a service">
+    <!-- ============ CHAPTER RAIL ============ -->
+    <div class="chapter-rail" data-ground="ivory">
+      <div class="container">
+        <nav class="chips" aria-label="Chapters">
           <!--BUILD:chips-->
-          <a class="jump-chip" href="#ext">Fusion Extensions</a>
-          <a class="jump-chip" href="#tex">Texture Systems</a>
-          <a class="jump-chip" href="#scalp">Scalp + Bond Repair</a>
-          <a class="jump-chip" href="#nat">Naturals, Curls &amp; Coils</a>
-          <a class="jump-chip" href="#color">Colour</a>
-          <a class="jump-chip" href="#cut">Cutting</a>
-          <a class="jump-chip" href="#braid">Braids &amp; Cornrows</a>
-          <a class="jump-chip" href="#style">Styling</a>
-          <a class="jump-chip" href="#wig">Wig Service</a>
-          <a class="jump-chip" href="#lash">Lashes &amp; Brows</a>
-          <a class="jump-chip" href="#facial">Facials</a>
-          <a class="jump-chip" href="#wax">Waxing</a>
-          <a class="jump-chip" href="#makeup">Make-Up</a>
-          <a class="jump-chip" href="#gen">Consultations &amp; Basics</a>
+          <a class="chip" href="#ext"><span class="n">01</span> Fusion Extensions</a>
+          <a class="chip" href="#tex"><span class="n">02</span> Texture Systems</a>
+          <a class="chip" href="#scalp"><span class="n">03</span> Scalp + Bond Repair</a>
+          <a class="chip" href="#nat"><span class="n">04</span> Naturals, Curls &amp; Coils</a>
+          <a class="chip" href="#color"><span class="n">05</span> Colour</a>
+          <a class="chip" href="#cut"><span class="n">06</span> Cutting</a>
+          <a class="chip" href="#braid"><span class="n">07</span> Braids &amp; Cornrows</a>
+          <a class="chip" href="#style"><span class="n">08</span> Styling</a>
+          <a class="chip" href="#wig"><span class="n">09</span> Wig Service</a>
+          <a class="chip" href="#lash"><span class="n">10</span> Lashes &amp; Brows</a>
+          <a class="chip" href="#facial"><span class="n">11</span> Facials</a>
+          <a class="chip" href="#wax"><span class="n">12</span> Waxing</a>
+          <a class="chip" href="#makeup"><span class="n">13</span> Make-Up</a>
+          <a class="chip" href="#gen"><span class="n">14</span> Consultations &amp; Basics</a>
 <!--/BUILD:chips-->
-          <a class="jump-chip jump-chip--gold" href="#prices">All 47 prices</a>
+          <a class="chip chip--prices" href="#prices">Every price <span class="n">83</span></a>
         </nav>
-
-        <div class="svc-tiles" data-reveal-stagger>
-
-          <!--BUILD:tiles-->
-          <article class="svc-tile" id="ext" data-svc-cat="Extensions">
-            <div class="svc-tile-img"><img src="./images/extensions/ext-2.jpg" alt="Honey-brown fusion extensions worn long" width="800" height="1000" loading="lazy" decoding="async"><span class="svc-tile-num">01</span></div>
-            <div class="svc-tile-body">
-              <h3>Fusion Extensions</h3>
-              <p>KTips, microlinks, tape-ins and weaves, installed to sit flat, move naturally and leave your own hair intact.</p>
-              <ul class="svc-tile-list">
-                <li>KTip Removal</li><li>Invisible KTips</li>
-                <li>Illusion Crochet</li><li>Braids Take Down</li>
-                <li>100 grams - KTips</li><li>150 grams - KTips</li>
-              </ul>
-              <div class="svc-tile-foot">
-                <span class="svc-tile-price" data-from-slot><em>From</em> GHS 680</span>
-                <a href="./contact.html?service=ext" class="btn btn--gold btn--sm">Book Fusion</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="svc-tile" id="tex" data-svc-cat="Texture Systems + Treatments">
-            <div class="svc-tile-img"><img src="./images/studio/studio-wash.jpg" alt="Steam treatment at the Bēsia wash basin" width="800" height="1000" loading="lazy" decoding="async"><span class="svc-tile-num">02</span></div>
-            <div class="svc-tile-body">
-              <h3>Texture Systems</h3>
-              <p>Vegan and formaldehyde-free. Nanoplasty and Hair Botox that smooth texture without stripping the hair.</p>
-              <ul class="svc-tile-list">
-                <li>Perm Retouch and Style</li><li>Texture Release - Hair Botox</li>
-                <li>Vegan Keratin Treatment - Nanoplasty</li>
-              </ul>
-              <div class="svc-tile-foot">
-                <span class="svc-tile-price" data-from-slot><em>From</em> GHS 850</span>
-                <a href="./contact.html?service=tex" class="btn btn--gold btn--sm">Book Texture</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="svc-tile" id="scalp" data-svc-cat="Scalp + Bond Repair Treatments">
-            <div class="svc-tile-img"><img src="./images/services/svc-treat.jpg" alt="A scalp treatment being worked through at the basin" width="800" height="1000" loading="lazy" decoding="async"><span class="svc-tile-num">03</span></div>
-            <div class="svc-tile-body">
-              <h3>Scalp + Bond Repair</h3>
-              <p>Treatment-led care. Flaxseed, GRO hot oil, Olaplex and K18, chosen for what your scalp and bonds actually need.</p>
-              <ul class="svc-tile-list">
-                <li>Olaplex Treatment</li><li>Curl Revive + Flax</li>
-                <li>GRO Hot Oil Treatment</li><li>Deep Moisture Treatment</li>
-                <li>Bēsia Hair CPR Treatment</li><li>Curl Revive with FlaxGRO</li>
-              </ul>
-              <div class="svc-tile-foot">
-                <span class="svc-tile-price" data-from-slot><em>From</em> GHS 350</span>
-                <a href="./contact.html?service=scalp" class="btn btn--gold btn--sm">Book Scalp</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="svc-tile" id="nat" data-svc-cat="Naturals | Curls &amp; Coils">
-            <div class="svc-tile-img"><img src="./images/salon-studio/about-2.jpg" alt="Natural afro texture, defined and shaped" width="800" height="1000" loading="lazy" decoding="async"><span class="svc-tile-num">04</span></div>
-            <div class="svc-tile-body">
-              <h3>Naturals, Curls &amp; Coils</h3>
-              <p>Curl Revive wash-and-go and cutting shaped to your curl pattern, with definition that survives the week.</p>
-              <ul class="svc-tile-list">
-                <li>Curly Cut</li><li>Curl Revive | Wash + Go</li>
-              </ul>
-              <div class="svc-tile-foot">
-                <span class="svc-tile-price" data-from-slot><em>From</em> GHS 550</span>
-                <a href="./contact.html?service=nat" class="btn btn--gold btn--sm">Book Naturals</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="svc-tile" id="color" data-svc-cat="Color Service">
-            <div class="svc-tile-img"><img src="./images/wigs/wig-4.jpg" alt="Honey ginger colour with a dark root melt" width="800" height="1000" loading="lazy" decoding="async"><span class="svc-tile-num">05</span></div>
-            <div class="svc-tile-body">
-              <h3>Colour</h3>
-              <p>All-over colour, balayage and highlights, blended against your natural depth rather than fighting it.</p>
-              <ul class="svc-tile-list">
-                <li>Custom Color</li><li>Full Highlights</li>
-                <li>Balayage - Short</li><li>Balayage - Medium</li>
-                <li>All Over Color - Long</li><li>All Over Color - Short</li>
-              </ul>
-              <div class="svc-tile-foot">
-                <span class="svc-tile-price" data-from-slot><em>From</em> GHS 650</span>
-                <a href="./contact.html?service=color" class="btn btn--gold btn--sm">Book Colour</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="svc-tile" id="cut" data-svc-cat="Cut Service">
-            <div class="svc-tile-img"><img src="./images/salon-studio/studio-2.jpg" alt="A cut being finished with a blow dry" width="800" height="1000" loading="lazy" decoding="async"><span class="svc-tile-num">06</span></div>
-            <div class="svc-tile-body">
-              <h3>Cutting</h3>
-              <p>Precision, curly and coily cutting. Shape first, length second.</p>
-              <ul class="svc-tile-list">
-                <li>Trim</li><li>Layers</li>
-                <li>Precision Cut</li>
-              </ul>
-              <div class="svc-tile-foot">
-                <span class="svc-tile-price" data-from-slot><em>From</em> GHS 165</span>
-                <a href="./contact.html?service=cut" class="btn btn--gold btn--sm">Book Cutting</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="svc-tile" id="braid" data-svc-cat="Braids | Cornrows">
-            <div class="svc-tile-img"><img src="./images/image4.jpg" alt="Patterned cornrows finished with curly ends" width="800" height="1000" loading="lazy" decoding="async"><span class="svc-tile-num">07</span></div>
-            <div class="svc-tile-body">
-              <h3>Braids &amp; Cornrows</h3>
-              <p>Parted clean and tensioned gently, so your edges outlive the style.</p>
-              <ul class="svc-tile-list">
-                <li>Cornrow Updo</li><li>Large Braids</li>
-              </ul>
-              <div class="svc-tile-foot">
-                <span class="svc-tile-price" data-from-slot><em>From</em> GHS 550</span>
-                <a href="./contact.html?service=braid" class="btn btn--gold btn--sm">Book Braids</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="svc-tile" id="style" data-svc-cat="Hair Styling">
-            <div class="svc-tile-img"><img src="./images/salon-studio/studio-1.jpg" alt="Styling stations with lit mirrors inside the studio" width="800" height="1000" loading="lazy" decoding="async"><span class="svc-tile-num">08</span></div>
-            <div class="svc-tile-body">
-              <h3>Styling</h3>
-              <p>Silkpress Xpress: signature wash, brush blow dry, press and style.</p>
-              <ul class="svc-tile-list">
-                <li>Silkpress Xpress</li>
-              </ul>
-              <div class="svc-tile-foot">
-                <span class="svc-tile-price" data-from-slot><em>From</em> GHS 550</span>
-                <a href="./contact.html?service=style" class="btn btn--gold btn--sm">Book Styling</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="svc-tile" id="wig" data-svc-cat="Wig Service">
-            <div class="svc-tile-img"><img src="./images/wig3.jpeg" alt="A lace-front unit prepared for installation" width="800" height="1000" loading="lazy" decoding="async"><span class="svc-tile-num">09</span></div>
-            <div class="svc-tile-body">
-              <h3>Wig Service</h3>
-              <p>Frontal installation, fitted flat and blended so the parting reads as scalp.</p>
-              <ul class="svc-tile-list">
-                <li>Frontal Installation</li>
-              </ul>
-              <div class="svc-tile-foot">
-                <span class="svc-tile-price" data-from-slot><em>From</em> GHS 500</span>
-                <a href="./contact.html?service=wig" class="btn btn--gold btn--sm">Book Wig</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="svc-tile" id="lash" data-svc-cat="Eyelashes &amp; Eyebrows">
-            <div class="svc-tile-img"><img src="./images/l1.jpg" alt="Mink lash extensions being applied by our lash artist" width="800" height="1000" loading="lazy" decoding="async"><span class="svc-tile-num">10</span></div>
-            <div class="svc-tile-body">
-              <h3>Lashes &amp; Brows</h3>
-              <p>Classic to hybrid sets, lifts and tints, and brows waxed, laminated and tinted.</p>
-              <ul class="svc-tile-list">
-                <li>Lala Set</li><li>Brow Wax</li>
-                <li>Angel Set</li><li>Lash Lift</li>
-                <li>Hybrid Set</li><li>Patch Test</li>
-              </ul>
-              <div class="svc-tile-foot">
-                <span class="svc-tile-price" data-from-slot><em>From</em> GHS 80</span>
-                <a href="./contact.html?service=lash" class="btn btn--gold btn--sm">Book Lashes</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="svc-tile" id="facial" data-svc-cat="Facials">
-            <div class="svc-tile-img"><img src="./images/services/svc-facial.jpg" alt="A brightening facial mid-treatment" width="800" height="1000" loading="lazy" decoding="async"><span class="svc-tile-num">11</span></div>
-            <div class="svc-tile-body">
-              <h3>Facials</h3>
-              <p>The Bēsia Glow, custom facials and deep cleanses, built around your skin rather than a set routine.</p>
-              <ul class="svc-tile-list">
-                <li>Bēsia Glow</li><li>Custom Facial</li>
-                <li>Detox + Deep Cleanse Facial</li>
-              </ul>
-              <div class="svc-tile-foot">
-                <span class="svc-tile-price" data-from-slot><em>From</em> GHS 400</span>
-                <a href="./contact.html?service=facial" class="btn btn--gold btn--sm">Book Facials</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="svc-tile" id="wax" data-svc-cat="Wax Service">
-            <div class="svc-tile-img"><img src="./images/services/svc-waxing.jpg" alt="Warm wax smoothed onto the skin" width="800" height="1000" loading="lazy" decoding="async"><span class="svc-tile-num">12</span></div>
-            <div class="svc-tile-body">
-              <h3>Waxing</h3>
-              <p>Gentle, sensitive-skin waxing from brow to Brazilian, with the vajacial for after-care.</p>
-              <ul class="svc-tile-list">
-                <li>Eyebrow</li><li>Vajacial</li>
-                <li>Half Leg</li><li>Underarm</li>
-                <li>Brazilian</li><li>Upper Lip</li>
-              </ul>
-              <div class="svc-tile-foot">
-                <span class="svc-tile-price" data-from-slot><em>From</em> GHS 100</span>
-                <a href="./contact.html?service=wax" class="btn btn--gold btn--sm">Book Waxing</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="svc-tile" id="makeup" data-svc-cat="Makeup Service">
-            <div class="svc-tile-img"><img src="./images/b1.jpg" alt="Soft glam make-up with lashes, finished" width="800" height="1000" loading="lazy" decoding="async"><span class="svc-tile-num">13</span></div>
-            <div class="svc-tile-body">
-              <h3>Make-Up</h3>
-              <p>Soft glam to full glam by our make-up artist, plus one-to-one lessons in your own make-up bag.</p>
-              <ul class="svc-tile-list">
-                <li>Full Glam w/Lashes</li><li>Soft Glam w/Lashes</li>
-                <li>Soft Glam [No Lashes]</li><li>Make-Up Bag Deep Dive</li>
-                <li>Make-Up Lesson 1:1 [90 Minutes]</li>
-              </ul>
-              <div class="svc-tile-foot">
-                <span class="svc-tile-price" data-from-slot><em>From</em> GHS 750</span>
-                <a href="./contact.html?service=makeup" class="btn btn--gold btn--sm">Book Make-Up</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="svc-tile" id="gen" data-svc-cat="General">
-            <div class="svc-tile-img"><img src="./images/studio/studio-corner.jpg" alt="The consultation corner at Bēsia" width="800" height="1000" loading="lazy" decoding="async"><span class="svc-tile-num">14</span></div>
-            <div class="svc-tile-body">
-              <h3>Consultations &amp; Basics</h3>
-              <p>Not sure where to start? The first consultation is free, and there is no pressure to book on the day.</p>
-              <ul class="svc-tile-list">
-                <li>Basic Wash + Blowdry</li><li>Free Hair Consultation</li>
-                <li>Hair Wellness/Extension Consultation</li>
-              </ul>
-              <div class="svc-tile-foot">
-                <span class="svc-tile-price" data-from-slot><em>From</em> GHS 200</span>
-                <a href="./contact.html?service=gen" class="btn btn--gold btn--sm">Book Consultations</a>
-              </div>
-            </div>
-          </article>
-<!--/BUILD:tiles-->
-
-        </div>
       </div>
-    </section>
+    </div>
 
-    <!-- ============ PRICE LIST ============ -->
-    <section class="section section--champagne" id="prices">
-      <div class="container container--wide">
-        <div class="section-head section-head--center" data-reveal>
-          <div class="eyebrow eyebrow--center">Full Price List</div>
-          <h2 class="section-title"><span class="script">No surprises,</span>Every Price, Upfront</h2>
-          <p class="section-lede">Our published menu, in full. Where a service shows a range or a “from”, the final figure depends on length, density and whether you bring your own hair, and it is always confirmed with you before we start.</p>
+    <!-- ============ THE CHAPTERS ============ -->
+    <div class="chapters">
+      <!--BUILD:tiles-->
+      <section class="section chapter grain" data-ground="ivory" id="ext" data-svc-cat="Extensions">
+        <div class="container t t-opener">
+          <span class="ghost" aria-hidden="true">01</span>
+          <div class="copy stack">
+            <p class="eyebrow"><span class="n">Chapter 01 / 14</span></p>
+            <h2 class="t-chap balance">Fusion Extensions</h2>
+            <p class="t-deck">KTips, microlinks, tape-ins and weaves, installed to sit flat, move naturally and leave your own hair intact. UK-certified.</p>
+            <ul class="t-index standouts">
+              <li class="price-row" data-item="Invisible KTips">
+                <span class="name">Invisible KTips<em class="price-dur">10 hr</em></span>
+                <span class="amt" data-price-slot>from GHS 7,000</span>
+                <a class="row-book" href="./contact.html" data-add-service="Invisible KTips" aria-label="Add Invisible KTips to your booking">Add</a>
+              </li>
+              <li class="price-row" data-item="300 grams - KTips">
+                <span class="name">300 grams - KTips<em class="price-dur">7 hr</em></span>
+                <span class="amt" data-price-slot>GHS 4,500</span>
+                <a class="row-book" href="./contact.html" data-add-service="300 grams - KTips" aria-label="Add 300 grams - KTips to your booking">Add</a>
+              </li>
+              <li class="price-row" data-item="250 grams - KTips">
+                <span class="name">250 grams - KTips<em class="price-dur">6 hr</em></span>
+                <span class="amt" data-price-slot>GHS 4,000</span>
+                <a class="row-book" href="./contact.html" data-add-service="250 grams - KTips" aria-label="Add 250 grams - KTips to your booking">Add</a>
+              </li>
+            </ul>
+            <div class="cta-row">
+              <span class="t-price" data-from-slot><em>From</em> GHS 680</span>
+              <a class="link" href="#prices-ext" data-ledger="ext">All 15 prices</a>
+              <a href="./contact.html?service=ext" class="btn btn--ghost btn--sm" data-book>Book</a>
+            </div>
+          </div>
+          <div class="plate-wrap plate--cap">
+          <figure class="plate plate--tall" data-unveil>
+            <img src="./media/img/product-model-waves-sm.webp" srcset="./media/img/product-model-waves-sm.webp 487w, ./media/img/product-model-waves.webp 1083w" sizes="(min-width: 1024px) 576px, 100vw" width="1083" height="1600" alt="Long fusion extensions, worn loose" loading="lazy" decoding="async">
+          </figure>
+          </div>
         </div>
+      </section>
+      <section class="section chapter grain" data-ground="moss" id="tex" data-svc-cat="Texture Systems + Treatments">
+        <div class="container t t-opener" data-flip>
+          <span class="ghost" aria-hidden="true">02</span>
+          <div class="copy stack">
+            <p class="eyebrow"><span class="n">Chapter 02 / 14</span></p>
+            <h2 class="t-chap balance">Texture Systems</h2>
+            <p class="t-deck">Vegan and formaldehyde free. Nanoplasty and Hair Botox smooth texture without stripping the hair.</p>
+            <ul class="t-index standouts">
+              <li class="price-row" data-item="Texture Release - Hair Botox">
+                <span class="name">Texture Release - Hair Botox<em class="price-dur">3 hr 30 min</em></span>
+                <span class="amt" data-price-slot>GHS 3,850</span>
+                <a class="row-book" href="./contact.html" data-add-service="Texture Release - Hair Botox" aria-label="Add Texture Release - Hair Botox to your booking">Add</a>
+              </li>
+              <li class="price-row" data-item="Perm Retouch and Style">
+                <span class="name">Perm Retouch and Style<em class="price-dur">1 hr</em></span>
+                <span class="amt" data-price-slot>GHS 850</span>
+                <a class="row-book" href="./contact.html" data-add-service="Perm Retouch and Style" aria-label="Add Perm Retouch and Style to your booking">Add</a>
+              </li>
+            </ul>
+            <div class="cta-row">
+              <span class="t-price" data-from-slot><em>From</em> GHS 850</span>
+              <a class="link" href="#prices-tex" data-ledger="tex">All 3 prices</a>
+              <a href="./contact.html?service=tex" class="btn btn--ghost btn--sm" data-book>Book</a>
+            </div>
+          </div>
+          <div class="plate-wrap plate--cap">
+          <figure class="plate plate--tall" data-unveil>
+            <img src="./media/img/model-profile-sleek-sm.webp" srcset="./media/img/model-profile-sleek-sm.webp 382w, ./media/img/model-profile-sleek.webp 850w" sizes="(min-width: 1024px) 576px, 100vw" width="850" height="1600" alt="A sleek profile after a texture treatment" loading="lazy" decoding="async">
+          </figure>
+          </div>
+        </div>
+      </section>
+      <section class="section chapter grain" data-ground="oatmeal" id="scalp" data-svc-cat="Scalp + Bond Repair Treatments">
+        <div class="container t t-opener">
+          <span class="ghost" aria-hidden="true">03</span>
+          <div class="copy stack">
+            <p class="eyebrow"><span class="n">Chapter 03 / 14</span></p>
+            <h2 class="t-chap balance">Scalp + Bond Repair</h2>
+            <p class="t-deck">Treatment-led care. Flaxseed, GRO hot oil, Olaplex and K18, chosen for what your scalp and bonds actually need.</p>
+            <ul class="t-index standouts">
+              <li class="price-row" data-item="Bēsia Hair CPR Treatment">
+                <span class="name">Bēsia Hair CPR Treatment<em class="price-dur">1 hr 30 min</em></span>
+                <span class="amt" data-price-slot>GHS 1,500</span>
+                <a class="row-book" href="./contact.html" data-add-service="Bēsia Hair CPR Treatment" aria-label="Add Bēsia Hair CPR Treatment to your booking">Add</a>
+              </li>
+              <li class="price-row" data-item="Olaplex Treatment">
+                <span class="name">Olaplex Treatment<em class="price-dur">2 hr</em></span>
+                <span class="amt" data-price-slot>GHS 850</span>
+                <a class="row-book" href="./contact.html" data-add-service="Olaplex Treatment" aria-label="Add Olaplex Treatment to your booking">Add</a>
+              </li>
+              <li class="price-row" data-item="Scalp + Dandruff Intensive Detox">
+                <span class="name">Scalp + Dandruff Intensive Detox<em class="price-dur">45 min</em></span>
+                <span class="amt" data-price-slot>GHS 550</span>
+                <a class="row-book" href="./contact.html" data-add-service="Scalp + Dandruff Intensive Detox" aria-label="Add Scalp + Dandruff Intensive Detox to your booking">Add</a>
+              </li>
+            </ul>
+            <div class="cta-row">
+              <span class="t-price" data-from-slot><em>From</em> GHS 350</span>
+              <a class="link" href="#prices-scalp" data-ledger="scalp">All 12 prices</a>
+              <a href="./contact.html?service=scalp" class="btn btn--ghost btn--sm" data-book>Book</a>
+            </div>
+          </div>
+          <div class="plate-wrap plate--cap">
+          <!--REEL:{"name":"wash-ritual","class":"plate plate--portrait","alt":"A scalp cleanse at the basin"}-->
+  <figure class="reel plate plate--portrait" data-reel="wash-ritual" data-mode="loop" data-src-sm="./media/video/wash-ritual-480.mp4?v=fb269168" data-src-lg="./media/video/wash-ritual-720.mp4?v=fb269168">
+    <img class="reel-poster" src="./media/video/wash-ritual-poster-sm.webp?v=fb269168" srcset="./media/video/wash-ritual-poster-sm.webp?v=fb269168 480w, ./media/video/wash-ritual-poster.webp?v=fb269168 720w" sizes="(min-width: 1024px) 576px, 100vw" width="720" height="1280" alt="A scalp cleanse at the basin" loading="lazy" decoding="async">
+    <video class="reel-video" muted playsinline preload="none" aria-hidden="true" tabindex="-1" disablepictureinpicture disableremoteplayback></video>
+    <button type="button" class="reel-ctl" aria-label="Play film" aria-pressed="false"><svg class="i-pause" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2h3v12H4zM9 2h3v12H9z"/></svg><svg class="i-play" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2l10 6-10 6z"/></svg><svg class="i-replay" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 3a5 5 0 1 1-4.6 3H2A6.5 6.5 0 1 0 8 1.5V0L4 3l4 3V3z"/></svg></button>
+  </figure>
+  <!--/REEL:wash-ritual-->
+          </div>
+        </div>
+      </section>
+      <section class="section chapter grain" data-ground="espresso" id="nat" data-svc-cat="Naturals | Curls &amp; Coils">
+        <div class="container t t-opener" data-flip>
+          <span class="ghost" aria-hidden="true">04</span>
+          <div class="copy stack">
+            <p class="eyebrow"><span class="n">Chapter 04 / 14</span></p>
+            <h2 class="t-chap balance">Naturals, Curls &amp; Coils</h2>
+            <p class="t-deck">Curl Revive wash-and-go and cutting shaped to your curl pattern, with definition that survives the week.</p>
+            <ul class="t-index standouts">
+              <li class="price-row" data-item="Curly Cut">
+                <span class="name">Curly Cut<em class="price-dur">1 hr 45 min</em></span>
+                <span class="amt" data-price-slot>GHS 585</span>
+                <a class="row-book" href="./contact.html" data-add-service="Curly Cut" aria-label="Add Curly Cut to your booking">Add</a>
+              </li>
+              <li class="price-row" data-item="Curl Revive | Wash + Go">
+                <span class="name">Curl Revive | Wash + Go<em class="price-dur">1 hr 30 min</em></span>
+                <span class="amt" data-price-slot>GHS 550</span>
+                <a class="row-book" href="./contact.html" data-add-service="Curl Revive | Wash + Go" aria-label="Add Curl Revive | Wash + Go to your booking">Add</a>
+              </li>
+            </ul>
+            <div class="cta-row">
+              <span class="t-price" data-from-slot><em>From</em> GHS 550</span>
+              <a class="link" href="#prices-nat" data-ledger="nat">All 2 prices</a>
+              <a href="./contact.html?service=nat" class="btn btn--ghost btn--sm" data-book>Book</a>
+            </div>
+          </div>
+          <div class="plate-wrap plate--cap">
+          <!--REEL:{"name":"wash-ritual-curls","class":"plate plate--portrait","alt":"Curls lathered at the basin"}-->
+  <figure class="reel plate plate--portrait" data-reel="wash-ritual-curls" data-mode="loop" data-src-sm="./media/video/wash-ritual-curls-480.mp4?v=09925e68" data-src-lg="./media/video/wash-ritual-curls-720.mp4?v=09925e68">
+    <img class="reel-poster" src="./media/video/wash-ritual-curls-poster-sm.webp?v=09925e68" srcset="./media/video/wash-ritual-curls-poster-sm.webp?v=09925e68 480w, ./media/video/wash-ritual-curls-poster.webp?v=09925e68 720w" sizes="(min-width: 1024px) 576px, 100vw" width="720" height="1280" alt="Curls lathered at the basin" loading="lazy" decoding="async">
+    <video class="reel-video" muted playsinline preload="none" aria-hidden="true" tabindex="-1" disablepictureinpicture disableremoteplayback></video>
+    <button type="button" class="reel-ctl" aria-label="Play film" aria-pressed="false"><svg class="i-pause" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2h3v12H4zM9 2h3v12H9z"/></svg><svg class="i-play" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2l10 6-10 6z"/></svg><svg class="i-replay" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 3a5 5 0 1 1-4.6 3H2A6.5 6.5 0 1 0 8 1.5V0L4 3l4 3V3z"/></svg></button>
+  </figure>
+  <!--/REEL:wash-ritual-curls-->
+          </div>
+        </div>
+      </section>
+      <section class="section chapter grain" data-ground="sage" id="color" data-svc-cat="Color Service">
+        <div class="container t t-opener">
+          <span class="ghost" aria-hidden="true">05</span>
+          <div class="copy stack">
+            <p class="eyebrow"><span class="n">Chapter 05 / 14</span></p>
+            <h2 class="t-chap balance">Colour</h2>
+            <p class="t-deck">All-over colour, balayage and highlights, blended against your natural depth rather than fighting it.</p>
+            <ul class="t-index standouts">
+              <li class="price-row" data-item="Custom Color">
+                <span class="name">Custom Color<em class="price-dur">2 hr</em></span>
+                <span class="amt" data-price-slot>from GHS 2,000</span>
+                <a class="row-book" href="./contact.html" data-add-service="Custom Color" aria-label="Add Custom Color to your booking">Add</a>
+              </li>
+              <li class="price-row" data-item="Full Highlights">
+                <span class="name">Full Highlights<em class="price-dur">4 hr</em></span>
+                <span class="amt" data-price-slot>GHS 1,500 to GHS 2,350</span>
+                <a class="row-book" href="./contact.html" data-add-service="Full Highlights" aria-label="Add Full Highlights to your booking">Add</a>
+              </li>
+              <li class="price-row" data-item="All Over Color - Long">
+                <span class="name">All Over Color - Long<em class="price-dur">3 hr</em></span>
+                <span class="amt" data-price-slot>GHS 1,350</span>
+                <a class="row-book" href="./contact.html" data-add-service="All Over Color - Long" aria-label="Add All Over Color - Long to your booking">Add</a>
+              </li>
+            </ul>
+            <div class="cta-row">
+              <span class="t-price" data-from-slot><em>From</em> GHS 650</span>
+              <a class="link" href="#prices-color" data-ledger="color">All 7 prices</a>
+              <a href="./contact.html?service=color" class="btn btn--ghost btn--sm" data-book>Book</a>
+            </div>
+          </div>
+          <div class="plate-wrap plate--cap">
+          <figure class="plate plate--tall" data-unveil>
+            <img src="./media/img/editorial-hair-story-sm.webp" srcset="./media/img/editorial-hair-story-sm.webp 518w, ./media/img/editorial-hair-story.webp 1150w" sizes="(min-width: 1024px) 576px, 100vw" width="1150" height="1600" alt="A balayage blowout" loading="lazy" decoding="async">
+          </figure>
+          </div>
+        </div>
+      </section>
+      <section class="section" data-ground="ink"><div class="container stack">
+        <p class="eyebrow"><span class="n">Chapters 06 to 14</span> The rest of the menu</p>
+        <div class="t-index chapter-index">
+          <a class="ix-row chapter-row" href="#prices-cut" id="cut" data-svc-cat="Cut Service" data-ledger="cut">
+            <span class="ix-n">06</span>
+            <span class="ix-thumb"><img src="./media/img/texture-curls-sm.webp" width="398" height="720" alt="" loading="lazy" decoding="async"></span>
+            <span><span class="ix-title">Cutting</span><span class="ix-dek">Precision, curly and coily cutting. Shape first, length second.</span></span>
+            <span class="ix-end"><span data-from-slot><em>From</em> GHS 165</span><span class="ix-count">3 services</span></span>
+          </a>
+      </div></div></section>
+      <section class="section chapter grain" data-ground="ivory" id="braid" data-svc-cat="Braids | Cornrows">
+        <div class="container t t-opener">
+          <span class="ghost" aria-hidden="true">07</span>
+          <div class="copy stack">
+            <p class="eyebrow"><span class="n">Chapter 07 / 14</span></p>
+            <h2 class="t-chap balance">Braids &amp; Cornrows</h2>
+            <p class="t-deck">Parted clean and tensioned gently, so your edges outlive the style.</p>
+            <ul class="t-index standouts">
+              <li class="price-row" data-item="Large Braids">
+                <span class="name">Large Braids<em class="price-dur">1 hr</em></span>
+                <span class="amt" data-price-slot>GHS 650</span>
+                <a class="row-book" href="./contact.html" data-add-service="Large Braids" aria-label="Add Large Braids to your booking">Add</a>
+              </li>
+              <li class="price-row" data-item="Cornrow Updo">
+                <span class="name">Cornrow Updo<em class="price-dur">1 hr 30 min</em></span>
+                <span class="amt" data-price-slot>from GHS 550</span>
+                <a class="row-book" href="./contact.html" data-add-service="Cornrow Updo" aria-label="Add Cornrow Updo to your booking">Add</a>
+              </li>
+            </ul>
+            <div class="cta-row">
+              <span class="t-price" data-from-slot><em>From</em> GHS 550</span>
+              <a class="link" href="#prices-braid" data-ledger="braid">All 2 prices</a>
+              <a href="./contact.html?service=braid" class="btn btn--ghost btn--sm" data-book>Book</a>
+            </div>
+          </div>
+          <div class="plate-wrap plate--cap">
+          <!--REEL:{"name":"braid-finish","class":"plate plate--portrait","alt":"Finishing the ends of a braid"}-->
+  <figure class="reel plate plate--portrait" data-reel="braid-finish" data-mode="loop" data-src-sm="./media/video/braid-finish-480.mp4?v=fe35f3f6" data-src-lg="./media/video/braid-finish-720.mp4?v=fe35f3f6">
+    <img class="reel-poster" src="./media/video/braid-finish-poster-sm.webp?v=fe35f3f6" srcset="./media/video/braid-finish-poster-sm.webp?v=fe35f3f6 480w, ./media/video/braid-finish-poster.webp?v=fe35f3f6 720w" sizes="(min-width: 1024px) 576px, 100vw" width="720" height="1292" alt="Finishing the ends of a braid" loading="lazy" decoding="async">
+    <video class="reel-video" muted playsinline preload="none" aria-hidden="true" tabindex="-1" disablepictureinpicture disableremoteplayback></video>
+    <button type="button" class="reel-ctl" aria-label="Play film" aria-pressed="false"><svg class="i-pause" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2h3v12H4zM9 2h3v12H9z"/></svg><svg class="i-play" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2l10 6-10 6z"/></svg><svg class="i-replay" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 3a5 5 0 1 1-4.6 3H2A6.5 6.5 0 1 0 8 1.5V0L4 3l4 3V3z"/></svg></button>
+  </figure>
+  <!--/REEL:braid-finish-->
+          </div>
+        </div>
+      </section>
+      <section class="section" data-ground="ivory"><div class="container stack">
+        <p class="eyebrow"><span class="n">Chapters 08 to 14</span> The rest of the menu</p>
+        <div class="t-index chapter-index">
+          <a class="ix-row chapter-row" href="#prices-style" id="style" data-svc-cat="Hair Styling" data-ledger="style">
+            <span class="ix-n">08</span>
+            <span class="ix-thumb"><img src="./media/img/studio-mirror-chair-sm.webp" width="581" height="720" alt="" loading="lazy" decoding="async"></span>
+            <span><span class="ix-title">Styling</span><span class="ix-dek">Silkpress Xpress: signature wash, brush blow dry, press and style.</span></span>
+            <span class="ix-end"><span data-from-slot><em>From</em> GHS 550</span><span class="ix-count">1 service</span></span>
+          </a>
+          <a class="ix-row chapter-row" href="#prices-wig" id="wig" data-svc-cat="Wig Service" data-ledger="wig">
+            <span class="ix-n">09</span>
+            <span class="ix-thumb"><img src="./media/img/studio-logo-wall-3-sm.webp" width="540" height="720" alt="" loading="lazy" decoding="async"></span>
+            <span><span class="ix-title">Wig Service</span><span class="ix-dek">Frontal installation, fitted flat and blended so the parting reads as scalp.</span></span>
+            <span class="ix-end"><span data-from-slot><em>From</em> GHS 500</span><span class="ix-count">1 service</span></span>
+          </a>
+          <a class="ix-row chapter-row" href="#prices-lash" id="lash" data-svc-cat="Eyelashes &amp; Eyebrows" data-ledger="lash">
+            <span class="ix-n">10</span>
+            <span class="ix-thumb"><img src="./media/img/editorial-curls-sky-sm.webp" width="480" height="720" alt="" loading="lazy" decoding="async"></span>
+            <span><span class="ix-title">Lashes &amp; Brows</span><span class="ix-dek">Classic to hybrid sets, lifts and tints, and brows waxed, laminated and tinted.</span></span>
+            <span class="ix-end"><span data-from-slot><em>From</em> GHS 80</span><span class="ix-count">19 services</span></span>
+          </a>
+          <a class="ix-row chapter-row" href="#prices-facial" id="facial" data-svc-cat="Facials" data-ledger="facial">
+            <span class="ix-n">11</span>
+            <span class="ix-thumb"><img src="./media/img/lifestyle-sunset-sm.webp" width="480" height="720" alt="" loading="lazy" decoding="async"></span>
+            <span><span class="ix-title">Facials</span><span class="ix-dek">The Bēsia Glow, custom facials and deep cleanses, built around your skin rather than a set routine.</span></span>
+            <span class="ix-end"><span data-from-slot><em>From</em> GHS 400</span><span class="ix-count">3 services</span></span>
+          </a>
+          <a class="ix-row chapter-row" href="#prices-wax" id="wax" data-svc-cat="Wax Service" data-ledger="wax">
+            <span class="ix-n">12</span>
+            <span class="ix-thumb"><img src="./media/img/still-travertine-sm.webp" width="720" height="674" alt="" loading="lazy" decoding="async"></span>
+            <span><span class="ix-title">Waxing</span><span class="ix-dek">Gentle, sensitive-skin waxing from brow to Brazilian, with the vajacial for after-care.</span></span>
+            <span class="ix-end"><span data-from-slot><em>From</em> GHS 100</span><span class="ix-count">7 services</span></span>
+          </a>
+          <a class="ix-row chapter-row" href="#prices-makeup" id="makeup" data-svc-cat="Makeup Service" data-ledger="makeup">
+            <span class="ix-n">13</span>
+            <span class="ix-thumb"><img src="./media/img/editorial-white-terracotta-sm.webp" width="581" height="720" alt="" loading="lazy" decoding="async"></span>
+            <span><span class="ix-title">Make-Up</span><span class="ix-dek">Soft glam to full glam by our make-up artist, plus one-to-one lessons in your own make-up bag.</span></span>
+            <span class="ix-end"><span data-from-slot><em>From</em> GHS 750</span><span class="ix-count">5 services</span></span>
+          </a>
+          <a class="ix-row chapter-row" href="#prices-gen" id="gen" data-svc-cat="General" data-ledger="gen">
+            <span class="ix-n">14</span>
+            <span class="ix-thumb"><img src="./media/img/studio-lounge-sm.webp" width="588" height="720" alt="" loading="lazy" decoding="async"></span>
+            <span><span class="ix-title">Consultations &amp; Basics</span><span class="ix-dek">Not sure where to start? The first consultation is free, and there is no pressure to book on the day.</span></span>
+            <span class="ix-end"><span data-from-slot><em>From</em> GHS 200</span><span class="ix-count">3 services</span></span>
+          </a>
+      </div></div></section>
+<!--/BUILD:tiles-->
+    </div>
 
-        <div class="price-groups" data-reveal-stagger>
-
+    <!-- ============ THE LEDGER ============ -->
+    <section class="section ledger" data-ground="ivory" id="prices">
+      <div class="container stack--loose stack">
+        <div class="section-head" data-reveal>
+          <p class="eyebrow"><span class="n">The menu</span> Every price</p>
+          <h2 class="t-h2 balance">Eighty-three services, published.</h2>
+          <p class="t-deck">"From" means the final figure depends on length or density and is confirmed at your consultation. Add puts a service in your booking without leaving this page; two or more in one visit earn a bundle saving, shown live in the booking.</p>
+        </div>
+        <div class="ledger-tools">
+          <label class="field ledger-search"><span>Search the menu</span><input type="search" id="ledger-search" placeholder="For example lashes, KTips, balayage" autocomplete="off"></label>
+          <p class="t-credit" id="ledger-count" aria-live="polite">Showing 83 of 83</p>
+        </div>
+        <div class="ledger-groups">
           <!--BUILD:prices-->
           <details class="price-group" id="prices-ext" open>
-            <summary><h3>Fusion Extensions</h3><span class="price-count" data-count-slot>15</span></summary>
+            <summary><span class="price-num">01</span><h3>Fusion Extensions</h3><span class="price-count" data-count-slot>15</span></summary>
             <div class="price-rows">
-            <div class="price-row" data-kind="service" data-item="100 grams - KTips"><span class="name">100 grams - KTips<em class="price-dur">4 hr</em></span><span class="dots"></span><span class="amt" data-price-slot>GHS 2,500</span><a class="row-book" href="./contact.html" data-add-service="100 grams - KTips" aria-label="Add 100 grams - KTips to your booking">Add</a></div>
-            <div class="price-row" data-kind="service" data-item="150 grams - KTips"><span class="name">150 grams - KTips<em class="price-dur">4 hr</em></span><span class="dots"></span><span class="amt" data-price-slot>GHS 3,000</span><a class="row-book" href="./contact.html" data-add-service="150 grams - KTips" aria-label="Add 150 grams - KTips to your booking">Add</a></div>
-            <div class="price-row" data-kind="service" data-item="200 grams - KTips"><span class="name">200 grams - KTips<em class="price-dur">5 hr 30 min</em></span><span class="dots"></span><span class="amt" data-price-slot>GHS 3,500</span><a class="row-book" href="./contact.html" data-add-service="200 grams - KTips" aria-label="Add 200 grams - KTips to your booking">Add</a></div>
-            <div class="price-row" data-kind="service" data-item="250 grams - KTips"><span class="name">250 grams - KTips<em class="price-dur">6 hr</em></span><span class="dots"></span><span class="amt" data-price-slot>GHS 4,000</span><a class="row-book" href="./contact.html" data-add-service="250 grams - KTips" aria-label="Add 250 grams - KTips to your booking">Add</a></div>
-            <div class="price-row" data-kind="service" data-item="300 grams - KTips"><span class="name">300 grams - KTips<em class="price-dur">7 hr</em></span><span class="dots"></span><span class="amt" data-price-slot>GHS 4,500</span><a class="row-book" href="./contact.html" data-add-service="300 grams - KTips" aria-label="Add 300 grams - KTips to your booking">Add</a></div>
-            <div class="price-row" data-kind="service" data-item="Invisible KTips"><span class="name">Invisible KTips<em class="price-dur">10 hr</em></span><span class="dots"></span><span class="amt" data-price-slot>from GHS 7,000</span><a class="row-book" href="./contact.html" data-add-service="Invisible KTips" aria-label="Add Invisible KTips to your booking">Add</a></div>
-            <div class="price-row" data-kind="service" data-item="V-Light Extensions/Invisibles - Hairline"><span class="name">V-Light Extensions/Invisibles - Hairline<em class="price-dur">1 hr 30 min</em></span><span class="dots"></span><span class="amt" data-price-slot>from GHS 1,000</span><a class="row-book" href="./contact.html" data-add-service="V-Light Extensions/Invisibles - Hairline" aria-label="Add V-Light Extensions/Invisibles - Hairline to your booking">Add</a></div>
-            <div class="price-row" data-kind="service" data-item="V-Light Extensions/Invisibles - Full Head"><span class="name">V-Light Extensions/Invisibles - Full Head<em class="price-dur">4 hr</em></span><span class="dots"></span><span class="amt" data-price-slot>from GHS 4,000</span><a class="row-book" href="./contact.html" data-add-service="V-Light Extensions/Invisibles - Full Head" aria-label="Add V-Light Extensions/Invisibles - Full Head to your booking">Add</a></div>
-            <div class="price-row" data-kind="service" data-item="Seamless Tape-Ins"><span class="name">Seamless Tape-Ins<em class="price-dur">2 hr 30 min</em></span><span class="dots"></span><span class="amt" data-price-slot>GHS 1,500</span><a class="row-book" href="./contact.html" data-add-service="Seamless Tape-Ins" aria-label="Add Seamless Tape-Ins to your booking">Add</a></div>
-            <div class="price-row" data-kind="service" data-item="Classic Weave Install - One Part Leave Out"><span class="name">Classic Weave Install - One Part Leave Out<em class="price-dur">2 hr</em></span><span class="dots"></span><span class="amt" data-price-slot>GHS 680</span><a class="row-book" href="./contact.html" data-add-service="Classic Weave Install - One Part Leave Out" aria-label="Add Classic Weave Install - One Part Leave Out to your booking">Add</a></div>
-            <div class="price-row" data-kind="service" data-item="Closure Weave Install"><span class="name">Closure Weave Install<em class="price-dur">2 hr</em></span><span class="dots"></span><span class="amt" data-price-slot>GHS 1,000</span><a class="row-book" href="./contact.html" data-add-service="Closure Weave Install" aria-label="Add Closure Weave Install to your booking">Add</a></div>
-            <div class="price-row" data-kind="service" data-item="Illusion Crochet"><span class="name">Illusion Crochet<em class="price-dur">4 hr</em></span><span class="dots"></span><span class="amt" data-price-slot>from GHS 850</span><a class="row-book" href="./contact.html" data-add-service="Illusion Crochet" aria-label="Add Illusion Crochet to your booking">Add</a></div>
-            <div class="price-row" data-kind="service" data-item="KTip Removal"><span class="name">KTip Removal<em class="price-dur">1 hr</em></span><span class="dots"></span><span class="amt" data-price-slot>GHS 850</span><a class="row-book" href="./contact.html" data-add-service="KTip Removal" aria-label="Add KTip Removal to your booking">Add</a></div>
-            <div class="price-row" data-kind="service" data-item="Weave/Ponytail Take Down"><span class="name">Weave/Ponytail Take Down<em class="price-dur">1 hr</em></span><span class="dots"></span><span class="amt" data-price-slot>from GHS 150</span><a class="row-book" href="./contact.html" data-add-service="Weave/Ponytail Take Down" aria-label="Add Weave/Ponytail Take Down to your booking">Add</a></div>
-            <div class="price-row" data-kind="service" data-item="Braids Take Down"><span class="name">Braids Take Down<em class="price-dur">1 hr</em></span><span class="dots"></span><span class="amt" data-price-slot>from GHS 200</span><a class="row-book" href="./contact.html" data-add-service="Braids Take Down" aria-label="Add Braids Take Down to your booking">Add</a></div></div></details>
+            <div class="price-row" data-kind="service" data-item="100 grams - KTips"><span class="name">100 grams - KTips<em class="price-dur">4 hr</em></span><span class="amt" data-price-slot>GHS 2,500</span><a class="row-book" href="./contact.html" data-add-service="100 grams - KTips" aria-label="Add 100 grams - KTips to your booking">Add</a></div>
+            <div class="price-row" data-kind="service" data-item="150 grams - KTips"><span class="name">150 grams - KTips<em class="price-dur">4 hr</em></span><span class="amt" data-price-slot>GHS 3,000</span><a class="row-book" href="./contact.html" data-add-service="150 grams - KTips" aria-label="Add 150 grams - KTips to your booking">Add</a></div>
+            <div class="price-row" data-kind="service" data-item="200 grams - KTips"><span class="name">200 grams - KTips<em class="price-dur">5 hr 30 min</em></span><span class="amt" data-price-slot>GHS 3,500</span><a class="row-book" href="./contact.html" data-add-service="200 grams - KTips" aria-label="Add 200 grams - KTips to your booking">Add</a></div>
+            <div class="price-row" data-kind="service" data-item="250 grams - KTips"><span class="name">250 grams - KTips<em class="price-dur">6 hr</em></span><span class="amt" data-price-slot>GHS 4,000</span><a class="row-book" href="./contact.html" data-add-service="250 grams - KTips" aria-label="Add 250 grams - KTips to your booking">Add</a></div>
+            <div class="price-row" data-kind="service" data-item="300 grams - KTips"><span class="name">300 grams - KTips<em class="price-dur">7 hr</em></span><span class="amt" data-price-slot>GHS 4,500</span><a class="row-book" href="./contact.html" data-add-service="300 grams - KTips" aria-label="Add 300 grams - KTips to your booking">Add</a></div>
+            <div class="price-row" data-kind="service" data-item="Invisible KTips"><span class="name">Invisible KTips<em class="price-dur">10 hr</em></span><span class="amt" data-price-slot>from GHS 7,000</span><a class="row-book" href="./contact.html" data-add-service="Invisible KTips" aria-label="Add Invisible KTips to your booking">Add</a></div>
+            <div class="price-row" data-kind="service" data-item="V-Light Extensions/Invisibles - Hairline"><span class="name">V-Light Extensions/Invisibles - Hairline<em class="price-dur">1 hr 30 min</em></span><span class="amt" data-price-slot>from GHS 1,000</span><a class="row-book" href="./contact.html" data-add-service="V-Light Extensions/Invisibles - Hairline" aria-label="Add V-Light Extensions/Invisibles - Hairline to your booking">Add</a></div>
+            <div class="price-row" data-kind="service" data-item="V-Light Extensions/Invisibles - Full Head"><span class="name">V-Light Extensions/Invisibles - Full Head<em class="price-dur">4 hr</em></span><span class="amt" data-price-slot>from GHS 4,000</span><a class="row-book" href="./contact.html" data-add-service="V-Light Extensions/Invisibles - Full Head" aria-label="Add V-Light Extensions/Invisibles - Full Head to your booking">Add</a></div>
+            <div class="price-row" data-kind="service" data-item="Seamless Tape-Ins"><span class="name">Seamless Tape-Ins<em class="price-dur">2 hr 30 min</em></span><span class="amt" data-price-slot>GHS 1,500</span><a class="row-book" href="./contact.html" data-add-service="Seamless Tape-Ins" aria-label="Add Seamless Tape-Ins to your booking">Add</a></div>
+            <div class="price-row" data-kind="service" data-item="Classic Weave Install - One Part Leave Out"><span class="name">Classic Weave Install - One Part Leave Out<em class="price-dur">2 hr</em></span><span class="amt" data-price-slot>GHS 680</span><a class="row-book" href="./contact.html" data-add-service="Classic Weave Install - One Part Leave Out" aria-label="Add Classic Weave Install - One Part Leave Out to your booking">Add</a></div>
+            <div class="price-row" data-kind="service" data-item="Closure Weave Install"><span class="name">Closure Weave Install<em class="price-dur">2 hr</em></span><span class="amt" data-price-slot>GHS 1,000</span><a class="row-book" href="./contact.html" data-add-service="Closure Weave Install" aria-label="Add Closure Weave Install to your booking">Add</a></div>
+            <div class="price-row" data-kind="service" data-item="Illusion Crochet"><span class="name">Illusion Crochet<em class="price-dur">4 hr</em></span><span class="amt" data-price-slot>from GHS 850</span><a class="row-book" href="./contact.html" data-add-service="Illusion Crochet" aria-label="Add Illusion Crochet to your booking">Add</a></div>
+            <div class="price-row" data-kind="service" data-item="KTip Removal"><span class="name">KTip Removal<em class="price-dur">1 hr</em></span><span class="amt" data-price-slot>GHS 850</span><a class="row-book" href="./contact.html" data-add-service="KTip Removal" aria-label="Add KTip Removal to your booking">Add</a></div>
+            <div class="price-row" data-kind="service" data-item="Weave/Ponytail Take Down"><span class="name">Weave/Ponytail Take Down<em class="price-dur">1 hr</em></span><span class="amt" data-price-slot>from GHS 150</span><a class="row-book" href="./contact.html" data-add-service="Weave/Ponytail Take Down" aria-label="Add Weave/Ponytail Take Down to your booking">Add</a></div>
+            <div class="price-row" data-kind="service" data-item="Braids Take Down"><span class="name">Braids Take Down<em class="price-dur">1 hr</em></span><span class="amt" data-price-slot>from GHS 200</span><a class="row-book" href="./contact.html" data-add-service="Braids Take Down" aria-label="Add Braids Take Down to your booking">Add</a></div></div></details>
 
           <details class="price-group" id="prices-tex">
-            <summary><h3>Texture Systems</h3><span class="price-count" data-count-slot>3</span></summary>
+            <summary><span class="price-num">02</span><h3>Texture Systems</h3><span class="price-count" data-count-slot>3</span></summary>
             <div class="price-rows">
-            <div class="price-row" data-kind="service" data-item="Vegan Keratin Treatment - Nanoplasty"><span class="name">Vegan Keratin Treatment - Nanoplasty<em class="price-dur">4 hr 30 min</em></span><span class="dots"></span><span class="amt" data-price-slot>GHS 4,650</span><a class="row-book" href="./contact.html" data-add-service="Vegan Keratin Treatment - Nanoplasty" aria-label="Add Vegan Keratin Treatment - Nanoplasty to your booking">Add</a></div>
-            <div class="price-row" data-kind="service" data-item="Texture Release - Hair Botox"><span class="name">Texture Release - Hair Botox<em class="price-dur">3 hr 30 min</em></span><span class="dots"></span><span class="amt" data-price-slot>GHS 3,850</span><a class="row-book" href="./contact.html" data-add-service="Texture Release - Hair Botox" aria-label="Add Texture Release - Hair Botox to your booking">Add</a></div>
-            <div class="price-row" data-kind="service" data-item="Perm Retouch and Style"><span class="name">Perm Retouch and Style<em class="price-dur">1 hr</em></span><span class="dots"></span><span class="amt" data-price-slot>GHS 850</span><a class="row-book" href="./contact.html" data-add-service="Perm Retouch and Style" aria-label="Add Perm Retouch and Style to your booking">Add</a></div></div></details>
+            <div class="price-row" data-kind="service" data-item="Vegan Keratin Treatment - Nanoplasty"><span class="name">Vegan Keratin Treatment - Nanoplasty<em class="price-dur">4 hr 30 min</em></span><span class="amt" data-price-slot>GHS 4,650</span><a class="row-book" href="./contact.html" data-add-service="Vegan Keratin Treatment - Nanoplasty" aria-label="Add Vegan Keratin Treatment - Nanoplasty to your booking">Add</a></div>
+            <div class="price-row" data-kind="service" data-item="Texture Release - Hair Botox"><span class="name">Texture Release - Hair Botox<em class="price-dur">3 hr 30 min</em></span><span class="amt" data-price-slot>GHS 3,850</span><a class="row-book" href="./contact.html" data-add-service="Texture Release - Hair Botox" aria-label="Add Texture Release - Hair Botox to your booking">Add</a></div>
+            <div class="price-row" data-kind="service" data-item="Perm Retouch and Style"><span class="name">Perm Retouch and Style<em class="price-dur">1 hr</em></span><span class="amt" data-price-slot>GHS 850</span><a class="row-book" href="./contact.html" data-add-service="Perm Retouch and Style" aria-label="Add Perm Retouch and Style to your booking">Add</a></div></div></details>
 
           <details class="price-group" id="prices-scalp">
-            <summary><h3>Scalp + Bond Repair</h3><span class="price-count" data-count-slot>12</span></summary>
+            <summary><span class="price-num">03</span><h3>Scalp + Bond Repair</h3><span class="price-count" data-count-slot>12</span></summary>
             <div class="price-rows">
-            <div class="price-row" data-kind="service" data-item="Bēsia Hair CPR Treatment"><span class="name">Bēsia Hair CPR Treatment<em class="price-dur">1 hr 30 min</em></span><span class="dots"></span><span class="amt" data-price-slot>GHS 1,500</span><a class="row-book" href="./contact.html" data-add-service="Bēsia Hair CPR Treatment" aria-label="Add Bēsia Hair CPR Treatment to your booking">Add</a></div>
-            <div class="price-row" data-kind="service" data-item="Scalp + Dandruff Intensive Detox"><span class="name">Scalp + Dandruff Intensive Detox<em class="price-dur">45 min</em></span><span class="dots"></span><span class="amt" data-price-slot>GHS 550</span><a class="row-book" href="./contact.html" data-add-service="Scalp + Dandruff Intensive Detox" aria-label="Add Scalp + Dandruff Intensive Detox to your booking">Add</a></div>
-            <div class="price-row" data-kind="service" data-item="Flax Seed + Aloe Treatment"><span class="name">Flax Seed + Aloe Treatment<em class="price-dur">1 hr</em></span><span class="dots"></span><span class="amt" data-price-slot>GHS 450</span><a class="row-book" href="./contact.html" data-add-service="Flax Seed + Aloe Treatment" aria-label="Add Flax Seed + Aloe Treatment to your booking">Add</a></div>
-            <div class="price-row" data-kind="service" data-item="GRO Hot Oil Treatment"><span class="name">GRO Hot Oil Treatment<em class="price-dur">1 hr</em></span><span class="dots"></span><span class="amt" data-price-slot>GHS 350</span><a class="row-book" href="./contact.html" data-add-service="GRO Hot Oil Treatment" aria-label="Add GRO Hot Oil Treatment to your booking">Add</a></div>
-            <div class="price-row" data-kind="service" data-item="Olaplex Treatment"><span class="name">Olaplex Treatment<em class="price-dur">2 hr</em></span><span class="dots"></span><span class="amt" data-price-slot>GHS 850</span><a class="row-book" href="./contact.html" data-add-service="Olaplex Treatment" aria-label="Add Olaplex Treatment to your booking">Add</a></div>
-            <div class="price-row" data-kind="service" data-item="K18 Treatment and Bond Repair"><span class="name">K18 Treatment and Bond Repair<em class="price-dur">1 hr</em></span><span class="dots"></span><span class="amt" data-price-slot>GHS 550</span><a class="row-book" href="./contact.html" data-add-service="K18 Treatment and Bond Repair" aria-label="Add K18 Treatment and Bond Repair to your booking">Add</a></div>
-            <div class="price-row" data-kind="service" data-item="Deep Moisture Treatment"><span class="name">Deep Moisture Treatment<em class="price-dur">1 hr</em></span><span class="dots"></span><span class="amt" data-price-slot>GHS 400</span><a class="row-book" href="./contact.html" data-add-service="Deep Moisture Treatment" aria-label="Add Deep Moisture Treatment to your booking">Add</a></div>
-            <div class="price-row" data-kind="service" data-item="Deep Moisture Treatment + Curl Revive"><span class="name">Deep Moisture Treatment + Curl Revive<em class="price-dur">2 hr 30 min</em></span><span class="dots"></span><span class="amt" data-price-slot>GHS 950</span><a class="row-book" href="./contact.html" data-add-service="Deep Moisture Treatment + Curl Revive" aria-label="Add Deep Moisture Treatment + Curl Revive to your booking">Add</a></div>
-            <div class="price-row" data-kind="service" data-item="Curl Revive + Flax"><span class="name">Curl Revive + Flax<em class="price-dur">1 hr 30 min</em></span><span class="dots"></span><span class="amt" data-price-slot>GHS 1,000</span><a class="row-book" href="./contact.html" data-add-service="Curl Revive + Flax" aria-label="Add Curl Revive + Flax to your booking">Add</a></div>
-            <div class="price-row" data-kind="service" data-item="Curl Revive with FlaxGRO"><span class="name">Curl Revive with FlaxGRO<em class="price-dur">3 hr 30 min</em></span><span class="dots"></span><span class="amt" data-price-slot>GHS 1,350</span><a class="row-book" href="./contact.html" data-add-service="Curl Revive with FlaxGRO" aria-label="Add Curl Revive with FlaxGRO to your booking">Add</a></div>
-            <div class="price-row" data-kind="service" data-item="Curl Revive + GRO Hot Oil Treatment"><span class="name">Curl Revive + GRO Hot Oil Treatment<em class="price-dur">1 hr 30 min</em></span><span class="dots"></span><span class="amt" data-price-slot>GHS 900</span><a class="row-book" href="./contact.html" data-add-service="Curl Revive + GRO Hot Oil Treatment" aria-label="Add Curl Revive + GRO Hot Oil Treatment to your booking">Add</a></div>
-            <div class="price-row" data-kind="service" data-item="Hair Loss + Growth Treatment"><span class="name">Hair Loss + Growth Treatment<em class="price-dur">1 hr</em></span><span class="dots"></span><span class="amt" data-price-slot>GHS 800</span><a class="row-book" href="./contact.html" data-add-service="Hair Loss + Growth Treatment" aria-label="Add Hair Loss + Growth Treatment to your booking">Add</a></div></div></details>
+            <div class="price-row" data-kind="service" data-item="Bēsia Hair CPR Treatment"><span class="name">Bēsia Hair CPR Treatment<em class="price-dur">1 hr 30 min</em></span><span class="amt" data-price-slot>GHS 1,500</span><a class="row-book" href="./contact.html" data-add-service="Bēsia Hair CPR Treatment" aria-label="Add Bēsia Hair CPR Treatment to your booking">Add</a></div>
+            <div class="price-row" data-kind="service" data-item="Scalp + Dandruff Intensive Detox"><span class="name">Scalp + Dandruff Intensive Detox<em class="price-dur">45 min</em></span><span class="amt" data-price-slot>GHS 550</span><a class="row-book" href="./contact.html" data-add-service="Scalp + Dandruff Intensive Detox" aria-label="Add Scalp + Dandruff Intensive Detox to your booking">Add</a></div>
+            <div class="price-row" data-kind="service" data-item="Flax Seed + Aloe Treatment"><span class="name">Flax Seed + Aloe Treatment<em class="price-dur">1 hr</em></span><span class="amt" data-price-slot>GHS 450</span><a class="row-book" href="./contact.html" data-add-service="Flax Seed + Aloe Treatment" aria-label="Add Flax Seed + Aloe Treatment to your booking">Add</a></div>
+            <div class="price-row" data-kind="service" data-item="GRO Hot Oil Treatment"><span class="name">GRO Hot Oil Treatment<em class="price-dur">1 hr</em></span><span class="amt" data-price-slot>GHS 350</span><a class="row-book" href="./contact.html" data-add-service="GRO Hot Oil Treatment" aria-label="Add GRO Hot Oil Treatment to your booking">Add</a></div>
+            <div class="price-row" data-kind="service" data-item="Olaplex Treatment"><span class="name">Olaplex Treatment<em class="price-dur">2 hr</em></span><span class="amt" data-price-slot>GHS 850</span><a class="row-book" href="./contact.html" data-add-service="Olaplex Treatment" aria-label="Add Olaplex Treatment to your booking">Add</a></div>
+            <div class="price-row" data-kind="service" data-item="K18 Treatment and Bond Repair"><span class="name">K18 Treatment and Bond Repair<em class="price-dur">1 hr</em></span><span class="amt" data-price-slot>GHS 550</span><a class="row-book" href="./contact.html" data-add-service="K18 Treatment and Bond Repair" aria-label="Add K18 Treatment and Bond Repair to your booking">Add</a></div>
+            <div class="price-row" data-kind="service" data-item="Deep Moisture Treatment"><span class="name">Deep Moisture Treatment<em class="price-dur">1 hr</em></span><span class="amt" data-price-slot>GHS 400</span><a class="row-book" href="./contact.html" data-add-service="Deep Moisture Treatment" aria-label="Add Deep Moisture Treatment to your booking">Add</a></div>
+            <div class="price-row" data-kind="service" data-item="Deep Moisture Treatment + Curl Revive"><span class="name">Deep Moisture Treatment + Curl Revive<em class="price-dur">2 hr 30 min</em></span><span class="amt" data-price-slot>GHS 950</span><a class="row-book" href="./contact.html" data-add-service="Deep Moisture Treatment + Curl Revive" aria-label="Add Deep Moisture Treatment + Curl Revive to your booking">Add</a></div>
+            <div class="price-row" data-kind="service" data-item="Curl Revive + Flax"><span class="name">Curl Revive + Flax<em class="price-dur">1 hr 30 min</em></span><span class="amt" data-price-slot>GHS 1,000</span><a class="row-book" href="./contact.html" data-add-service="Curl Revive + Flax" aria-label="Add Curl Revive + Flax to your booking">Add</a></div>
+            <div class="price-row" data-kind="service" data-item="Curl Revive with FlaxGRO"><span class="name">Curl Revive with FlaxGRO<em class="price-dur">3 hr 30 min</em></span><span class="amt" data-price-slot>GHS 1,350</span><a class="row-book" href="./contact.html" data-add-service="Curl Revive with FlaxGRO" aria-label="Add Curl Revive with FlaxGRO to your booking">Add</a></div>
+            <div class="price-row" data-kind="service" data-item="Curl Revive + GRO Hot Oil Treatment"><span class="name">Curl Revive + GRO Hot Oil Treatment<em class="price-dur">1 hr 30 min</em></span><span class="amt" data-price-slot>GHS 900</span><a class="row-book" href="./contact.html" data-add-service="Curl Revive + GRO Hot Oil Treatment" aria-label="Add Curl Revive + GRO Hot Oil Treatment to your booking">Add</a></div>
+            <div class="price-row" data-kind="service" data-item="Hair Loss + Growth Treatment"><span class="name">Hair Loss + Growth Treatment<em class="price-dur">1 hr</em></span><span class="amt" data-price-slot>GHS 800</span><a class="row-book" href="./contact.html" data-add-service="Hair Loss + Growth Treatment" aria-label="Add Hair Loss + Growth Treatment to your booking">Add</a></div></div></details>
 
           <details class="price-group" id="prices-nat">
-            <summary><h3>Naturals, Curls &amp; Coils</h3><span class="price-count" data-count-slot>2</span></summary>
+            <summary><span class="price-num">04</span><h3>Naturals, Curls &amp; Coils</h3><span class="price-count" data-count-slot>2</span></summary>
             <div class="price-rows">
-            <div class="price-row" data-kind="service" data-item="Curl Revive | Wash + Go"><span class="name">Curl Revive | Wash + Go<em class="price-dur">1 hr 30 min</em></span><span class="dots"></span><span class="amt" data-price-slot>GHS 550</span><a class="row-book" href="./contact.html" data-add-service="Curl Revive | Wash + Go" aria-label="Add Curl Revive | Wash + Go to your booking">Add</a></div>
-            <div class="price-row" data-kind="service" data-item="Curly Cut"><span class="name">Curly Cut<em class="price-dur">1 hr 45 min</em></span><span class="dots"></span><span class="amt" data-price-slot>GHS 585</span><a class="row-book" href="./contact.html" data-add-service="Curly Cut" aria-label="Add Curly Cut to your booking">Add</a></div></div></details>
+            <div class="price-row" data-kind="service" data-item="Curl Revive | Wash + Go"><span class="name">Curl Revive | Wash + Go<em class="price-dur">1 hr 30 min</em></span><span class="amt" data-price-slot>GHS 550</span><a class="row-book" href="./contact.html" data-add-service="Curl Revive | Wash + Go" aria-label="Add Curl Revive | Wash + Go to your booking">Add</a></div>
+            <div class="price-row" data-kind="service" data-item="Curly Cut"><span class="name">Curly Cut<em class="price-dur">1 hr 45 min</em></span><span class="amt" data-price-slot>GHS 585</span><a class="row-book" href="./contact.html" data-add-service="Curly Cut" aria-label="Add Curly Cut to your booking">Add</a></div></div></details>
 
           <details class="price-group" id="prices-color">
-            <summary><h3>Colour</h3><span class="price-count" data-count-slot>7</span></summary>
+            <summary><span class="price-num">05</span><h3>Colour</h3><span class="price-count" data-count-slot>7</span></summary>
             <div class="price-rows">
-            <div class="price-row" data-kind="service" data-item="All Over Color - Short"><span class="name">All Over Color - Short<em class="price-dur">3 hr</em></span><span class="dots"></span><span class="amt" data-price-slot>GHS 650</span><a class="row-book" href="./contact.html" data-add-service="All Over Color - Short" aria-label="Add All Over Color - Short to your booking">Add</a></div>
-            <div class="price-row" data-kind="service" data-item="All Over Color - Medium"><span class="name">All Over Color - Medium<em class="price-dur">3 hr</em></span><span class="dots"></span><span class="amt" data-price-slot>GHS 950</span><a class="row-book" href="./contact.html" data-add-service="All Over Color - Medium" aria-label="Add All Over Color - Medium to your booking">Add</a></div>
-            <div class="price-row" data-kind="service" data-item="All Over Color - Long"><span class="name">All Over Color - Long<em class="price-dur">3 hr</em></span><span class="dots"></span><span class="amt" data-price-slot>GHS 1,350</span><a class="row-book" href="./contact.html" data-add-service="All Over Color - Long" aria-label="Add All Over Color - Long to your booking">Add</a></div>
-            <div class="price-row" data-kind="service" data-item="Balayage - Short"><span class="name">Balayage - Short<em class="price-dur">2 hr</em></span><span class="dots"></span><span class="amt" data-price-slot>from GHS 850</span><a class="row-book" href="./contact.html" data-add-service="Balayage - Short" aria-label="Add Balayage - Short to your booking">Add</a></div>
-            <div class="price-row" data-kind="service" data-item="Balayage - Medium"><span class="name">Balayage - Medium<em class="price-dur">1 hr 30 min</em></span><span class="dots"></span><span class="amt" data-price-slot>from GHS 1,250</span><a class="row-book" href="./contact.html" data-add-service="Balayage - Medium" aria-label="Add Balayage - Medium to your booking">Add</a></div>
-            <div class="price-row" data-kind="service" data-item="Full Highlights"><span class="name">Full Highlights<em class="price-dur">4 hr</em></span><span class="dots"></span><span class="amt" data-price-slot>GHS 1,500 to GHS 2,350</span><a class="row-book" href="./contact.html" data-add-service="Full Highlights" aria-label="Add Full Highlights to your booking">Add</a></div>
-            <div class="price-row" data-kind="service" data-item="Custom Color"><span class="name">Custom Color<em class="price-dur">2 hr</em></span><span class="dots"></span><span class="amt" data-price-slot>from GHS 2,000</span><a class="row-book" href="./contact.html" data-add-service="Custom Color" aria-label="Add Custom Color to your booking">Add</a></div></div></details>
+            <div class="price-row" data-kind="service" data-item="All Over Color - Short"><span class="name">All Over Color - Short<em class="price-dur">3 hr</em></span><span class="amt" data-price-slot>GHS 650</span><a class="row-book" href="./contact.html" data-add-service="All Over Color - Short" aria-label="Add All Over Color - Short to your booking">Add</a></div>
+            <div class="price-row" data-kind="service" data-item="All Over Color - Medium"><span class="name">All Over Color - Medium<em class="price-dur">3 hr</em></span><span class="amt" data-price-slot>GHS 950</span><a class="row-book" href="./contact.html" data-add-service="All Over Color - Medium" aria-label="Add All Over Color - Medium to your booking">Add</a></div>
+            <div class="price-row" data-kind="service" data-item="All Over Color - Long"><span class="name">All Over Color - Long<em class="price-dur">3 hr</em></span><span class="amt" data-price-slot>GHS 1,350</span><a class="row-book" href="./contact.html" data-add-service="All Over Color - Long" aria-label="Add All Over Color - Long to your booking">Add</a></div>
+            <div class="price-row" data-kind="service" data-item="Balayage - Short"><span class="name">Balayage - Short<em class="price-dur">2 hr</em></span><span class="amt" data-price-slot>from GHS 850</span><a class="row-book" href="./contact.html" data-add-service="Balayage - Short" aria-label="Add Balayage - Short to your booking">Add</a></div>
+            <div class="price-row" data-kind="service" data-item="Balayage - Medium"><span class="name">Balayage - Medium<em class="price-dur">1 hr 30 min</em></span><span class="amt" data-price-slot>from GHS 1,250</span><a class="row-book" href="./contact.html" data-add-service="Balayage - Medium" aria-label="Add Balayage - Medium to your booking">Add</a></div>
+            <div class="price-row" data-kind="service" data-item="Full Highlights"><span class="name">Full Highlights<em class="price-dur">4 hr</em></span><span class="amt" data-price-slot>GHS 1,500 to GHS 2,350</span><a class="row-book" href="./contact.html" data-add-service="Full Highlights" aria-label="Add Full Highlights to your booking">Add</a></div>
+            <div class="price-row" data-kind="service" data-item="Custom Color"><span class="name">Custom Color<em class="price-dur">2 hr</em></span><span class="amt" data-price-slot>from GHS 2,000</span><a class="row-book" href="./contact.html" data-add-service="Custom Color" aria-label="Add Custom Color to your booking">Add</a></div></div></details>
 
           <details class="price-group" id="prices-cut">
-            <summary><h3>Cutting</h3><span class="price-count" data-count-slot>3</span></summary>
+            <summary><span class="price-num">06</span><h3>Cutting</h3><span class="price-count" data-count-slot>3</span></summary>
             <div class="price-rows">
-            <div class="price-row" data-kind="service" data-item="Trim"><span class="name">Trim<em class="price-dur">1 hr</em></span><span class="dots"></span><span class="amt" data-price-slot>GHS 165</span><a class="row-book" href="./contact.html" data-add-service="Trim" aria-label="Add Trim to your booking">Add</a></div>
-            <div class="price-row" data-kind="service" data-item="Precision Cut"><span class="name">Precision Cut<em class="price-dur">1 hr</em></span><span class="dots"></span><span class="amt" data-price-slot>GHS 300</span><a class="row-book" href="./contact.html" data-add-service="Precision Cut" aria-label="Add Precision Cut to your booking">Add</a></div>
-            <div class="price-row" data-kind="service" data-item="Layers"><span class="name">Layers<em class="price-dur">1 hr</em></span><span class="dots"></span><span class="amt" data-price-slot>from GHS 250</span><a class="row-book" href="./contact.html" data-add-service="Layers" aria-label="Add Layers to your booking">Add</a></div></div></details>
+            <div class="price-row" data-kind="service" data-item="Trim"><span class="name">Trim<em class="price-dur">1 hr</em></span><span class="amt" data-price-slot>GHS 165</span><a class="row-book" href="./contact.html" data-add-service="Trim" aria-label="Add Trim to your booking">Add</a></div>
+            <div class="price-row" data-kind="service" data-item="Precision Cut"><span class="name">Precision Cut<em class="price-dur">1 hr</em></span><span class="amt" data-price-slot>GHS 300</span><a class="row-book" href="./contact.html" data-add-service="Precision Cut" aria-label="Add Precision Cut to your booking">Add</a></div>
+            <div class="price-row" data-kind="service" data-item="Layers"><span class="name">Layers<em class="price-dur">1 hr</em></span><span class="amt" data-price-slot>from GHS 250</span><a class="row-book" href="./contact.html" data-add-service="Layers" aria-label="Add Layers to your booking">Add</a></div></div></details>
 
           <details class="price-group" id="prices-braid">
-            <summary><h3>Braids &amp; Cornrows</h3><span class="price-count" data-count-slot>2</span></summary>
+            <summary><span class="price-num">07</span><h3>Braids &amp; Cornrows</h3><span class="price-count" data-count-slot>2</span></summary>
             <div class="price-rows">
-            <div class="price-row" data-kind="service" data-item="Cornrow Updo"><span class="name">Cornrow Updo<em class="price-dur">1 hr 30 min</em></span><span class="dots"></span><span class="amt" data-price-slot>from GHS 550</span><a class="row-book" href="./contact.html" data-add-service="Cornrow Updo" aria-label="Add Cornrow Updo to your booking">Add</a></div>
-            <div class="price-row" data-kind="service" data-item="Large Braids"><span class="name">Large Braids<em class="price-dur">1 hr</em></span><span class="dots"></span><span class="amt" data-price-slot>GHS 650</span><a class="row-book" href="./contact.html" data-add-service="Large Braids" aria-label="Add Large Braids to your booking">Add</a></div></div></details>
+            <div class="price-row" data-kind="service" data-item="Cornrow Updo"><span class="name">Cornrow Updo<em class="price-dur">1 hr 30 min</em></span><span class="amt" data-price-slot>from GHS 550</span><a class="row-book" href="./contact.html" data-add-service="Cornrow Updo" aria-label="Add Cornrow Updo to your booking">Add</a></div>
+            <div class="price-row" data-kind="service" data-item="Large Braids"><span class="name">Large Braids<em class="price-dur">1 hr</em></span><span class="amt" data-price-slot>GHS 650</span><a class="row-book" href="./contact.html" data-add-service="Large Braids" aria-label="Add Large Braids to your booking">Add</a></div></div></details>
 
           <details class="price-group" id="prices-style">
-            <summary><h3>Styling</h3><span class="price-count" data-count-slot>1</span></summary>
+            <summary><span class="price-num">08</span><h3>Styling</h3><span class="price-count" data-count-slot>1</span></summary>
             <div class="price-rows">
-            <div class="price-row" data-kind="service" data-item="Silkpress Xpress"><span class="name">Silkpress Xpress<em class="price-dur">1 hr 30 min</em></span><span class="dots"></span><span class="amt" data-price-slot>GHS 550</span><a class="row-book" href="./contact.html" data-add-service="Silkpress Xpress" aria-label="Add Silkpress Xpress to your booking">Add</a></div></div></details>
+            <div class="price-row" data-kind="service" data-item="Silkpress Xpress"><span class="name">Silkpress Xpress<em class="price-dur">1 hr 30 min</em></span><span class="amt" data-price-slot>GHS 550</span><a class="row-book" href="./contact.html" data-add-service="Silkpress Xpress" aria-label="Add Silkpress Xpress to your booking">Add</a></div></div></details>
 
           <details class="price-group" id="prices-wig">
-            <summary><h3>Wig Service</h3><span class="price-count" data-count-slot>1</span></summary>
+            <summary><span class="price-num">09</span><h3>Wig Service</h3><span class="price-count" data-count-slot>1</span></summary>
             <div class="price-rows">
-            <div class="price-row" data-kind="service" data-item="Frontal Installation"><span class="name">Frontal Installation<em class="price-dur">1 hr 30 min</em></span><span class="dots"></span><span class="amt" data-price-slot>GHS 500</span><a class="row-book" href="./contact.html" data-add-service="Frontal Installation" aria-label="Add Frontal Installation to your booking">Add</a></div></div></details>
+            <div class="price-row" data-kind="service" data-item="Frontal Installation"><span class="name">Frontal Installation<em class="price-dur">1 hr 30 min</em></span><span class="amt" data-price-slot>GHS 500</span><a class="row-book" href="./contact.html" data-add-service="Frontal Installation" aria-label="Add Frontal Installation to your booking">Add</a></div></div></details>
 
           <details class="price-group" id="prices-lash">
-            <summary><h3>Lashes &amp; Brows</h3><span class="price-count" data-count-slot>19</span></summary>
+            <summary><span class="price-num">10</span><h3>Lashes &amp; Brows</h3><span class="price-count" data-count-slot>19</span></summary>
             <div class="price-rows">
-            <div class="price-row" data-kind="service" data-item="Classic Set"><span class="name">Classic Set<em class="price-dur">2 hr 30 min</em></span><span class="dots"></span><span class="amt" data-price-slot>GHS 400</span><a class="row-book" href="./contact.html" data-add-service="Classic Set" aria-label="Add Classic Set to your booking">Add</a></div>
-            <div class="price-row" data-kind="service" data-item="Angel Set"><span class="name">Angel Set<em class="price-dur">2 hr 30 min</em></span><span class="dots"></span><span class="amt" data-price-slot>GHS 430</span><a class="row-book" href="./contact.html" data-add-service="Angel Set" aria-label="Add Angel Set to your booking">Add</a></div>
-            <div class="price-row" data-kind="service" data-item="Lala Set"><span class="name">Lala Set<em class="price-dur">2 hr 30 min</em></span><span class="dots"></span><span class="amt" data-price-slot>GHS 460</span><a class="row-book" href="./contact.html" data-add-service="Lala Set" aria-label="Add Lala Set to your booking">Add</a></div>
-            <div class="price-row" data-kind="service" data-item="Hybrid Set"><span class="name">Hybrid Set<em class="price-dur">2 hr 30 min</em></span><span class="dots"></span><span class="amt" data-price-slot>GHS 500</span><a class="row-book" href="./contact.html" data-add-service="Hybrid Set" aria-label="Add Hybrid Set to your booking">Add</a></div>
-            <div class="price-row" data-kind="service" data-item="Classic/Angel Refill"><span class="name">Classic/Angel Refill<em class="price-dur">1 hr 30 min</em></span><span class="dots"></span><span class="amt" data-price-slot>GHS 280</span><a class="row-book" href="./contact.html" data-add-service="Classic/Angel Refill" aria-label="Add Classic/Angel Refill to your booking">Add</a></div>
-            <div class="price-row" data-kind="service" data-item="Lala Refill"><span class="name">Lala Refill<em class="price-dur">1 hr 30 min</em></span><span class="dots"></span><span class="amt" data-price-slot>GHS 300</span><a class="row-book" href="./contact.html" data-add-service="Lala Refill" aria-label="Add Lala Refill to your booking">Add</a></div>
-            <div class="price-row" data-kind="service" data-item="Hybrid Refill"><span class="name">Hybrid Refill<em class="price-dur">1 hr 30 min</em></span><span class="dots"></span><span class="amt" data-price-slot>GHS 300</span><a class="row-book" href="./contact.html" data-add-service="Hybrid Refill" aria-label="Add Hybrid Refill to your booking">Add</a></div>
-            <div class="price-row" data-kind="service" data-item="Lash Touch Up"><span class="name">Lash Touch Up<em class="price-dur">40 min</em></span><span class="dots"></span><span class="amt" data-price-slot>GHS 180</span><a class="row-book" href="./contact.html" data-add-service="Lash Touch Up" aria-label="Add Lash Touch Up to your booking">Add</a></div>
-            <div class="price-row" data-kind="service" data-item="Bottom Lashes"><span class="name">Bottom Lashes<em class="price-dur">30 min</em></span><span class="dots"></span><span class="amt" data-price-slot>GHS 80</span><a class="row-book" href="./contact.html" data-add-service="Bottom Lashes" aria-label="Add Bottom Lashes to your booking">Add</a></div>
-            <div class="price-row" data-kind="service" data-item="Lash Lift"><span class="name">Lash Lift<em class="price-dur">1 hr</em></span><span class="dots"></span><span class="amt" data-price-slot>GHS 255</span><a class="row-book" href="./contact.html" data-add-service="Lash Lift" aria-label="Add Lash Lift to your booking">Add</a></div>
-            <div class="price-row" data-kind="service" data-item="Lash Lift + Tint"><span class="name">Lash Lift + Tint<em class="price-dur">1 hr</em></span><span class="dots"></span><span class="amt" data-price-slot>GHS 315</span><a class="row-book" href="./contact.html" data-add-service="Lash Lift + Tint" aria-label="Add Lash Lift + Tint to your booking">Add</a></div>
-            <div class="price-row" data-kind="service" data-item="Lash Removal"><span class="name">Lash Removal<em class="price-dur">40 min</em></span><span class="dots"></span><span class="amt" data-price-slot>GHS 80</span><a class="row-book" href="./contact.html" data-add-service="Lash Removal" aria-label="Add Lash Removal to your booking">Add</a></div>
-            <div class="price-row" data-kind="service" data-item="Patch Test"><span class="name">Patch Test<em class="price-dur">5 min</em></span><span class="dots"></span><span class="amt" data-price-slot>Free</span><a class="row-book" href="./contact.html" data-add-service="Patch Test" aria-label="Add Patch Test to your booking">Add</a></div>
-            <div class="price-row" data-kind="service" data-item="Brow Wax"><span class="name">Brow Wax<em class="price-dur">20 min</em></span><span class="dots"></span><span class="amt" data-price-slot>GHS 80</span><a class="row-book" href="./contact.html" data-add-service="Brow Wax" aria-label="Add Brow Wax to your booking">Add</a></div>
-            <div class="price-row" data-kind="service" data-item="Brow Lamination"><span class="name">Brow Lamination<em class="price-dur">40 min</em></span><span class="dots"></span><span class="amt" data-price-slot>GHS 150</span><a class="row-book" href="./contact.html" data-add-service="Brow Lamination" aria-label="Add Brow Lamination to your booking">Add</a></div>
-            <div class="price-row" data-kind="service" data-item="Brow Lamination + Wax"><span class="name">Brow Lamination + Wax<em class="price-dur">50 min</em></span><span class="dots"></span><span class="amt" data-price-slot>GHS 220</span><a class="row-book" href="./contact.html" data-add-service="Brow Lamination + Wax" aria-label="Add Brow Lamination + Wax to your booking">Add</a></div>
-            <div class="price-row" data-kind="service" data-item="Lamination + Wax + Tint"><span class="name">Lamination + Wax + Tint<em class="price-dur">1 hr 30 min</em></span><span class="dots"></span><span class="amt" data-price-slot>GHS 330</span><a class="row-book" href="./contact.html" data-add-service="Lamination + Wax + Tint" aria-label="Add Lamination + Wax + Tint to your booking">Add</a></div>
-            <div class="price-row" data-kind="service" data-item="Wax + Tint"><span class="name">Wax + Tint<em class="price-dur">45 min</em></span><span class="dots"></span><span class="amt" data-price-slot>GHS 200</span><a class="row-book" href="./contact.html" data-add-service="Wax + Tint" aria-label="Add Wax + Tint to your booking">Add</a></div>
-            <div class="price-row" data-kind="service" data-item="Brow Tint Only"><span class="name">Brow Tint Only<em class="price-dur">30 min</em></span><span class="dots"></span><span class="amt" data-price-slot>GHS 100</span><a class="row-book" href="./contact.html" data-add-service="Brow Tint Only" aria-label="Add Brow Tint Only to your booking">Add</a></div></div></details>
+            <div class="price-row" data-kind="service" data-item="Classic Set"><span class="name">Classic Set<em class="price-dur">2 hr 30 min</em></span><span class="amt" data-price-slot>GHS 400</span><a class="row-book" href="./contact.html" data-add-service="Classic Set" aria-label="Add Classic Set to your booking">Add</a></div>
+            <div class="price-row" data-kind="service" data-item="Angel Set"><span class="name">Angel Set<em class="price-dur">2 hr 30 min</em></span><span class="amt" data-price-slot>GHS 430</span><a class="row-book" href="./contact.html" data-add-service="Angel Set" aria-label="Add Angel Set to your booking">Add</a></div>
+            <div class="price-row" data-kind="service" data-item="Lala Set"><span class="name">Lala Set<em class="price-dur">2 hr 30 min</em></span><span class="amt" data-price-slot>GHS 460</span><a class="row-book" href="./contact.html" data-add-service="Lala Set" aria-label="Add Lala Set to your booking">Add</a></div>
+            <div class="price-row" data-kind="service" data-item="Hybrid Set"><span class="name">Hybrid Set<em class="price-dur">2 hr 30 min</em></span><span class="amt" data-price-slot>GHS 500</span><a class="row-book" href="./contact.html" data-add-service="Hybrid Set" aria-label="Add Hybrid Set to your booking">Add</a></div>
+            <div class="price-row" data-kind="service" data-item="Classic/Angel Refill"><span class="name">Classic/Angel Refill<em class="price-dur">1 hr 30 min</em></span><span class="amt" data-price-slot>GHS 280</span><a class="row-book" href="./contact.html" data-add-service="Classic/Angel Refill" aria-label="Add Classic/Angel Refill to your booking">Add</a></div>
+            <div class="price-row" data-kind="service" data-item="Lala Refill"><span class="name">Lala Refill<em class="price-dur">1 hr 30 min</em></span><span class="amt" data-price-slot>GHS 300</span><a class="row-book" href="./contact.html" data-add-service="Lala Refill" aria-label="Add Lala Refill to your booking">Add</a></div>
+            <div class="price-row" data-kind="service" data-item="Hybrid Refill"><span class="name">Hybrid Refill<em class="price-dur">1 hr 30 min</em></span><span class="amt" data-price-slot>GHS 300</span><a class="row-book" href="./contact.html" data-add-service="Hybrid Refill" aria-label="Add Hybrid Refill to your booking">Add</a></div>
+            <div class="price-row" data-kind="service" data-item="Lash Touch Up"><span class="name">Lash Touch Up<em class="price-dur">40 min</em></span><span class="amt" data-price-slot>GHS 180</span><a class="row-book" href="./contact.html" data-add-service="Lash Touch Up" aria-label="Add Lash Touch Up to your booking">Add</a></div>
+            <div class="price-row" data-kind="service" data-item="Bottom Lashes"><span class="name">Bottom Lashes<em class="price-dur">30 min</em></span><span class="amt" data-price-slot>GHS 80</span><a class="row-book" href="./contact.html" data-add-service="Bottom Lashes" aria-label="Add Bottom Lashes to your booking">Add</a></div>
+            <div class="price-row" data-kind="service" data-item="Lash Lift"><span class="name">Lash Lift<em class="price-dur">1 hr</em></span><span class="amt" data-price-slot>GHS 255</span><a class="row-book" href="./contact.html" data-add-service="Lash Lift" aria-label="Add Lash Lift to your booking">Add</a></div>
+            <div class="price-row" data-kind="service" data-item="Lash Lift + Tint"><span class="name">Lash Lift + Tint<em class="price-dur">1 hr</em></span><span class="amt" data-price-slot>GHS 315</span><a class="row-book" href="./contact.html" data-add-service="Lash Lift + Tint" aria-label="Add Lash Lift + Tint to your booking">Add</a></div>
+            <div class="price-row" data-kind="service" data-item="Lash Removal"><span class="name">Lash Removal<em class="price-dur">40 min</em></span><span class="amt" data-price-slot>GHS 80</span><a class="row-book" href="./contact.html" data-add-service="Lash Removal" aria-label="Add Lash Removal to your booking">Add</a></div>
+            <div class="price-row" data-kind="service" data-item="Patch Test"><span class="name">Patch Test<em class="price-dur">5 min</em></span><span class="amt" data-price-slot>Free</span><a class="row-book" href="./contact.html" data-add-service="Patch Test" aria-label="Add Patch Test to your booking">Add</a></div>
+            <div class="price-row" data-kind="service" data-item="Brow Wax"><span class="name">Brow Wax<em class="price-dur">20 min</em></span><span class="amt" data-price-slot>GHS 80</span><a class="row-book" href="./contact.html" data-add-service="Brow Wax" aria-label="Add Brow Wax to your booking">Add</a></div>
+            <div class="price-row" data-kind="service" data-item="Brow Lamination"><span class="name">Brow Lamination<em class="price-dur">40 min</em></span><span class="amt" data-price-slot>GHS 150</span><a class="row-book" href="./contact.html" data-add-service="Brow Lamination" aria-label="Add Brow Lamination to your booking">Add</a></div>
+            <div class="price-row" data-kind="service" data-item="Brow Lamination + Wax"><span class="name">Brow Lamination + Wax<em class="price-dur">50 min</em></span><span class="amt" data-price-slot>GHS 220</span><a class="row-book" href="./contact.html" data-add-service="Brow Lamination + Wax" aria-label="Add Brow Lamination + Wax to your booking">Add</a></div>
+            <div class="price-row" data-kind="service" data-item="Lamination + Wax + Tint"><span class="name">Lamination + Wax + Tint<em class="price-dur">1 hr 30 min</em></span><span class="amt" data-price-slot>GHS 330</span><a class="row-book" href="./contact.html" data-add-service="Lamination + Wax + Tint" aria-label="Add Lamination + Wax + Tint to your booking">Add</a></div>
+            <div class="price-row" data-kind="service" data-item="Wax + Tint"><span class="name">Wax + Tint<em class="price-dur">45 min</em></span><span class="amt" data-price-slot>GHS 200</span><a class="row-book" href="./contact.html" data-add-service="Wax + Tint" aria-label="Add Wax + Tint to your booking">Add</a></div>
+            <div class="price-row" data-kind="service" data-item="Brow Tint Only"><span class="name">Brow Tint Only<em class="price-dur">30 min</em></span><span class="amt" data-price-slot>GHS 100</span><a class="row-book" href="./contact.html" data-add-service="Brow Tint Only" aria-label="Add Brow Tint Only to your booking">Add</a></div></div></details>
 
           <details class="price-group" id="prices-facial">
-            <summary><h3>Facials</h3><span class="price-count" data-count-slot>3</span></summary>
+            <summary><span class="price-num">11</span><h3>Facials</h3><span class="price-count" data-count-slot>3</span></summary>
             <div class="price-rows">
-            <div class="price-row" data-kind="service" data-item="Bēsia Glow"><span class="name">Bēsia Glow<em class="price-dur">1 hr 15 min</em></span><span class="dots"></span><span class="amt" data-price-slot>GHS 400</span><a class="row-book" href="./contact.html" data-add-service="Bēsia Glow" aria-label="Add Bēsia Glow to your booking">Add</a></div>
-            <div class="price-row" data-kind="service" data-item="Custom Facial"><span class="name">Custom Facial<em class="price-dur">1 hr 15 min</em></span><span class="dots"></span><span class="amt" data-price-slot>from GHS 450</span><a class="row-book" href="./contact.html" data-add-service="Custom Facial" aria-label="Add Custom Facial to your booking">Add</a></div>
-            <div class="price-row" data-kind="service" data-item="Detox + Deep Cleanse Facial"><span class="name">Detox + Deep Cleanse Facial<em class="price-dur">1 hr 15 min</em></span><span class="dots"></span><span class="amt" data-price-slot>GHS 450</span><a class="row-book" href="./contact.html" data-add-service="Detox + Deep Cleanse Facial" aria-label="Add Detox + Deep Cleanse Facial to your booking">Add</a></div></div></details>
+            <div class="price-row" data-kind="service" data-item="Bēsia Glow"><span class="name">Bēsia Glow<em class="price-dur">1 hr 15 min</em></span><span class="amt" data-price-slot>GHS 400</span><a class="row-book" href="./contact.html" data-add-service="Bēsia Glow" aria-label="Add Bēsia Glow to your booking">Add</a></div>
+            <div class="price-row" data-kind="service" data-item="Custom Facial"><span class="name">Custom Facial<em class="price-dur">1 hr 15 min</em></span><span class="amt" data-price-slot>from GHS 450</span><a class="row-book" href="./contact.html" data-add-service="Custom Facial" aria-label="Add Custom Facial to your booking">Add</a></div>
+            <div class="price-row" data-kind="service" data-item="Detox + Deep Cleanse Facial"><span class="name">Detox + Deep Cleanse Facial<em class="price-dur">1 hr 15 min</em></span><span class="amt" data-price-slot>GHS 450</span><a class="row-book" href="./contact.html" data-add-service="Detox + Deep Cleanse Facial" aria-label="Add Detox + Deep Cleanse Facial to your booking">Add</a></div></div></details>
 
           <details class="price-group" id="prices-wax">
-            <summary><h3>Waxing</h3><span class="price-count" data-count-slot>7</span></summary>
+            <summary><span class="price-num">12</span><h3>Waxing</h3><span class="price-count" data-count-slot>7</span></summary>
             <div class="price-rows">
-            <div class="price-row" data-kind="service" data-item="Brazilian"><span class="name">Brazilian<em class="price-dur">45 min</em></span><span class="dots"></span><span class="amt" data-price-slot>GHS 385</span><a class="row-book" href="./contact.html" data-add-service="Brazilian" aria-label="Add Brazilian to your booking">Add</a></div>
-            <div class="price-row" data-kind="service" data-item="Vajacial"><span class="name">Vajacial<em class="price-dur">30 min</em></span><span class="dots"></span><span class="amt" data-price-slot>GHS 200</span><a class="row-book" href="./contact.html" data-add-service="Vajacial" aria-label="Add Vajacial to your booking">Add</a></div>
-            <div class="price-row" data-kind="service" data-item="Vajacial + Brazilian"><span class="name">Vajacial + Brazilian<em class="price-dur">1 hr 15 min</em></span><span class="dots"></span><span class="amt" data-price-slot>GHS 585</span><a class="row-book" href="./contact.html" data-add-service="Vajacial + Brazilian" aria-label="Add Vajacial + Brazilian to your booking">Add</a></div>
-            <div class="price-row" data-kind="service" data-item="Half Leg"><span class="name">Half Leg<em class="price-dur">1 hr</em></span><span class="dots"></span><span class="amt" data-price-slot>GHS 350</span><a class="row-book" href="./contact.html" data-add-service="Half Leg" aria-label="Add Half Leg to your booking">Add</a></div>
-            <div class="price-row" data-kind="service" data-item="Underarm"><span class="name">Underarm<em class="price-dur">30 min</em></span><span class="dots"></span><span class="amt" data-price-slot>GHS 185</span><a class="row-book" href="./contact.html" data-add-service="Underarm" aria-label="Add Underarm to your booking">Add</a></div>
-            <div class="price-row" data-kind="service" data-item="Eyebrow"><span class="name">Eyebrow<em class="price-dur">35 min</em></span><span class="dots"></span><span class="amt" data-price-slot>GHS 200</span><a class="row-book" href="./contact.html" data-add-service="Eyebrow" aria-label="Add Eyebrow to your booking">Add</a></div>
-            <div class="price-row" data-kind="service" data-item="Upper Lip"><span class="name">Upper Lip<em class="price-dur">15 min</em></span><span class="dots"></span><span class="amt" data-price-slot>GHS 100</span><a class="row-book" href="./contact.html" data-add-service="Upper Lip" aria-label="Add Upper Lip to your booking">Add</a></div></div></details>
+            <div class="price-row" data-kind="service" data-item="Brazilian"><span class="name">Brazilian<em class="price-dur">45 min</em></span><span class="amt" data-price-slot>GHS 385</span><a class="row-book" href="./contact.html" data-add-service="Brazilian" aria-label="Add Brazilian to your booking">Add</a></div>
+            <div class="price-row" data-kind="service" data-item="Vajacial"><span class="name">Vajacial<em class="price-dur">30 min</em></span><span class="amt" data-price-slot>GHS 200</span><a class="row-book" href="./contact.html" data-add-service="Vajacial" aria-label="Add Vajacial to your booking">Add</a></div>
+            <div class="price-row" data-kind="service" data-item="Vajacial + Brazilian"><span class="name">Vajacial + Brazilian<em class="price-dur">1 hr 15 min</em></span><span class="amt" data-price-slot>GHS 585</span><a class="row-book" href="./contact.html" data-add-service="Vajacial + Brazilian" aria-label="Add Vajacial + Brazilian to your booking">Add</a></div>
+            <div class="price-row" data-kind="service" data-item="Half Leg"><span class="name">Half Leg<em class="price-dur">1 hr</em></span><span class="amt" data-price-slot>GHS 350</span><a class="row-book" href="./contact.html" data-add-service="Half Leg" aria-label="Add Half Leg to your booking">Add</a></div>
+            <div class="price-row" data-kind="service" data-item="Underarm"><span class="name">Underarm<em class="price-dur">30 min</em></span><span class="amt" data-price-slot>GHS 185</span><a class="row-book" href="./contact.html" data-add-service="Underarm" aria-label="Add Underarm to your booking">Add</a></div>
+            <div class="price-row" data-kind="service" data-item="Eyebrow"><span class="name">Eyebrow<em class="price-dur">35 min</em></span><span class="amt" data-price-slot>GHS 200</span><a class="row-book" href="./contact.html" data-add-service="Eyebrow" aria-label="Add Eyebrow to your booking">Add</a></div>
+            <div class="price-row" data-kind="service" data-item="Upper Lip"><span class="name">Upper Lip<em class="price-dur">15 min</em></span><span class="amt" data-price-slot>GHS 100</span><a class="row-book" href="./contact.html" data-add-service="Upper Lip" aria-label="Add Upper Lip to your booking">Add</a></div></div></details>
 
           <details class="price-group" id="prices-makeup">
-            <summary><h3>Make-Up</h3><span class="price-count" data-count-slot>5</span></summary>
+            <summary><span class="price-num">13</span><h3>Make-Up</h3><span class="price-count" data-count-slot>5</span></summary>
             <div class="price-rows">
-            <div class="price-row" data-kind="service" data-item="Full Glam w/Lashes"><span class="name">Full Glam w/Lashes<em class="price-dur">1 hr</em></span><span class="dots"></span><span class="amt" data-price-slot>GHS 1,875</span><a class="row-book" href="./contact.html" data-add-service="Full Glam w/Lashes" aria-label="Add Full Glam w/Lashes to your booking">Add</a></div>
-            <div class="price-row" data-kind="service" data-item="Soft Glam w/Lashes"><span class="name">Soft Glam w/Lashes<em class="price-dur">40 min</em></span><span class="dots"></span><span class="amt" data-price-slot>GHS 1,625</span><a class="row-book" href="./contact.html" data-add-service="Soft Glam w/Lashes" aria-label="Add Soft Glam w/Lashes to your booking">Add</a></div>
-            <div class="price-row" data-kind="service" data-item="Soft Glam [No Lashes]"><span class="name">Soft Glam [No Lashes]<em class="price-dur">30 min</em></span><span class="dots"></span><span class="amt" data-price-slot>GHS 1,250</span><a class="row-book" href="./contact.html" data-add-service="Soft Glam [No Lashes]" aria-label="Add Soft Glam [No Lashes] to your booking">Add</a></div>
-            <div class="price-row" data-kind="service" data-item="Make-Up Bag Deep Dive"><span class="name">Make-Up Bag Deep Dive<em class="price-dur">40 min</em></span><span class="dots"></span><span class="amt" data-price-slot>GHS 750</span><a class="row-book" href="./contact.html" data-add-service="Make-Up Bag Deep Dive" aria-label="Add Make-Up Bag Deep Dive to your booking">Add</a></div>
-            <div class="price-row" data-kind="service" data-item="Make-Up Lesson 1:1 [90 Minutes]"><span class="name">Make-Up Lesson 1:1 [90 Minutes]<em class="price-dur">1 hr 30 min</em></span><span class="dots"></span><span class="amt" data-price-slot>GHS 1,500</span><a class="row-book" href="./contact.html" data-add-service="Make-Up Lesson 1:1 [90 Minutes]" aria-label="Add Make-Up Lesson 1:1 [90 Minutes] to your booking">Add</a></div></div></details>
+            <div class="price-row" data-kind="service" data-item="Full Glam w/Lashes"><span class="name">Full Glam w/Lashes<em class="price-dur">1 hr</em></span><span class="amt" data-price-slot>GHS 1,875</span><a class="row-book" href="./contact.html" data-add-service="Full Glam w/Lashes" aria-label="Add Full Glam w/Lashes to your booking">Add</a></div>
+            <div class="price-row" data-kind="service" data-item="Soft Glam w/Lashes"><span class="name">Soft Glam w/Lashes<em class="price-dur">40 min</em></span><span class="amt" data-price-slot>GHS 1,625</span><a class="row-book" href="./contact.html" data-add-service="Soft Glam w/Lashes" aria-label="Add Soft Glam w/Lashes to your booking">Add</a></div>
+            <div class="price-row" data-kind="service" data-item="Soft Glam [No Lashes]"><span class="name">Soft Glam [No Lashes]<em class="price-dur">30 min</em></span><span class="amt" data-price-slot>GHS 1,250</span><a class="row-book" href="./contact.html" data-add-service="Soft Glam [No Lashes]" aria-label="Add Soft Glam [No Lashes] to your booking">Add</a></div>
+            <div class="price-row" data-kind="service" data-item="Make-Up Bag Deep Dive"><span class="name">Make-Up Bag Deep Dive<em class="price-dur">40 min</em></span><span class="amt" data-price-slot>GHS 750</span><a class="row-book" href="./contact.html" data-add-service="Make-Up Bag Deep Dive" aria-label="Add Make-Up Bag Deep Dive to your booking">Add</a></div>
+            <div class="price-row" data-kind="service" data-item="Make-Up Lesson 1:1 [90 Minutes]"><span class="name">Make-Up Lesson 1:1 [90 Minutes]<em class="price-dur">1 hr 30 min</em></span><span class="amt" data-price-slot>GHS 1,500</span><a class="row-book" href="./contact.html" data-add-service="Make-Up Lesson 1:1 [90 Minutes]" aria-label="Add Make-Up Lesson 1:1 [90 Minutes] to your booking">Add</a></div></div></details>
 
           <details class="price-group" id="prices-gen">
-            <summary><h3>Consultations &amp; Basics</h3><span class="price-count" data-count-slot>3</span></summary>
+            <summary><span class="price-num">14</span><h3>Consultations &amp; Basics</h3><span class="price-count" data-count-slot>3</span></summary>
             <div class="price-rows">
-            <div class="price-row" data-kind="service" data-item="Free Hair Consultation"><span class="name">Free Hair Consultation<em class="price-dur">30 min</em></span><span class="dots"></span><span class="amt" data-price-slot>Free</span><a class="row-book" href="./contact.html" data-add-service="Free Hair Consultation" aria-label="Add Free Hair Consultation to your booking">Add</a></div>
-            <div class="price-row" data-kind="service" data-item="Hair Wellness/Extension Consultation"><span class="name">Hair Wellness/Extension Consultation<em class="price-dur">1 hr</em></span><span class="dots"></span><span class="amt" data-price-slot>GHS 200</span><a class="row-book" href="./contact.html" data-add-service="Hair Wellness/Extension Consultation" aria-label="Add Hair Wellness/Extension Consultation to your booking">Add</a></div>
-            <div class="price-row" data-kind="service" data-item="Basic Wash + Blowdry"><span class="name">Basic Wash + Blowdry<em class="price-dur">1 hr</em></span><span class="dots"></span><span class="amt" data-price-slot>GHS 350</span><a class="row-book" href="./contact.html" data-add-service="Basic Wash + Blowdry" aria-label="Add Basic Wash + Blowdry to your booking">Add</a></div></div></details>
+            <div class="price-row" data-kind="service" data-item="Free Hair Consultation"><span class="name">Free Hair Consultation<em class="price-dur">30 min</em></span><span class="amt" data-price-slot>Free</span><a class="row-book" href="./contact.html" data-add-service="Free Hair Consultation" aria-label="Add Free Hair Consultation to your booking">Add</a></div>
+            <div class="price-row" data-kind="service" data-item="Hair Wellness/Extension Consultation"><span class="name">Hair Wellness/Extension Consultation<em class="price-dur">1 hr</em></span><span class="amt" data-price-slot>GHS 200</span><a class="row-book" href="./contact.html" data-add-service="Hair Wellness/Extension Consultation" aria-label="Add Hair Wellness/Extension Consultation to your booking">Add</a></div>
+            <div class="price-row" data-kind="service" data-item="Basic Wash + Blowdry"><span class="name">Basic Wash + Blowdry<em class="price-dur">1 hr</em></span><span class="amt" data-price-slot>GHS 350</span><a class="row-book" href="./contact.html" data-add-service="Basic Wash + Blowdry" aria-label="Add Basic Wash + Blowdry to your booking">Add</a></div></div></details>
 <!--/BUILD:prices-->
-
         </div>
-
-        <div style="text-align:center; margin-top:2.6rem;" data-reveal>
-          <p style="color:var(--ink-soft); font-size:0.9rem; margin-bottom:1.4rem;">Booking two or more services in one visit earns an automatic bundle discount, you see it live on the booking form. Not sure what you need? The first consultation is free.</p>
-          <a href="./contact.html" class="btn btn--gold">Book an Appointment
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </a>
-        </div>
+        <p class="t-cap">Bundles are her own published pairings and carry their saving already. Prices in Ghana cedis, confirmed on the day.</p>
       </div>
     </section>
 
-    <!-- ============ BEFORE / AFTER ============ -->
-    <section class="section section--espresso aura">
-      <div class="container">
-        <div class="section-head section-head--center" data-reveal>
-          <div class="eyebrow eyebrow--center">The Transformation</div>
-          <h2 class="section-title"><span class="script">Drag to see</span>What a Revamp Does</h2>
-          <p class="section-lede">One tired unit in, one brand-new-looking install out. Slide across to see the work in progress and the finished result.</p>
-        </div>
-        <div class="ba-slider" data-reveal="scale">
-          <img class="ba-before" width="1300" height="1625" src="./images/services/svc-revamp-before.jpg" alt="Wig install in progress at the styling station">
-          <img class="ba-after" width="1300" height="1950" src="./images/services/svc-revamp-after.jpg" alt="Finished body-wave install after a full Bēsia Beauty Studio revamp">
-          <div class="ba-handle" aria-hidden="true"></div>
-          <span class="ba-tag ba-tag--before">Before</span>
-          <span class="ba-tag ba-tag--after">After</span>
-          <input class="ba-range" type="range" min="0" max="100" value="50" aria-label="Reveal before and after comparison">
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ SMART RECOMMENDATIONS ============ -->
-    <section class="section section--cream">
-      <div class="container">
-        <div class="reco-panel" data-reveal>
-          <div class="eyebrow">Not Sure What to Book?</div>
-          <h2 class="section-title" style="font-size:clamp(1.6rem,3vw,2.3rem);">
-            <span class="script" style="font-size:clamp(1.5rem,2.6vw,2rem);">Tell us the occasion,</span>
-            We'll Suggest the Combination
-          </h2>
-          <div class="reco-chips" role="tablist" aria-label="Occasion">
-            <button class="reco-chip is-active" data-reco="length" role="tab" aria-selected="true">I want length</button>
-            <button class="reco-chip" data-reco="damaged" role="tab" aria-selected="false">My hair is struggling</button>
-            <button class="reco-chip" data-reco="smooth" role="tab" aria-selected="false">I want it smoother</button>
-            <button class="reco-chip" data-reco="natural" role="tab" aria-selected="false">I am going natural</button>
+    <!-- ============ NOT SURE WHAT TO BOOK ============ -->
+    <section class="section grain" data-ground="espresso">
+      <div class="container t t-spread" data-flip>
+        <div class="copy stack" data-reveal>
+          <p class="eyebrow"><span class="n">Advice</span> Not sure what to book?</p>
+          <h2 class="t-h2 balance">Tell us the goal, we will suggest the order.</h2>
+          <div class="chips reco-chips" role="tablist" aria-label="Goal">
+            <button class="chip reco-chip is-active" data-reco="length" role="tab" aria-selected="true">I want length</button>
+            <button class="chip reco-chip" data-reco="damaged" role="tab" aria-selected="false">My hair is struggling</button>
+            <button class="chip reco-chip" data-reco="smooth" role="tab" aria-selected="false">I want it smoother</button>
+            <button class="chip reco-chip" data-reco="natural" role="tab" aria-selected="false">I am going natural</button>
           </div>
-          <div class="reco-results" id="reco-results" aria-live="polite"></div>
+          <ol class="reco-results t-index" id="reco-results" aria-live="polite"></ol>
+          <div class="cta-row">
+            <a href="./contact.html" class="btn" data-book>Book</a>
+            <a class="link" href="https://wa.me/233240787993?text=Hello%20B%C4%93sia%2C%20I%20would%20like%20some%20advice%20on%20what%20to%20book." target="_blank" rel="noopener">Ask on WhatsApp</a>
+          </div>
         </div>
+        <figure class="plate plate--tall plate--cap" data-unveil>
+          <img src="./media/img/studio-mirror-chair-sm.webp" srcset="./media/img/studio-mirror-chair-sm.webp 720w, ./media/img/studio-mirror-chair.webp 1600w" sizes="(min-width: 1024px) 576px, 100vw" width="1292" height="1600" alt="A model in the salon chair before the ornate gold mirror" loading="lazy" decoding="async">
+        </figure>
       </div>
     </section>
 
-    <!-- ============ CTA ============ -->
-    <section class="section section--espresso cta-band aura">
-      <div class="container" data-reveal>
-        <span class="script">Still deciding?</span>
-        <h2>Message Us, We'll Help You Choose</h2>
-        <p>Send a photo of the look you want. We will tell you honestly what will work with your hair, your skin and your budget.</p>
-        <div class="btn-row">
-          <a href="./contact.html" class="btn btn--gold">Book an Appointment
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </a>
-          <a href="./packages.html" class="btn btn--ghost">Compare Packages</a>
-        </div>
-      </div>
-    </section>
   </main>
 
-  <!-- ============ FOOTER ============ -->
-  <footer class="site-footer">
+  <!--CHROME:foot-->
+  <footer class="site-footer grain" data-ground="ink">
     <div class="container">
-      <div class="footer-grid">
-        <div class="footer-brand">
-          <a class="nav-logo" href="./index.html">
-            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-              <path d="M15 9.5c-6.5 7-6.5 22 0 29.5" stroke-linecap="round"/>
-              <path d="M23.5 6c-8.5 8.5-8.5 27.5 0 36" stroke-linecap="round"/>
-              <path d="M32 10c-5.5 6.5-5.5 21 0 27.5" stroke-linecap="round"/>
-              <path d="M38.5 11l1.3 3.4 3.4 1.3-3.4 1.3-1.3 3.4-1.3-3.4-3.4-1.3 3.4-1.3z" fill="currentColor" stroke="none"/>
-            </svg>
-            <span class="nav-logo-text">
-              <span class="nav-logo-name">Bēsia</span>
-              <span class="nav-logo-tag">Beauty Studio</span>
-            </span>
-          </a>
-          <p>Ghana&rsquo;s home of fusion extensions. UK-certified KTips and microlinks, vegan formaldehyde-free texture systems, and treatment-led scalp and bond care, at 54 Fifth Circular Road, Cantonments.</p>
-          <div class="footer-social">
-            <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3.5" y="3.5" width="17" height="17" rx="4.5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/></svg></a>
-            <a href="#" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.6 3c.4 2 1.7 3.4 3.9 3.6v2.9c-1.4.1-2.7-.3-3.9-1.1v5.7c0 3.7-2.6 6-6 6-3 0-5.6-2.3-5.6-5.5 0-3.4 3-5.8 6.4-5.3v3c-.4-.1-.8-.2-1.2-.1-1.3.1-2.2 1.1-2.2 2.4 0 1.4 1.1 2.5 2.6 2.5 1.6 0 2.7-1.1 2.7-2.9V3h3.3z"/></svg></a>
-            <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-7h2.4l.4-3h-2.8V9.1c0-.9.3-1.5 1.6-1.5H16.5V4.9c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4V11H7.9v3h2.4v7h3.2z"/></svg></a>
-          </div>
+      <div class="t t-colophon">
+        <div class="foot-brand">
+          <a class="foot-logo" href="./index.html" aria-label="Bēsia, home">Bēsia</a>
+          <p class="t-cap">Ghana's home of fusion extensions. UK-certified KTips and microlinks, a vegan, formaldehyde-free texture system, and treatment-led scalp and bond care.</p>
+          <p class="foot-line">Nourish your roots. Protect your peace.</p>
         </div>
-
-        <div class="footer-col">
-          <h4>Explore</h4>
+        <div class="foot-col">
+          <p class="t-label foot-head">In this issue</p>
           <ul>
-            <li><a href="./services.html" class="is-active">Services</a></li>
+            <li><a href="./services.html">Services</a></li>
             <li><a href="./shop.html">Shop</a></li>
-            <li><a href="./track.html">Track Your Order</a></li>
-            <li><a href="./gallery.html">Look Book</a></li>
-            <li><a href="./about.html">About Us</a></li>
+            <li><a href="./classes.html">Classes</a></li>
             <li><a href="./packages.html">Packages</a></li>
-            <li><a href="./contact.html">Book Now</a></li>
+            <li><a href="./gallery.html">Gallery</a></li>
+            <li><a href="./about.html">About</a></li>
+            <li><a href="./track.html">Track an order</a></li>
           </ul>
         </div>
-
-        <div class="footer-col">
-          <h4>Contact</h4>
-          <ul class="footer-contact">
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7-5.5-7-11a7 7 0 0114 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg><span>54 Fifth Circular Road<br>Cantonments, Accra</span></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 4h4l2 5-2.5 1.5c1 2.3 2.7 4 5 5L15 13l5 2v4a2 2 0 01-2 2C9.7 20.5 3.5 14.3 3 6a2 2 0 012-2z"/></svg><span><a href="tel:+233240787993">024 078 7993</a></span></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg><span><a href="mailto:hello@besia.co">hello@besia.co</a></span></li>
+        <div class="foot-col">
+          <p class="t-label foot-head">Visit</p>
+          <ul>
+            <li><span>54 Fifth Circular Road<br>Cantonments, Accra</span></li>
+            <li><span>Monday to Saturday, 9am to 7pm<br>Closed Sunday</span></li>
+            <li><a href="https://maps.google.com/?q=54+Fifth+Circular+Road+Cantonments+Accra" target="_blank" rel="noopener">Directions</a></li>
           </ul>
         </div>
-
-        <div class="footer-col">
-          <h4>Beauty Notes</h4>
-          <p style="font-size:0.9rem;">Aftercare that actually works, new services, and first access when the Moringa line lands.</p>
-          <form class="newsletter-form">
-            <input type="email" placeholder="Your email address" aria-label="Email address">
-            <button type="submit">Join</button>
-          </form>
-          <p class="newsletter-note">No spam, aftercare, new services and the Moringa launch.</p>
+        <div class="foot-col">
+          <p class="t-label foot-head">Write</p>
+          <ul>
+            <li><a href="tel:+233240787993">024 078 7993</a></li>
+            <li><a href="https://wa.me/233240787993?text=Hello%20B%C4%93sia%20Beauty%20Studio%2C%20I%20would%20like%20to%20book%20an%20appointment." target="_blank" rel="noopener">WhatsApp</a></li>
+            <li><a href="mailto:hello@besia.co">hello@besia.co</a></li>
+            <li><a href="#" data-open-chat>Ask the studio</a></li>
+            <li><a href="https://instagram.com/besia.hq" target="_blank" rel="noopener">Instagram</a></li>
+            <li><a href="https://www.tiktok.com/@besiahq" target="_blank" rel="noopener">TikTok</a></li>
+          </ul>
         </div>
       </div>
-
-      <div class="footer-bottom">
-        <span>© <span data-year>2026</span> Bēsia Beauty Studio. All rights reserved.</span>
-        <span class="footer-credit">Designed &amp; Developed by <a href="https://perkins-swart.vercel.app" target="_blank" rel="noopener">Perkins Creative</a></span>
+      <div class="foot-mark" aria-hidden="true">Bēsia</div>
+      <div class="foot-bottom">
+        <span>Bēsia Beauty Studio, Cantonments, Accra. Issue 01. All rights reserved, <span data-year>2026</span>.</span>
+        <span class="foot-credit">Designed and built by <a href="https://perkins-swart.vercel.app" target="_blank" rel="noopener">Perkins Creative</a></span>
       </div>
     </div>
   </footer>
 
-  <!-- Scripts -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer integrity="sha384-g4NTh/Iv5PPU4xPyhEWqPcwtNXOvdaDI8LLnyYfyNZOjKJeYQyjzQ9X5275eBjpt" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer integrity="sha384-Z3REaz79l2IaAZqJsSABtTbhjgOUYyV3p90XNnAPCSHg3EMTz1fouunq9WZRtj3d" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js" defer integrity="sha384-0k1dj5tm+KUH/4vkNk/i90XsjDA8Ltmt+ybcrFoH4t0dgv/WZsPpVBnkhcroX8UL" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script>
-    // The price list is long, so on phones each group starts collapsed;
-    // headings stay scannable and the page does not become a wall of numbers.
-    (function () {
-      if (!window.matchMedia('(max-width: 640px)').matches) return;
-      document.addEventListener('DOMContentLoaded', function () {
-        document.querySelectorAll('details.price-group').forEach(function (d, i) {
-          if (i > 0) d.removeAttribute('open');
-        });
-      });
-    })();
-  </script>
   <!-- data first: every other script reads from it -->
   <script src="./js/besia-data.js" defer></script>
   <script src="./js/besia-live.js" defer></script>
   <script src="./js/booking-cart.js" defer></script>
-  <script src="./js/main.js" defer></script>
-  <script src="./js/animations.js" defer></script>
+  <script src="./js/site.js" defer></script>
+  <script src="./js/reel.js" defer></script>
+  <script src="./js/slides.js" defer></script>
   <script src="./js/ai-chat.js" defer></script>
   <script src="./js/site-sync.js" defer></script>
   <script src="./js/offline.js" defer></script>
+<!--/CHROME:foot-->
   <script>
-    // Smart recommendations (page-local, tiny)
+    /* Page-local: the ledger search and the recommender. */
     document.addEventListener('DOMContentLoaded', function () {
+      /* search: filters rows, opens groups with hits, counts */
+      var input = document.getElementById('ledger-search');
+      var count = document.getElementById('ledger-count');
+      var groups = Array.prototype.slice.call(document.querySelectorAll('.price-group'));
+      var total = document.querySelectorAll('.price-row').length;
+      if (input) input.addEventListener('input', function () {
+        var q = input.value.trim().toLowerCase();
+        var shown = 0;
+        groups.forEach(function (g) {
+          var hits = 0;
+          g.querySelectorAll('.price-row').forEach(function (row) {
+            var hit = !q || row.textContent.toLowerCase().indexOf(q) !== -1 || (g.querySelector('summary h3') || {}).textContent.toLowerCase().indexOf(q) !== -1;
+            row.classList.toggle('is-filtered', !hit);
+            if (hit) hits++;
+          });
+          g.classList.toggle('is-filtered', hits === 0);
+          if (q) g.open = hits > 0;
+          shown += hits;
+        });
+        count.textContent = q ? 'Showing ' + shown + ' of ' + total : 'Showing ' + total + ' of ' + total;
+      });
+
+      /* the recommender: label and live price from the same catalogue the manager edits */
       var DATA = {
         length:  [['Free consultation to check your density first'], ['100g KTips', '100 grams - KTips'], ['Seamless tape-ins', 'Seamless Tape-Ins'], ['Closure weave install', 'Closure Weave Install'], ['K18 bond repair to keep your own hair strong'], ['Move-up every 6 to 8 weeks']],
-        damaged: [['B\u0113sia Hair CPR treatment', 'B\u0113sia Hair CPR Treatment'], ['Olaplex treatment', 'Olaplex Treatment'], ['Hair loss + growth treatment', 'Hair Loss + Growth Treatment'], ['Scalp + dandruff intensive detox', 'Scalp + Dandruff Intensive Detox'], ['GRO hot oil treatment', 'GRO Hot Oil Treatment'], ['A trim, before anything else']],
+        damaged: [['Bēsia Hair CPR treatment', 'Bēsia Hair CPR Treatment'], ['Olaplex treatment', 'Olaplex Treatment'], ['Hair loss + growth treatment', 'Hair Loss + Growth Treatment'], ['Scalp + dandruff intensive detox', 'Scalp + Dandruff Intensive Detox'], ['GRO hot oil treatment', 'GRO Hot Oil Treatment'], ['A trim, before anything else']],
         smooth:  [['Vegan keratin Nanoplasty', 'Vegan Keratin Treatment - Nanoplasty'], ['Texture release (Hair Botox)', 'Texture Release - Hair Botox'], ['Silkpress Xpress', 'Silkpress Xpress'], ['Deep moisture treatment first', 'Deep Moisture Treatment'], ['Precision cut to finish', 'Precision Cut'], ['Aftercare so it lasts']],
-        natural: [['Curl Revive | Wash + Go', 'Curl Revive | Wash + Go'], ['Flax seed + aloe treatment', 'Flax Seed + Aloe Treatment'], ['Curly cut', 'Curly Cut'], ['Curl Revive + Flax bundle', 'Curl Revive + Flax'], ['A home routine written for your curl pattern'], ['The Hair Club at B\u0113sia for ongoing care']]
+        natural: [['Curl Revive | Wash + Go', 'Curl Revive | Wash + Go'], ['Flax seed + aloe treatment', 'Flax Seed + Aloe Treatment'], ['Curly cut', 'Curly Cut'], ['Curl Revive + Flax bundle', 'Curl Revive + Flax'], ['A home routine written for your curl pattern'], ['The Hair Club at Bēsia for ongoing care']]
       };
-      /* label \u00B7 live price, from the same catalogue the manager edits */
-      function recoLine(entry) {
-        var label = entry[0], name = entry[1];
+      function esc(t) { return String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
+      function line(entry, i) {
+        var label = entry[0], name = entry[1], price = '', add = '';
         if (name && window.BESIA && BESIA.live) {
           var it = BESIA.live.find('service', name);
-          if (it && it.published && it.price > 0) return label + ' \u00B7 ' + BESIA.money(it.price);
+          if (it && it.published) {
+            price = it.price > 0 ? BESIA.money(it.price) : 'Free';
+            add = '<a class="row-book" href="./contact.html" data-add-service="' + esc(name) + '" aria-label="Add ' + esc(name) + ' to your booking">Add</a>';
+          }
         }
-        return label;
+        return '<li class="ix-row reco-item"><span class="ix-n">' + (i < 9 ? '0' : '') + (i + 1) + '</span><span><span class="ix-title">' + esc(label) + '</span></span><span class="ix-end">' + price + add + '</span></li>';
       }
       var results = document.getElementById('reco-results');
       var chips = document.querySelectorAll('.reco-chip');
-      function render(key) {
-        results.innerHTML = DATA[key].map(recoLine).map(function (item) {
-          return '<div class="reco-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>' + item + '</div>';
-        }).join('');
-      }
+      function render(key) { results.innerHTML = DATA[key].map(line).join(''); }
       chips.forEach(function (chip) {
         chip.addEventListener('click', function () {
           chips.forEach(function (c) { c.classList.remove('is-active'); c.setAttribute('aria-selected', 'false'); });
-          chip.classList.add('is-active');
-          chip.setAttribute('aria-selected', 'true');
+          chip.classList.add('is-active'); chip.setAttribute('aria-selected', 'true');
           render(chip.getAttribute('data-reco'));
         });
       });

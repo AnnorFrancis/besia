@@ -272,25 +272,49 @@
     if (view === 'done') view = 'cart';
     if (opts.tab) tab = opts.tab;
     if (opts.cat) { tab = 'services'; openCat = opts.cat; query = ''; view = 'cart'; }
+    var wasOpen = sheet.classList.contains('is-open');
     sheet.classList.add('is-open');
     backdrop.classList.add('is-open');
     sheet.setAttribute('aria-hidden', 'false');
     document.body.classList.add('bk-open');
     render();
     renderBar();
+    if (!wasOpen) {
+      openedAt = Date.now();
+      /* the rest of the site listens: films pause, the nav goes solid */
+      document.dispatchEvent(new CustomEvent('besia:sheet', { detail: { name: 'booking', open: true } }));
+      /* a history entry, so the phone's Back button hides the sheet instead of leaving the page */
+      if (!opts.fromHistory && window.history && history.pushState) {
+        try { history.pushState({ besiaSheet: 'booking' }, ''); } catch (e) {}
+      }
+    }
     if (opts.cat) {
       var d = body.querySelector('details[open]');
       if (d) d.scrollIntoView({ block: 'start' });
     }
   }
-  function close() {
+  function close(fromHistory) {
+    var wasOpen = sheet.classList.contains('is-open');
     sheet.classList.remove('is-open');
     backdrop.classList.remove('is-open');
     sheet.setAttribute('aria-hidden', 'true');
     document.body.classList.remove('bk-open');
     if (view === 'done') view = 'cart';
     renderBar();
+    if (wasOpen) {
+      document.dispatchEvent(new CustomEvent('besia:sheet', { detail: { name: 'booking', open: false } }));
+      if (fromHistory !== true && history.state && history.state.besiaSheet === 'booking') {
+        try { history.back(); } catch (e) {}
+      }
+    }
   }
+  /* Back hides the sheet. A history step landing within a breath of the
+     sheet opening belongs to whatever closed just before it (Contents). */
+  var openedAt = 0;
+  window.addEventListener('popstate', function () {
+    if (Date.now() - openedAt < 400) return;
+    if (sheet.classList.contains('is-open')) close(true);
+  });
 
   /* ---------- submit ---------- */
   function submit() {
@@ -379,7 +403,9 @@
     if (a.closest('.bk') || a.hasAttribute('data-no-cart')) return false;
     var href = a.getAttribute('href') || '';
     if (!/contact\.html(\?|#|$)/.test(href)) return false;
+    if (a.hasAttribute('data-book')) return true;
     if (a.closest('.nav-links, .nav-overlay-links, .footer-col, .breadcrumb')) return /^\s*book/i.test(a.textContent);
+    if (a.hasAttribute('data-book')) return true;
     return a.classList.contains('btn') || a.classList.contains('ab-book') || !!a.closest('.nav-cta') || /^\s*book/i.test(a.textContent);
   }
   document.addEventListener('click', function (e) {
@@ -403,6 +429,14 @@
       open(cat ? { cat: cat } : {});
     }
   }, true);   /* capture: claim the click before any page-transition handler sees it */
+
+  /* A shared link such as contact.html?service=ext opens the booking on that chapter. */
+  (function () {
+    var slug = new URLSearchParams(location.search).get('service');
+    if (!slug) return;
+    var cat = (B.serviceCategories.filter(function (c) { return c.slug === slug; })[0] || {}).key;
+    if (cat) setTimeout(function () { open({ cat: cat }); }, 50);
+  })();
 
   if (L.onChange) L.onChange(refresh);
   window.addEventListener('storage', function (e) { if (e.key === PICK_KEY) refresh(); });

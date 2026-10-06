@@ -3,429 +3,423 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Book an Appointment · Bēsia Beauty Studio, Cantonments Accra</title>
-  <meta name="description" content="Book at 54 Fifth Circular Road, Cantonments. Open Mon-Sat, 9am to 7pm. Get an instant estimate from our published prices, the first consultation is free.">
-  <meta name="theme-color" content="#17140F">
-
+  <title>Book &amp; Contact · Bēsia Beauty Studio, Cantonments Accra</title>
+  <meta name="description" content="Book an appointment at 54 Fifth Circular Road, Cantonments, Accra. Instant estimate from published prices, confirmed on WhatsApp. Open Monday to Saturday, 9am to 7pm.">
+  <!--CHROME:head-->
+  <meta name="theme-color" content="#151B22">
   <link rel="icon" type="image/svg+xml" href="./assets/icons/favicon.svg">
   <link rel="preload" href="./fonts/montserrat-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="./css/style.css">
-  <link rel="stylesheet" href="./css/animations.css">
-  <link rel="stylesheet" href="./css/editorial.css">
+  <link rel="preload" href="./fonts/montserrat-macron.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="./css/issue.css">
+  <script>
+  /* Boot, inline and tiny: marks the page as scripted, decides the
+     effects tier, and whether the issue opens with its intro. Storage
+     is wrapped because Safari's private mode throws on it. */
+  (function () {
+    var h = document.documentElement, n = navigator, c = n.connection || {};
+    h.classList.add('js');
+    var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var lite = !!(c.saveData || /(^|[^3-9])2g/.test(c.effectiveType || '') || (n.deviceMemory && n.deviceMemory <= 2));
+    h.setAttribute('data-fx', lite || reduce ? 'lite' : 'full');
+    if (reduce) h.setAttribute('data-reduce', '');
+    var home = document.currentScript && /index\.html$|\/$/.test(location.pathname) && !location.hash && !location.search;
+    if (home && !lite && !reduce) {
+      try {
+        if (!sessionStorage.getItem('besia-opened')) { sessionStorage.setItem('besia-opened', '1'); h.classList.add('intro'); }
+      } catch (e) {}
+    }
+  })();
+  </script>
+<!--/CHROME:head-->
   <!-- BUILD:seo -->
   <link rel="canonical" href="https://annorfrancis.github.io/besia/contact.html">
   <meta name="robots" content="noindex,follow">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Bēsia Beauty Studio">
-  <meta property="og:title" content="Book an Appointment · Bēsia Beauty Studio, Cantonments Accra">
-  <meta property="og:description" content="Book at 54 Fifth Circular Road, Cantonments. Open Mon-Sat, 9am to 7pm. Get an instant estimate from our published prices, the first consultation is free.">
+  <meta property="og:title" content="Book &amp; Contact · Bēsia Beauty Studio, Cantonments Accra">
+  <meta property="og:description" content="Book an appointment at 54 Fifth Circular Road, Cantonments, Accra. Instant estimate from published prices, confirmed on WhatsApp. Open Monday to Saturday, 9am to 7pm.">
   <meta property="og:url" content="https://annorfrancis.github.io/besia/contact.html">
-  <meta property="og:image" content="https://annorfrancis.github.io/besia/images/studio/studio-reception.jpg">
-  <meta property="og:image:width" content="1920">
-  <meta property="og:image:height" content="1080">
+  <meta property="og:image" content="https://annorfrancis.github.io/besia/media/img/abeauty-ritual.webp">
+  <meta property="og:image:width" content="1600">
+  <meta property="og:image:height" content="900">
   <meta property="og:locale" content="en_GH">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Book an Appointment · Bēsia Beauty Studio, Cantonments Accra">
-  <meta name="twitter:description" content="Book at 54 Fifth Circular Road, Cantonments. Open Mon-Sat, 9am to 7pm. Get an instant estimate from our published prices, the first consultation is free.">
-  <meta name="twitter:image" content="https://annorfrancis.github.io/besia/images/studio/studio-reception.jpg">
+  <meta name="twitter:title" content="Book &amp; Contact · Bēsia Beauty Studio, Cantonments Accra">
+  <meta name="twitter:description" content="Book an appointment at 54 Fifth Circular Road, Cantonments, Accra. Instant estimate from published prices, confirmed on WhatsApp. Open Monday to Saturday, 9am to 7pm.">
+  <meta name="twitter:image" content="https://annorfrancis.github.io/besia/media/img/abeauty-ritual.webp">
   <!-- /BUILD:seo -->
 </head>
-<body class="page-contact">
-
+<body data-skin="issue" data-page="contact" data-nav="ink" data-head="Contact · Visit us" data-scripts="booking">
+  <!--CHROME:top-->
   <a class="skip-link" href="#main">Skip to content</a>
+  <div class="intro-veil" aria-hidden="true">
+    <div class="intro-half intro-half--top"></div>
+    <div class="intro-half intro-half--bottom"></div>
+    <div class="intro-card">
+      <div class="intro-word"><span><i>B</i></span><span><i>Ē</i></span><span><i>S</i></span><span><i>I</i></span><span><i>A</i></span></div>
+      <div class="intro-rule"></div>
+      <div class="intro-sub">Beauty Studio, Cantonments, Accra</div>
+    </div>
+    <div class="intro-line">Nourish your roots · Protect your peace</div>
+  </div>
+  <div class="nav-sentinel" aria-hidden="true"></div>
 
-  <!-- Navigation -->
-  <header class="site-nav">
-    <div class="container container--wide nav-inner">
-      <a class="nav-logo" href="./index.html" aria-label="Bēsia Beauty Studio, home">
-        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-          <path d="M15 9.5c-6.5 7-6.5 22 0 29.5" stroke-linecap="round"/>
-          <path d="M23.5 6c-8.5 8.5-8.5 27.5 0 36" stroke-linecap="round"/>
-          <path d="M32 10c-5.5 6.5-5.5 21 0 27.5" stroke-linecap="round"/>
-          <path d="M38.5 11l1.3 3.4 3.4 1.3-3.4 1.3-1.3 3.4-1.3-3.4-3.4-1.3 3.4-1.3z" fill="currentColor" stroke="none"/>
-        </svg>
-        <span class="nav-logo-text">
-          <span class="nav-logo-name">Bēsia</span>
-          <span class="nav-logo-tag">Beauty Studio</span>
-        </span>
+  <header class="site-nav" data-nav>
+    <div class="container nav-inner">
+      <a class="nav-logo" href="./index.html" aria-label="Bēsia, home">
+        <span class="nav-logo-name">Bēsia</span>
+        <span class="nav-head">Contact · Visit us</span>
       </a>
       <nav class="nav-links" aria-label="Primary">
-        <a href="./index.html">Home</a>
         <a href="./services.html">Services</a>
         <a href="./shop.html">Shop</a>
         <a href="./classes.html">Classes</a>
-        <a href="./gallery.html">Gallery</a>
-        <a href="./about.html">About</a>
         <a href="./packages.html">Packages</a>
-        <a href="./contact.html" class="is-active">Contact</a>
+        <a href="./about.html">About</a>
+        <a href="./gallery.html" data-from="1200">Gallery</a>
+        <a href="./contact.html" data-from="1200" class="is-active" aria-current="page">Contact</a>
       </nav>
-      <div class="nav-cta">
-        <a href="./contact.html" class="btn btn--gold btn--sm">Book Now</a>
+      <div class="nav-end">
+        <div class="nav-cta">
+          <a href="./contact.html" class="btn btn--sm" data-book>Book<span class="n" data-book-count></span></a>
+        </div>
+        <button class="nav-toggle" aria-label="Open contents" aria-expanded="false" aria-controls="contents">
+          <span class="nav-toggle-word"></span>
+        </button>
       </div>
-      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
     </div>
+    <div class="nav-progress" aria-hidden="true"></div>
   </header>
 
-  <!-- Mobile overlay nav -->
-  <div class="nav-overlay">
+  <div class="nav-overlay" id="contents" role="dialog" aria-modal="true" aria-label="Contents">
     <div>
-      <nav class="nav-overlay-links" aria-label="Mobile">
-        <a href="./index.html">Home</a>
-        <a href="./services.html">Services</a>
-        <a href="./shop.html">Shop</a>
-        <a href="./classes.html">Classes</a>
-        <a href="./gallery.html">Gallery</a>
-        <a href="./about.html">About</a>
-        <a href="./packages.html">Packages</a>
-        <a href="./contact.html" class="is-active">Contact</a>
+      <div class="nav-overlay-head">
+        <span class="t-label">Contents</span>
+        <span class="t-label quiet">Issue 01 · Cantonments, Accra</span>
+      </div>
+      <nav class="nav-overlay-links" aria-label="Contents">
+        <a href="./index.html"><span>Home</span><span class="dek">The cover, this issue, a note from Dana</span><span class="count">Issue 01</span></a>
+        <a href="./services.html"><span>Services</span><span class="dek">Fourteen chapters, every price</span><span class="count">83 services</span></a>
+        <a href="./shop.html"><span>Shop</span><span class="dek">Follicle Fuel, Hair Botox, the hair library</span><span class="count">24 items</span></a>
+        <a href="./classes.html"><span>Classes</span><span class="dek">The School at Bēsia</span><span class="count">9 courses</span></a>
+        <a href="./packages.html"><span>Packages</span><span class="dek">Three editions and the Hair Club</span><span class="count">3 editions</span></a>
+        <a href="./gallery.html"><span>Gallery</span><span class="dek">The A-Beauty covers and the work</span><span class="count">In pictures</span></a>
+        <a href="./about.html"><span>About</span><span class="dek">The studio, Dana, the standards</span><span class="count">The studio</span></a>
+        <a href="./contact.html" class="is-active" aria-current="page"><span>Contact</span><span class="dek">Visit, call, write</span><span class="count">Cantonments</span></a>
       </nav>
+      <div class="nav-overlay-aside">
+        <div class="plate plate--tall" style="--ar: 4 / 5">
+          <img src="./media/img/studio-logo-wall-2-sm.webp" srcset="./media/img/studio-logo-wall-2-sm.webp 720w, ./media/img/studio-logo-wall-2.webp 1600w" sizes="360px" width="720" height="960" alt="" loading="lazy" decoding="async">
+        </div>
+      </div>
+      <div class="nav-overlay-foot">
+        <a href="./contact.html" data-book>Book</a>
+        <a href="tel:+233240787993">Call 024 078 7993</a>
+        <a href="https://wa.me/233240787993?text=Hello%20B%C4%93sia%20Beauty%20Studio%2C%20I%20would%20like%20to%20book%20an%20appointment." target="_blank" rel="noopener">WhatsApp</a>
+        <a href="#" data-open-chat>Ask the studio</a>
+      </div>
       <div class="nav-overlay-contact">
-        Cantonments, Accra · <a href="tel:+233240787993">024 078 7993</a>
+        <span>54 Fifth Circular Road, Cantonments, Accra · Mon to Sat, 9am to 7pm</span>
       </div>
     </div>
   </div>
+<!--/CHROME:top-->
 
   <main id="main">
 
-    <!-- Page hero -->
-    <section class="page-hero aura" style="min-height:52vh;">
-      <div class="page-hero-bg">
-        <img width="1200" height="1487" src="./images/l1.jpg" alt="A client having her lashes applied at Bēsia Beauty Studio">
-      </div>
-      <div class="container page-hero-content">
-        <nav class="breadcrumb" aria-label="Breadcrumb">
-          <a href="./index.html">Home</a><span class="sep">·</span><span>Book Now</span>
-        </nav>
-        <span class="script">Let's get you</span>
-        <h1>In the Chair</h1>
-        <p>Four quick steps and an instant estimate from our published prices. The first consultation is free, and we confirm on WhatsApp within the hour.</p>
+    <!-- ============ COME AND SEE US ============ -->
+    <section class="section grain opener" data-ground="ink">
+      <div class="container t t-spread">
+        <div class="copy stack">
+          <p class="eyebrow"><span class="n">Contact</span> Visit us</p>
+          <h1 class="t-chap balance">Come and see us.</h1>
+          <p class="t-deck">54 Fifth Circular Road, Cantonments. Monday to Saturday, nine to seven. The quickest way to book is the booking sheet; the form below gives you an estimate first and lands in the same diary.</p>
+          <div class="cta-row">
+            <a href="./contact.html" class="btn" data-book>Book</a>
+            <a href="https://wa.me/233240787993?text=Hello%20B%C4%93sia%20Beauty%20Studio%2C%20I%20would%20like%20to%20book%20an%20appointment." class="btn btn--ghost" target="_blank" rel="noopener">WhatsApp</a>
+          </div>
+          <p class="t-credit"><span data-open-pill>Open now</span></p>
+        </div>
+        <div class="plate-wrap plate--cap">
+          <!--REEL:{"name":"growth-era-b","class":"plate plate--portrait","hero":true,"alt":"A Bēsia billboard at the Black Star Gate in Accra, then the model turns to camera","foot":"<div class=\"foot-text\"><p class=\"t-credit\"><span class=\"n\">01</span> Black Star Gate, film</p><p>Welcome to your growth era</p></div>"}-->
+  <figure class="reel plate plate--portrait" data-reel="growth-era-b" data-mode="once" data-hero data-src-sm="./media/video/growth-era-b-480.mp4?v=aa7059e4" data-src-lg="./media/video/growth-era-b-720.mp4?v=aa7059e4">
+    <img class="reel-poster" src="./media/video/growth-era-b-poster-sm.webp?v=aa7059e4" srcset="./media/video/growth-era-b-poster-sm.webp?v=aa7059e4 480w, ./media/video/growth-era-b-poster.webp?v=aa7059e4 720w" sizes="(min-width: 1024px) 576px, 100vw" width="720" height="1080" alt="A Bēsia billboard at the Black Star Gate in Accra, then the model turns to camera" fetchpriority="high" decoding="async">
+    <video class="reel-video" muted playsinline preload="none" aria-hidden="true" tabindex="-1" disablepictureinpicture disableremoteplayback></video>
+    <div class="foot"><div class="foot-text"><p class="t-credit"><span class="n">01</span> Black Star Gate, film</p><p>Welcome to your growth era</p></div></div>
+    <button type="button" class="reel-ctl" aria-label="Play film" aria-pressed="false"><svg class="i-pause" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2h3v12H4zM9 2h3v12H9z"/></svg><svg class="i-play" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2l10 6-10 6z"/></svg><svg class="i-replay" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 3a5 5 0 1 1-4.6 3H2A6.5 6.5 0 1 0 8 1.5V0L4 3l4 3V3z"/></svg></button>
+  </figure>
+  <!--/REEL:growth-era-b-->
+        </div>
       </div>
     </section>
 
-    <!-- ============ BOOKING FORM ============ -->
-    <section class="section section--cream">
-      <div class="container">
-        <div class="booking-shell" data-reveal>
-          <aside class="booking-side">
-            <div>
-              <span class="script">We can't wait</span>
-              <h2>To Take Care of You</h2>
-              <p>Fill in what you want done and when. You will see an instant estimate, then we confirm the exact price and slot personally, usually within the hour.</p>
+    <!-- ============ THE ESTIMATE FORM ============ -->
+    <section class="section" data-ground="ivory">
+      <div class="container t t-form">
+        <div class="copy stack" data-reveal>
+          <p class="eyebrow"><span class="n">02</span> An estimate first</p>
+          <h2 class="t-h2 balance">Tell us what you would like, we will quote it.</h2>
+          <p>Four short steps. Your estimate comes from the published menu, and the request waits in the studio diary until we confirm the exact price and time with you, usually within the hour.</p>
+          <div class="t-index">
+            <a class="ix-row" href="tel:+233240787993"><span class="ix-n">Call</span><span><span class="ix-title">024 078 7993</span><span class="ix-dek">Monday to Saturday, 9am to 7pm</span></span></a>
+            <a class="ix-row" href="https://wa.me/233240787993" target="_blank" rel="noopener"><span class="ix-n">Chat</span><span><span class="ix-title">WhatsApp</span><span class="ix-dek">The fastest reply, send inspiration photos straight through</span></span></a>
+            <a class="ix-row" href="mailto:hello@besia.co"><span class="ix-n">Write</span><span><span class="ix-title">hello@besia.co</span><span class="ix-dek">Bridal parties, groups and anything that needs a quote in writing</span></span></a>
+          </div>
+        </div>
+
+        <div class="form booking-main" data-reveal>
+          <form id="booking-form" novalidate>
+            <div class="progress-steps" aria-hidden="true">
+              <div class="progress-step is-current"><div class="progress-dot">1</div><div class="progress-label">01 You</div></div>
+              <div class="progress-step"><div class="progress-dot">2</div><div class="progress-label">02 Visit</div></div>
+              <div class="progress-step"><div class="progress-dot">3</div><div class="progress-label">03 Services</div></div>
+              <div class="progress-step"><div class="progress-dot">4</div><div class="progress-label">04 Review</div></div>
             </div>
-            <div class="booking-side-contact">
-              <a href="tel:+233240787993"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 4h4l2 5-2.5 1.5c1 2.3 2.7 4 5 5L15 13l5 2v4a2 2 0 01-2 2C9.7 20.5 3.5 14.3 3 6a2 2 0 012-2z"/></svg>024 078 7993</a>
-              <a href="mailto:hello@besia.co"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>hello@besia.co</a>
-              <a href="https://wa.me/233240787993" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.2-1.8-.9-2-1-.3-.1-.5-.2-.7.1-.2.3-.8 1-1 1.2-.2.2-.3.2-.6.1-.3-.2-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.4-.5c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-1-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1 2.9 1.2 3.1c.2.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.3-.7.3-1.3.2-1.4-.1-.1-.3-.2-.6-.3zM12 22h-.01a9.87 9.87 0 01-5-1.4l-.4-.2-3.7 1 1-3.7-.2-.4A9.9 9.9 0 1112 22z"/></svg>Chat on WhatsApp</a>
+
+            <div class="form-steps-wrap">
+              <!-- STEP 1 -->
+              <div class="form-step is-active">
+                <h3 class="t-h3">First, a little about you</h3>
+                <div class="form-grid">
+                  <div class="field span-2">
+                    <label for="f-name">Full name</label>
+                    <input type="text" name="name" id="f-name" required autocomplete="name">
+                    <p class="error-msg">Please enter your name.</p>
+                  </div>
+                  <div class="field">
+                    <label for="f-phone">Phone or WhatsApp</label>
+                    <input type="tel" name="phone" id="f-phone" required autocomplete="tel" inputmode="tel">
+                    <p class="error-msg">Enter a valid phone number.</p>
+                  </div>
+                  <div class="field">
+                    <label for="f-email">Email, optional</label>
+                    <input type="email" name="email" id="f-email" autocomplete="email" inputmode="email">
+                  </div>
+                </div>
+                <div class="form-nav">
+                  <span></span>
+                  <button type="button" class="btn" data-next>Next, your visit</button>
+                </div>
+              </div>
+
+              <!-- STEP 2 -->
+              <div class="form-step">
+                <h3 class="t-h3">Tell us about your visit</h3>
+                <div class="form-grid">
+                  <div class="field">
+                    <label for="f-type">Occasion</label>
+                    <select name="event-type" id="f-type" required>
+                      <option value="" hidden></option>
+                      <option>Regular Appointment</option>
+                      <option>Bridal / Wedding Party</option>
+                      <option>Birthday or Event Glam</option>
+                      <option>Photoshoot / Content</option>
+                      <option>First Visit, Consultation</option>
+                      <option>Other</option>
+                    </select>
+                    <p class="error-msg">Please choose an occasion.</p>
+                  </div>
+                  <div class="field">
+                    <label for="f-date" class="is-fixed">Preferred date</label>
+                    <input type="date" name="event-date" id="f-date" required>
+                    <p class="error-msg">Pick a date from today onward.</p>
+                  </div>
+                  <div class="field">
+                    <label for="f-venue">Preferred time</label>
+                    <select name="venue" id="f-venue">
+                      <option value="" hidden></option>
+                      <option>Morning, 9am to 12pm</option>
+                      <option>Afternoon, 12pm to 4pm</option>
+                      <option>Evening, 4pm to 6pm</option>
+                      <option>Any time, I am flexible</option>
+                    </select>
+                  </div>
+                  <div class="field">
+                    <label for="f-guests" class="is-fixed">How many people</label>
+                    <input type="number" name="guests" id="f-guests" min="1" max="20" value="1" required inputmode="numeric">
+                    <p class="error-msg">At least one person.</p>
+                  </div>
+                  <div class="field span-2">
+                    <label for="f-budget">Budget range</label>
+                    <select name="budget" id="f-budget">
+                      <option value="" hidden></option>
+                      <option>Under GHS 300</option>
+                      <option>GHS 300 to 700</option>
+                      <option>GHS 700 to 1,500</option>
+                      <option>GHS 1,500 and above</option>
+                      <option>Not sure yet</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-nav">
+                  <button type="button" class="btn btn--ghost" data-prev>Back</button>
+                  <button type="button" class="btn" data-next>Next, services</button>
+                </div>
+              </div>
+
+              <!-- STEP 3 -->
+              <div class="form-step">
+                <h3 class="t-h3">What would you like done?</h3>
+                <p class="step-hint t-cap">Choose as many disciplines as you need; the estimate updates as you go. For exact services, use the booking sheet.</p>
+                <div class="check-grid">
+                  <label class="check-pill"><input type="checkbox" value="ext"><span class="dot">✓</span>Fusion Extensions</label>
+                  <label class="check-pill"><input type="checkbox" value="tex"><span class="dot">✓</span>Texture Systems</label>
+                  <label class="check-pill"><input type="checkbox" value="scalp"><span class="dot">✓</span>Scalp + Bond Repair</label>
+                  <label class="check-pill"><input type="checkbox" value="color"><span class="dot">✓</span>Colour</label>
+                  <label class="check-pill"><input type="checkbox" value="nat"><span class="dot">✓</span>Naturals, Curls &amp; Coils</label>
+                  <label class="check-pill"><input type="checkbox" value="cut"><span class="dot">✓</span>Cutting</label>
+                  <label class="check-pill"><input type="checkbox" value="braid"><span class="dot">✓</span>Braids &amp; Cornrows</label>
+                  <label class="check-pill"><input type="checkbox" value="style"><span class="dot">✓</span>Styling</label>
+                  <label class="check-pill"><input type="checkbox" value="wig"><span class="dot">✓</span>Wig Service</label>
+                  <label class="check-pill"><input type="checkbox" value="lash"><span class="dot">✓</span>Lashes &amp; Brows</label>
+                  <label class="check-pill"><input type="checkbox" value="facial"><span class="dot">✓</span>Facials</label>
+                  <label class="check-pill"><input type="checkbox" value="wax"><span class="dot">✓</span>Waxing</label>
+                  <label class="check-pill"><input type="checkbox" value="makeup"><span class="dot">✓</span>Make-Up</label>
+                  <label class="check-pill"><input type="checkbox" value="gen"><span class="dot">✓</span>Consultations &amp; Basics</label>
+                </div>
+                <p class="pick-error" id="pick-error" hidden>Choose at least one discipline, so we know what to book you in for.</p>
+                <div class="field" style="margin-top: var(--s-5)">
+                  <label for="f-notes">Anything else: length, colour, inspiration</label>
+                  <textarea name="notes" id="f-notes"></textarea>
+                </div>
+                <div class="form-nav">
+                  <button type="button" class="btn btn--ghost" data-prev>Back</button>
+                  <button type="button" class="btn" data-next>See my estimate</button>
+                </div>
+              </div>
+
+              <!-- STEP 4 -->
+              <div class="form-step">
+                <h3 class="t-h3">Review and your estimate</h3>
+                <ul class="quote-lines" id="review-summary" style="margin-bottom: var(--s-5)"></ul>
+
+                <div class="quote-panel" id="quote-panel">
+                  <div class="quote-head">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2l1.8 5.2L19 9l-5.2 1.8L12 16l-1.8-5.2L5 9l5.2-1.8L12 2z" stroke-linejoin="round"/></svg>
+                    <span class="title">Estimate</span>
+                    <span class="ai-pulse">Live prices</span>
+                  </div>
+                  <div class="quote-body">
+                    <ul class="quote-lines"></ul>
+                    <div class="quote-total">
+                      <span class="label">Estimate</span>
+                      <span class="value">GHS 0</span>
+                    </div>
+                    <p class="quote-note">An automatic estimate from the published menu. The final price depends on length, density and whether you supply your own hair or products; we confirm before we start. Nothing is charged now.</p>
+                  </div>
+                </div>
+
+                <div class="form-nav">
+                  <button type="button" class="btn btn--ghost" data-prev>Back</button>
+                  <button type="submit" class="btn">Request my appointment</button>
+                </div>
+              </div>
             </div>
-          </aside>
 
-          <div class="booking-main">
-            <form id="booking-form" novalidate>
-              <div class="progress-steps" aria-hidden="true">
-                <div class="progress-step is-current"><div class="progress-dot">1</div><div class="progress-label">You</div></div>
-                <div class="progress-step"><div class="progress-dot">2</div><div class="progress-label">Visit</div></div>
-                <div class="progress-step"><div class="progress-dot">3</div><div class="progress-label">Services</div></div>
-                <div class="progress-step"><div class="progress-dot">4</div><div class="progress-label">Review</div></div>
+            <!-- Success -->
+            <div class="form-success" id="form-success" style="display:none;">
+              <div class="mark">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M4 12.5l5 5L20 6.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </div>
+              <h3 class="t-h3">Request received, thank you.</h3>
+              <p class="t-cap">Your booking reference</p>
+              <div class="co-order-id" id="booking-ref">…</div>
+              <p>We confirm every booking within the hour, Monday to Saturday, 9am to 7pm. It is already waiting in our diary.</p>
+              <p><a class="link" href="https://wa.me/233240787993" target="_blank" rel="noopener" id="success-wa">Message us on WhatsApp</a></p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
 
-              <div class="form-steps-wrap">
-                <!-- STEP 1 -->
-                <div class="form-step is-active">
-                  <h3>First, a little about you</h3>
-                  <div class="form-grid">
-                    <div class="field span-2">
-                      <input type="text" name="name" id="f-name" required autocomplete="name">
-                      <label for="f-name">Full name *</label>
-                      <p class="error-msg">Please enter your name.</p>
-                    </div>
-                    <div class="field">
-                      <input type="tel" name="phone" id="f-phone" required autocomplete="tel">
-                      <label for="f-phone">Phone / WhatsApp *</label>
-                      <p class="error-msg">Enter a valid phone number.</p>
-                    </div>
-                    <div class="field">
-                      <input type="email" name="email" id="f-email" autocomplete="email">
-                      <label for="f-email">Email (optional)</label>
-                    </div>
-                  </div>
-                  <div class="form-nav">
-                    <span></span>
-                    <button type="button" class="btn btn--gold" data-next>Next: Your Visit
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    </button>
-                  </div>
-                </div>
-
-                <!-- STEP 2 -->
-                <div class="form-step">
-                  <h3>Tell us about your visit</h3>
-                  <div class="form-grid">
-                    <div class="field">
-                      <select name="event-type" id="f-type" required>
-                        <option value="" hidden></option>
-                        <option>Regular Appointment</option>
-                        <option>Bridal / Wedding Party</option>
-                        <option>Birthday or Event Glam</option>
-                        <option>Photoshoot / Content</option>
-                        <option>First Visit, Consultation</option>
-                        <option>Other</option>
-                      </select>
-                      <label for="f-type">Occasion *</label>
-                      <svg class="select-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                      <p class="error-msg">Please choose an occasion.</p>
-                    </div>
-                    <div class="field">
-                      <input type="date" name="event-date" id="f-date" required>
-                      <label for="f-date" class="is-fixed">Preferred date *</label>
-                      <p class="error-msg">Pick a date from today onward.</p>
-                    </div>
-                    <div class="field">
-                      <select name="venue" id="f-venue">
-                        <option value="" hidden></option>
-                        <option>Morning, 9am to 12pm</option>
-                        <option>Afternoon, 12pm to 4pm</option>
-                        <option>Evening, 4pm to 6pm</option>
-                        <option>Any time, I'm flexible</option>
-                      </select>
-                      <label for="f-venue">Preferred time</label>
-                      <svg class="select-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    </div>
-                    <div class="field">
-                      <input type="number" name="guests" id="f-guests" min="1" max="20" value="1" required>
-                      <label for="f-guests" class="is-fixed">How many people? *</label>
-                      <p class="error-msg">At least one person.</p>
-                    </div>
-                    <div class="field span-2">
-                      <select name="budget" id="f-budget">
-                        <option value="" hidden></option>
-                        <option>Under GHS 300</option>
-                        <option>GHS 300 to 700</option>
-                        <option>GHS 700 to 1,500</option>
-                        <option>GHS 1,500 and above</option>
-                        <option>Not sure yet</option>
-                      </select>
-                      <label for="f-budget">Budget range</label>
-                      <svg class="select-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    </div>
-                  </div>
-                  <div class="form-nav">
-                    <button type="button" class="btn btn--ghost-dark" data-prev>Back</button>
-                    <button type="button" class="btn btn--gold" data-next>Next: Services
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    </button>
-                  </div>
-                </div>
-
-                <!-- STEP 3 -->
-                <div class="form-step">
-                  <h3>What would you like done?</h3>
-                  <p class="step-hint">Pick as many as you need, your estimate updates as you go.</p>
-                  <div class="check-grid">
-                    <label class="check-pill"><input type="checkbox" value="ext"><span class="dot">✓</span>Fusion Extensions</label>
-                    <label class="check-pill"><input type="checkbox" value="tex"><span class="dot">✓</span>Texture Systems</label>
-                    <label class="check-pill"><input type="checkbox" value="scalp"><span class="dot">✓</span>Scalp + Bond Repair</label>
-                    <label class="check-pill"><input type="checkbox" value="color"><span class="dot">✓</span>Colour</label>
-                    <label class="check-pill"><input type="checkbox" value="nat"><span class="dot">✓</span>Naturals, Curls &amp; Coils</label>
-                    <label class="check-pill"><input type="checkbox" value="cut"><span class="dot">✓</span>Cutting</label>
-                    <label class="check-pill"><input type="checkbox" value="braid"><span class="dot">✓</span>Braids &amp; Cornrows</label>
-                    <label class="check-pill"><input type="checkbox" value="style"><span class="dot">✓</span>Styling</label>
-                    <label class="check-pill"><input type="checkbox" value="wig"><span class="dot">✓</span>Wig Service</label>
-                    <label class="check-pill"><input type="checkbox" value="lash"><span class="dot">✓</span>Lashes &amp; Brows</label>
-                    <label class="check-pill"><input type="checkbox" value="facial"><span class="dot">✓</span>Facials</label>
-                    <label class="check-pill"><input type="checkbox" value="wax"><span class="dot">✓</span>Waxing</label>
-                    <label class="check-pill"><input type="checkbox" value="makeup"><span class="dot">✓</span>Make-Up</label>
-                    <label class="check-pill"><input type="checkbox" value="gen"><span class="dot">✓</span>Consultations &amp; Basics</label>
-                  </div>
-                  <p class="pick-error" id="pick-error" hidden>Choose at least one service, or one discipline, so we know what to book you in for.</p>
-                  <div class="field" style="margin-top:1.2rem;">
-                    <textarea name="notes" id="f-notes"></textarea>
-                    <label for="f-notes">Anything else, length, colour, inspiration photos…</label>
-                  </div>
-                  <div class="form-nav">
-                    <button type="button" class="btn btn--ghost-dark" data-prev>Back</button>
-                    <button type="button" class="btn btn--gold" data-next>See My Estimate
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    </button>
-                  </div>
-                </div>
-
-                <!-- STEP 4 -->
-                <div class="form-step">
-                  <h3>Review &amp; your instant estimate</h3>
-                  <ul class="quote-lines" id="review-summary" style="margin-bottom:1.2rem;"></ul>
-
-                  <div class="quote-panel" id="quote-panel">
-                    <div class="quote-head">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2l1.8 5.2L19 9l-5.2 1.8L12 16l-1.8-5.2L5 9l5.2-1.8L12 2z" stroke-linejoin="round"/><path d="M18 14l.9 2.6L21.5 17l-2.6.9L18 20.5l-.9-2.6L14.5 17l2.6-.9L18 14z" stroke-linejoin="round"/></svg>
-                      <span class="title">Instant Price Estimate</span>
-                      <span class="ai-pulse">Live</span>
-                    </div>
-                    <div class="quote-body">
-                      <ul class="quote-lines"></ul>
-                      <div class="quote-total">
-                        <span class="label">Total Estimate</span>
-                        <span class="value">GHS 0</span>
-                      </div>
-                      <p class="quote-note">This is an automatic estimate. Final pricing depends on length, density and whether you supply your own hair or products, we confirm before we start.</p>
-                    </div>
-                  </div>
-
-                  <div class="form-nav">
-                    <button type="button" class="btn btn--ghost-dark" data-prev>Back</button>
-                    <button type="submit" class="btn btn--gold">Request My Appointment
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    </button>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Success -->
-              <div class="form-success" id="form-success" style="display:none;">
-                <div class="mark">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M4 12.5l5 5L20 6.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </div>
-                <h3>Booking received, thank you!</h3>
-                <p>Your booking reference is</p>
-                <div class="co-order-id" id="booking-ref">…</div>
-                <p>We confirm every booking within the hour (Mon-Sat, 9am to 7pm). It is already waiting in our diary.</p>
-                <p style="margin-top:1.4rem; font-size:0.85rem;">Prefer to chat? <a href="https://wa.me/233240787993" target="_blank" rel="noopener" id="success-wa" style="color:var(--gold); font-weight:700;">Message us on WhatsApp</a></p>
-              </div>
-            </form>
+    <!-- ============ VISIT ============ -->
+    <section class="section" data-ground="oatmeal">
+      <div class="container t t-spread" data-flip>
+        <div class="copy stack" data-reveal>
+          <p class="eyebrow"><span class="n">03</span> The studio</p>
+          <h2 class="t-h2 balance">Fifth Circular Road, Cantonments.</h2>
+          <div class="t-index">
+            <div class="ix-row"><span class="ix-n">Where</span><span><span class="ix-title">54 Fifth Circular Road</span><span class="ix-dek">Cantonments, Accra</span></span></div>
+            <div class="ix-row"><span class="ix-n">When</span><span><span class="ix-title">Monday to Saturday, 9am to 7pm</span><span class="ix-dek">Closed on Sunday</span></span></div>
+            <div class="ix-row"><span class="ix-n">Parking</span><span><span class="ix-title">On the road outside</span><span class="ix-dek">Tell us when you arrive and we will come to the door</span></span></div>
+          </div>
+          <a class="link" href="https://maps.google.com/?q=54+Fifth+Circular+Road+Cantonments+Accra" target="_blank" rel="noopener">Directions</a>
+        </div>
+        <div class="plate-wrap">
+          <div class="map-frame" data-reveal>
+            <iframe
+              src="https://www.google.com/maps?q=54+Fifth+Circular+Road,+Cantonments,+Accra&output=embed"
+              title="Map showing Bēsia Beauty Studio in Cantonments, Accra"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              allowfullscreen></iframe>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ============ CONTACT CARDS ============ -->
-    <section class="section section--champagne">
-      <div class="container">
-        <div class="section-head section-head--center" data-reveal>
-          <div class="eyebrow eyebrow--center">Reach Us</div>
-          <h2 class="section-title"><span class="script">Every channel</span>Reaches the Same Chair</h2>
-        </div>
-        <div class="contact-cards" data-reveal-stagger>
-          <div class="contact-card">
-            <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 4h4l2 5-2.5 1.5c1 2.3 2.7 4 5 5L15 13l5 2v4a2 2 0 01-2 2C9.7 20.5 3.5 14.3 3 6a2 2 0 012-2z"/></svg></div>
-            <h3>Call Us</h3>
-            <a href="tel:+233240787993">024 078 7993</a>
-            <p>Mon-Sat · 9am-7pm</p>
-          </div>
-          <div class="contact-card">
-            <div class="icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.2-1.8-.9-2-1-.3-.1-.5-.2-.7.1-.2.3-.8 1-1 1.2-.2.2-.3.2-.6.1-.3-.2-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.4-.5c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-1-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1 2.9 1.2 3.1c.2.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.3-.7.3-1.3.2-1.4-.1-.1-.3-.2-.6-.3zM12 22h-.01a9.87 9.87 0 01-5-1.4l-.4-.2-3.7 1 1-3.7-.2-.4A9.9 9.9 0 1112 22z"/></svg></div>
-            <h3>WhatsApp</h3>
-            <a href="https://wa.me/233240787993" target="_blank" rel="noopener">024 078 7993</a>
-            <p>Fastest reply, send your inspiration photos straight through.</p>
-          </div>
-          <div class="contact-card">
-            <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></div>
-            <h3>Email</h3>
-            <a href="mailto:hello@besia.co">hello@besia.co</a>
-            <p>For bridal parties and bookings</p>
-          </div>
-          <div class="contact-card">
-            <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7-5.5-7-11a7 7 0 0114 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></div>
-            <h3>Visit Us</h3>
-            <p>Cantonments, Accra<br>Ghana</p>
-            <p>Walk-ins welcome when a chair is free</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ MAP ============ -->
-    <section class="section section--cream" style="padding-top:0;">
-      <div class="container">
-        <div class="map-frame" data-reveal="scale">
-          <iframe
-            src="https://www.google.com/maps?q=54+Fifth+Circular+Road,+Cantonments,+Accra&output=embed"
-            title="Map showing Bēsia Beauty Studio location in Cantonments, Accra"
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-            allowfullscreen></iframe>
-        </div>
-      </div>
-    </section>
   </main>
 
-  <!-- ============ FOOTER ============ -->
-  <footer class="site-footer">
+  <!--CHROME:foot-->
+  <footer class="site-footer grain" data-ground="ink">
     <div class="container">
-      <div class="footer-grid">
-        <div class="footer-brand">
-          <a class="nav-logo" href="./index.html">
-            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-              <path d="M15 9.5c-6.5 7-6.5 22 0 29.5" stroke-linecap="round"/>
-              <path d="M23.5 6c-8.5 8.5-8.5 27.5 0 36" stroke-linecap="round"/>
-              <path d="M32 10c-5.5 6.5-5.5 21 0 27.5" stroke-linecap="round"/>
-              <path d="M38.5 11l1.3 3.4 3.4 1.3-3.4 1.3-1.3 3.4-1.3-3.4-3.4-1.3 3.4-1.3z" fill="currentColor" stroke="none"/>
-            </svg>
-            <span class="nav-logo-text">
-              <span class="nav-logo-name">Bēsia</span>
-              <span class="nav-logo-tag">Beauty Studio</span>
-            </span>
-          </a>
-          <p>Ghana&rsquo;s home of fusion extensions. UK-certified KTips and microlinks, vegan formaldehyde-free texture systems, and treatment-led scalp and bond care, at 54 Fifth Circular Road, Cantonments.</p>
-          <div class="footer-social">
-            <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3.5" y="3.5" width="17" height="17" rx="4.5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/></svg></a>
-            <a href="#" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.6 3c.4 2 1.7 3.4 3.9 3.6v2.9c-1.4.1-2.7-.3-3.9-1.1v5.7c0 3.7-2.6 6-6 6-3 0-5.6-2.3-5.6-5.5 0-3.4 3-5.8 6.4-5.3v3c-.4-.1-.8-.2-1.2-.1-1.3.1-2.2 1.1-2.2 2.4 0 1.4 1.1 2.5 2.6 2.5 1.6 0 2.7-1.1 2.7-2.9V3h3.3z"/></svg></a>
-            <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-7h2.4l.4-3h-2.8V9.1c0-.9.3-1.5 1.6-1.5H16.5V4.9c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4V11H7.9v3h2.4v7h3.2z"/></svg></a>
-          </div>
+      <div class="t t-colophon">
+        <div class="foot-brand">
+          <a class="foot-logo" href="./index.html" aria-label="Bēsia, home">Bēsia</a>
+          <p class="t-cap">Ghana's home of fusion extensions. UK-certified KTips and microlinks, a vegan, formaldehyde-free texture system, and treatment-led scalp and bond care.</p>
+          <p class="foot-line">Nourish your roots. Protect your peace.</p>
         </div>
-
-        <div class="footer-col">
-          <h4>Explore</h4>
+        <div class="foot-col">
+          <p class="t-label foot-head">In this issue</p>
           <ul>
             <li><a href="./services.html">Services</a></li>
             <li><a href="./shop.html">Shop</a></li>
-            <li><a href="./track.html">Track Your Order</a></li>
-            <li><a href="./gallery.html">Look Book</a></li>
-            <li><a href="./about.html">About Us</a></li>
+            <li><a href="./classes.html">Classes</a></li>
             <li><a href="./packages.html">Packages</a></li>
-            <li><a href="./contact.html">Book Now</a></li>
+            <li><a href="./gallery.html">Gallery</a></li>
+            <li><a href="./about.html">About</a></li>
+            <li><a href="./track.html">Track an order</a></li>
           </ul>
         </div>
-
-        <div class="footer-col">
-          <h4>Contact</h4>
-          <ul class="footer-contact">
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7-5.5-7-11a7 7 0 0114 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg><span>54 Fifth Circular Road<br>Cantonments, Accra</span></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 4h4l2 5-2.5 1.5c1 2.3 2.7 4 5 5L15 13l5 2v4a2 2 0 01-2 2C9.7 20.5 3.5 14.3 3 6a2 2 0 012-2z"/></svg><span><a href="tel:+233240787993">024 078 7993</a></span></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg><span><a href="mailto:hello@besia.co">hello@besia.co</a></span></li>
+        <div class="foot-col">
+          <p class="t-label foot-head">Visit</p>
+          <ul>
+            <li><span>54 Fifth Circular Road<br>Cantonments, Accra</span></li>
+            <li><span>Monday to Saturday, 9am to 7pm<br>Closed Sunday</span></li>
+            <li><a href="https://maps.google.com/?q=54+Fifth+Circular+Road+Cantonments+Accra" target="_blank" rel="noopener">Directions</a></li>
           </ul>
         </div>
-
-        <div class="footer-col">
-          <h4>Beauty Notes</h4>
-          <p style="font-size:0.9rem;">Aftercare that actually works, new services, and first access when the Moringa line lands.</p>
-          <form class="newsletter-form">
-            <input type="email" placeholder="Your email address" aria-label="Email address">
-            <button type="submit">Join</button>
-          </form>
-          <p class="newsletter-note">No spam, aftercare, new services and the Moringa launch.</p>
+        <div class="foot-col">
+          <p class="t-label foot-head">Write</p>
+          <ul>
+            <li><a href="tel:+233240787993">024 078 7993</a></li>
+            <li><a href="https://wa.me/233240787993?text=Hello%20B%C4%93sia%20Beauty%20Studio%2C%20I%20would%20like%20to%20book%20an%20appointment." target="_blank" rel="noopener">WhatsApp</a></li>
+            <li><a href="mailto:hello@besia.co">hello@besia.co</a></li>
+            <li><a href="#" data-open-chat>Ask the studio</a></li>
+            <li><a href="https://instagram.com/besia.hq" target="_blank" rel="noopener">Instagram</a></li>
+            <li><a href="https://www.tiktok.com/@besiahq" target="_blank" rel="noopener">TikTok</a></li>
+          </ul>
         </div>
       </div>
-
-      <div class="footer-bottom">
-        <span>© <span data-year>2026</span> Bēsia Beauty Studio. All rights reserved.</span>
-        <span class="footer-credit">Designed &amp; Developed by <a href="https://perkins-swart.vercel.app" target="_blank" rel="noopener">Perkins Creative</a></span>
+      <div class="foot-mark" aria-hidden="true">Bēsia</div>
+      <div class="foot-bottom">
+        <span>Bēsia Beauty Studio, Cantonments, Accra. Issue 01. All rights reserved, <span data-year>2026</span>.</span>
+        <span class="foot-credit">Designed and built by <a href="https://perkins-swart.vercel.app" target="_blank" rel="noopener">Perkins Creative</a></span>
       </div>
     </div>
   </footer>
 
-  <!-- Scripts -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer integrity="sha384-g4NTh/Iv5PPU4xPyhEWqPcwtNXOvdaDI8LLnyYfyNZOjKJeYQyjzQ9X5275eBjpt" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer integrity="sha384-Z3REaz79l2IaAZqJsSABtTbhjgOUYyV3p90XNnAPCSHg3EMTz1fouunq9WZRtj3d" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <!-- data first: every other script reads from it -->
   <script src="./js/besia-data.js" defer></script>
   <script src="./js/besia-live.js" defer></script>
   <script src="./js/booking-cart.js" defer></script>
-  <script src="./js/main.js" defer></script>
-  <script src="./js/animations.js" defer></script>
-  <script src="./js/booking.js" defer></script>
+  <script src="./js/site.js" defer></script>
+  <script src="./js/reel.js" defer></script>
+  <script src="./js/slides.js" defer></script>
   <script src="./js/ai-chat.js" defer></script>
   <script src="./js/site-sync.js" defer></script>
   <script src="./js/offline.js" defer></script>
+  <script src="./js/booking.js" defer></script>
+<!--/CHROME:foot-->
 </body>
 </html>

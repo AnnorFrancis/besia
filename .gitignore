@@ -19,3 +19,6 @@ images/_unused/
 # Raw client media as received (WhatsApp originals). Processed web versions live in /media.
 NEW VIDEOS AND IMAGES/
 media/_masters/
+
+# Local AI upscaler binary (Real-ESRGAN ncnn), fetched by tools/build-video.js instructions, never committed
+tools/_bin/

@@ -4,246 +4,272 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Checkout · Bēsia Beauty Studio</title>
-  <meta name="description" content="Review your bag, choose pickup or delivery, and pay by Mobile Money, card or on collection.">
-  <meta name="theme-color" content="#17140F">
-  <meta name="robots" content="noindex">
-
+  <meta name="description" content="Confirm your order from the Bēsia shop. Pay by Mobile Money or card, collect in Cantonments or have it delivered in Accra.">
+  <meta name="robots" content="noindex,follow">
+  <!--CHROME:head-->
+  <meta name="theme-color" content="#151B22">
   <link rel="icon" type="image/svg+xml" href="./assets/icons/favicon.svg">
   <link rel="preload" href="./fonts/montserrat-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="./css/style.css">
-  <link rel="stylesheet" href="./css/animations.css">
-  <link rel="stylesheet" href="./css/editorial.css">
+  <link rel="preload" href="./fonts/montserrat-macron.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="./css/issue.css">
+  <script>
+  /* Boot, inline and tiny: marks the page as scripted, decides the
+     effects tier, and whether the issue opens with its intro. Storage
+     is wrapped because Safari's private mode throws on it. */
+  (function () {
+    var h = document.documentElement, n = navigator, c = n.connection || {};
+    h.classList.add('js');
+    var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var lite = !!(c.saveData || /(^|[^3-9])2g/.test(c.effectiveType || '') || (n.deviceMemory && n.deviceMemory <= 2));
+    h.setAttribute('data-fx', lite || reduce ? 'lite' : 'full');
+    if (reduce) h.setAttribute('data-reduce', '');
+    var home = document.currentScript && /index\.html$|\/$/.test(location.pathname) && !location.hash && !location.search;
+    if (home && !lite && !reduce) {
+      try {
+        if (!sessionStorage.getItem('besia-opened')) { sessionStorage.setItem('besia-opened', '1'); h.classList.add('intro'); }
+      } catch (e) {}
+    }
+  })();
+  </script>
+<!--/CHROME:head-->
   <!-- BUILD:seo -->
   <link rel="canonical" href="https://annorfrancis.github.io/besia/checkout.html">
   <meta name="robots" content="noindex,follow">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Bēsia Beauty Studio">
   <meta property="og:title" content="Checkout · Bēsia Beauty Studio">
-  <meta property="og:description" content="Review your bag, choose pickup or delivery, and pay by Mobile Money, card or on collection.">
+  <meta property="og:description" content="Confirm your order from the Bēsia shop. Pay by Mobile Money or card, collect in Cantonments or have it delivered in Accra.">
   <meta property="og:url" content="https://annorfrancis.github.io/besia/checkout.html">
-  <meta property="og:image" content="https://annorfrancis.github.io/besia/images/studio/studio-reception.jpg">
-  <meta property="og:image:width" content="1920">
-  <meta property="og:image:height" content="1080">
+  <meta property="og:image" content="https://annorfrancis.github.io/besia/media/img/abeauty-ritual.webp">
+  <meta property="og:image:width" content="1600">
+  <meta property="og:image:height" content="900">
   <meta property="og:locale" content="en_GH">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Checkout · Bēsia Beauty Studio">
-  <meta name="twitter:description" content="Review your bag, choose pickup or delivery, and pay by Mobile Money, card or on collection.">
-  <meta name="twitter:image" content="https://annorfrancis.github.io/besia/images/studio/studio-reception.jpg">
+  <meta name="twitter:description" content="Confirm your order from the Bēsia shop. Pay by Mobile Money or card, collect in Cantonments or have it delivered in Accra.">
+  <meta name="twitter:image" content="https://annorfrancis.github.io/besia/media/img/abeauty-ritual.webp">
   <!-- /BUILD:seo -->
 </head>
-<body class="page-checkout">
-
+<body data-skin="issue" data-page="checkout" data-nav="paper" data-head="Checkout · The bag" data-core="store">
+  <!--CHROME:top-->
   <a class="skip-link" href="#main">Skip to content</a>
+  <div class="intro-veil" aria-hidden="true">
+    <div class="intro-half intro-half--top"></div>
+    <div class="intro-half intro-half--bottom"></div>
+    <div class="intro-card">
+      <div class="intro-word"><span><i>B</i></span><span><i>Ē</i></span><span><i>S</i></span><span><i>I</i></span><span><i>A</i></span></div>
+      <div class="intro-rule"></div>
+      <div class="intro-sub">Beauty Studio, Cantonments, Accra</div>
+    </div>
+    <div class="intro-line">Nourish your roots · Protect your peace</div>
+  </div>
+  <div class="nav-sentinel" aria-hidden="true"></div>
 
-  <!-- Navigation -->
-  <header class="site-nav site-nav--ink">
-    <div class="container container--wide nav-inner">
-      <a class="nav-logo" href="./index.html" aria-label="Bēsia Beauty Studio, home">
-        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-          <path d="M15 9.5c-6.5 7-6.5 22 0 29.5" stroke-linecap="round"/>
-          <path d="M23.5 6c-8.5 8.5-8.5 27.5 0 36" stroke-linecap="round"/>
-          <path d="M32 10c-5.5 6.5-5.5 21 0 27.5" stroke-linecap="round"/>
-          <path d="M38.5 11l1.3 3.4 3.4 1.3-3.4 1.3-1.3 3.4-1.3-3.4-3.4-1.3 3.4-1.3z" fill="currentColor" stroke="none"/>
-        </svg>
-        <span class="nav-logo-text">
-          <span class="nav-logo-name">Bēsia</span>
-          <span class="nav-logo-tag">Beauty Studio</span>
-        </span>
+  <header class="site-nav site-nav--paper" data-nav>
+    <div class="container nav-inner">
+      <a class="nav-logo" href="./index.html" aria-label="Bēsia, home">
+        <span class="nav-logo-name">Bēsia</span>
+        <span class="nav-head">Checkout · The bag</span>
       </a>
       <nav class="nav-links" aria-label="Primary">
-        <a href="./index.html">Home</a>
         <a href="./services.html">Services</a>
-        <a href="./shop.html" class="is-active">Shop</a>
+        <a href="./shop.html">Shop</a>
         <a href="./classes.html">Classes</a>
-        <a href="./gallery.html">Gallery</a>
-        <a href="./about.html">About</a>
         <a href="./packages.html">Packages</a>
-        <a href="./contact.html">Contact</a>
+        <a href="./about.html">About</a>
+        <a href="./gallery.html" data-from="1200">Gallery</a>
+        <a href="./contact.html" data-from="1200">Contact</a>
       </nav>
-      <div class="nav-cta">
-        <a href="./contact.html" class="btn btn--gold btn--sm">Book Now</a>
+      <div class="nav-end">
+        <div class="nav-cta">
+          <a href="./contact.html" class="btn btn--sm" data-book>Book<span class="n" data-book-count></span></a>
+        </div>
+        <button class="nav-toggle" aria-label="Open contents" aria-expanded="false" aria-controls="contents">
+          <span class="nav-toggle-word"></span>
+        </button>
       </div>
-      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
     </div>
+    <div class="nav-progress" aria-hidden="true"></div>
   </header>
 
-  <!-- Mobile overlay nav -->
-  <div class="nav-overlay">
+  <div class="nav-overlay" id="contents" role="dialog" aria-modal="true" aria-label="Contents">
     <div>
-      <nav class="nav-overlay-links" aria-label="Mobile">
-        <a href="./index.html">Home</a>
-        <a href="./services.html">Services</a>
-        <a href="./shop.html" class="is-active">Shop</a>
-        <a href="./classes.html">Classes</a>
-        <a href="./gallery.html">Gallery</a>
-        <a href="./about.html">About</a>
-        <a href="./packages.html">Packages</a>
-        <a href="./contact.html">Contact</a>
+      <div class="nav-overlay-head">
+        <span class="t-label">Contents</span>
+        <span class="t-label quiet">Issue 01 · Cantonments, Accra</span>
+      </div>
+      <nav class="nav-overlay-links" aria-label="Contents">
+        <a href="./index.html"><span>Home</span><span class="dek">The cover, this issue, a note from Dana</span><span class="count">Issue 01</span></a>
+        <a href="./services.html"><span>Services</span><span class="dek">Fourteen chapters, every price</span><span class="count">83 services</span></a>
+        <a href="./shop.html"><span>Shop</span><span class="dek">Follicle Fuel, Hair Botox, the hair library</span><span class="count">24 items</span></a>
+        <a href="./classes.html"><span>Classes</span><span class="dek">The School at Bēsia</span><span class="count">9 courses</span></a>
+        <a href="./packages.html"><span>Packages</span><span class="dek">Three editions and the Hair Club</span><span class="count">3 editions</span></a>
+        <a href="./gallery.html"><span>Gallery</span><span class="dek">The A-Beauty covers and the work</span><span class="count">In pictures</span></a>
+        <a href="./about.html"><span>About</span><span class="dek">The studio, Dana, the standards</span><span class="count">The studio</span></a>
+        <a href="./contact.html"><span>Contact</span><span class="dek">Visit, call, write</span><span class="count">Cantonments</span></a>
       </nav>
+      <div class="nav-overlay-aside">
+        <div class="plate plate--tall" style="--ar: 4 / 5">
+          <img src="./media/img/studio-logo-wall-2-sm.webp" srcset="./media/img/studio-logo-wall-2-sm.webp 720w, ./media/img/studio-logo-wall-2.webp 1600w" sizes="360px" width="720" height="960" alt="" loading="lazy" decoding="async">
+        </div>
+      </div>
+      <div class="nav-overlay-foot">
+        <a href="./contact.html" data-book>Book</a>
+        <a href="tel:+233240787993">Call 024 078 7993</a>
+        <a href="https://wa.me/233240787993?text=Hello%20B%C4%93sia%20Beauty%20Studio%2C%20I%20would%20like%20to%20book%20an%20appointment." target="_blank" rel="noopener">WhatsApp</a>
+        <a href="#" data-open-chat>Ask the studio</a>
+      </div>
       <div class="nav-overlay-contact">
-        Cantonments, Accra · <a href="tel:+233240787993">024 078 7993</a>
+        <span>54 Fifth Circular Road, Cantonments, Accra · Mon to Sat, 9am to 7pm</span>
       </div>
     </div>
   </div>
+<!--/CHROME:top-->
 
   <main id="main">
-
-    <section class="section section--cream" style="padding-top: calc(var(--nav-height) + 2.5rem);">
-      <div class="container">
-
-        <nav class="breadcrumb breadcrumb--dark" aria-label="Breadcrumb" style="margin-bottom:1.2rem;">
-          <a href="./shop.html">Shop</a><span class="sep">·</span><span>Checkout</span>
-        </nav>
-        <div class="eyebrow">Checkout</div>
-        <h1 class="section-title" style="margin-bottom:2rem;"><span class="script">Almost yours,</span>Confirm Your Order</h1>
+    <section class="section reading" data-ground="ivory">
+      <div class="container stack--loose stack">
+        <div class="section-head">
+          <p class="eyebrow"><span class="n">Checkout</span> Your bag</p>
+          <h1 class="t-h2 balance">Confirm your order.</h1>
+        </div>
 
         <!-- Empty state -->
-        <div id="empty-state" class="checkout-empty" style="display:none;">
-          <p>Your bag is empty. Everything in the shop is one tap away.</p>
-          <a href="./shop.html" class="btn btn--gold">Browse the Shop</a>
-          <a href="./track.html" class="text-link" style="margin-left:1.4rem;">Track an existing order</a>
+        <div id="empty-state" class="checkout-empty stack" style="display:none;">
+          <p class="t-deck">Your bag is empty. Everything in the shop is one tap away.</p>
+          <div class="cta-row">
+            <a href="./shop.html" class="btn">The shop</a>
+            <a href="./track.html" class="link">Track an existing order</a>
+          </div>
         </div>
 
         <!-- Checkout -->
-        <div id="checkout-shell" class="checkout-shell">
-          <div class="checkout-main">
+        <div id="checkout-shell" class="checkout-shell t">
+          <div class="checkout-main stack--loose stack">
 
             <div class="co-panel">
-              <h2 class="co-title">1 · Your bag</h2>
+              <h2 class="co-title t-label"><span class="n">01</span> Your bag</h2>
               <ul class="co-items" id="co-items"></ul>
             </div>
 
             <div class="co-panel">
-              <h2 class="co-title">2 · Your details</h2>
-              <div class="form-grid">
+              <h2 class="co-title t-label"><span class="n">02</span> Your details</h2>
+              <div class="row-2">
                 <div class="field">
+                  <label for="co-name">Full name</label>
                   <input type="text" id="co-name" required autocomplete="name">
-                  <label for="co-name">Full name *</label>
                   <p class="error-msg">Please enter your name.</p>
                 </div>
                 <div class="field">
-                  <input type="tel" id="co-phone" required autocomplete="tel">
-                  <label for="co-phone">Phone / WhatsApp *</label>
+                  <label for="co-phone">Phone or WhatsApp</label>
+                  <input type="tel" id="co-phone" required autocomplete="tel" inputmode="tel">
                   <p class="error-msg">Enter a valid phone number.</p>
                 </div>
               </div>
             </div>
 
             <div class="co-panel">
-              <h2 class="co-title">3 · Pickup or delivery</h2>
+              <h2 class="co-title t-label"><span class="n">03</span> Collect or deliver</h2>
               <div class="co-choice" role="radiogroup" aria-label="Pickup or delivery">
-                <label class="co-chip is-active">
+                <label class="choice co-chip is-active">
                   <input type="radio" name="method" value="pickup" checked>
-                  <strong>Pickup, free</strong>
-                  <span>Collect from the shop, Cantonments, Accra</span>
+                  <span class="mark"></span>
+                  <span><strong>Collect, free</strong><span class="t-cap">From the studio, 54 Fifth Circular Road, Cantonments</span></span>
                 </label>
-                <label class="co-chip">
+                <label class="choice co-chip">
                   <input type="radio" name="method" value="delivery">
-                  <strong>Delivery, GHS 30</strong>
-                  <span>Within Accra, same day where possible</span>
+                  <span class="mark"></span>
+                  <span><strong>Delivery, GHS 30</strong><span class="t-cap">Within Accra, same day where possible</span></span>
                 </label>
               </div>
-              <div class="field" id="area-field" style="display:none; margin-top:1rem;">
+              <div class="field" id="area-field" style="display:none; margin-top: var(--s-5);">
+                <label for="co-area">Delivery area, for example East Legon</label>
                 <input type="text" id="co-area">
-                <label for="co-area">Delivery area (e.g. East Legon) *</label>
                 <p class="error-msg">Please tell us where to deliver.</p>
               </div>
             </div>
 
             <div class="co-panel">
-              <h2 class="co-title">4 · Payment</h2>
+              <h2 class="co-title t-label"><span class="n">04</span> Payment</h2>
               <div class="co-choice" role="radiogroup" aria-label="Payment method">
-                <label class="co-chip is-active">
+                <label class="choice co-chip is-active">
                   <input type="radio" name="pay" value="momo" checked>
-                  <strong>Mobile Money</strong>
-                  <span>MTN MoMo · Telecel Cash · AT Money</span>
+                  <span class="mark"></span>
+                  <span><strong>Mobile Money</strong><span class="t-cap">MTN MoMo, Telecel Cash, AT Money</span></span>
                 </label>
-                <label class="co-chip">
+                <label class="choice co-chip">
                   <input type="radio" name="pay" value="card">
-                  <strong>Card</strong>
-                  <span>Visa or Mastercard</span>
+                  <span class="mark"></span>
+                  <span><strong>Card</strong><span class="t-cap">Visa or Mastercard</span></span>
                 </label>
-                <label class="co-chip">
+                <label class="choice co-chip">
                   <input type="radio" name="pay" value="pickup">
-                  <strong>Pay on pickup</strong>
-                  <span>Cash or MoMo at the counter</span>
+                  <span class="mark"></span>
+                  <span><strong>Pay on collection</strong><span class="t-cap">Cash or MoMo at the studio</span></span>
                 </label>
               </div>
 
-              <div id="momo-fields" style="margin-top:1rem;">
-                <div class="form-grid">
+              <div id="momo-fields" style="margin-top: var(--s-5);">
+                <div class="row-2">
                   <div class="field">
+                    <label for="co-network" class="is-fixed">Network</label>
                     <select id="co-network">
                       <option>MTN MoMo</option>
                       <option>Telecel Cash</option>
                       <option>AT Money</option>
                     </select>
-                    <label for="co-network" class="is-fixed">Network</label>
-                    <svg class="select-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
                   </div>
                   <div class="field">
+                    <label for="co-momo">MoMo number</label>
                     <input type="tel" id="co-momo" inputmode="numeric">
-                    <label for="co-momo">MoMo number *</label>
                     <p class="error-msg">Enter the number to bill.</p>
                   </div>
                 </div>
               </div>
 
-              <div id="card-fields" style="display:none; margin-top:1rem;">
-                <div class="form-grid">
-                  <div class="field span-2">
-                    <input type="text" id="co-card" inputmode="numeric" placeholder=" ">
-                    <label for="co-card">Card number *</label>
-                    <p class="error-msg">Enter a card number.</p>
+              <div id="card-fields" style="display:none; margin-top: var(--s-5);">
+                <div class="field">
+                  <label for="co-card">Card number</label>
+                  <input type="text" id="co-card" inputmode="numeric" autocomplete="off">
+                  <p class="error-msg">Enter a card number.</p>
+                </div>
+                <div class="row-2">
+                  <div class="field">
+                    <label for="co-exp">Expiry, MM/YY</label>
+                    <input type="text" id="co-exp" autocomplete="off">
                   </div>
                   <div class="field">
-                    <input type="text" id="co-exp" placeholder=" ">
-                    <label for="co-exp">Expiry (MM/YY)</label>
-                  </div>
-                  <div class="field">
-                    <input type="text" id="co-cvv" inputmode="numeric" placeholder=" ">
                     <label for="co-cvv">CVV</label>
+                    <input type="text" id="co-cvv" inputmode="numeric" autocomplete="off">
                   </div>
                 </div>
               </div>
 
-              <p class="co-demo-note">Demo payment, no real money moves. The live site connects to Paystack / Hubtel for real MoMo and card charges.</p>
+              <p class="co-demo-note t-cap">Demo payment, no real money moves. The live site connects to Paystack or Hubtel for real MoMo and card charges.</p>
             </div>
           </div>
 
           <aside class="co-summary">
-            <h3>Order Summary</h3>
+            <p class="eyebrow">Order summary</p>
             <ul class="co-lines" id="co-lines"></ul>
-            <div class="co-line-total">
-              <span>Subtotal</span><span id="co-subtotal">GHS 0</span>
-            </div>
-            <div class="co-line-total">
-              <span>Delivery</span><span id="co-delivery">Free</span>
-            </div>
-            <div class="co-grand">
-              <span>Total</span><span id="co-total">GHS 0</span>
-            </div>
-            <button class="btn btn--gold" id="co-pay" style="width:100%;">Pay &amp; Place Order</button>
-            <p class="co-note">You will get an order number immediately and can track every step on the Track Order page.</p>
+            <div class="co-line-total"><span>Subtotal</span><span id="co-subtotal">GHS 0</span></div>
+            <div class="co-line-total"><span>Delivery</span><span id="co-delivery">Free</span></div>
+            <div class="co-grand"><span class="t-label">Total</span><span id="co-total">GHS 0</span></div>
+            <button class="btn btn--wide" id="co-pay">Pay and place order</button>
+            <p class="co-note t-cap">You get an order number at once and can follow every step on the tracking page.</p>
           </aside>
         </div>
 
         <!-- Success -->
-        <div id="success-state" class="co-success" style="display:none;">
-          <div class="mark">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M4 12.5l5 5L20 6.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </div>
-          <h2>Order placed, thank you!</h2>
-          <p>Your order number is</p>
+        <div id="success-state" class="co-success stack" style="display:none;">
+          <div class="mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M4 12.5l5 5L20 6.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <h2 class="t-h3">Order placed, thank you.</h2>
+          <p class="t-cap">Your order number</p>
           <div class="co-order-id" id="success-id">BES-000000</div>
           <p id="success-sub">We have received your order and will confirm it shortly.</p>
-          <div class="btn-row" style="margin-top:1.8rem; justify-content:center;">
-            <a href="#" id="success-track" class="btn btn--gold">Track This Order
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </a>
-            <a href="./shop.html" class="btn btn--ghost-dark">Keep Shopping</a>
+          <div class="cta-row">
+            <a href="#" id="success-track" class="btn">Track this order</a>
+            <a href="./shop.html" class="btn btn--ghost">Keep shopping</a>
           </div>
         </div>
 
@@ -255,30 +281,70 @@
   <div class="pay-modal" id="pay-modal" role="dialog" aria-label="Processing payment" aria-hidden="true">
     <div class="pay-modal-box">
       <div class="pay-spinner" aria-hidden="true"></div>
-      <h3 id="pay-step">Contacting your network…</h3>
-      <p id="pay-detail">Please wait</p>
-      <span class="pay-demo-tag">Demo, no real charge</span>
+      <h3 id="pay-step" class="t-h3">Contacting your network</h3>
+      <p id="pay-detail" class="t-cap">Please wait</p>
+      <span class="pay-demo-tag t-label">Demo, no real charge</span>
     </div>
   </div>
 
-  <!-- ============ FOOTER ============ -->
-  <footer class="site-footer">
+  <!--CHROME:foot-->
+  <footer class="site-footer grain" data-ground="ink">
     <div class="container">
-      <div class="footer-bottom" style="border-top:none; padding-top:0;">
-        <span>© <span data-year>2026</span> Bēsia Beauty Studio. All rights reserved.</span>
-        <span class="footer-credit">Designed &amp; Developed by <a href="https://perkins-swart.vercel.app" target="_blank" rel="noopener">Perkins Creative</a></span>
+      <div class="t t-colophon">
+        <div class="foot-brand">
+          <a class="foot-logo" href="./index.html" aria-label="Bēsia, home">Bēsia</a>
+          <p class="t-cap">Ghana's home of fusion extensions. UK-certified KTips and microlinks, a vegan, formaldehyde-free texture system, and treatment-led scalp and bond care.</p>
+          <p class="foot-line">Nourish your roots. Protect your peace.</p>
+        </div>
+        <div class="foot-col">
+          <p class="t-label foot-head">In this issue</p>
+          <ul>
+            <li><a href="./services.html">Services</a></li>
+            <li><a href="./shop.html">Shop</a></li>
+            <li><a href="./classes.html">Classes</a></li>
+            <li><a href="./packages.html">Packages</a></li>
+            <li><a href="./gallery.html">Gallery</a></li>
+            <li><a href="./about.html">About</a></li>
+            <li><a href="./track.html">Track an order</a></li>
+          </ul>
+        </div>
+        <div class="foot-col">
+          <p class="t-label foot-head">Visit</p>
+          <ul>
+            <li><span>54 Fifth Circular Road<br>Cantonments, Accra</span></li>
+            <li><span>Monday to Saturday, 9am to 7pm<br>Closed Sunday</span></li>
+            <li><a href="https://maps.google.com/?q=54+Fifth+Circular+Road+Cantonments+Accra" target="_blank" rel="noopener">Directions</a></li>
+          </ul>
+        </div>
+        <div class="foot-col">
+          <p class="t-label foot-head">Write</p>
+          <ul>
+            <li><a href="tel:+233240787993">024 078 7993</a></li>
+            <li><a href="https://wa.me/233240787993?text=Hello%20B%C4%93sia%20Beauty%20Studio%2C%20I%20would%20like%20to%20book%20an%20appointment." target="_blank" rel="noopener">WhatsApp</a></li>
+            <li><a href="mailto:hello@besia.co">hello@besia.co</a></li>
+            <li><a href="#" data-open-chat>Ask the studio</a></li>
+            <li><a href="https://instagram.com/besia.hq" target="_blank" rel="noopener">Instagram</a></li>
+            <li><a href="https://www.tiktok.com/@besiahq" target="_blank" rel="noopener">TikTok</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="foot-mark" aria-hidden="true">Bēsia</div>
+      <div class="foot-bottom">
+        <span>Bēsia Beauty Studio, Cantonments, Accra. Issue 01. All rights reserved, <span data-year>2026</span>.</span>
+        <span class="foot-credit">Designed and built by <a href="https://perkins-swart.vercel.app" target="_blank" rel="noopener">Perkins Creative</a></span>
       </div>
     </div>
   </footer>
 
-  <!-- Scripts -->
   <!-- data first: every other script reads from it -->
   <script src="./js/besia-data.js" defer></script>
   <script src="./js/besia-live.js" defer></script>
   <script src="./js/store.js" defer></script>
-  <script src="./js/main.js" defer></script>
+  <script src="./js/site.js" defer></script>
+  <script src="./js/reel.js" defer></script>
   <script src="./js/site-sync.js" defer></script>
   <script src="./js/offline.js" defer></script>
+<!--/CHROME:foot-->
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       var S = window.BesiaStore;
@@ -342,11 +408,11 @@
         document.getElementById('co-total').textContent = money(sub + fee);
         var btn = document.getElementById('co-pay');
         btn.textContent = payType() === 'pickup'
-          ? 'Place Order, ' + money(sub + fee)
-          : 'Pay ' + money(sub + fee) + ' & Place Order';
+          ? 'Place order, ' + money(sub + fee)
+          : 'Pay ' + money(sub + fee) + ' and place order';
       }
 
-      // choice chips
+      /* choice rows */
       document.querySelectorAll('.co-choice').forEach(function (group) {
         group.querySelectorAll('.co-chip').forEach(function (chip) {
           chip.addEventListener('click', function () {
@@ -423,25 +489,25 @@
           success.style.display = 'block';
           document.getElementById('success-id').textContent = order.id;
           document.getElementById('success-sub').textContent = order.method === 'delivery'
-            ? 'We will confirm it shortly and deliver to ' + (order.area || 'your area') + '. Save your order number.'
-            : 'We will confirm it shortly and tell you when it is ready for pickup. Save your order number.';
+            ? 'We will confirm it shortly and deliver to ' + (order.area || 'your area') + '. Keep your order number.'
+            : 'We will confirm it shortly and tell you when it is ready to collect. Keep your order number.';
           document.getElementById('success-track').href = './track.html?order=' + encodeURIComponent(order.id);
           window.scrollTo({ top: 0, behavior: 'smooth' });
         };
 
         if (pay === 'pickup') { finish(); return; }
 
-        // Simulated payment hand-off
+        /* Simulated payment hand-off */
         modal.classList.add('is-open');
         modal.setAttribute('aria-hidden', 'false');
         if (pay === 'momo') {
-          step('Contacting ' + document.getElementById('co-network').value + '…', 'Sending a payment prompt to ' + document.getElementById('co-momo').value);
-          setTimeout(function () { step('Prompt sent to your phone', 'Approve the payment with your PIN, in this demo it approves itself'); }, 1400);
-          setTimeout(function () { step('Payment received ✓', 'Placing your order…'); }, 3000);
+          step('Contacting ' + document.getElementById('co-network').value, 'Sending a payment prompt to ' + document.getElementById('co-momo').value);
+          setTimeout(function () { step('Prompt sent to your phone', 'Approve the payment with your PIN. In this demo it approves itself.'); }, 1400);
+          setTimeout(function () { step('Payment received', 'Placing your order'); }, 3000);
           setTimeout(finish, 4000);
         } else {
-          step('Securing your card…', 'Talking to the payment gateway');
-          setTimeout(function () { step('Payment approved ✓', 'Placing your order…'); }, 1800);
+          step('Securing your card', 'Talking to the payment gateway');
+          setTimeout(function () { step('Payment approved', 'Placing your order'); }, 1800);
           setTimeout(finish, 2800);
         }
       });

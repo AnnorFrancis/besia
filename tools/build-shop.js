@@ -1,7 +1,16 @@
 /* ============================================================
-   build-shop.js, regenerates the shop grid on shop.html from
-   js/besia-data.js. Same contract as build-services.js: one
-   source of truth, static HTML out.
+   build-shop.js, regenerates the hair library on shop.html from
+   js/besia-data.js. Same contract as build-services.js: one source
+   of truth, static HTML out.
+
+   Hooks kept for the page script, js/store.js and js/site-sync.js:
+     [data-shop-filter]                         the filter chips
+     #shop-grid .product-card[data-cat][data-item]
+     .product-img img, .product-tag, .product-flag
+     .product-price[data-price-slot], .product-cta[data-cta-slot]
+     button[data-add="name|price"]
+   site-sync.js injects cards of the same shape for items the owner
+   adds in the manager, so these class names are a contract.
 
    Run:  node tools/build-shop.js
    ============================================================ */
@@ -11,7 +20,7 @@ const path = require('path');
 const ROOT = path.join(__dirname, '..');
 const B = require(path.join(ROOT, 'js', 'besia-data.js'));
 
-const esc = s => String(s)
+const esc = s => String(s == null ? '' : s)
   .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
   .replace(/"/g, '&quot;');
 
@@ -31,8 +40,9 @@ const ALT = {
   'images/wigs/wig-4.jpg': 'Honey ginger straight wig with a dark root melt',
   'images/wigs/wig-5.jpg': 'Honey blonde ombré straight wig, back view',
   'images/wigs/wig-6.jpg': 'Jet black body-wave unit worn long, back view',
-  'images/hair-care-cosmetics/care-1.jpg': 'Bottle of Moringa Ginseng follicle oil',
-  'images/hair-care-cosmetics/care-2.jpg': 'Moringa scalp oil jar with serum bottle',
+  'media/video/bottle-specimen-poster.webp': 'The frosted green Follicle Fuel Hair Growth Oil bottle',
+  'media/video/beard-oil-poster.webp': 'The amber Follicle Fuel Beard Oil bottle on terracotta sand',
+  'media/img/product-hair-botox.webp': 'The Bēsia Hair Botox pump bottle',
   'images/hair-care-cosmetics/care-3.jpg': 'Amber dropper bottle of flaxseed and aloe hair mask',
   'images/hair-care-cosmetics/care-4.jpg': 'K18 leave-in molecular repair pump bottle',
   'images/hair-care-cosmetics/care-5.jpg': 'Olaplex bond-repair bottle with botanicals',
@@ -44,25 +54,31 @@ const ALT = {
 };
 
 function filters() {
-  const out = ['          <button class="filter-btn is-active" data-shop-filter="all">Everything</button>'];
+  const out = ['          <button class="chip filter-btn is-active" data-shop-filter="all" aria-pressed="true">Everything <span class="n">' + B.products.length + '</span></button>'];
   B.productCategories.forEach(c => {
-    out.push('          <button class="filter-btn" data-shop-filter="' + c.key + '">' + esc(c.label) + '</button>');
+    const n = B.products.filter(p => p.cat === c.key).length;
+    out.push('          <button class="chip filter-btn" data-shop-filter="' + c.key + '" aria-pressed="false">' + esc(c.label) + ' <span class="n">' + n + '</span></button>');
   });
+  out.push('          <span class="t-credit shop-count" id="shop-count" aria-live="polite">Showing ' + B.products.length + ' of ' + B.products.length + '</span>');
   return out.join('\n');
 }
 
 function cards() {
+  let i = 0;
   return B.productCategories.flatMap(cat =>
     B.products.filter(p => p.cat === cat.key).map(p => {
       const alt = ALT[p.img] || p.name;
       const pre = p.preorder;
+      const n = String(++i).padStart(2, '0');
       return `          <article class="product-card" data-cat="${p.cat}" data-kind="product" data-item="${esc(p.name)}" data-reveal>
-            <div class="product-img"><img src="./${p.img}" alt="${esc(alt)}" width="700" height="875" loading="lazy" decoding="async"><span class="product-tag">${esc(cat.label)}</span>${pre ? '<span class="product-flag">Launching soon</span>' : ''}</div>
+            <div class="product-img plate plate--3x4"><img src="./${p.img}" alt="${esc(alt)}" width="700" height="933" loading="lazy" decoding="async"><span class="product-tag t-credit"><span class="n">${n}</span> ${esc(cat.label)}</span>${pre ? '<span class="product-flag">Launching soon</span>' : ''}</div>
             <div class="product-body">
-              <h3 class="product-name">${esc(p.name)}</h3>
-              <p class="product-blurb">${esc(p.blurb)}</p>
-              <div class="product-price" data-price-slot>${B.money(p.price)}</div>
-              <div class="product-cta" data-cta-slot><button class="btn btn--ghost-dark" type="button" data-add="${esc(p.name)}|${p.price}">${pre ? 'Pre-order' : 'Add to Cart'}</button></div>
+              <h3 class="product-name t-h3">${esc(p.name)}</h3>
+              <p class="product-blurb t-cap">${esc(p.blurb)}</p>
+              <div class="product-foot">
+                <div class="product-price t-price" data-price-slot>${B.money(p.price)}</div>
+                <div class="product-cta" data-cta-slot><button class="btn btn--ghost btn--sm" type="button" data-add="${esc(p.name)}|${p.price}">${pre ? 'Reserve' : 'Add to bag'}</button></div>
+              </div>
             </div>
           </article>`;
     })

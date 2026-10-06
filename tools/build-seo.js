@@ -23,7 +23,7 @@ const SITE_URL = 'https://annorfrancis.github.io/besia';
    robots.txt back up. Nothing else changes. */
 const IS_PROPOSAL = true;
 
-const OG_IMAGE = '/images/studio/studio-reception.jpg';
+const OG_IMAGE = '/media/img/abeauty-ritual.webp';   /* her own A-Beauty campaign, landscape, 1600 by 900 */
 
 const PAGES = {
   'index.html': {
@@ -32,42 +32,42 @@ const PAGES = {
     prio: '1.0'
   },
   'services.html': {
-    title: 'Services & Prices · Bēsia Beauty Studio, Accra',
-    desc: 'All 83 services with published prices and durations: fusion extensions, Nanoplasty and Hair Botox, Olaplex and K18 bond repair, colour, cutting, Curl Revive and silk press.',
+    title: 'Services & Prices · Bēsia Beauty Studio, Cantonments Accra',
+    desc: 'Eighty-three services across fourteen disciplines, every price published: fusion extensions, Nanoplasty and Hair Botox, scalp and bond repair, colour, cutting, braids, lashes, facials and more.',
     prio: '0.9'
   },
   'shop.html': {
-    title: 'Shop · Bēsia Beauty Studio',
-    desc: 'The same hair we install and the products we treat with: KTip bundles, tape-in wefts, HD closures and frontals, glueless units, flaxseed masks, K18 and Olaplex. Pay by Mobile Money or card.',
+    title: 'Shop · Follicle Fuel, Hair Botox and the Hair Library · Bēsia Beauty Studio',
+    desc: 'Follicle Fuel hair growth oil and beard oil, Bēsia Hair Botox, and the hair we install: KTip bundles, tape-ins, closures, frontals and glueless units. Mobile Money or card, delivered in Accra.',
     prio: '0.9'
   },
   'gallery.html': {
-    title: 'Look Book · Bēsia Beauty Studio, Cantonments',
-    desc: 'Client looks and the studio itself, fusion extensions, braids and cornrows, lashes and brows, photographed at 54 Fifth Circular Road, Cantonments, Accra.',
+    title: 'Gallery · The A-Beauty covers and the work · Bēsia Beauty Studio',
+    desc: 'The A-Beauty magazine covers, the studio on Fifth Circular Road, her campaigns and her films. Every picture is her own.',
     prio: '0.7'
   },
   'about.html': {
-    title: 'About · Bēsia Beauty Studio, Accra',
-    desc: "Ghana's home of fusion extensions and the first studio in the country to offer a vegan, formaldehyde-free straightening system. A beauty collaborative in Cantonments, Accra.",
+    title: 'About · The studio, Dana, the standard · Bēsia Beauty Studio',
+    desc: "Ghana's home of fusion extensions and the first studio in the country with a vegan, formaldehyde-free texture system. A studio in Cantonments built on one rule: hair health before the look.",
     prio: '0.7'
   },
   'packages.html': {
-    title: 'Packages & Price Builder · Bēsia Beauty Studio',
-    desc: 'Our own multi-service bundles: Curl Revive + Flax, Curl Revive with FlaxGRO and the Nanoplasty signature. Or build your own combination and see the total update live.',
+    title: 'Packages & The Hair Club · Bēsia Beauty Studio, Cantonments Accra',
+    desc: "Three of Bēsia's own treatment pairings at the price quoted in the studio, with the saving already in, and a price builder that totals any combination from the published menu.",
     prio: '0.8'
   },
   'classes.html': {
-    title: 'Classes · Learn Fusion Extensions & Hair Care at Bēsia, Accra',
-    desc: 'Train at Bēsia Beauty Studio in Cantonments, Accra. Six hands-on courses, fusion extensions, braiding, silk press, natural hair, colour, lashes and brows. Pay in full or pay half to reserve your seat.',
+    title: 'Classes · The School at Bēsia, Cantonments Accra',
+    desc: 'Train at Bēsia Beauty Studio in Cantonments, Accra. The Fusion Masterclass, texture systems, colour on textured hair, silk press, braiding, natural hair, lashes and brows, and evenings for clients. Pay in full or half to reserve your seat.',
     prio: '0.8'
   },
   'contact.html': {
-    title: 'Book an Appointment · Bēsia Beauty Studio, Cantonments Accra',
-    desc: 'Book at 54 Fifth Circular Road, Cantonments. Open Mon-Sat, 9am to 7pm. Get an instant estimate from our published prices, the first consultation is free.',
+    title: 'Book & Contact · Bēsia Beauty Studio, Cantonments Accra',
+    desc: 'Book an appointment at 54 Fifth Circular Road, Cantonments, Accra. Instant estimate from published prices, confirmed on WhatsApp. Open Monday to Saturday, 9am to 7pm.',
     prio: '0.9'
   },
-  'checkout.html': { title: 'Checkout · Bēsia Beauty Studio', desc: 'Review your bag, choose pickup or delivery, and pay by Mobile Money, card or on collection.', prio: '0.4', noindex: true },
-  'track.html': { title: 'Track Your Order · Bēsia Beauty Studio', desc: 'Enter your order number to follow it live, from confirmed through to collected or delivered.', prio: '0.4' }
+  'checkout.html': { title: 'Checkout · Bēsia Beauty Studio', desc: 'Confirm your order from the Bēsia shop. Pay by Mobile Money or card, collect in Cantonments or have it delivered in Accra.', prio: '0.4', noindex: true },
+  'track.html': { title: 'Track an order · Bēsia Beauty Studio', desc: 'Enter the order number from your checkout screen and follow your Bēsia shop order live.', prio: '0.4' }
 };
 
 const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
@@ -84,7 +84,7 @@ function jsonLd() {
     telephone: '+233' + b.phone.replace(/\D/g, '').replace(/^0/, ''),
     email: b.email,
     image: SITE_URL + OG_IMAGE,
-    priceRange: 'GHS 165–7000',
+    priceRange: 'GHS 165 to 7000',
     currenciesAccepted: b.currency,
     paymentAccepted: 'Cash, Mobile Money, Credit Card, Debit Card',
     address: {
@@ -143,8 +143,8 @@ for (const [file, meta] of Object.entries(PAGES)) {
     '  <meta property="og:description" content="' + esc(meta.desc) + '">\n' +
     '  <meta property="og:url" content="' + url + '">\n' +
     '  <meta property="og:image" content="' + SITE_URL + OG_IMAGE + '">\n' +
-    '  <meta property="og:image:width" content="1920">\n' +
-    '  <meta property="og:image:height" content="1080">\n' +
+    '  <meta property="og:image:width" content="1600">\n' +
+    '  <meta property="og:image:height" content="900">\n' +
     '  <meta property="og:locale" content="en_GH">\n' +
     '  <meta name="twitter:card" content="summary_large_image">\n' +
     '  <meta name="twitter:title" content="' + esc(meta.title) + '">\n' +

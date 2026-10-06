@@ -41,7 +41,7 @@
     lat: 5.57959508895874,
     lng: -0.1650283932685852,
 
-    /* When, Mon–Sat 9am–7pm, closed Sunday */
+    /* When, Mon to Sat 9am to 7pm, closed Sunday */
     openDays: [1, 2, 3, 4, 5, 6],
     openHour: 9,
     closeHour: 19,
@@ -292,8 +292,11 @@
     { cat:'wigs',       name:'Deep Wave Unit',                 price:2500, img:'images/wigs/wig-5.jpg',               blurb:'Defined deep wave that revives with water and product.' },
     { cat:'wigs',       name:'Pixie Curl Unit',                price:1650, img:'images/wigs/wig-6.jpg',               blurb:'Short, light and low maintenance. A holiday favourite.' },
 
-    { cat:'care', name:'Moringa Ginseng Follicle Fuel Beard Oil', price:180, img:'images/hair-care-cosmetics/care-1.jpg', blurb:'Moringa and ginseng for follicle strength. Launching soon, reserve yours.', preorder:true },
-    { cat:'care', name:'Moringa Root Fuel Scalp Oil',             price:220, img:'images/hair-care-cosmetics/care-2.jpg', blurb:'The scalp half of the Moringa line. Launching soon, reserve yours.', preorder:true },
+    /* Her own line. Names as printed on the bottles; prices are placeholders until she gives them.
+       The pictures are stills from her own films (media/video) and her Hair Botox slide. */
+    { cat:'care', name:'Moringa Ginseng Follicle Fuel Hair Growth Oil', price:220, img:'media/video/bottle-specimen-poster.webp', blurb:'Moringa and ginseng, for follicle strength and scalp health. Launching soon, reserve yours.', preorder:true },
+    { cat:'care', name:'Moringa Ginseng Follicle Fuel Beard Oil',       price:180, img:'media/video/beard-oil-poster.webp',       blurb:'The same formula in amber glass, for him. Launching soon, reserve yours.', preorder:true },
+    { cat:'care', name:'Bēsia Hair Botox, 250ml',                    price:650, img:'media/img/product-hair-botox.webp',        blurb:'A vegan, formaldehyde-free deep treatment, no botulinum toxin. The studio formula, to take home.', preorder:true },
     { cat:'care', name:'Flax Seed + Aloe Hair Mask',              price:190, img:'images/hair-care-cosmetics/care-3.jpg', blurb:'The in-house mask from our Flax Seed + Aloe treatment. Take it home.' },
     { cat:'care', name:'K18 Molecular Repair Leave-In',           price:650, img:'images/hair-care-cosmetics/care-4.jpg', blurb:'Keeps bond repair working between salon treatments.' },
     { cat:'care', name:'Olaplex No.3 Hair Perfector',             price:480, img:'images/hair-care-cosmetics/care-5.jpg', blurb:'The weekly at-home step after colour or texture work.' },
@@ -335,49 +338,88 @@
     note: 'Pay in full, or half to reserve your seat and the balance before the final day.'
   };
 
+  /* The School at Bēsia. Nine offerings in three groups; ids are stable
+     because the manager's student records point at them. Fees are
+     indicative bands for Cantonments and need the owner's sign-off. */
   var COURSES = [
     {
-      id: 'C-FUSION', name: 'Fusion Extensions Masterclass',
-      days: 5, fee: 4500, seats: 6, level: 'Advanced',
-      blurb: 'Our signature course. KTips and microlinks, start to finish.',
+      id: 'C-FUSION', name: 'The Fusion Masterclass', group: 'pro', flagship: true,
+      who: 'Working stylists', format: 'Cohort of four, three days, a model day on the third',
+      days: 3, fee: 8500, seats: 4, level: 'Professional',
+      blurb: 'KTips and microlinks, start to finish, the way the studio installs them. Tool kit, hair samples, manual and a certificate of completion from Bēsia Beauty Studio.',
+      includes: ['Tool kit and hair samples', 'Mannequin day, then a live model', 'Manual and aftercare sheets', 'Lunch, every day', 'Three months of WhatsApp mentoring'],
       learn: ['Reading density and deciding what hair can carry', 'Sectioning and bond placement',
               'KTip application and heat control', 'Microlink fitting and tension',
               'Safe removal without breakage', 'Aftercare you can teach your own clients']
     },
     {
-      id: 'C-BRAID', name: 'Braiding & Cornrows',
-      days: 10, fee: 2500, seats: 8, level: 'Beginner',
-      blurb: 'Start here if you are learning from scratch.',
-      learn: ['Parting clean and even', 'Tension that protects the edges', 'Feed-in cornrows',
-              'Large braids and updos', 'Speed without losing neatness', 'Pricing your own work']
+      id: 'C-TEXTURE', name: 'Texture Systems for Professionals', group: 'pro',
+      who: 'Stylists', format: 'Cohort of four, two days',
+      days: 2, fee: 7200, seats: 4, level: 'Professional',
+      blurb: 'Nanoplasty and Hair Botox: the vegan, formaldehyde-free systems the studio was first to bring to Ghana, taught with their safety protocol.',
+      includes: ['Starter volumes of both systems', 'Safety and ventilation protocol', 'Model day', 'Certificate of completion', 'Trade pricing afterwards'],
+      learn: ['Consultation and strand testing', 'Application and timing', 'Heat sealing without damage', 'Aftercare and rebooking', 'Pricing the service']
     },
     {
-      id: 'C-SILK', name: 'Silk Press & Blow Dry',
-      days: 3, fee: 1800, seats: 8, level: 'Beginner',
-      blurb: 'The Silkpress Xpress method, taught properly.',
-      learn: ['Washing and prepping for heat', 'Brush blow-dry technique',
-              'Heat settings by hair type', 'Pressing without heat damage', 'Finishing and shine']
-    },
-    {
-      id: 'C-CURL', name: 'Natural Hair & Curl Care',
-      days: 4, fee: 2200, seats: 8, level: 'Beginner',
-      blurb: 'Curl Revive, wash-and-go and cutting for texture.',
-      learn: ['Curl patterns and porosity', 'Wash-and-go that lasts', 'Steam and deep conditioning',
-              'Cutting curly and coily hair', 'Building a client home routine']
-    },
-    {
-      id: 'C-COLOUR', name: 'Colour Fundamentals',
-      days: 4, fee: 3000, seats: 6, level: 'Intermediate',
-      blurb: 'Colour on textured hair, without wrecking the bonds.',
+      id: 'C-COLOUR', name: 'Colour on Textured Hair', group: 'pro',
+      who: 'Stylists', format: 'Cohort of four, two days',
+      days: 2, fee: 4800, seats: 4, level: 'Professional',
+      blurb: 'Balayage, highlights and toning on dark and textured hair, without wrecking the bonds.',
+      includes: ['Colour kit', 'Model day', 'Certificate of completion', 'Lunch'],
       learn: ['Colour theory on dark hair', 'Lifting safely', 'Balayage and highlights',
               'Bond protection with Olaplex and K18', 'Correcting a colour that went wrong']
     },
     {
-      id: 'C-LASH', name: 'Lashes & Brows',
-      days: 3, fee: 2000, seats: 6, level: 'Beginner',
-      blurb: 'Classic, hybrid and volume sets, plus brow shaping.',
+      id: 'C-SILK', name: 'Silk Press and Blow Dry', group: 'pro',
+      who: 'Stylists', format: 'Cohort of six, one day',
+      days: 1, fee: 2800, seats: 6, level: 'Professional',
+      blurb: 'The Silkpress Xpress method, taught properly: a press that respects the curl underneath.',
+      includes: ['Heat tools guidance', 'Model', 'Certificate of completion', 'Lunch'],
+      learn: ['Washing and prepping for heat', 'Brush blow-dry technique',
+              'Heat settings by hair type', 'Pressing without heat damage', 'Finishing and shine']
+    },
+    {
+      id: 'C-BRAID', name: 'Braiding and Cornrows', group: 'pro',
+      who: 'Beginners and stylists', format: 'Cohort of six, two days',
+      days: 2, fee: 2400, seats: 6, level: 'Foundation',
+      blurb: 'Start here if you are learning from scratch. Clean parting, tension that protects the edges, speed without losing neatness.',
+      includes: ['Practice head and hair', 'Certificate of completion', 'Lunch'],
+      learn: ['Parting clean and even', 'Tension that protects the edges', 'Feed-in cornrows',
+              'Large braids and updos', 'Speed without losing neatness', 'Pricing your own work']
+    },
+    {
+      id: 'C-CURL', name: 'Natural Hair and Curl Care', group: 'pro',
+      who: 'Beginners and stylists', format: 'Cohort of six, one day',
+      days: 1, fee: 2600, seats: 6, level: 'Foundation',
+      blurb: 'Curl Revive, wash-and-go and cutting for texture.',
+      includes: ['Product kit', 'Model', 'Certificate of completion', 'Lunch'],
+      learn: ['Curl patterns and porosity', 'Wash-and-go that lasts', 'Steam and deep conditioning',
+              'Cutting curly and coily hair', 'Building a client home routine']
+    },
+    {
+      id: 'C-LASH', name: 'Lash and Brow Certificate', group: 'pro',
+      who: 'Beginners and brow artists', format: 'Cohort of four, two days',
+      days: 2, fee: 4000, seats: 4, level: 'Foundation',
+      blurb: 'Classic, hybrid and volume sets, lifts, lamination and brow shaping, with hygiene and patch testing throughout.',
+      includes: ['Practice kit', 'Certificate of completion', 'Lunch'],
       learn: ['Eye mapping', 'Isolation and placement', 'Classic, hybrid and volume sets',
               'Brow shaping to face shape', 'Hygiene and patch testing']
+    },
+    {
+      id: 'C-LEARN', name: 'Learn Your Hair', group: 'client',
+      who: 'Clients', format: 'An evening, six people',
+      days: 1, fee: 1000, seats: 6, level: 'For clients',
+      blurb: 'Two and a half hours with a stylist on your own hair: what it needs, what to stop doing, and a home routine written for you. Take-home kit with Follicle Fuel.',
+      includes: ['Take-home kit with Follicle Fuel', 'A written home routine', 'Tea'],
+      learn: ['Your curl pattern and porosity', 'Washing, detangling, protecting at night', 'What your scalp is telling you', 'Products worth buying and products to skip']
+    },
+    {
+      id: 'C-MOTHER', name: 'Mother and Daughter Curl Afternoon', group: 'client', unit: 'per pair',
+      who: 'Pairs, daughters from six', format: 'An afternoon, four pairs',
+      days: 1, fee: 1800, seats: 4, level: 'For clients',
+      blurb: 'An afternoon learning to care for curls together, mother and daughter: washing, detangling, two styles that last the week, and a curl-pattern card to keep.',
+      includes: ['Products used on the day', 'A light lunch', 'Curl-pattern card and a keepsake photograph'],
+      learn: ['Gentle detangling', 'Two protective styles', 'A wash-day routine that works for school weeks', 'Edges and ends']
     }
   ];
 

@@ -1,0 +1,135 @@
+/* ============================================================
+   BĒSIA, THE ISSUE: tokens
+   The only file allowed a colour literal. Every other stylesheet
+   reads colour through the ground it sits on: a section declares
+   data-ground, the ground sets --bg and the text colours that pass
+   WCAG on it, and components only ever write var(--fg), var(--fg-2),
+   var(--accent) and friends. Light text on a light ground cannot be
+   written by accident. tools/check-contrast.js proves every pair.
+
+   Palette, sampled from her world: the logo letters (Ink), the
+   Follicle Fuel bottle (Moss), the mirror on black (Espresso), the
+   beard oil sand and the A-Beauty covers (Clay), her cream plaster
+   (Ivory), her mood board (Oatmeal), the fluted oak wall (Oak), the
+   velvet sofa (Sage). Brass is the macron on the Ē, a rule and an
+   accent, never a ground.
+   ============================================================ */
+
+:root {
+  /* ---------- primitives ---------- */
+  --p-ink: #151B22;
+  --p-moss: #2E3A26;
+  --p-espresso: #261D17;
+  --p-clay: #7B3424;
+  --p-ivory: #F4EDE0;
+  --p-oatmeal: #DDD0BB;
+  --p-oak: #D6BC98;
+  --p-sage: #C8D0BC;
+  --p-brass: #C79A5E;
+  --p-brass-lit: #D8B070;
+  --p-brass-ink: #6F4A1B;
+  --p-white: #FFFFFF;
+  --p-black: #000000;
+
+  /* ---------- type scale (375px to 1440px) ---------- */
+  --t-mast: clamp(4.5rem, 1.86rem + 11.27vw, 12rem);
+  --t-cover: clamp(2.125rem, 0.937rem + 5.07vw, 5.5rem);
+  --t-chap: clamp(2.375rem, 1.1rem + 5.45vw, 6rem);
+  --t-numeral: clamp(3.5rem, 1.2rem + 9.8vw, 10rem);
+  --t-h2: clamp(1.875rem, 1.303rem + 2.44vw, 3.5rem);
+  --t-h3: clamp(1.188rem, 1.033rem + 0.657vw, 1.625rem);
+  --t-deck: clamp(1.125rem, 0.993rem + 0.563vw, 1.5rem);
+  --t-quote: clamp(1.625rem, 0.965rem + 2.82vw, 3.5rem);
+  --t-body: clamp(1rem, 0.978rem + 0.094vw, 1.063rem);
+  --t-cap: clamp(0.75rem, 0.73rem + 0.09vw, 0.8125rem);
+  --t-label: clamp(0.6875rem, 0.67rem + 0.09vw, 0.75rem);
+  --t-price: clamp(1rem, 0.96rem + 0.19vw, 1.125rem);
+  --t-price-lg: clamp(2.375rem, 1.95rem + 1.7vw, 3.5rem);
+
+  /* ---------- spacing ---------- */
+  --s-1: 4px;  --s-2: 8px;  --s-3: 12px; --s-4: 16px; --s-5: 24px;
+  --s-6: 32px; --s-7: 48px; --s-8: 64px; --s-9: 96px; --s-10: 128px;
+  --page: clamp(1rem, 0.12rem + 3.76vw, 3.5rem);
+  --section: clamp(4rem, 2.24rem + 7.51vw, 9rem);
+  --gap: clamp(12px, 0.4rem + 1.1vw, 24px);
+  --measure: 58ch;
+  --container: 1344px;
+  --plate-max: 576px;
+
+  /* ---------- motion ---------- */
+  --d-tap: 120ms;
+  --d-hover: 260ms;
+  --d-sheet: 420ms;
+  --d-sheet-out: 280ms;
+  --d-reveal: 850ms;
+  --d-wipe: 1100ms;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-soft: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-io: cubic-bezier(0.76, 0, 0.24, 1);
+
+  /* ---------- layers ---------- */
+  --z-dock: 60;
+  --z-nav: 80;
+  --z-sheet: 100;
+  --z-veil: 120;
+  --nav-h: 72px;
+  --nav-h-stuck: 56px;
+  --dock-h: 56px;
+  --offer-h: 0px;            /* written by js/site-sync.js when an offer bar is up */
+
+  /* ---------- surfaces ---------- */
+  --lift: 0 24px 48px -28px rgb(8 10 12 / 0.55);
+  --rim: inset 0 1px 0 rgb(255 255 255 / 0.22);
+  --blur-nav: 18px;
+  --blur-sheet: 24px;
+  --macron-w: 24px;
+  --macron-h: 2px;
+}
+
+/* ============================================================
+   Grounds. Each block sets the whole text palette for anything
+   inside it. Unlabelled content sits on Ivory.
+   ============================================================ */
+[data-ground], body {
+  --bg: var(--p-ivory);
+  --fg: #151B22;
+  --fg-2: #3D3A34;
+  --fg-3: #51493F;
+  --accent: #6F4A1B;
+  --on-accent: #F6F0E4;
+  --rule: rgb(21 27 34 / 0.14);
+  --rule-ui: #766C5B;
+  --focus: #151B22;
+  --halo: #F4EDE0;
+  --scrim: rgb(21 27 34 / 0.82);
+  --wc: 0;
+  --dark: 0;
+  --glass: rgb(244 237 224 / 0.86);
+}
+[data-ground="ivory"]   { --bg: var(--p-ivory); }
+[data-ground="oatmeal"] { --bg: var(--p-oatmeal); --halo: #DDD0BB; }
+[data-ground="oak"]     { --bg: var(--p-oak);     --halo: #D6BC98; --fg-3: #4A4236; --accent: #5E3E14; --rule-ui: #6B5E4A; }
+[data-ground="sage"]    { --bg: var(--p-sage);    --halo: #C8D0BC; --fg-3: #4A4A3E; --rule-ui: #6E6F5E; }
+
+[data-ground="ink"], [data-ground="moss"], [data-ground="espresso"], [data-ground="clay"], [data-ground="photo"] {
+  --bg: var(--p-ink);
+  --fg: #F6F0E4;
+  --fg-2: #D8D1C2;
+  --fg-3: #B5AD9D;
+  --accent: #D8B070;
+  --on-accent: #151B22;
+  --rule: rgb(246 240 228 / 0.14);
+  --rule-ui: #7B7F72;
+  --focus: #F6F0E4;
+  --halo: #151B22;
+  --scrim: rgb(21 27 34 / 0.82);
+  --wc: 40;
+  --dark: 1;
+  --glass: rgb(21 27 34 / 0.72);
+}
+[data-ground="moss"]     { --bg: var(--p-moss);     --halo: #2E3A26; --rule-ui: #8A9080; --scrim: rgb(46 58 38 / 0.84); --glass: rgb(46 58 38 / 0.74); }
+[data-ground="espresso"] { --bg: var(--p-espresso); --halo: #261D17; --scrim: rgb(38 29 23 / 0.84); --glass: rgb(38 29 23 / 0.74); }
+[data-ground="clay"]     { --bg: var(--p-clay);     --halo: #7B3424; --fg-3: #CDC3B1; --accent: #E4BF84; --rule-ui: #C2AD98; --scrim: rgb(123 52 36 / 0.86); --glass: rgb(123 52 36 / 0.78); }
+[data-ground="photo"]    { --bg: var(--p-ink); }
+
+[data-ground] { background: var(--bg); color: var(--fg); }

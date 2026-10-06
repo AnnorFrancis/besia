@@ -1,0 +1,245 @@
+{
+ "abeauty-ritual": {
+  "w": 1600,
+  "h": 900,
+  "wSm": 720,
+  "hSm": 405,
+  "kb": 213,
+  "kbSm": 47,
+  "note": "Two women in kente gowns pouring water between bowls, desert, pink walls. Landscape, no text"
+ },
+ "abeauty-cover-terracotta": {
+  "w": 1068,
+  "h": 1600,
+  "wSm": 480,
+  "hSm": 720,
+  "kb": 161,
+  "kbSm": 40,
+  "note": "A-Beauty magazine cover, cowrie braids, terracotta. Title in the picture"
+ },
+ "abeauty-cover-river": {
+  "w": 1068,
+  "h": 1600,
+  "wSm": 480,
+  "hSm": 720,
+  "kb": 221,
+  "kbSm": 55,
+  "note": "A-Beauty magazine cover, river boat. Title in the picture"
+ },
+ "abeauty-cover-oranges": {
+  "w": 1068,
+  "h": 1600,
+  "wSm": 480,
+  "hSm": 720,
+  "kb": 302,
+  "kbSm": 68,
+  "note": "A-Beauty magazine cover, oranges and ochre. Title in the picture"
+ },
+ "editorial-curls-sky": {
+  "w": 1068,
+  "h": 1600,
+  "wSm": 480,
+  "hSm": 720,
+  "kb": 108,
+  "kbSm": 22,
+  "note": "Woman with curls against a deep blue sky"
+ },
+ "editorial-white-terracotta": {
+  "w": 1290,
+  "h": 1600,
+  "wSm": 581,
+  "hSm": 720,
+  "kb": 92,
+  "kbSm": 26,
+  "note": "Woman in a white ruffled shirt on terracotta"
+ },
+ "editorial-hair-story": {
+  "w": 1150,
+  "h": 1600,
+  "wSm": 518,
+  "hSm": 720,
+  "kb": 123,
+  "kbSm": 29,
+  "note": "Balayage blowout, \"your hair story\""
+ },
+ "editorial-curls-highlights": {
+  "w": 1600,
+  "h": 1370,
+  "wSm": 720,
+  "hSm": 617,
+  "kb": 247,
+  "kbSm": 57,
+  "note": "Curly highlights, close"
+ },
+ "lifestyle-sunset": {
+  "w": 1068,
+  "h": 1600,
+  "wSm": 480,
+  "hSm": 720,
+  "kb": 75,
+  "kbSm": 18,
+  "note": "Woman in a white robe at sunset by a fire bowl. Campaign image, not a treatment"
+ },
+ "model-profile-sleek": {
+  "w": 850,
+  "h": 1600,
+  "wSm": 382,
+  "hSm": 720,
+  "kb": 47,
+  "kbSm": 13,
+  "note": "Sleek profile, lifted from Hair Botox slide 06"
+ },
+ "texture-curls": {
+  "w": 884,
+  "h": 1600,
+  "wSm": 398,
+  "hSm": 720,
+  "kb": 94,
+  "kbSm": 32,
+  "note": "Wet defined curls, lifted from Hair Botox slide 09"
+ },
+ "editorial-curls-portrait": {
+  "w": 684,
+  "h": 1600,
+  "wSm": 308,
+  "hSm": 720,
+  "kb": 53,
+  "kbSm": 18,
+  "note": "Curly portrait in a cream vest, lifted from slide 02. Small source, restored 4x"
+ },
+ "editorial-curls-smile": {
+  "w": 763,
+  "h": 1600,
+  "wSm": 343,
+  "hSm": 720,
+  "kb": 75,
+  "kbSm": 25,
+  "note": "Smiling curly portrait, lifted from slide 05. Tiny source, phone sizes only"
+ },
+ "studio-push-door": {
+  "w": 1200,
+  "h": 1600,
+  "wSm": 540,
+  "hSm": 720,
+  "kb": 103,
+  "kbSm": 26,
+  "note": "Woman at the PUSH door"
+ },
+ "studio-logo-wall-1": {
+  "w": 900,
+  "h": 1600,
+  "wSm": 405,
+  "hSm": 720,
+  "kb": 60,
+  "kbSm": 17,
+  "note": "Woman at the fluted oak BESIA logo wall"
+ },
+ "studio-logo-wall-2": {
+  "w": 1200,
+  "h": 1600,
+  "wSm": 540,
+  "hSm": 720,
+  "kb": 99,
+  "kbSm": 31,
+  "note": "Woman at the logo wall, second"
+ },
+ "studio-logo-wall-3": {
+  "w": 1200,
+  "h": 1600,
+  "wSm": 540,
+  "hSm": 720,
+  "kb": 117,
+  "kbSm": 30,
+  "note": "Woman at the logo wall, third"
+ },
+ "studio-mirror-chair": {
+  "w": 1290,
+  "h": 1600,
+  "wSm": 581,
+  "hSm": 720,
+  "kb": 101,
+  "kbSm": 25,
+  "note": "Model in the salon chair, ornate gold mirror, black ground"
+ },
+ "studio-lounge": {
+  "w": 1308,
+  "h": 1600,
+  "wSm": 588,
+  "hSm": 720,
+  "kb": 80,
+  "kbSm": 24,
+  "note": "Woman in the studio lounge"
+ },
+ "product-model-waves": {
+  "w": 1083,
+  "h": 1600,
+  "wSm": 487,
+  "hSm": 720,
+  "kb": 55,
+  "kbSm": 17,
+  "note": "Model with long waves holding Follicle Fuel"
+ },
+ "product-model-blush": {
+  "w": 1600,
+  "h": 1600,
+  "wSm": 720,
+  "hSm": 720,
+  "kb": 143,
+  "kbSm": 34,
+  "note": "Smiling woman holding Follicle Fuel on blush"
+ },
+ "product-hair-botox": {
+  "w": 817,
+  "h": 1600,
+  "wSm": 367,
+  "hSm": 720,
+  "kb": 37,
+  "kbSm": 12,
+  "note": "Hair Botox pump bottle, lifted from slide 07"
+ },
+ "still-travertine": {
+  "w": 1600,
+  "h": 1498,
+  "wSm": 720,
+  "hSm": 674,
+  "kb": 13,
+  "kbSm": 4,
+  "note": "Travertine bowl, mood board tile"
+ },
+ "still-tools": {
+  "w": 1600,
+  "h": 1362,
+  "wSm": 720,
+  "hSm": 613,
+  "kb": 37,
+  "kbSm": 12,
+  "note": "Scissors and brushes on oatmeal, mood board tile"
+ },
+ "still-dried-flowers": {
+  "w": 1600,
+  "h": 1395,
+  "wSm": 720,
+  "hSm": 628,
+  "kb": 108,
+  "kbSm": 34,
+  "note": "Dried flowers on espresso, mood board tile"
+ },
+ "moodboard-model": {
+  "w": 1600,
+  "h": 1059,
+  "wSm": 720,
+  "hSm": 477,
+  "kb": 60,
+  "kbSm": 18,
+  "note": "Blonde balayage profile, mood board tile"
+ },
+ "still-comb": {
+  "w": 785,
+  "h": 1600,
+  "wSm": 353,
+  "hSm": 720,
+  "kb": 90,
+  "kbSm": 29,
+  "note": "Wide-tooth comb in hair, lifted from slide 04. Tiny source, phone sizes only"
+ }
+}

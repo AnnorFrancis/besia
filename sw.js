@@ -4,13 +4,56 @@
    Keeps the website and the Studio Manager working when the power
    or the network goes. Regenerated on every build.
    ============================================================ */
-const VERSION = '64548673';
+const VERSION = 'b63a3c91';
 const CACHE = 'besia-' + VERSION;
 
 const PRECACHE = [
   "./",
   "404.html",
   "about.html",
+  "assets/icons/favicon.svg",
+  "checkout.html",
+  "classes.html",
+  "contact.html",
+  "css/animations.css",
+  "css/editorial.css",
+  "css/issue.css",
+  "css/issue/base.css",
+  "css/issue/components.css",
+  "css/issue/pages.css",
+  "css/issue/templates.css",
+  "css/issue/tokens.css",
+  "css/style.css",
+  "fonts/montserrat-latin-ext.woff2",
+  "fonts/montserrat-latin.woff2",
+  "fonts/montserrat-macron.woff2",
+  "gallery.html",
+  "index.html",
+  "js/ai-chat.js",
+  "js/animations.js",
+  "js/besia-data.js",
+  "js/besia-live.js",
+  "js/booking-cart.js",
+  "js/booking.js",
+  "js/classes.js",
+  "js/gallery.js",
+  "js/main.js",
+  "js/offline.js",
+  "js/reel.js",
+  "js/site-sync.js",
+  "js/site.js",
+  "js/slides.js",
+  "js/store.js",
+  "offline.html",
+  "packages.html",
+  "services.html",
+  "shop.html",
+  "track.html"
+];
+
+/* The Studio Manager's shell, fetched into the cache the first time an
+   admin page is opened, never on the public site. */
+const ADMIN = [
   "admin/activity.html",
   "admin/balances.html",
   "admin/bookings.html",
@@ -31,45 +74,13 @@ const PRECACHE = [
   "admin/staff.html",
   "admin/stock.html",
   "admin/suppliers.html",
-  "assets/icons/favicon.svg",
-  "checkout.html",
-  "classes.html",
-  "contact.html",
   "css/admin.css",
-  "css/animations.css",
-  "css/editorial.css",
-  "css/style.css",
-  "fonts/montserrat-latin-ext.woff2",
-  "fonts/montserrat-latin.woff2",
-  "gallery.html",
-  "index.html",
   "js/admin-ask.js",
   "js/admin-catalogue.js",
   "js/admin-pages.js",
-  "js/admin.js",
-  "js/ai-chat.js",
-  "js/animations.js",
-  "js/besia-data.js",
-  "js/besia-live.js",
-  "js/booking-cart.js",
-  "js/booking.js",
-  "js/classes.js",
-  "js/gallery.js",
-  "js/main.js",
-  "js/offline.js",
-  "js/site-sync.js",
-  "js/store.js",
-  "offline.html",
-  "packages.html",
-  "services.html",
-  "shop.html",
-  "track.html",
-  "images/studio/studio-reception.jpg",
-  "images/studio/studio-nook.jpg",
-  "images/studio/studio-wash.jpg",
-  "images/studio/studio-corner.jpg",
-  "images/studio/studio-branding.jpg"
+  "js/admin.js"
 ];
+const IMAGE_CACHE_MAX = 80;
 
 self.addEventListener('install', event => {
   event.waitUntil(
@@ -92,6 +103,16 @@ self.addEventListener('message', e => {
   if (e.data === 'skip-waiting') self.skipWaiting();
 });
 
+/* Photographs are cached as they are seen; keep the newest eighty so
+   the cache cannot grow without limit on a phone. */
+function trimImages(c) {
+  return c.keys().then(keys => {
+    const imgs = keys.filter(k => /\.(webp|jpe?g|png|gif|avif)$/i.test(new URL(k.url).pathname));
+    const extra = imgs.length - IMAGE_CACHE_MAX;
+    return extra > 0 ? Promise.all(imgs.slice(0, extra).map(k => c.delete(k))) : null;
+  });
+}
+
 self.addEventListener('fetch', event => {
   const req = event.request;
   if (req.method !== 'GET') return;
@@ -99,9 +120,21 @@ self.addEventListener('fetch', event => {
   const url = new URL(req.url);
   if (url.origin !== self.location.origin) return;   /* fonts and CDNs handle themselves */
 
+  /* Films are never answered here. Safari asks for them in byte ranges
+     and expects 206 replies; a cached full 200 breaks playback. They
+     are also the heaviest thing on the site, not worth a cache slot. */
+  if (req.headers.has('range') || /\.(mp4|webm)$/i.test(url.pathname)) return;
+
   /* Pages: try the network so a fresh deploy is picked up, fall back to
      the cache when there is nothing to reach. */
   if (req.mode === 'navigate') {
+    if (/\/admin\//.test(url.pathname)) {
+      event.waitUntil(caches.open(CACHE).then(c => c.keys().then(keys => {
+        const have = new Set(keys.map(k => new URL(k.url).pathname));
+        const missing = ADMIN.filter(f => !have.has(new URL(f, self.location.href).pathname));
+        return Promise.allSettled(missing.map(f => c.add(f)));
+      })));
+    }
     event.respondWith(
       fetch(req)
         .then(res => {
@@ -119,7 +152,7 @@ self.addEventListener('fetch', event => {
      hundred milliseconds of latency, it means a deploy lands with the
      new HTML calling into the old JavaScript, and buttons quietly stop
      working. These files are small; correctness wins. */
-  if (/.(js|css)$/i.test(url.pathname)) {
+  if (/\.(js|css)$/i.test(url.pathname)) {
     event.respondWith(
       fetch(req)
         .then(res => {
@@ -142,7 +175,7 @@ self.addEventListener('fetch', event => {
         .then(res => {
           if (res && res.status === 200 && res.type === 'basic') {
             const copy = res.clone();
-            caches.open(CACHE).then(c => c.put(req, copy));
+            caches.open(CACHE).then(c => c.put(req, copy).then(() => trimImages(c)));
           }
           return res;
         })

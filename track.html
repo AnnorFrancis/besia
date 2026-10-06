@@ -3,168 +3,239 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Track Your Order · Bēsia Beauty Studio</title>
-  <meta name="description" content="Enter your order number to follow it live, from confirmed through to collected or delivered.">
-  <meta name="theme-color" content="#17140F">
-
+  <title>Track an order · Bēsia Beauty Studio</title>
+  <meta name="description" content="Enter the order number from your checkout screen and follow your Bēsia shop order live.">
+  <meta name="robots" content="noindex,follow">
+  <!--CHROME:head-->
+  <meta name="theme-color" content="#151B22">
   <link rel="icon" type="image/svg+xml" href="./assets/icons/favicon.svg">
   <link rel="preload" href="./fonts/montserrat-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="./css/style.css">
-  <link rel="stylesheet" href="./css/animations.css">
-  <link rel="stylesheet" href="./css/editorial.css">
+  <link rel="preload" href="./fonts/montserrat-macron.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="./css/issue.css">
+  <script>
+  /* Boot, inline and tiny: marks the page as scripted, decides the
+     effects tier, and whether the issue opens with its intro. Storage
+     is wrapped because Safari's private mode throws on it. */
+  (function () {
+    var h = document.documentElement, n = navigator, c = n.connection || {};
+    h.classList.add('js');
+    var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var lite = !!(c.saveData || /(^|[^3-9])2g/.test(c.effectiveType || '') || (n.deviceMemory && n.deviceMemory <= 2));
+    h.setAttribute('data-fx', lite || reduce ? 'lite' : 'full');
+    if (reduce) h.setAttribute('data-reduce', '');
+    var home = document.currentScript && /index\.html$|\/$/.test(location.pathname) && !location.hash && !location.search;
+    if (home && !lite && !reduce) {
+      try {
+        if (!sessionStorage.getItem('besia-opened')) { sessionStorage.setItem('besia-opened', '1'); h.classList.add('intro'); }
+      } catch (e) {}
+    }
+  })();
+  </script>
+<!--/CHROME:head-->
   <!-- BUILD:seo -->
   <link rel="canonical" href="https://annorfrancis.github.io/besia/track.html">
   <meta name="robots" content="noindex,follow">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Bēsia Beauty Studio">
-  <meta property="og:title" content="Track Your Order · Bēsia Beauty Studio">
-  <meta property="og:description" content="Enter your order number to follow it live, from confirmed through to collected or delivered.">
+  <meta property="og:title" content="Track an order · Bēsia Beauty Studio">
+  <meta property="og:description" content="Enter the order number from your checkout screen and follow your Bēsia shop order live.">
   <meta property="og:url" content="https://annorfrancis.github.io/besia/track.html">
-  <meta property="og:image" content="https://annorfrancis.github.io/besia/images/studio/studio-reception.jpg">
-  <meta property="og:image:width" content="1920">
-  <meta property="og:image:height" content="1080">
+  <meta property="og:image" content="https://annorfrancis.github.io/besia/media/img/abeauty-ritual.webp">
+  <meta property="og:image:width" content="1600">
+  <meta property="og:image:height" content="900">
   <meta property="og:locale" content="en_GH">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Track Your Order · Bēsia Beauty Studio">
-  <meta name="twitter:description" content="Enter your order number to follow it live, from confirmed through to collected or delivered.">
-  <meta name="twitter:image" content="https://annorfrancis.github.io/besia/images/studio/studio-reception.jpg">
+  <meta name="twitter:title" content="Track an order · Bēsia Beauty Studio">
+  <meta name="twitter:description" content="Enter the order number from your checkout screen and follow your Bēsia shop order live.">
+  <meta name="twitter:image" content="https://annorfrancis.github.io/besia/media/img/abeauty-ritual.webp">
   <!-- /BUILD:seo -->
 </head>
-<body class="page-track">
-
+<body data-skin="issue" data-page="track" data-nav="paper" data-head="Track an order" data-core="store">
+  <!--CHROME:top-->
   <a class="skip-link" href="#main">Skip to content</a>
+  <div class="intro-veil" aria-hidden="true">
+    <div class="intro-half intro-half--top"></div>
+    <div class="intro-half intro-half--bottom"></div>
+    <div class="intro-card">
+      <div class="intro-word"><span><i>B</i></span><span><i>Ē</i></span><span><i>S</i></span><span><i>I</i></span><span><i>A</i></span></div>
+      <div class="intro-rule"></div>
+      <div class="intro-sub">Beauty Studio, Cantonments, Accra</div>
+    </div>
+    <div class="intro-line">Nourish your roots · Protect your peace</div>
+  </div>
+  <div class="nav-sentinel" aria-hidden="true"></div>
 
-  <!-- Navigation -->
-  <header class="site-nav site-nav--ink">
-    <div class="container container--wide nav-inner">
-      <a class="nav-logo" href="./index.html" aria-label="Bēsia Beauty Studio, home">
-        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-          <path d="M15 9.5c-6.5 7-6.5 22 0 29.5" stroke-linecap="round"/>
-          <path d="M23.5 6c-8.5 8.5-8.5 27.5 0 36" stroke-linecap="round"/>
-          <path d="M32 10c-5.5 6.5-5.5 21 0 27.5" stroke-linecap="round"/>
-          <path d="M38.5 11l1.3 3.4 3.4 1.3-3.4 1.3-1.3 3.4-1.3-3.4-3.4-1.3 3.4-1.3z" fill="currentColor" stroke="none"/>
-        </svg>
-        <span class="nav-logo-text">
-          <span class="nav-logo-name">Bēsia</span>
-          <span class="nav-logo-tag">Beauty Studio</span>
-        </span>
+  <header class="site-nav site-nav--paper" data-nav>
+    <div class="container nav-inner">
+      <a class="nav-logo" href="./index.html" aria-label="Bēsia, home">
+        <span class="nav-logo-name">Bēsia</span>
+        <span class="nav-head">Track an order</span>
       </a>
       <nav class="nav-links" aria-label="Primary">
-        <a href="./index.html">Home</a>
         <a href="./services.html">Services</a>
-        <a href="./shop.html" class="is-active">Shop</a>
+        <a href="./shop.html">Shop</a>
         <a href="./classes.html">Classes</a>
-        <a href="./gallery.html">Gallery</a>
-        <a href="./about.html">About</a>
         <a href="./packages.html">Packages</a>
-        <a href="./contact.html">Contact</a>
+        <a href="./about.html">About</a>
+        <a href="./gallery.html" data-from="1200">Gallery</a>
+        <a href="./contact.html" data-from="1200">Contact</a>
       </nav>
-      <div class="nav-cta">
-        <a href="./contact.html" class="btn btn--gold btn--sm">Book Now</a>
+      <div class="nav-end">
+        <div class="nav-cta">
+          <a href="./contact.html" class="btn btn--sm" data-book>Book<span class="n" data-book-count></span></a>
+        </div>
+        <button class="nav-toggle" aria-label="Open contents" aria-expanded="false" aria-controls="contents">
+          <span class="nav-toggle-word"></span>
+        </button>
       </div>
-      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
     </div>
+    <div class="nav-progress" aria-hidden="true"></div>
   </header>
 
-  <!-- Mobile overlay nav -->
-  <div class="nav-overlay">
+  <div class="nav-overlay" id="contents" role="dialog" aria-modal="true" aria-label="Contents">
     <div>
-      <nav class="nav-overlay-links" aria-label="Mobile">
-        <a href="./index.html">Home</a>
-        <a href="./services.html">Services</a>
-        <a href="./shop.html" class="is-active">Shop</a>
-        <a href="./classes.html">Classes</a>
-        <a href="./gallery.html">Gallery</a>
-        <a href="./about.html">About</a>
-        <a href="./packages.html">Packages</a>
-        <a href="./contact.html">Contact</a>
+      <div class="nav-overlay-head">
+        <span class="t-label">Contents</span>
+        <span class="t-label quiet">Issue 01 · Cantonments, Accra</span>
+      </div>
+      <nav class="nav-overlay-links" aria-label="Contents">
+        <a href="./index.html"><span>Home</span><span class="dek">The cover, this issue, a note from Dana</span><span class="count">Issue 01</span></a>
+        <a href="./services.html"><span>Services</span><span class="dek">Fourteen chapters, every price</span><span class="count">83 services</span></a>
+        <a href="./shop.html"><span>Shop</span><span class="dek">Follicle Fuel, Hair Botox, the hair library</span><span class="count">24 items</span></a>
+        <a href="./classes.html"><span>Classes</span><span class="dek">The School at Bēsia</span><span class="count">9 courses</span></a>
+        <a href="./packages.html"><span>Packages</span><span class="dek">Three editions and the Hair Club</span><span class="count">3 editions</span></a>
+        <a href="./gallery.html"><span>Gallery</span><span class="dek">The A-Beauty covers and the work</span><span class="count">In pictures</span></a>
+        <a href="./about.html"><span>About</span><span class="dek">The studio, Dana, the standards</span><span class="count">The studio</span></a>
+        <a href="./contact.html"><span>Contact</span><span class="dek">Visit, call, write</span><span class="count">Cantonments</span></a>
       </nav>
+      <div class="nav-overlay-aside">
+        <div class="plate plate--tall" style="--ar: 4 / 5">
+          <img src="./media/img/studio-logo-wall-2-sm.webp" srcset="./media/img/studio-logo-wall-2-sm.webp 720w, ./media/img/studio-logo-wall-2.webp 1600w" sizes="360px" width="720" height="960" alt="" loading="lazy" decoding="async">
+        </div>
+      </div>
+      <div class="nav-overlay-foot">
+        <a href="./contact.html" data-book>Book</a>
+        <a href="tel:+233240787993">Call 024 078 7993</a>
+        <a href="https://wa.me/233240787993?text=Hello%20B%C4%93sia%20Beauty%20Studio%2C%20I%20would%20like%20to%20book%20an%20appointment." target="_blank" rel="noopener">WhatsApp</a>
+        <a href="#" data-open-chat>Ask the studio</a>
+      </div>
       <div class="nav-overlay-contact">
-        Cantonments, Accra · <a href="tel:+233240787993">024 078 7993</a>
+        <span>54 Fifth Circular Road, Cantonments, Accra · Mon to Sat, 9am to 7pm</span>
       </div>
     </div>
   </div>
+<!--/CHROME:top-->
 
   <main id="main">
-
-    <section class="section section--cream" style="padding-top: calc(var(--nav-height) + 2.5rem);">
-      <div class="container" style="max-width: 860px;">
-
-        <nav class="breadcrumb breadcrumb--dark" aria-label="Breadcrumb" style="margin-bottom:1.2rem;">
-          <a href="./shop.html">Shop</a><span class="sep">·</span><span>Track Order</span>
-        </nav>
-        <div class="eyebrow">Track Your Order</div>
-        <h1 class="section-title" style="margin-bottom:1rem;"><span class="script">Where is it?</span>Right Here.</h1>
-        <p class="section-lede" style="margin-bottom:2rem;">Enter the order number from your checkout screen. The moment the shop updates your order, this page updates too.</p>
+    <section class="section reading" data-ground="oatmeal">
+      <div class="container stack--loose stack" style="max-width: 860px">
+        <div class="section-head">
+          <p class="eyebrow"><span class="n">Track</span> Your order</p>
+          <h1 class="t-h2 balance">Where is it? Right here.</h1>
+          <p class="t-deck">Enter the order number from your checkout screen. The moment the studio updates your order, this page updates too.</p>
+        </div>
 
         <form class="track-form" id="track-form">
-          <div class="field" style="flex:1;">
-            <input type="text" id="track-input" autocapitalize="characters" autocomplete="off" placeholder=" ">
+          <div class="field">
             <label for="track-input">Order number</label>
+            <input type="text" id="track-input" autocapitalize="characters" autocomplete="off" placeholder="BES-260902-880">
           </div>
-          <button type="submit" class="btn btn--gold">Track</button>
+          <button type="submit" class="btn">Track</button>
         </form>
-        <p class="track-hint">It looks like <strong>BES-260902-880</strong>, it is on your checkout screen and in your receipt.</p>
+        <p class="track-hint">It looks like <strong>BES-260902-880</strong>; it is on your checkout screen and in your receipt.</p>
 
         <div id="my-orders" class="my-orders"></div>
 
         <p id="track-error" class="track-error" style="display:none;">
-          We could not find that order number. Check the spelling, it looks like <strong>BES-260902-880</strong>, or
-          call us on <a href="tel:+233240787993">024 078 7993</a>.
+          We could not find that order number. Check the spelling, it looks like <strong>BES-260902-880</strong>, or call us on <a href="tel:+233240787993">024 078 7993</a>.
         </p>
 
-        <div id="track-result" style="display:none;">
-
+        <div id="track-result" class="stack" style="display:none;">
           <div class="track-head">
             <div>
               <div class="track-id" id="tr-id">BES-000000</div>
               <div class="track-meta" id="tr-meta">…</div>
             </div>
-            <span class="badge-live" id="tr-live">● Live</span>
+            <span class="badge-live" id="tr-live">Live</span>
           </div>
 
           <ol class="track-steps" id="tr-steps"></ol>
 
           <div class="track-panels">
             <div class="co-panel">
-              <h2 class="co-title">Items</h2>
+              <h2 class="co-title t-label">Items</h2>
               <ul class="co-lines" id="tr-items"></ul>
-              <div class="co-grand" style="margin-top:0.8rem;">
-                <span>Total</span><span id="tr-total">GHS 0</span>
-              </div>
+              <div class="co-grand"><span class="t-label">Total</span><span id="tr-total">GHS 0</span></div>
             </div>
             <div class="co-panel">
-              <h2 class="co-title">Details</h2>
+              <h2 class="co-title t-label">Details</h2>
               <ul class="co-lines" id="tr-details"></ul>
-              <p class="co-demo-note" style="margin-top:1rem;">Need to change something? Call <a href="tel:+233240787993" style="color:var(--gold-ink);font-weight:700;">024 078 7993</a> or <a href="https://wa.me/233240787993" target="_blank" rel="noopener" style="color:var(--gold-ink);font-weight:700;">message us</a> with your order number.</p>
+              <p class="co-demo-note t-cap">Need to change something? Call <a href="tel:+233240787993">024 078 7993</a> or <a href="https://wa.me/233240787993" target="_blank" rel="noopener">message us</a> with your order number.</p>
             </div>
           </div>
         </div>
-
       </div>
     </section>
   </main>
 
-  <!-- ============ FOOTER ============ -->
-  <footer class="site-footer">
+  <!--CHROME:foot-->
+  <footer class="site-footer grain" data-ground="ink">
     <div class="container">
-      <div class="footer-bottom" style="border-top:none; padding-top:0;">
-        <span>© <span data-year>2026</span> Bēsia Beauty Studio. All rights reserved.</span>
-        <span class="footer-credit">Designed &amp; Developed by <a href="https://perkins-swart.vercel.app" target="_blank" rel="noopener">Perkins Creative</a></span>
+      <div class="t t-colophon">
+        <div class="foot-brand">
+          <a class="foot-logo" href="./index.html" aria-label="Bēsia, home">Bēsia</a>
+          <p class="t-cap">Ghana's home of fusion extensions. UK-certified KTips and microlinks, a vegan, formaldehyde-free texture system, and treatment-led scalp and bond care.</p>
+          <p class="foot-line">Nourish your roots. Protect your peace.</p>
+        </div>
+        <div class="foot-col">
+          <p class="t-label foot-head">In this issue</p>
+          <ul>
+            <li><a href="./services.html">Services</a></li>
+            <li><a href="./shop.html">Shop</a></li>
+            <li><a href="./classes.html">Classes</a></li>
+            <li><a href="./packages.html">Packages</a></li>
+            <li><a href="./gallery.html">Gallery</a></li>
+            <li><a href="./about.html">About</a></li>
+            <li><a href="./track.html">Track an order</a></li>
+          </ul>
+        </div>
+        <div class="foot-col">
+          <p class="t-label foot-head">Visit</p>
+          <ul>
+            <li><span>54 Fifth Circular Road<br>Cantonments, Accra</span></li>
+            <li><span>Monday to Saturday, 9am to 7pm<br>Closed Sunday</span></li>
+            <li><a href="https://maps.google.com/?q=54+Fifth+Circular+Road+Cantonments+Accra" target="_blank" rel="noopener">Directions</a></li>
+          </ul>
+        </div>
+        <div class="foot-col">
+          <p class="t-label foot-head">Write</p>
+          <ul>
+            <li><a href="tel:+233240787993">024 078 7993</a></li>
+            <li><a href="https://wa.me/233240787993?text=Hello%20B%C4%93sia%20Beauty%20Studio%2C%20I%20would%20like%20to%20book%20an%20appointment." target="_blank" rel="noopener">WhatsApp</a></li>
+            <li><a href="mailto:hello@besia.co">hello@besia.co</a></li>
+            <li><a href="#" data-open-chat>Ask the studio</a></li>
+            <li><a href="https://instagram.com/besia.hq" target="_blank" rel="noopener">Instagram</a></li>
+            <li><a href="https://www.tiktok.com/@besiahq" target="_blank" rel="noopener">TikTok</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="foot-mark" aria-hidden="true">Bēsia</div>
+      <div class="foot-bottom">
+        <span>Bēsia Beauty Studio, Cantonments, Accra. Issue 01. All rights reserved, <span data-year>2026</span>.</span>
+        <span class="foot-credit">Designed and built by <a href="https://perkins-swart.vercel.app" target="_blank" rel="noopener">Perkins Creative</a></span>
       </div>
     </div>
   </footer>
 
-  <!-- Scripts -->
   <!-- data first: every other script reads from it -->
   <script src="./js/besia-data.js" defer></script>
   <script src="./js/besia-live.js" defer></script>
   <script src="./js/store.js" defer></script>
-  <script src="./js/main.js" defer></script>
+  <script src="./js/site.js" defer></script>
+  <script src="./js/reel.js" defer></script>
   <script src="./js/site-sync.js" defer></script>
   <script src="./js/offline.js" defer></script>
+<!--/CHROME:foot-->
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       var S = window.BesiaStore;
@@ -185,7 +256,7 @@
         document.getElementById('track-result').style.display = 'block';
         document.getElementById('tr-id').textContent = order.id;
         document.getElementById('tr-meta').textContent =
-          'Placed ' + fmt(order.placedAt) + ' · ' + (order.method === 'delivery' ? 'Delivery to ' + (order.area || 'Accra') : 'Pickup in store');
+          'Placed ' + fmt(order.placedAt) + ' · ' + (order.method === 'delivery' ? 'Delivery to ' + (order.area || 'Accra') : 'Collect from the studio');
 
         var flow = S.statusFlow(order);
         var doneIdx = flow.indexOf(order.status);
@@ -213,8 +284,8 @@
         document.getElementById('tr-details').innerHTML =
           '<li><span>Name</span><span>' + order.customer + '</span></li>' +
           '<li><span>Phone</span><span>' + order.phone + '</span></li>' +
-          '<li><span>Method</span><span>' + (order.method === 'delivery' ? 'Delivery, ' + (order.area || 'Accra') : 'Pickup') + '</span></li>' +
-          '<li><span>Payment</span><span>' + (order.payment.network || 'On pickup') + ' · ' + order.payment.status + '</span></li>';
+          '<li><span>Method</span><span>' + (order.method === 'delivery' ? 'Delivery, ' + (order.area || 'Accra') : 'Collect') + '</span></li>' +
+          '<li><span>Payment</span><span>' + (order.payment.network || 'On collection') + ' · ' + order.payment.status + '</span></li>';
       }
 
       function lookup(id) {
@@ -232,12 +303,12 @@
         if (v) lookup(v);
       });
 
-      // Orders placed on this phone, one-tap reopen
+      /* Orders placed on this phone, one-tap reopen */
       function renderMine() {
         var mine = S.getOrders().filter(function (o) { return !o.seeded; }).slice(0, 4);
         var box = document.getElementById('my-orders');
         if (!mine.length) { box.innerHTML = ''; return; }
-        box.innerHTML = '<span class="my-orders-label">Your recent orders:</span>' +
+        box.innerHTML = '<span class="my-orders-label">Your recent orders</span>' +
           mine.map(function (o) {
             return '<button type="button" class="my-order-chip" data-id="' + o.id + '">' + o.id + ' · ' + o.status + '</button>';
           }).join('');
@@ -250,13 +321,13 @@
       }
       renderMine();
 
-      // Live refresh, when the admin updates a status this re-renders
+      /* Live refresh: when the studio updates a status this re-renders */
       S.onChange(function () {
         renderMine();
         if (current) { var o = S.getOrder(current); if (o) render(o); }
       });
 
-      // Deep link ?order=BES-... (used by the checkout success screen)
+      /* Deep link ?order=BES-... (used by the checkout success screen) */
       var q = new URLSearchParams(location.search).get('order') || localStorage.getItem('besia-last-order');
       if (q) { document.getElementById('track-input').value = q; lookup(q); }
     });
