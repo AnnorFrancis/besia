@@ -34,7 +34,16 @@
 }
 .plate .scrim--top { background: linear-gradient(to bottom, rgb(21 27 34 / 0.55) 0%, rgb(21 27 34 / 0) 40%); }
 .plate-wrap { position: relative; min-width: 0; }
-@media (min-width: 1024px) { .plate--cap { max-width: var(--plate-max); } }
+@media (min-width: 1024px) {
+  .plate--cap { max-width: var(--plate-max); }
+  /* Beside copy a plate is a 4:5 page no taller than the screen allows,
+     whatever the film's own shape; the picture is cropped, never the page. */
+  .t-spread > .plate, .t-spread > .plate-wrap > .plate, .t-spread > .plate-wrap > .reel,
+  .t-opener > .plate, .t-opener > .plate-wrap > .plate, .t-opener > .plate-wrap > .reel { --ar: 4 / 5; max-height: min(72vh, 640px); }
+  .t-spread > .plate-wrap, .t-opener > .plate-wrap { max-height: min(72vh, 640px); }
+  /* and narrows with its height, so it stays a 4:5 page rather than a square */
+  .t-spread > .plate, .t-spread > .plate-wrap, .t-opener > .plate, .t-opener > .plate-wrap { max-width: min(var(--plate-max), calc(min(72vh, 640px) * 0.8)); }
+}
 /* a 9:16 film on a phone is cropped to 4:5 so the page keeps moving */
 @media (max-width: 1023px) { .plate--portrait { --ar: 4 / 5; } }
 
@@ -66,16 +75,16 @@
 .t-cover { position: relative; }
 @media (min-width: 1024px) {
   .t-cover { min-height: 100svh; }
-  .t-cover > .cover-plate { grid-column: 7 / -1; }
-  .t-cover > .cover-copy { grid-column: 1 / 7; align-self: end; padding-bottom: var(--s-8); }
+  .t-cover > .cover-plate { grid-column: 7 / -1; grid-row: 1; }
+  .t-cover > .cover-copy { grid-column: 1 / 7; grid-row: 1; align-self: end; padding-bottom: var(--s-8); }
 }
 
 /* ---------- t-spread: copy beside a 4:5 plate ---------- */
 .t-spread > .plate, .t-spread > .plate-wrap { order: -1; margin-inline: calc(-1 * var(--page)); }
 .t-spread > .copy { padding-top: var(--s-6); }
 @media (min-width: 1024px) {
-  .t-spread > .plate, .t-spread > .plate-wrap { order: 0; margin-inline: 0; grid-column: 7 / -1; justify-self: end; }
-  .t-spread > .copy { padding-top: 0; grid-column: 1 / 6; align-self: center; }
+  .t-spread > .plate, .t-spread > .plate-wrap { order: 0; margin-inline: 0; grid-column: 7 / -1; grid-row: 1; justify-self: end; }
+  .t-spread > .copy { padding-top: 0; grid-column: 1 / 6; grid-row: 1; align-self: center; }
   .t-spread[data-flip] > .copy { grid-column: 8 / -1; }
   .t-spread[data-flip] > .plate, .t-spread[data-flip] > .plate-wrap { grid-column: 1 / 7; justify-self: start; }
 }
@@ -84,13 +93,14 @@
 .t-plate > .plate, .t-plate > .plate-wrap { margin-inline: calc(-1 * var(--page)); }
 .t-plate > .aside { padding-top: var(--s-5); }
 @media (min-width: 1024px) {
-  .t-plate > .plate, .t-plate > .plate-wrap { margin-inline: 0; grid-column: 3 / 11; justify-self: center; }
-  .t-plate > .aside { padding-top: 0; grid-column: 1 / 3; align-self: end; }
+  .t-plate > .plate, .t-plate > .plate-wrap { margin-inline: 0; grid-column: 3 / 11; grid-row: 1; justify-self: center; }
+  .t-plate > .aside { padding-top: 0; grid-column: 1 / 3; grid-row: 1; align-self: end; }
   .t-plate > .aside--right { grid-column: 11 / -1; }
   .t-plate--full > .plate { grid-column: 1 / -1; }
 }
 
-/* ---------- t-rail: three plates, a snap rail on phones ---------- */
+/* ---------- t-rail: plates in a row, a snap rail on phones. Every card
+   is the same height; prices and buttons sit on one line across the row. */
 .t-rail {
   display: flex; gap: var(--gap);
   overflow-x: auto; overscroll-behavior-x: contain;
@@ -99,7 +109,7 @@
   scrollbar-width: none;
 }
 .t-rail::-webkit-scrollbar { display: none; }
-.t-rail > * { flex: 0 0 78%; scroll-snap-align: start; }
+.t-rail > * { flex: 0 0 78%; scroll-snap-align: start; display: flex; flex-direction: column; }
 .t-rail > :last-child { margin-right: var(--page); }
 .rail-count { display: flex; justify-content: space-between; align-items: baseline; margin-top: var(--s-4); }
 @media (min-width: 1024px) {
@@ -107,10 +117,7 @@
   .t-rail > * { flex: none; }
   .t-rail > :last-child { margin-right: 0; }
   .t-rail > * { grid-column: span 4; }
-  .t-rail > :nth-child(2) { margin-top: var(--s-7); }
-  .t-rail--six > :nth-child(5) { margin-top: var(--s-7); }
   .t-rail--four > * { grid-column: span 3; }
-  .t-rail--four > :nth-child(2), .t-rail--four > :nth-child(4) { margin-top: var(--s-7); }
   .rail-count { display: none; }
 }
 
@@ -119,6 +126,7 @@
 .t-opener > .plate, .t-opener > .plate-wrap { order: -1; margin-inline: calc(-1 * var(--page)); }
 .t-opener > .copy { padding-top: var(--s-6); position: relative; z-index: 1; }
 .t-opener .ghost {
+  grid-row: 1; grid-column: 1 / -1; justify-self: end;
   position: absolute; right: 0; top: var(--s-4); z-index: 0; pointer-events: none; user-select: none;
   font-size: 30vw; font-weight: 100; line-height: 0.8; letter-spacing: -0.04em;
   color: var(--fg); opacity: 0.07; font-variant-numeric: tabular-nums;
@@ -126,8 +134,8 @@
 @media (min-width: 1024px) {
   .t-opener { min-height: 70svh; align-items: center; }
   .t-opener[data-tall] { min-height: calc(100svh - var(--nav-h)); }
-  .t-opener > .plate, .t-opener > .plate-wrap { order: 0; margin-inline: 0; grid-column: 8 / -1; justify-self: end; }
-  .t-opener > .copy { padding-top: 0; grid-column: 1 / 7; }
+  .t-opener > .plate, .t-opener > .plate-wrap { order: 0; margin-inline: 0; grid-column: 8 / -1; grid-row: 1; justify-self: end; }
+  .t-opener > .copy { padding-top: 0; grid-column: 1 / 7; grid-row: 1; align-self: center; }
   .t-opener[data-flip] > .copy { grid-column: 7 / -1; }
   .t-opener[data-flip] > .plate, .t-opener[data-flip] > .plate-wrap { grid-column: 1 / 6; justify-self: start; }
   .t-opener .ghost { top: 0; font-size: clamp(8rem, 24vw, 22rem); }
@@ -170,8 +178,8 @@ a.ix-row { transition: background var(--d-hover) var(--ease-soft); }
 /* ---------- t-form: copy beside a form on opaque paper ---------- */
 .t-form > .copy { padding-bottom: var(--s-6); }
 @media (min-width: 1024px) {
-  .t-form > .copy { padding-bottom: 0; grid-column: 1 / 5; }
-  .t-form > .form { grid-column: 6 / -1; }
+  .t-form > .copy { padding-bottom: 0; grid-column: 1 / 5; grid-row: 1; }
+  .t-form > .form { grid-column: 6 / -1; grid-row: 1; }
 }
 
 /* A chapter-sized headline beside a plate wraps too far; a spread caps it. */
