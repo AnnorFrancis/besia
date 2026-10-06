@@ -1604,3 +1604,5 @@ a.ix-row { transition: background var(--d-hover) var(--ease-soft); }
 @media (max-width: 1023px) { .chapter-plate .plate { --ar: 16 / 10; } .chapter-plate { max-width: none; margin-bottom: var(--s-4); } }
 /* magazine covers keep their title: crop from a little below the top */
 .gallery-item img { object-position: center 12%; }
+/* on a phone a spread's picture is 4:3, so copy and prices arrive sooner */
+@media (max-width: 1023px) { .t-spread > .plate, .t-spread > .plate-wrap > .plate, .t-spread > .plate-wrap > .reel, .t-opener > .plate, .t-opener > .plate-wrap > .plate, .t-opener > .plate-wrap > .reel { --ar: 4 / 3; } .t-spread > .copy, .t-opener > .copy { padding-top: var(--s-5); } }
