@@ -456,3 +456,5 @@
 .chapter-body .price-row { padding-left: 3rem; }
 @media (min-width: 1024px) { .chapter-body .price-row { padding-left: 4rem; } .chapter-body.has-plate .price-row { padding-left: 0; } .chapter-body.has-plate .price-row:first-child { border-top: 1px solid var(--rule); } }
 @media (max-width: 639px) { .chapter-body .price-row { padding-left: 0; } }
+/* on a phone the chapter picture is a short banner, so the prices arrive sooner */
+@media (max-width: 1023px) { .chapter-plate .plate { --ar: 16 / 10; } .chapter-plate { max-width: none; margin-bottom: var(--s-4); } }
