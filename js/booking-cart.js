@@ -157,7 +157,7 @@
                '<button type="button" class="bk-x" data-bk-remove="' + esc(n) + '" aria-label="Remove ' + esc(n) + '">×</button></li>';
       }).join('') + '</ul>';
     } else {
-      h += '<p class="bk-empty">Nothing chosen yet. Add a service or a package below, or start with a free consultation.</p>' +
+      h += '<p class="bk-empty">Nothing chosen yet.</p>' +
            (L.find('service', 'Free Hair Consultation') ? '<button type="button" class="bk-link" data-bk-add="Free Hair Consultation">Add the free consultation</button>' : '');
     }
     h += '</section>';
@@ -174,7 +174,7 @@
       h += '<p class="bk-hint">Ready-made pairings. Add one, then add any single service on top.</p>' +
            '<ul class="bk-picks">' + packs.map(function (it) { return rowHtml(it, list.indexOf(it.name) !== -1); }).join('') + '</ul>';
     } else {
-      h += '<input type="search" class="bk-search" placeholder="Search the menu, for example lashes" value="' + esc(query) + '" aria-label="Search services">';
+      h += '<input type="search" class="bk-search" placeholder="Search the menu" value="' + esc(query) + '" aria-label="Search services">';
       if (query.trim()) {
         var q = query.trim().toLowerCase();
         var hits = pub.filter(function (s) {
