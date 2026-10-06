@@ -4,7 +4,7 @@
    Keeps the website and the Studio Manager working when the power
    or the network goes. Regenerated on every build.
    ============================================================ */
-const VERSION = 'b63a3c91';
+const VERSION = 'f632b905';
 const CACHE = 'besia-' + VERSION;
 
 const PRECACHE = [
@@ -15,29 +15,24 @@ const PRECACHE = [
   "checkout.html",
   "classes.html",
   "contact.html",
-  "css/animations.css",
-  "css/editorial.css",
   "css/issue.css",
   "css/issue/base.css",
   "css/issue/components.css",
   "css/issue/pages.css",
   "css/issue/templates.css",
   "css/issue/tokens.css",
-  "css/style.css",
   "fonts/montserrat-latin-ext.woff2",
   "fonts/montserrat-latin.woff2",
   "fonts/montserrat-macron.woff2",
   "gallery.html",
   "index.html",
   "js/ai-chat.js",
-  "js/animations.js",
   "js/besia-data.js",
   "js/besia-live.js",
   "js/booking-cart.js",
   "js/booking.js",
   "js/classes.js",
   "js/gallery.js",
-  "js/main.js",
   "js/offline.js",
   "js/reel.js",
   "js/site-sync.js",

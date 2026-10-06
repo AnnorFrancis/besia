@@ -1,82 +1,164 @@
-# Bēsia Beauty Studio — Website & Studio Manager
+# Bēsia Beauty Studio: The Issue
 
-A customised sample for **Bēsia Beauty Studio** — Ghana's home of fusion extensions,
-at 54 Fifth Circular Road, Cantonments, Accra. One system: a public website and a
-back-office studio manager, sharing the same data and the same order book.
+A website and a studio manager for **Bēsia Beauty Studio**, Ghana's home of fusion
+extensions, at 54 Fifth Circular Road, Cantonments, Accra. One system: a public
+website built as an issue of a magazine, and a back-office Studio Manager, sharing
+the same data and the same order book.
 
-> Designed & Developed by [Perkins Creative](https://perkins-swart.vercel.app)
+> Designed and built by [Perkins Creative](https://perkins-swart.vercel.app)
 
 ---
 
 ## Run it
 
-No build step. No install. Plain HTML/CSS/JS with relative paths.
+No build step at runtime. No install. Plain HTML, CSS and JavaScript with relative paths.
 
 ```bash
 npx http-server . -p 8899
 ```
 
-Then open <http://localhost:8899>. The studio manager is at
-`/admin/dashboard.html` — deliberately unlinked from the public site.
+Then open <http://localhost:8899>. The Studio Manager is at
+`/admin/dashboard.html`, deliberately unlinked from the public site.
 
-**Serve the folder; do not double-click the files.** The website ↔ manager handoff
-runs through `localStorage`, which is scoped per origin — both halves must be opened
+**Serve the folder; do not double-click the files.** The website and manager hand off
+through `localStorage`, which is scoped per origin, so both halves must be opened
 from the same address for the demo to connect.
 
 ---
 
 ## The one file that matters
 
-Everything — every price, every product, the phone number, the opening hours —
-lives in **`js/besia-data.js`**. Nothing else needs editing.
+Every price, every product, every course, the phone number and the opening hours
+live in **`js/besia-data.js`**. Nothing else needs editing to change a fact.
 
 ```
 js/besia-data.js
   BUSINESS            name, phone, email, address, hours, socials, storage namespace
-  SERVICE_CATEGORIES  the 10 disciplines
-  SERVICES            all 47 services: price, duration, description
-  PRODUCTS            23 retail items across 5 categories
-  COURSES             the 6 training courses, fees and what each covers
+  SERVICE_CATEGORIES  the 14 disciplines (the chapters)
+  SERVICES            all 83 services from her official Fresha export: price, duration, description
+  PRODUCTS            24 retail items across 5 categories, including her own Follicle Fuel and Hair Botox
+  COURSES             the 9 courses of The School at Bēsia, fees and what each covers
   SUPPLIERS           who the studio buys hair and product from
-  TEAM / REVIEWS      the collaborative, and the real 5.0 reviews
+  TEAM / REVIEWS      the collaborative, and her real 5.0 reviews
 ```
 
-The pages are then **generated** from it. One command rebuilds everything and
-runs the checks:
+The pages are **generated** from it. One command rebuilds everything and runs
+every check:
 
 ```bash
 node tools/build-all.js
 ```
 
-Or run a single step:
+The steps, in the order build-all runs them:
 
 ```bash
-node tools/build-services.js     # service tiles + the 47-line price list
-node tools/build-shop.js         # the 23 product cards + filters
-node tools/build-home.js         # home page service and shop teasers
-node tools/build-packages.js     # the three bundles + the price builder
-node tools/build-classes.js      # the training school + its nav link
-node tools/build-admin.js        # all 19 Studio Manager pages
-node tools/build-seo.js          # titles, canonicals, OG, JSON-LD, sitemap, robots
-node tools/build-sw.js           # the offline service worker (always last)
+node tools/build-services.js   # the chapter rail, the 14 chapters and the ledger of 83 prices
+node tools/build-shop.js       # the hair library: filters and 24 product cards
+node tools/build-home.js       # "In this issue", the six signature treatments
+node tools/build-packages.js   # the three pairings, the price builder, the home teaser
+node tools/build-classes.js    # classes.html, written whole from the course data
+node tools/build-gallery.js    # the contact sheet from her pictures
+node tools/build-admin.js      # all 20 Studio Manager pages
+node tools/build-css.js        # css/issue/*.css joined into one css/issue.css
+node tools/build-chrome.js     # the masthead, Contents sheet and colophon on every page
+node tools/build-reels.js      # her films placed wherever a page asks for one
+node tools/build-seo.js        # titles, canonicals, Open Graph, JSON-LD, sitemap, robots
+node tools/add-image-dims.js   # width and height on any new <img>
+node tools/build-sw.js         # the offline service worker (always last)
 ```
 
-Each writes only between `<!--BUILD:x-->` markers, so hand-written copy around
-them is never touched. Re-running them is safe and idempotent.
+Each generator writes only between its markers (`<!--BUILD:x-->`, `<!--CHROME:x-->`,
+`<!--REEL:{...}-->`), so hand-written copy around them is never touched. Re-running
+is safe and idempotent.
 
-`js/booking.js`, `js/ai-chat.js`, `js/store.js` and `js/admin.js` read the same file
-at runtime. **A price cannot drift** — the estimator, the chat assistant, the admin
-and the printed price list are all reading one number.
+`js/booking-cart.js`, `js/booking.js`, `js/ai-chat.js`, `js/store.js`, `js/site-sync.js`
+and `js/admin.js` read the same file at runtime, through `js/besia-live.js`, which
+merges the owner's changes from the manager. **A price cannot drift**: the ledger,
+the booking sheet, the estimator, the chat and the manager read one number.
 
 ### Checks
 
+Every one of these runs at the end of build-all and fails the build:
+
 ```bash
-node tools/check-assets.js       # every local asset resolves, with exact case
-node tools/add-image-dims.js     # stamps width/height on any new <img>
+node tools/check-assets.js     # every local asset resolves, with exact case (GitHub Pages is case-sensitive)
+node tools/check-css.js        # the house rules for css/issue: no colour literals outside tokens,
+                               # no italics, no !important, no 100vw/100vh, no bare 1fr, at most 8 blurs
+node tools/check-contrast.js   # every ground passes WCAG: text 4.5:1, lines 3:1
+node tools/check-dash.js       # no em or en dash anywhere a visitor could read one
 ```
 
-`check-assets.js` matters more than it looks: Windows is case-insensitive and
-GitHub Pages is not, so a wrong-case path works locally and 404s in production.
+---
+
+## The Issue: how the design is built
+
+The site is Issue 01 of a magazine the studio publishes for its own clients: a
+masthead, a Contents sheet, numbered chapters, plates with credits, a ledger,
+a colophon. It is set in one typeface, Montserrat, at the client's request; the
+editorial contrast comes from weight, scale, tracking and layout.
+
+- **`css/issue/tokens.css`** is the only file allowed a colour literal. Eight grounds
+  from her own world (Ink from the logo letters, Moss from the bottle, Espresso,
+  Clay from the beard-oil sand and the A-Beauty covers, Ivory from the plaster,
+  Oatmeal from her mood board, Oak from the fluted wall, Sage from the sofa). A
+  section declares `data-ground="…"` and every text colour inside it comes from
+  that ground, so light text can never land on light paper. `check-contrast.js`
+  proves every pair.
+- **`base.css`** has the typeface (self-hosted, with a 4 KB face that carries only the
+  Ē so the name never flashes another glyph), the type roles (`t-mast`, `t-coverline`,
+  `t-chap`, `t-h2`, `t-deck`, `t-pull`, `t-cap`, `t-label`, `t-credit`, `t-price`),
+  the macron rule (the brass bar from the Ē, used as every eyebrow's opening and the
+  active-page mark), fluting (the oak wall as a CSS ground) and grain.
+- **`components.css`** is the chrome and the controls: the glass masthead, the Contents
+  sheet, buttons, forms, the dock (one slot at the bottom of a phone, nothing else
+  floats), the booking sheet (restyled, logic untouched), films, the slideshow, the
+  lightbox, the chat window, reveals, the intro and the page transitions.
+- **`templates.css`** is nine spreads that build every page: `t-cover`, `t-spread`,
+  `t-plate`, `t-rail`, `t-opener`, `t-index`, `t-quote`, `t-colophon`, `t-form`.
+  Phones first, one column; twelve columns from 1024px. Every column is
+  `minmax(0, 1fr)` and every child `min-width: 0`, so nothing can push wider than
+  the page.
+- **`pages.css`** is what only one page needs.
+
+Glass is spent on four surfaces and nowhere else: the masthead once it sticks, the
+Contents sheet, the booking sheet and the lightbox chrome. Everything else that
+looks frosted is baked from a blurred still, which costs nothing to scroll.
+
+The intro (ivory, her name, the rule, the studio line, the strapline) is the one the
+client chose. It is kept and levelled up: the letters rise, the rule draws itself in
+brass, the lines settle, and the page opens along the rule. Once per session, tap to
+skip, never on slow data or for people who asked for reduced motion.
+
+### Her films and photographs
+
+Everything she sent arrived through WhatsApp, which throws most of the detail away.
+Every picture and every film on the site has been restored with Real-ESRGAN on the
+GPU and then downscaled, so the restorer's guesses average out and only cleaner
+edges remain. The pipeline is one command each:
+
+```bash
+node tools/build-images.js   # tools/image-manifest.js -> media/img/*.webp (full, -sm, -blur) + index.json
+node tools/build-video.js    # tools/media-manifest.js -> media/video/*-720.mp4, *-480.mp4, posters, blur + index.json
+```
+
+Both read her originals from `NEW VIDEOS AND IMAGES/` (not committed) and need the
+portable restorer at `tools/_bin/realesrgan/` (not committed; download
+`realesrgan-ncnn-vulkan-20220424-windows.zip` from the Real-ESRGAN releases on
+GitHub and unzip it there). Without it they fall back to plain resampling. The film
+build takes about three hours for all eighteen films on a laptop GPU; run
+`node tools/build-reels.js` afterwards so the pages pick up the new version hashes.
+
+A page asks for a film with one marker and `build-reels.js` writes the figure:
+
+```html
+<!--REEL:{"name":"entry-film","class":"plate plate--portrait","hero":true,"alt":"…"}-->
+<!--/REEL:entry-film-->
+```
+
+`js/reel.js` then plays one film at a time (the one nearest the middle of the
+screen), holds at most two in memory, pauses when a sheet opens or the tab hides,
+plays `once` films through and offers Replay, and loads nothing at all on Save-Data,
+2G or reduced motion until the visitor taps Play.
 
 ---
 
@@ -98,7 +180,7 @@ formaldehyde-free straightening and texturising system.*
 
 ---
 
-## The service menu — 47 services, 10 disciplines
+## The service menu — 83 services, 14 disciplines
 
 Real, published prices and durations.
 
@@ -281,36 +363,48 @@ cross-checked against the published menu.
 
 ---
 
+---
+
 ## Engineering notes
 
-- **One source of truth.** Prices live in `js/besia-data.js` only. The sample this was
-  forked from kept them in four places that had to be edited in step by hand.
-- **Storage namespace.** All keys are prefixed `besia-` via `BESIA.key()`.
-  `localStorage` is scoped per *origin*, not per path — without this, two demos on
-  one GitHub Pages account would silently share a cart and an order book.
-- **Subresource Integrity.** All 18 third-party script and stylesheet tags are pinned
-  with `sha384` hashes and `crossorigin`, so a compromised CDN cannot execute on the
-  client's site.
-- **Accessibility.** The whole palette is contrast-checked; a dedicated `--gold-ink`
-  token carries accent text at 6.25:1 because the original bronze failed AA at 3.7:1.
-  Pointer targets meet WCAG 2.5.8. All inputs are ≥16px so iOS never auto-zooms.
-- **Performance.** Images recompressed 19 MB → 13 MB; every `<img>` carries intrinsic
-  `width`/`height`, so nothing reflows as the page loads.
-- **SEO.** Canonical URLs, Open Graph and Twitter cards on all 9 public pages,
-  `sitemap.xml`, `robots.txt` (disallowing `/admin/`), a 404 page, and JSON-LD
-  `HairSalon` structured data carrying all 47 offers, the address, the hours and the rating.
-- **Line endings.** Normalised to LF and pinned with `.gitattributes`; the fork
-  arrived with a CRLF/LF mix that made diffs unreadable.
+- **One source of truth.** Prices live in `js/besia-data.js` only.
+- **One owner of navigation.** Nothing prevents a link's default except the booking
+  cart, which claims Book and Add clicks in the capture phase. Page transitions are
+  cross-document View Transitions in CSS; there is no JavaScript curtain.
+- **One scroll lock, one dock.** `site.js` counts locks by name, so a sheet opened
+  over another cannot unlock the page early. The booking bar and the bag bar share
+  one slot at the bottom of a phone; the WhatsApp circle, the chat bubble and the
+  action bar became rows in Contents and the colophon.
+- **Back closes sheets.** Contents and the booking sheet each push a history entry
+  when they open and close on `popstate`, so the phone's Back button hides the sheet
+  instead of leaving the page.
+- **Storage namespace.** All keys are prefixed `besia-` via `BESIA.key()`. Storage is
+  wrapped everywhere, because Safari's private mode throws on it.
+- **The service worker** precaches the public shell only (about 40 files). The
+  manager's pages are cached the first time the owner opens the manager. Films are
+  never answered by the worker, because Safari needs byte-range replies for them.
+  The cache version is a hash of file contents, and the image cache is capped.
+- **Accessibility.** Every ground is contrast-proven. Tap targets are 40px or more
+  (inline text links extend their hit area without moving a line). No italics.
+  Inputs are 16px so iOS never zooms. Reduced motion gets 200ms fades, posters and
+  a visible Play.
+- **Performance.** A single CSS file, about 100 KB uncompressed; GSAP loads only on
+  desktop pointer devices after idle; films are poster-first, 480p on phones, with
+  at most two in memory.
+- **No dashes.** The client's standard is plain punctuation; `check-dash.js` enforces it.
 
 ### Before going live
 
-1. `tools/build-seo.js` → change `SITE_URL` to the real domain, then re-run it.
-2. Confirm the **retail prices** and the **course fees** with the owner. Service
-   prices are her real published menu; the 23 shop prices and the 6 course fees
-   are considered placeholders.
+1. `tools/build-seo.js`: set `IS_PROPOSAL = false` and change `SITE_URL` to the real
+   domain, then re-run build-all. While it is a proposal every page is `noindex`.
+2. Confirm with the owner the **retail prices**, the **course fees** and whether the
+   250ml Hair Botox is sold to clients. Service prices are her official menu.
 3. Confirm the **email address**; `hello@besia.co` is taken from her link-in-bio.
 4. Replace the simulated payment step with Paystack or Hubtel.
-5. Put the studio manager behind real authentication — see below.
+5. Put the Studio Manager behind real authentication.
+6. Ask her for the original camera or export files of the films; the restored
+   WhatsApp copies are good, the originals would be better, and they drop straight
+   into the same pipeline.
 
 ---
 
@@ -319,24 +413,22 @@ cross-checked against the published menu.
 - **Everything is frontend-only.** Orders, bookings, payments, chat and manager data
   are held in the browser. Production needs a backend: database, real payment
   gateway, WhatsApp Business API.
-- **The studio manager has no authentication.** It is unlinked, and `robots.txt`
-  disallows it, but that is not a security control. Anyone with the URL can open it.
-  Real auth is a backend task and must be scoped before launch.
+- **The Studio Manager has no authentication.** It is unlinked and `robots.txt`
+  disallows it, but that is not a security control.
 - **Four demo orders are seeded** so the manager never looks empty.
-- **The chat assistant is scripted**, not a language model. It matches keywords and
-  answers from the live price list.
-- Reviews shown are her real public Fresha reviews. Get her sign-off before publishing.
+- **The chat assistant is scripted**, not a language model.
+- **Course fees and retail prices are indicative** and need her sign-off.
+- Reviews shown are her real public reviews, with the stars left off. Get her
+  sign-off before publishing.
 
 ---
 
-## Images
+## Media
 
-- `images/studio/` — **five photographs of the actual studio** (reception, styling nook,
-  wash room, consultation corner, the wordmark on fluted oak). These carry the hero,
-  the About page, the look book and the Open Graph card.
-- `images/` — the licensed library carried over from the base sample, used for
-  service and product photography. See `images/CREDITS.md`.
-
-The palette is sampled from her own studio: fluted oak, cream plaster, black signage,
-brass and monstera green. Design tokens sit at the top of `css/style.css` and
-`css/admin.css`.
+- `media/img/` and `media/video/` are her own pictures and films, restored and
+  exported by the two build scripts above. `index.json` in each folder carries sizes.
+- `images/` is the licensed library carried over from the base sample, now used only
+  for the hair library products that have no photograph of their own. See
+  `images/CREDITS.md`.
+- `styleguide.html` is a development page showing every ground and every control;
+  it is `noindex` and left out of the service worker.
