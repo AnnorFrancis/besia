@@ -29,7 +29,7 @@ const PACKS = [
     features: [
       'Curl Revive wash-and-go, 1 hr 30 min',
       'Flax Seed + Aloe treatment mask',
-      'In-house flaxseed, rosemary &amp; olive blends',
+      'In-house flaxseed, rosemary and olive blends',
       'Gentle steam to lock in moisture',
       'Finish and style'
     ],

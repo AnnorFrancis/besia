@@ -220,9 +220,9 @@
 .product-img img { object-fit: cover; }
 .product-tag { position: absolute; left: var(--s-3); top: var(--s-3); z-index: 2; color: var(--p-ivory); text-shadow: 0 1px 2px rgb(21 27 34 / 0.6); }
 .product-flag { position: absolute; right: 0; bottom: 0; z-index: 2; padding: 4px var(--s-2); font-size: var(--t-label); font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--p-ink); background: var(--p-brass-lit); }
-.product-body { display: flex; flex-direction: column; gap: var(--s-2); }
+.product-body { display: flex; flex-direction: column; flex: 1 1 auto; gap: var(--s-2); }
 .product-name { font-size: var(--t-body); }
-.product-foot { display: flex; align-items: center; justify-content: space-between; gap: var(--s-2); margin-top: var(--s-1); padding-top: var(--s-3); border-top: 1px solid var(--rule); }
+.product-foot { display: flex; align-items: center; justify-content: space-between; gap: var(--s-2); margin-top: auto; padding-top: var(--s-3); border-top: 1px solid var(--rule); }
 .product-cta .btn { min-height: 40px; padding-inline: var(--s-3); }
 @media (max-width: 479px) { .product-foot { flex-direction: column; align-items: stretch; } .product-cta .btn { width: 100%; } }
 .product-card .live-flag { position: absolute; left: var(--s-3); bottom: var(--s-3); z-index: 2; }
