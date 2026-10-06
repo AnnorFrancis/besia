@@ -80,8 +80,8 @@
   /* ---------- surfaces ---------- */
   --lift: 0 24px 48px -28px rgb(8 10 12 / 0.55);
   --rim: inset 0 1px 0 rgb(255 255 255 / 0.22);
-  --blur-nav: 18px;
-  --blur-sheet: 24px;
+  --blur-nav: 12px;
+  --blur-sheet: 16px;
   --macron-w: 24px;
   --macron-h: 2px;
 }

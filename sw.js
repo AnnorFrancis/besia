@@ -4,46 +4,29 @@
    Keeps the website and the Studio Manager working when the power
    or the network goes. Regenerated on every build.
    ============================================================ */
-const VERSION = '1b734d79';
+const VERSION = 'ab6247a7';
 const CACHE = 'besia-' + VERSION;
 
 const PRECACHE = [
   "./",
   "404.html",
-  "about.html",
   "assets/icons/favicon.svg",
-  "checkout.html",
-  "classes.html",
-  "contact.html",
   "css/issue.css",
-  "css/issue/base.css",
-  "css/issue/components.css",
-  "css/issue/pages.css",
-  "css/issue/templates.css",
-  "css/issue/tokens.css",
   "fonts/montserrat-latin-ext.woff2",
   "fonts/montserrat-latin.woff2",
   "fonts/montserrat-macron.woff2",
-  "gallery.html",
   "index.html",
-  "js/ai-chat.js",
   "js/besia-data.js",
   "js/besia-live.js",
   "js/booking-cart.js",
   "js/booking.js",
-  "js/classes.js",
-  "js/gallery.js",
   "js/offline.js",
   "js/reel.js",
   "js/site-sync.js",
   "js/site.js",
   "js/slides.js",
   "js/store.js",
-  "offline.html",
-  "packages.html",
-  "services.html",
-  "shop.html",
-  "track.html"
+  "offline.html"
 ];
 
 /* The Studio Manager's shell, fetched into the cache the first time an

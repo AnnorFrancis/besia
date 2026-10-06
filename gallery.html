@@ -19,7 +19,7 @@
     var h = document.documentElement, n = navigator, c = n.connection || {};
     h.classList.add('js');
     var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var lite = !!(c.saveData || /(^|[^3-9])2g/.test(c.effectiveType || '') || (n.deviceMemory && n.deviceMemory <= 2));
+    var lite = !!(c.saveData || /(^|[^3-9])2g/.test(c.effectiveType || '') || (n.deviceMemory && n.deviceMemory <= 3) || (n.hardwareConcurrency && n.hardwareConcurrency <= 2));
     h.setAttribute('data-fx', lite || reduce ? 'lite' : 'full');
     if (reduce) h.setAttribute('data-reduce', '');
     var home = document.currentScript && /index\.html$|\/$/.test(location.pathname) && !location.hash && !location.search;
@@ -387,7 +387,6 @@
   <script src="./js/site.js" defer></script>
   <script src="./js/reel.js" defer></script>
   <script src="./js/slides.js" defer></script>
-  <script src="./js/ai-chat.js" defer></script>
   <script src="./js/site-sync.js" defer></script>
   <script src="./js/offline.js" defer></script>
   <script src="./js/gallery.js" defer></script>

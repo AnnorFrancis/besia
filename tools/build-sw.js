@@ -37,8 +37,17 @@ const all = walk(ROOT)
 /* The public shell is precached on first visit. The Studio Manager's
    own pages and scripts are cached the first time the owner opens the
    manager, so a client browsing on mobile data never downloads it. */
-const shell = all.filter(f => !f.startsWith('admin/') && !/^js\/admin/.test(f) && f !== 'css/admin.css');
-const adminShell = all.filter(f => !shell.includes(f));
+/* Precache only what the first visit needs to work offline afterwards:
+   the home page, the offline page, the stylesheet, the shared scripts
+   and the fonts. Every other page is cached the first time it is opened
+   (the navigate handler below does that), so a client on mobile data
+   never downloads pages she has not asked for. */
+const publicAll = all.filter(f => !f.startsWith('admin/') && !/^js\/admin/.test(f) && f !== 'css/admin.css');
+const shell = publicAll.filter(f =>
+  f === 'index.html' || f === 'offline.html' || f === '404.html' ||
+  f === 'css/issue.css' || /^fonts\//.test(f) || /^assets\//.test(f) ||
+  /^js\/(besia-data|besia-live|booking-cart|site|reel|slides|site-sync|offline|store|booking)\.js$/.test(f));
+const adminShell = all.filter(f => f.startsWith('admin/') || /^js\/admin/.test(f) || f === 'css/admin.css');
 
 /* The five studio photographs carry the hero on every page, worth
    having offline. The rest of the library is cached as it is browsed. */

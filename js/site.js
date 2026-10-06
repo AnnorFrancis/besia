@@ -144,14 +144,22 @@
     });
   }
 
-  /* ---------- "Ask the studio" rows open the chat without the bubble ---------- */
+  /* ---------- "Ask the studio" rows open the chat without the bubble.
+     The chat script (21 KB) is fetched only when somebody asks. ---------- */
+  var chatLoading = null;
   doc.addEventListener('click', function (e) {
     if (e.defaultPrevented) return;
     var a = e.target.closest('[data-open-chat]');
     if (!a) return;
     e.preventDefault();
-    var fab = doc.querySelector('.chat-fab');
-    if (fab) fab.click();
+    var openIt = function () { var fab = doc.querySelector('.chat-fab'); if (fab) fab.click(); };
+    if (doc.querySelector('.chat-fab')) { openIt(); return; }
+    if (!chatLoading) {
+      chatLoading = new Promise(function (res, rej) {
+        var s = doc.createElement('script'); s.src = './js/ai-chat.js'; s.onload = res; s.onerror = rej; doc.head.appendChild(s);
+      });
+    }
+    chatLoading.then(function () { setTimeout(openIt, 50); }).catch(function () { chatLoading = null; });
   });
 
   /* ---------- the Book count ---------- */

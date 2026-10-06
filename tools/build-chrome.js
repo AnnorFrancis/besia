@@ -30,7 +30,7 @@ const part = n => fs.readFileSync(path.join(__dirname, 'chrome', n + '.html'), '
 
 const PAGES = ['index', 'services', 'shop', 'classes', 'packages', 'gallery', 'about', 'contact', 'checkout', 'track', '404', 'offline', 'styleguide'];
 const SETS = {
-  core:  ['besia-data', 'besia-live', 'booking-cart', 'site', 'reel', 'slides', 'ai-chat', 'site-sync', 'offline'],
+  core:  ['besia-data', 'besia-live', 'booking-cart', 'site', 'reel', 'slides', 'site-sync', 'offline'],   /* ai-chat loads on demand */
   store: ['besia-data', 'besia-live', 'store', 'site', 'reel', 'site-sync', 'offline'],
   none:  []
 };
