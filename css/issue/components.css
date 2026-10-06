@@ -548,3 +548,97 @@ html.intro .intro-veil { animation: intro-gone 1ms linear 2100ms forwards; }
    grows above and below the text without moving a line. */
 .link, .text-link, .t-cap a, .prose a, .foot-bottom a, .track-hint a, .track-error a, .co-demo-note a { padding-block: 10px; margin-block: -10px; }
 .link, .text-link { display: inline-block; }
+
+/* ============================================================
+   Glass, where it can be seen
+   ============================================================ */
+.glass { position: relative; background: rgb(21 27 34 / 0.92); box-shadow: var(--rim), var(--lift); }
+.glass--light { background: rgb(246 240 228 / 0.94); color: var(--p-ink); }
+@supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .glass { background: rgb(21 27 34 / 0.52); -webkit-backdrop-filter: blur(18px) saturate(1.35); backdrop-filter: blur(18px) saturate(1.35); }
+  .glass--light { background: rgb(246 240 228 / 0.72); }
+  html[data-fx="lite"] .glass { background: rgb(21 27 34 / 0.92); -webkit-backdrop-filter: none; backdrop-filter: none; }
+  html[data-fx="lite"] .glass--light { background: rgb(246 240 228 / 0.94); }
+}
+.glass::after { content: ''; position: absolute; inset: 0; pointer-events: none; opacity: 0.045; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.95' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.7 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+.glass > * { position: relative; z-index: 1; }
+
+/* The masthead is glass from the first pixel, so the cover shows through it. */
+.site-nav { background: rgb(21 27 34 / 0.38); box-shadow: 0 1px 0 rgb(246 240 228 / 0.08); }
+@supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .site-nav { -webkit-backdrop-filter: blur(var(--blur-nav)) saturate(1.4); backdrop-filter: blur(var(--blur-nav)) saturate(1.4); }
+  .site-nav.is-stuck { background: rgb(21 27 34 / 0.64); }
+  .site-nav--paper:not(.is-stuck) { background: rgb(246 240 228 / 0.55); }
+}
+.site-nav--paper { background: rgb(246 240 228 / 0.9); box-shadow: 0 1px 0 rgb(21 27 34 / 0.08); }
+
+/* Sticky bars of chips (chapters, filters) float as glass over the page. */
+.glass-bar { position: sticky; top: calc(var(--nav-h-stuck) + var(--offer-h)); z-index: calc(var(--z-nav) - 1); background: rgb(246 240 228 / 0.92); box-shadow: 0 1px 0 var(--rule); }
+@supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .glass-bar { background: rgb(246 240 228 / 0.68); -webkit-backdrop-filter: blur(16px) saturate(1.3); backdrop-filter: blur(16px) saturate(1.3); }
+  html[data-fx="lite"] .glass-bar { background: rgb(246 240 228 / 0.94); -webkit-backdrop-filter: none; backdrop-filter: none; }
+}
+[data-ground="ink"] .glass-bar, [data-ground="moss"] .glass-bar, [data-ground="espresso"] .glass-bar, [data-ground="clay"] .glass-bar { background: rgb(21 27 34 / 0.62); }
+
+/* The dock is glass too. */
+@supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .cart-bar { background: rgb(21 27 34 / 0.7); -webkit-backdrop-filter: blur(16px) saturate(1.3); backdrop-filter: blur(16px) saturate(1.3); }
+  html[data-fx="lite"] .cart-bar { background: var(--p-ink); -webkit-backdrop-filter: none; backdrop-filter: none; }
+}
+
+/* On a desktop with a pointer, the frosted foot blurs the film beneath it live. */
+@media (min-width: 1024px) and (hover: hover) and (pointer: fine) {
+  @supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+    html[data-fx="full"] .foot { background-color: rgb(21 27 34 / 0.42); -webkit-backdrop-filter: blur(14px) saturate(1.3); backdrop-filter: blur(14px) saturate(1.3); }
+    html[data-fx="full"] .foot::before { background: rgb(21 27 34 / 0.22); }
+  }
+}
+
+/* A glass tag on a plate: the numeral and a word. */
+.plate-tag { position: absolute; left: var(--s-3); top: var(--s-3); z-index: 3; display: inline-flex; align-items: center; gap: var(--s-2); padding: 6px 10px; font-size: var(--t-label); font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--p-ivory); background: rgb(21 27 34 / 0.55); box-shadow: var(--rim); }
+@supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) { .plate-tag { background: rgb(21 27 34 / 0.32); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); } }
+.plate-tag .n { color: var(--p-brass-lit); font-variant-numeric: tabular-nums; }
+
+/* ============================================================
+   Motion, the visible kind
+   ============================================================ */
+/* Headlines rise word by word when they come into view (site.js wraps the words). */
+html.js [data-split] .w { display: inline-block; overflow: hidden; vertical-align: bottom; padding-bottom: 0.08em; margin-bottom: -0.08em; }
+html.js [data-split] .w > span { display: inline-block; transform: translateY(110%); transition: transform 900ms var(--ease-out); }
+html.js [data-split].is-inview .w > span { transform: none; }
+html.js [data-split].is-inview .w:nth-child(2) > span { transition-delay: 60ms; }
+html.js [data-split].is-inview .w:nth-child(3) > span { transition-delay: 120ms; }
+html.js [data-split].is-inview .w:nth-child(4) > span { transition-delay: 180ms; }
+html.js [data-split].is-inview .w:nth-child(5) > span { transition-delay: 240ms; }
+html.js [data-split].is-inview .w:nth-child(6) > span { transition-delay: 300ms; }
+html.js [data-split].is-inview .w:nth-child(n+7) > span { transition-delay: 360ms; }
+@media (prefers-reduced-motion: reduce) { html.js [data-split] .w > span { transform: none; transition: none; } }
+
+/* Ghost numerals drift as the chapter scrolls past (scroll-driven, no script). */
+@supports (animation-timeline: view()) {
+  html[data-fx="full"] .t-opener .ghost { animation: ghost-drift linear both; animation-timeline: view(); animation-range: entry 0% exit 100%; }
+}
+@keyframes ghost-drift { from { transform: translateY(12%); } to { transform: translateY(-18%); } }
+
+/* The ticker: the fourteen chapters passing slowly, paused on hover. */
+.ticker { overflow: hidden; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); padding: var(--s-3) 0; }
+.ticker-track { display: flex; gap: var(--s-7); width: max-content; animation: ticker 70s linear infinite; }
+.ticker-track span { display: inline-flex; align-items: center; gap: var(--s-3); font-size: var(--t-label); font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; white-space: nowrap; color: var(--fg-2); }
+.ticker-track span .n { color: var(--accent); font-variant-numeric: tabular-nums; }
+.ticker:hover .ticker-track { animation-play-state: paused; }
+@keyframes ticker { to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) { .ticker-track { animation: none; } }
+html[data-fx="lite"] .ticker-track { animation-duration: 140s; }
+
+/* Buttons lift a little on hover, plates breathe. */
+@media (hover: hover) and (pointer: fine) {
+  .btn { transition: background var(--d-hover) var(--ease-soft), color var(--d-hover) var(--ease-soft), border-color var(--d-hover) var(--ease-soft), transform var(--d-tap) var(--ease-soft), box-shadow var(--d-hover) var(--ease-soft); }
+  .btn:hover { box-shadow: 0 10px 30px -14px rgb(21 27 34 / 0.6); transform: translateY(-1px); }
+  .plate img { transition: transform 1200ms var(--ease-soft); }
+  .t-rail > :hover .plate img, .t-spread .plate:hover img, .t-opener .plate:hover img { transform: scale(1.03); }
+}
+
+/* ============================================================
+   Speed: sections below the fold render when they are near
+   ============================================================ */
+main > .section:not(:first-child):not(.opener) { content-visibility: auto; contain-intrinsic-size: auto 900px; }

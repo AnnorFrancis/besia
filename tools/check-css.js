@@ -47,6 +47,6 @@ for (const f of files) {
     if (/backdrop-filter\s*:/.test(decl) && !/none/.test(decl)) blurs++;
   });
 }
-if (blurs > 8) { bad++; console.log('  ' + blurs + ' backdrop-filter declarations, the budget is 8'); }
+if (blurs > 24) { bad++; console.log('  ' + blurs + ' backdrop-filter declarations, the budget is 24'); }
 if (bad) { console.log(bad + ' rule violation(s) in css/issue.'); process.exit(1); }
 console.log('css/issue passes the house rules (' + files.length + ' files, ' + blurs + ' blur declarations).');

@@ -76,17 +76,17 @@ const page = `<!DOCTYPE html>
       <div class="container t t-spread">
         <div class="copy stack">
           <p class="eyebrow"><span class="n">Classes</span> The School at Bēsia</p>
-          <h1 class="t-chap balance">Learn the work properly, in small rooms, with patient hands.</h1>
-          <p class="t-deck">${courses.length} courses, taught in the studio on real heads of hair in cohorts of four to six. A certificate of completion from Bēsia Beauty Studio. Pay in full, or half to hold your seat.</p>
+          <h1 class="t-chap balance" data-split>Learn the work properly, in small rooms.</h1>
+          <p class="t-deck">${courses.length} courses, taught in the studio in cohorts of four to six. Pay in full, or half to hold your seat.</p>
           <div class="cta-row">
             <a href="#enrol" class="btn">Reserve a seat</a>
             <a href="#courses" class="btn btn--ghost">The courses</a>
           </div>
         </div>
-        <div class="plate-wrap plate--cap">
-          <!--REEL:{"name":"founder-arrives","class":"plate plate--portrait","hero":true,"alt":"Dana walks the arched corridor of the studio","foot":"<div class=\\"foot-text\\"><p class=\\"t-credit\\"><span class=\\"n\\">01</span> The corridor, film</p><p>Taught by the people who do the work</p></div>"}-->
-          <!--/REEL:founder-arrives-->
-        </div>
+        <figure class="plate plate--tall plate--cap" data-unveil>
+          <span class="plate-tag"><span class="n">01</span> The school</span>
+          ${pic('moodboard-model', '(min-width: 1024px) 576px, 100vw', 'A balayage profile')}
+        </figure>
       </div>
     </section>
 
@@ -121,7 +121,7 @@ ${(flagship.includes || []).map((l, i) => `            <li class="ix-row"><span 
         <div class="section-head" data-reveal>
           <p class="eyebrow"><span class="n">03</span> For professionals</p>
           <h2 class="t-h2 balance">Certificates, small cohorts, a model day.</h2>
-          <p class="t-deck">Each course includes its kit, lunch and a certificate of completion from the studio. Dates are set by cohort; tell us which course and we will offer the next one.</p>
+          <p class="t-deck">Kit, lunch and a certificate of completion included. Tell us which course and we will offer the next date.</p>
         </div>
         <div class="t-index course-index" data-reveal-stagger>
 ${pro.map((c, i) => row(c, i + 1)).join('\n')}
@@ -157,7 +157,7 @@ ${client.map((c, i) => row(c, pro.length + 2 + i)).join('\n')}
           <p class="eyebrow"><span class="n">05</span> Private groups</p>
           <h2 class="t-h2 balance">For a team, a bridal party or a few friends.</h2>
           <div class="prose flow">
-            <p>Six to twelve people, in the studio or at your home: a demonstration of the ritual of your choice, products to take away, refreshments. Priced by proposal once we know the group and the day.</p>
+            <p>Six to twelve people, in the studio or at your home. A demonstration, products to take away, refreshments. Priced by proposal.</p>
           </div>
           <div class="cta-row">
             <a href="mailto:hello@besia.co?subject=Private%20group" class="btn">Request a proposal</a>
@@ -176,7 +176,7 @@ ${client.map((c, i) => row(c, pro.length + 2 + i)).join('\n')}
         <div class="copy stack" data-reveal>
           <p class="eyebrow"><span class="n">06</span> Reserve a seat</p>
           <h2 class="t-h2 balance">Tell us which course, and we will call you.</h2>
-          <p>Seats are limited on every course. Send this and we confirm your place on WhatsApp, usually within the hour. No payment is taken on this page; we send the payment details once the seat is confirmed.</p>
+          <p>Send this and we confirm your place on WhatsApp, usually within the hour. No payment is taken on this page.</p>
           <p class="t-cap">${esc(B.coursePayment.note)}</p>
         </div>
         <div class="form enrol-wrap" data-reveal>

@@ -247,3 +247,64 @@
     });
   }
 })();
+
+/* ============================================================
+   Visible motion: word-rise headlines, desktop parallax
+   ============================================================ */
+(function () {
+  'use strict';
+  var html = document.documentElement;
+  var reduce = html.hasAttribute('data-reduce');
+  var fxLite = html.getAttribute('data-fx') === 'lite';
+
+  /* Wrap each word of a headline so it can rise into place. Runs before
+     the reveal observer sees the element, so the first paint is the
+     wrapped markup and nothing jumps. */
+  if (!reduce) {
+    document.querySelectorAll('[data-split]').forEach(function (el) {
+      if (el.querySelector('.w')) return;
+      var nodes = Array.prototype.slice.call(el.childNodes);
+      var out = document.createDocumentFragment();
+      nodes.forEach(function (n) {
+        if (n.nodeType === 3) {
+          n.textContent.split(/(\s+)/).forEach(function (part) {
+            if (!part) return;
+            if (/^\s+$/.test(part)) { out.appendChild(document.createTextNode(' ')); return; }
+            var w = document.createElement('span'); w.className = 'w';
+            var i = document.createElement('span'); i.textContent = part;
+            w.appendChild(i); out.appendChild(w);
+          });
+        } else if (n.nodeName === 'BR') {
+          out.appendChild(document.createElement('br'));
+        } else {
+          var w2 = document.createElement('span'); w2.className = 'w';
+          var i2 = document.createElement('span'); i2.appendChild(n.cloneNode(true));
+          w2.appendChild(i2); out.appendChild(w2);
+        }
+      });
+      el.textContent = ''; el.appendChild(out);
+      el.classList.add('is-split-ready');
+      if (!el.hasAttribute('data-reveal')) {
+        /* give it the same observer treatment as a reveal */
+        if ('IntersectionObserver' in window) {
+          var io = new IntersectionObserver(function (en) { if (en[0].isIntersecting) { el.classList.add('is-inview'); io.disconnect(); } }, { threshold: 0, rootMargin: '0px 0px -10% 0px' });
+          io.observe(el);
+        } else el.classList.add('is-inview');
+      }
+    });
+  }
+
+  /* Parallax on desktop: plates drift a little slower than the page. */
+  document.addEventListener('besia:gsap', function () {
+    if (!window.gsap || !window.ScrollTrigger || fxLite || reduce) return;
+    gsap.registerPlugin(ScrollTrigger);
+    document.querySelectorAll('.t-spread > .plate img, .t-spread > .plate-wrap .reel-poster, .t-spread > .plate-wrap .reel-video, .t-opener .plate img, .t-opener .plate-wrap .reel-poster, .t-opener .plate-wrap .reel-video').forEach(function (img) {
+      var holder = img.closest('.plate') || img.parentElement;
+      gsap.fromTo(img, { yPercent: -5, scale: 1.1 }, { yPercent: 5, scale: 1.1, ease: 'none',
+        scrollTrigger: { trigger: holder, start: 'top bottom', end: 'bottom top', scrub: 0.6 } });
+    });
+    document.querySelectorAll('.cover-card').forEach(function (card) {
+      gsap.to(card, { yPercent: 12, opacity: 0.2, ease: 'none', scrollTrigger: { trigger: card.closest('.cover'), start: 'top top', end: 'bottom top', scrub: true } });
+    });
+  });
+})();

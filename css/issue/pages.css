@@ -16,41 +16,31 @@
    HOME
    ============================================================ */
 
-/* The cover */
-.cover { position: relative; min-height: 100svh; padding-top: calc(var(--nav-h) + var(--offer-h)); overflow: hidden; }
-.cover-inner { position: relative; }
-.cover-mast { display: flex; flex-direction: column; gap: var(--s-3); padding: var(--s-6) 0 var(--s-5); }
-.cover-mast .t-mast { display: block; }
-.cover-issue { color: var(--fg-3); }
-.cover .t-cover { min-height: 0; }
-.cover .cover-copy { padding-bottom: var(--section); }
-.cover .cover-plate { align-self: end; }
-.cover .cta-row { margin-top: var(--s-2); }
-.cover-folio { margin-top: var(--s-5); }
+/* The cover: her sharpest pictures as a slow slideshow, the masthead over
+   them, the coverlines on a glass panel. One composition on every screen. */
+.cover { position: relative; min-height: 100svh; display: flex; flex-direction: column; justify-content: flex-end; overflow: hidden; isolation: isolate; }
+.cover-bg { position: absolute; inset: 0; z-index: 0; }
+.cover-bg .slide { position: absolute; inset: 0; }
+.cover-bg .slide img { width: 100%; height: 100%; object-fit: cover; object-position: var(--pos, center 30%); }
+.cover-scrim { position: absolute; inset: 0; z-index: 1; pointer-events: none; background: linear-gradient(to top, rgb(21 27 34 / 0.82) 0%, rgb(21 27 34 / 0.38) 38%, rgb(21 27 34 / 0.08) 70%, rgb(21 27 34 / 0.45) 100%); }
+.cover-inner { position: relative; z-index: 2; display: flex; flex-direction: column; justify-content: space-between; flex: 1; padding-top: calc(var(--nav-h) + var(--offer-h) + var(--s-6)); padding-bottom: calc(var(--s-6) + var(--dock-h)); min-height: 100svh; }
+.cover-mast { display: flex; flex-direction: column; gap: var(--s-3); }
+.cover-mast .t-mast { display: block; font-size: clamp(3.25rem, 1.4rem + 9.6vw, 11rem); }
+.cover-issue { color: rgb(246 240 228 / 0.72); }
+.cover-card { width: min(100%, 600px); padding: var(--s-5); margin-top: var(--s-7); display: grid; gap: var(--s-4); color: var(--p-ivory); }
+.cover-card .t-coverline { font-size: clamp(2rem, 1.2rem + 3.6vw, 3.75rem); }
+.cover-card .t-deck { color: rgb(246 240 228 / 0.82); font-size: var(--t-body); max-width: 40ch; }
+.cover-card .cta-row { margin-top: var(--s-1); }
+.cover-folio { display: flex; flex-wrap: wrap; gap: var(--s-2) var(--s-4); color: rgb(246 240 228 / 0.7); }
 .cover-folio [data-open-pill]::before { content: ''; display: inline-block; width: 6px; height: 6px; margin: 0 6px 1px 0; background: var(--p-sage); }
-.cover-folio [data-open-pill].is-closed::before { background: var(--fg-3); }
+.cover-folio [data-open-pill].is-closed::before { background: rgb(246 240 228 / 0.5); }
+.cover .slides-count { font-variant-numeric: tabular-nums; }
 @media (min-width: 1024px) {
-  .cover { padding-bottom: 0; }
-  .cover .t-cover { align-items: end; }
-  .cover .cover-plate { grid-column: 7 / -1; justify-self: end; width: 100%; }
-  .cover .cover-copy { grid-column: 1 / 7; padding-bottom: var(--s-9); }
-  .cover-mast { padding-top: var(--s-7); }
+  .cover-inner { padding-bottom: var(--s-8); }
+  .cover-card { padding: var(--s-6); }
+  .cover-mast .t-mast { font-size: clamp(6rem, 2rem + 10vw, 12rem); }
 }
-@media (max-width: 1023px) {
-  .cover { padding-top: 0; min-height: 100svh; display: block; }
-  .cover-inner { width: 100%; position: static; }
-  .cover-mast { position: absolute; z-index: 2; top: calc(var(--nav-h) + var(--offer-h)); left: 0; right: 0; padding: var(--s-5) var(--page) 0; }
-  .cover-mast .t-mast { font-size: clamp(3rem, 14vw, 6rem); }
-  .cover-issue { display: none; }
-  .cover .t-cover { display: block; min-height: 100svh; position: relative; }
-  .cover .cover-plate { position: absolute; inset: 0; max-width: none; }
-  .cover .cover-plate .reel { position: absolute; inset: 0; aspect-ratio: auto; height: 100%; }
-  .cover .cover-plate .reel::after { content: ''; position: absolute; inset: 0; z-index: 2; background: linear-gradient(to top, rgb(21 27 34 / 0.92) 0%, rgb(21 27 34 / 0.55) 32%, rgb(21 27 34 / 0) 62%), linear-gradient(to bottom, rgb(21 27 34 / 0.55) 0%, rgb(21 27 34 / 0) 28%); pointer-events: none; }
-  .cover .cover-plate .reel-ctl { z-index: 3; bottom: auto; top: calc(var(--nav-h) + 112px); }
-  .cover .cover-copy { position: relative; z-index: 3; min-height: 100svh; display: flex; flex-direction: column; justify-content: flex-end; padding: 0 var(--page) calc(var(--s-7) + var(--dock-h)); }
-  .cover .cover-copy .t-deck { font-size: var(--t-body); color: var(--fg-2); max-width: 36ch; }
-  .cover .cover-copy .t-coverline { font-size: clamp(2rem, 1.3rem + 4.2vw, 3rem); }
-}
+@media (max-width: 480px) { .cover-card { margin-inline: calc(-1 * var(--page) + var(--s-3)); width: auto; } }
 
 /* In this issue: six cards on fluted oak */
 .svc-card { display: flex; flex-direction: column; gap: var(--s-4); min-width: 0; }
@@ -378,3 +368,8 @@
 .track-steps li.is-cancelled .dot { background: var(--accent); color: var(--on-accent); }
 .track-panels { display: grid; gap: var(--s-6); }
 @media (min-width: 768px) { .track-panels { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+/* product tags read on any photograph: dark glass, like the plate tags */
+.product-tag { left: var(--s-3); top: var(--s-3); display: inline-flex; align-items: center; gap: var(--s-2); padding: 6px 10px; color: var(--p-ivory); text-shadow: none; background: rgb(21 27 34 / 0.55); box-shadow: var(--rim); max-width: calc(100% - 2 * var(--s-3)); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+@supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) { .product-tag { background: rgb(21 27 34 / 0.32); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); } }
+.product-tag .n { color: var(--p-brass-lit); }
