@@ -148,9 +148,11 @@ fs.writeFileSync(file, html);
   let home = fs.readFileSync(homeFile, 'utf8');
   const o = '<!--BUILD:homepacks-->', c = '<!--/BUILD:homepacks-->';
   const a = home.indexOf(o), b = home.indexOf(c);
-  if (a === -1 || b === -1 || b < a) { console.error('MISSING MARKER in index.html: ' + o); process.exit(1); }
-  home = home.slice(0, a + o.length) + '\n' + packages() + '\n' + home.slice(b);
-  fs.writeFileSync(homeFile, home);
+  /* the home page carries the teaser only if it asks for it */
+  if (a !== -1 && b !== -1 && b > a) {
+    home = home.slice(0, a + o.length) + '\n' + packages() + '\n' + home.slice(b);
+    fs.writeFileSync(homeFile, home);
+  }
 }
 
 console.log('packages.html rebuilt, ' + PACKS.length + ' packages, ' + BUILDER.length + ' builder options.');
