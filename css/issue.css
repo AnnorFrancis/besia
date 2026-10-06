@@ -949,6 +949,9 @@ html[data-fx="lite"] .ticker-track { animation-duration: 140s; }
    Speed: sections below the fold render when they are near
    ============================================================ */
 main > .section:not(:first-child):not(.opener) { content-visibility: auto; contain-intrinsic-size: auto 900px; }
+/* every link clears 40px on a thumb */
+.link, .text-link, .t-cap a, .prose a, .foot-bottom a, .track-hint a, .track-error a, .co-demo-note a { padding-block: 12px; margin-block: -12px; display: inline-block; }
+.foot-logo { display: inline-flex; align-items: center; min-height: 40px; }
 
 /* ==== templates.css ==== */
 /* ============================================================
