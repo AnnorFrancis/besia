@@ -148,7 +148,7 @@
   font-size: var(--t-label); font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: inherit;
   position: relative;
 }
-.nav-toggle .nav-toggle-word::after { content: 'Contents'; }
+.nav-toggle .nav-toggle-word::after { content: 'Menu'; }
 .nav-toggle.is-open .nav-toggle-word::after { content: 'Close'; }
 .nav-toggle span:not(.nav-toggle-word) { display: none; }
 .nav-toggle::before { content: ''; width: var(--macron-w); height: var(--macron-h); background: var(--p-brass-lit); transition: width var(--d-hover) var(--ease-soft); }

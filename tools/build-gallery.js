@@ -27,6 +27,10 @@ const CATS = [
 
 /* name in media/img, category, the title under the picture, wide or tall */
 const SHEET = [
+  ['abeauty-cover-terracotta',   'campaign',  'A-Beauty, terracotta'],
+  ['abeauty-cover-river',        'campaign',  'A-Beauty, the river'],
+  ['abeauty-cover-oranges',      'campaign',  'A-Beauty, oranges'],
+  ['abeauty-ritual',             'campaign',  'A-Beauty, the ritual'],
   ['studio-push-door',           'studio',    'The PUSH door'],
   ['studio-logo-wall-1',         'studio',    'The logo wall'],
   ['studio-logo-wall-2',         'studio',    'The logo wall, again'],
@@ -65,8 +69,7 @@ function items() {
     const im = IMG[name];
     if (!im) throw new Error('picture not built: ' + name);
     const label = (CATS.find(c => c[0] === cat) || [])[1] || cat;
-    const wide = im.w > im.h * 1.2;
-    return `          <figure class="gallery-item${wide ? ' gallery-item--wide' : ''}" data-cat="${cat}" data-cat-label="${esc(label)}" data-title="${esc(title)}" data-full="./media/img/${name}.webp">
+    return `          <figure class="gallery-item" data-cat="${cat}" data-cat-label="${esc(label)}" data-title="${esc(title)}" data-full="./media/img/${name}.webp">
             <img src="./media/img/${name}-sm.webp" srcset="./media/img/${name}-sm.webp ${im.wSm}w, ./media/img/${name}.webp ${im.w}w" sizes="(min-width: 1024px) 24vw, (min-width: 640px) 45vw, 48vw" width="${im.w}" height="${im.h}" alt="${esc(title)}" loading="lazy" decoding="async">
             <figcaption class="gallery-item-overlay"><span class="gallery-item-cat t-credit"><span class="n">${String(i + 1).padStart(2, '0')}</span> ${esc(label)}</span><span class="gallery-item-title">${esc(title)}</span></figcaption>
           </figure>`;

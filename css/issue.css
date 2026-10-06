@@ -455,7 +455,7 @@ hr, .rule { border: 0; height: 1px; background: var(--rule); }
   font-size: var(--t-label); font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: inherit;
   position: relative;
 }
-.nav-toggle .nav-toggle-word::after { content: 'Contents'; }
+.nav-toggle .nav-toggle-word::after { content: 'Menu'; }
 .nav-toggle.is-open .nav-toggle-word::after { content: 'Close'; }
 .nav-toggle span:not(.nav-toggle-word) { display: none; }
 .nav-toggle::before { content: ''; width: var(--macron-w); height: var(--macron-h); background: var(--p-brass-lit); transition: width var(--d-hover) var(--ease-soft); }
@@ -1519,3 +1519,79 @@ a.ix-row { transition: background var(--d-hover) var(--ease-soft); }
 @supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) { .product-tag { background: rgb(21 27 34 / 0.32); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); } }
 .product-tag .n { color: var(--p-brass-lit); }
 @media (max-width: 767px) { .product-tag .cat { display: none; } }
+
+/* ============================================================
+   SIMPLER CHROME AND CHAPTERS (the clean-up pass)
+   ============================================================ */
+/* header: the name alone; the Menu button only where links are hidden */
+.nav-logo-name { font-size: 1.05rem; }
+@media (min-width: 1024px) { .nav-toggle { display: none; } }
+.nav-overlay-links a { grid-template-columns: 2.5rem minmax(0, 1fr); min-height: 60px; }
+.nav-overlay-links a.is-active::after, .nav-overlay-links a[aria-current="page"]::after { grid-column: 2; }
+@media (min-width: 1024px) { .nav-overlay { display: none; } }
+
+/* footer: one row, the name whole */
+.site-footer { padding: var(--s-7) 0 var(--s-5); }
+.foot-row { display: grid; gap: var(--s-6); }
+@media (min-width: 768px) { .foot-row { grid-template-columns: minmax(0, 2fr) minmax(0, 1fr) minmax(0, 1fr); gap: var(--s-6); } }
+.foot-brand .t-cap { color: var(--fg-2); line-height: 1.6; }
+.foot-links { display: grid; gap: 0; }
+.foot-links li a { display: inline-flex; align-items: center; min-height: 40px; font-size: var(--t-cap); color: var(--fg); }
+.foot-bottom { margin-top: var(--s-6); }
+
+/* chapters: each one is its own ruled block with all its prices */
+.chapter-rail-inner { display: flex; align-items: center; gap: var(--s-4); }
+.chapter-rail-inner .chips { flex: 1 1 auto; margin-inline: 0; padding-inline: 0; }
+.chapter-rail .ledger-search { flex: 0 0 auto; width: clamp(140px, 24vw, 260px); }
+.chapter-rail .ledger-search input { min-height: 40px; padding: 0; font-size: 16px; }
+@media (max-width: 639px) { .chapter-rail-inner { flex-wrap: wrap; } .chapter-rail .ledger-search { width: 100%; } }
+.ledger-count { padding-top: var(--s-3); min-height: 0; }
+.ledger-count:empty { display: none; }
+.chapter { padding-block: 0; }
+.chapter.is-filtered { display: none; }
+.chapter-group { border-top: 1px solid var(--rule); border-bottom: 0; }
+.chapters .chapter:last-child .chapter-group { border-bottom: 1px solid var(--rule); }
+.chapter-head { display: grid; grid-template-columns: 3rem minmax(0, 1fr) auto 24px; align-items: center; gap: var(--s-4); min-height: 88px; padding-block: var(--s-4); cursor: pointer; list-style: none; }
+.chapter-head::-webkit-details-marker { display: none; }
+.chapter-head::after { content: '+'; font-weight: 200; font-size: 1.5rem; color: var(--fg-3); text-align: center; }
+.chapter-group[open] .chapter-head::after { content: '\2212'; }
+.chapter-title { display: grid; gap: 2px; }
+.chapter-title .t-cap { display: none; }
+@media (min-width: 768px) { .chapter-title .t-cap { display: block; max-width: 60ch; } }
+.chapter-meta { display: grid; justify-items: end; gap: 2px; text-align: right; }
+.chapter-meta .t-price em { font-size: var(--t-label); font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fg-3); margin-right: 4px; }
+.chapter-meta .price-count { font-size: var(--t-label); letter-spacing: 0.12em; color: var(--fg-3); }
+.chapter-meta .price-count::after { content: ' services'; text-transform: uppercase; }
+.chapter-body { padding: 0 0 var(--s-6); }
+.chapter-body .price-rows { padding: 0; }
+.chapter-body .price-row { padding-left: 3rem; }
+.chapter-body .price-row:first-child { border-top: 0; }
+.chapter-plate { margin: 0 0 var(--s-5) 3rem; max-width: 360px; }
+.chapter-plate .plate { --ar: 4 / 5; }
+@media (min-width: 1024px) {
+  .chapter-body.has-plate { display: grid; grid-template-columns: 360px minmax(0, 1fr); gap: var(--s-7); align-items: start; }
+  .chapter-plate { margin: 0 0 0 4rem; }
+  .chapter-body .price-row, .chapter-head { padding-left: 0; }
+  .chapter-head { grid-template-columns: 4rem minmax(0, 1fr) auto 24px; }
+  .chapter-body .price-row { padding-left: 4rem; }
+  .chapter-body.has-plate .price-row { padding-left: 0; }
+}
+@media (max-width: 639px) { .chapter-head { grid-template-columns: 2.5rem minmax(0, 1fr) 24px; } .chapter-meta { grid-column: 2; justify-items: start; text-align: left; } .chapter-body .price-row { padding-left: 0; } .chapter-plate { margin-left: 0; max-width: none; } }
+/* keep every chapter open on wide screens */
+@media (min-width: 768px) { .chapter-group:not([open]) > .chapter-body { display: block; } .chapter-group .chapter-head::after { display: none; } .chapter-head { cursor: default; } }
+
+/* gallery: one uniform grid */
+.gallery-item--wide { grid-column: auto; aspect-ratio: 4 / 5; }
+
+/* the booking sheet: counts and buttons in fixed columns, nothing crowded */
+.bk-cat summary { display: grid; grid-template-columns: minmax(0, 1fr) 3rem 44px; align-items: center; gap: var(--s-3); }
+.bk-cat summary::after { width: 44px; text-align: center; margin: 0; }
+.bk-cat-n { margin: 0; text-align: right; }
+.bk-sec { padding: var(--s-4) 0; }
+.bk-items li, .bk-pick { min-height: 56px; }
+.bk-hint { margin-top: var(--s-3); }
+.chapter-rail .ledger-search input { padding: 0 var(--s-3); border: 1px solid var(--rule-ui); border-bottom-width: 1px; }
+.chapter-rail .ledger-search input:focus { border: 1px solid var(--fg); padding-bottom: 0; }
+/* the chapter toggle: a small chevron, not a sign */
+.chapter-head::after, .chapter-group[open] .chapter-head::after { content: ''; width: 10px; height: 10px; border-right: 1px solid var(--fg-3); border-bottom: 1px solid var(--fg-3); transform: rotate(45deg); margin: 0 auto; transition: transform var(--d-hover) var(--ease-soft); }
+.chapter-group[open] .chapter-head::after { transform: rotate(-135deg); }

@@ -70,7 +70,6 @@ const LEAD = {
 const GROUNDS = ['ivory', 'moss', 'oatmeal', 'espresso', 'sage', 'ink', 'ivory'];
 
 const pad = n => String(n).padStart(2, '0');
-const standouts = items => items.filter(s => !s.aux && !s.bundle).slice().sort((a, b) => B.priceOf(b) - B.priceOf(a)).slice(0, 3);
 
 /* ---------- blocks ---------- */
 
@@ -82,7 +81,7 @@ function chips() {
 
 function picture(art, sizes) {
   if (art.film) {
-    const o = { name: art.film, class: 'plate plate--portrait', alt: art.alt };
+    const o = { name: art.film, class: 'plate plate--tall', alt: art.alt };
     return `<!--REEL:${JSON.stringify(o)}-->\n          <!--/REEL:${art.film}-->`;
   }
   const im = IMG[art.img];
@@ -92,78 +91,45 @@ function picture(art, sizes) {
           </figure>`;
 }
 
-function rowsFor(items) {
-  return standouts(items).map(s => `              <li class="price-row" data-item="${esc(s.name)}">
-                <span class="name">${esc(s.name)}<em class="price-dur">${esc(s.dur)}</em></span>
-                <span class="amt" data-price-slot>${esc(B.priceLabel(s))}</span>
-                <a class="row-book" href="./contact.html" data-add-service="${esc(s.name)}" aria-label="Add ${esc(s.name)} to your booking">Add</a>
-              </li>`).join('\n');
+function rows(items) {
+  return items.map(s => `            <div class="price-row" data-kind="service" data-item="${esc(s.name)}">
+              <span class="name">${esc(s.name)}<em class="price-dur">${esc(s.dur)}</em></span>
+              <span class="amt" data-price-slot>${esc(B.priceLabel(s))}</span>
+              <a class="row-book" href="./contact.html" data-add-service="${esc(s.name)}" aria-label="Add ${esc(s.name)} to your booking">Add</a>
+            </div>`).join('\n');
 }
 
+/* One chapter: a plate where she has one, the chapter title and line,
+   then every service in it. Chapters with no picture are rows only.
+   The whole chapter is a details element, so a phone can fold the
+   ones it is not reading; all are open from 768px. */
 function tiles() {
-  let indexOpen = false;
-  const out = [];
-  B.serviceCategories.forEach((c, i) => {
+  return B.serviceCategories.map((c, i) => {
     const items = B.byCategory(c.key);
     const from = B.fromPrice(c.key);
     const num = pad(i + 1);
     const art = ART[c.key];
-    const ground = GROUNDS[i % GROUNDS.length];
-    if (art.plate) {
-      if (indexOpen) { out.push('      </div></div></section>'); indexOpen = false; }
-      out.push(`      <section class="section chapter grain" data-ground="${ground}" id="${c.slug}" data-svc-cat="${esc(c.key)}">
-        <div class="container t t-opener"${i % 2 ? ' data-flip' : ''}>
-          <span class="ghost" aria-hidden="true">${num}</span>
-          <div class="copy stack">
-            <p class="eyebrow"><span class="n">Chapter ${num} / ${pad(B.serviceCategories.length)}</span></p>
-            <h2 class="t-chap balance">${esc(c.label)}</h2>
-            <p class="t-deck">${esc(LEAD[c.key])}</p>
-            <ul class="t-index standouts">
-${rowsFor(items)}
-            </ul>
-            <div class="cta-row">
-              <span class="t-price" data-from-slot><em>From</em> ${B.money(from)}</span>
-              <a class="link" href="#prices-${c.slug}" data-ledger="${c.slug}">All ${items.length} prices</a>
-              <a href="./contact.html?service=${encodeURIComponent(c.slug)}" class="btn btn--ghost btn--sm" data-book>Book</a>
+    const ground = i % 2 ? 'oatmeal' : 'ivory';
+    return `      <section class="chapter" data-ground="${ground}" id="${c.slug}" data-svc-cat="${esc(c.key)}">
+        <div class="container">
+          <details class="price-group chapter-group" id="prices-${c.slug}"${i === 0 ? ' open' : ''}>
+            <summary class="chapter-head">
+              <span class="price-num">${num}</span>
+              <span class="chapter-title"><h2 class="t-h3">${esc(c.label)}</h2><span class="t-cap">${esc(LEAD[c.key])}</span></span>
+              <span class="chapter-meta"><span class="t-price" data-from-slot><em>From</em> ${B.money(from)}</span><span class="price-count" data-count-slot>${items.length}</span></span>
+            </summary>
+            <div class="chapter-body${art.plate ? ' has-plate' : ''}">
+${art.plate ? '              <div class="chapter-plate">' + picture(art, '(min-width: 1024px) 360px, 100vw') + '</div>\n' : ''}              <div class="price-rows">
+${rows(items)}
+              </div>
             </div>
-          </div>
-          <div class="plate-wrap plate--cap">
-          ${picture(art, '(min-width: 1024px) 576px, 100vw')}
-          </div>
+          </details>
         </div>
-      </section>`);
-    } else {
-      if (!indexOpen) {
-        out.push(`      <section class="section" data-ground="${ground}"><div class="container stack">
-        <p class="eyebrow"><span class="n">Chapters ${num} to ${pad(B.serviceCategories.length)}</span> The rest of the menu</p>
-        <div class="t-index chapter-index">`);
-        indexOpen = true;
-      }
-      const im = IMG[art.img];
-      out.push(`          <a class="ix-row chapter-row" href="#prices-${c.slug}" id="${c.slug}" data-svc-cat="${esc(c.key)}" data-ledger="${c.slug}">
-            <span class="ix-n">${num}</span>
-            <span class="ix-thumb"><img src="./media/img/${art.img}-sm.webp" width="${im.wSm}" height="${im.hSm}" alt="" loading="lazy" decoding="async"></span>
-            <span><span class="ix-title">${esc(c.label)}</span><span class="ix-dek">${esc(LEAD[c.key])}</span></span>
-            <span class="ix-end"><span data-from-slot><em>From</em> ${B.money(from)}</span><span class="ix-count">${items.length} ${items.length === 1 ? 'service' : 'services'}</span></span>
-          </a>`);
-    }
-  });
-  if (indexOpen) out.push('      </div></div></section>');
-  return out.join('\n');
+      </section>`;
+  }).join('\n');
 }
 
-function priceGroups() {
-  return B.serviceCategories.map((c, i) => {
-    const items = B.byCategory(c.key);
-    const rows = items.map(s =>
-      `            <div class="price-row" data-kind="service" data-item="${esc(s.name)}"><span class="name">${esc(s.name)}<em class="price-dur">${esc(s.dur)}</em></span><span class="amt" data-price-slot>${esc(B.priceLabel(s))}</span><a class="row-book" href="./contact.html" data-add-service="${esc(s.name)}" aria-label="Add ${esc(s.name)} to your booking">Add</a></div>`
-    ).join('\n');
-    return `          <details class="price-group" id="prices-${c.slug}"${i === 0 ? ' open' : ''}>
-            <summary><span class="price-num">${pad(i + 1)}</span><h3>${esc(c.label)}</h3><span class="price-count" data-count-slot>${items.length}</span></summary>
-            <div class="price-rows">
-${rows}</div></details>`;
-  }).join('\n\n');
-}
+function priceGroups() { return ''; }
 
 /* ---------- splice into the page between markers ---------- */
 
@@ -188,14 +154,9 @@ for (const [open, close, fn] of MARKERS) {
   ok++;
 }
 
-/* the stale "All 47 prices" bug: the generator owns every count */
-const total = B.serviceCategories.reduce((n, c) => n + B.byCategory(c.key).length, 0);
-const WORDS = { 80: 'Eighty', 81: 'Eighty-one', 82: 'Eighty-two', 83: 'Eighty-three', 84: 'Eighty-four', 85: 'Eighty-five', 86: 'Eighty-six', 87: 'Eighty-seven', 88: 'Eighty-eight', 89: 'Eighty-nine', 90: 'Ninety' };
-html = html.replace(/(Every price <span class="n">)\d+(<\/span>)/, '$1' + total + '$2')
-           .replace(/(id="ledger-count"[^>]*>)Showing \d+ of \d+/, '$1Showing ' + total + ' of ' + total)
-           .replace(/<h2 class="t-h2 balance">[^<]*services, published\.<\/h2>/, '<h2 class="t-h2 balance">' + (WORDS[total] || total) + ' services, published.</h2>');
 
 fs.writeFileSync(file, html);
+const total = B.serviceCategories.reduce((n, c) => n + B.byCategory(c.key).length, 0);
 console.log('services.html rebuilt, ' + ok + ' blocks, ' +
   B.serviceCategories.length + ' chapters, ' + total + ' priced services.');
 
