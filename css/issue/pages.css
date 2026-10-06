@@ -373,3 +373,4 @@
 .product-tag { left: var(--s-3); top: var(--s-3); display: inline-flex; align-items: center; gap: var(--s-2); padding: 6px 10px; color: var(--p-ivory); text-shadow: none; background: rgb(21 27 34 / 0.55); box-shadow: var(--rim); max-width: calc(100% - 2 * var(--s-3)); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 @supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) { .product-tag { background: rgb(21 27 34 / 0.32); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); } }
 .product-tag .n { color: var(--p-brass-lit); }
+@media (max-width: 767px) { .product-tag .cat { display: none; } }

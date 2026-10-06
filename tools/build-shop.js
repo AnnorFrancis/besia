@@ -71,7 +71,7 @@ function cards() {
       const pre = p.preorder;
       const n = String(++i).padStart(2, '0');
       return `          <article class="product-card" data-cat="${p.cat}" data-kind="product" data-item="${esc(p.name)}" data-reveal>
-            <div class="product-img plate plate--3x4"><img src="./${p.img}" alt="${esc(alt)}" width="700" height="933" loading="lazy" decoding="async"><span class="product-tag t-credit"><span class="n">${n}</span> ${esc(cat.label)}</span>${pre ? '<span class="product-flag">Launching soon</span>' : ''}</div>
+            <div class="product-img plate plate--3x4"><img src="./${p.img}" alt="${esc(alt)}" width="700" height="933" loading="lazy" decoding="async"><span class="product-tag t-credit"><span class="n">${n}</span><i class="cat">${esc(cat.label)}</i></span>${pre ? '<span class="product-flag">Launching soon</span>' : ''}</div>
             <div class="product-body">
               <h3 class="product-name t-h3">${esc(p.name)}</h3>
               <p class="product-blurb t-cap">${esc(p.blurb)}</p>
