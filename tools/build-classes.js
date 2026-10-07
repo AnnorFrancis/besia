@@ -66,7 +66,7 @@ function row(c, i) {
 
 function heroCard(c, i) {
   return `          <article class="cert-card" id="cert-${esc(c.id)}">
-            <figure class="plate plate--tall cert-plate">${pic(c.img, '(min-width: 1024px) 30vw, 100vw')}</figure>
+            <figure class="plate plate--tall cert-plate">${pic(c.img, '(min-width: 1024px) 30vw, (min-width: 768px) 40vw, 100vw')}</figure>
             <div class="cert-body">
               <p class="cert-n"><span class="n">${pad(i + 1)}</span> Certification</p>
               <h3 class="cert-name">${esc(c.name)}</h3>
@@ -244,7 +244,7 @@ ${texture.learn.map((l, i) => `            <li class="ix-row"><span class="ix-n"
           <div class="cta-row"><a class="btn" href="#enrol" data-format="One to one">Learn one to one</a></div>
         </div>
         <figure class="plate plate--tall plate--cap" data-unveil>
-          ${pic('still-tools', '(min-width: 1024px) 576px, 100vw', 'Scissors, brushes and a jar laid out on oatmeal linen')}
+          ${pic('studio-mirror-chair', '(min-width: 1024px) 50vw, 100vw', 'One chair before the gold mirror in the studio')}
         </figure>
       </div>
     </section>
@@ -294,10 +294,10 @@ ${client.map((c, i) => row(c, pro.length + 1 + i)).join('\n')}
           </div>
           <p class="sig"><span class="sig-name">Dana</span><span class="t-credit">Founder, Bēsia Beauty Studio</span></p>
         </div>
-        <div class="plate-wrap plate--cap">
-          <!--REEL:{"name":"founder-arrives","class":"plate plate--portrait","alt":"The founder walking the arched corridor of the studio"}-->
-          <!--/REEL:founder-arrives-->
-        </div>
+        <figure class="plate plate--tall plate--cap" data-unveil>
+          <span class="plate-tag"><span class="n">10</span> The founder</span>
+          ${pic('founder-welcome', '(min-width: 1024px) 50vw, 100vw', 'The founder, smiling, welcoming you into the studio')}
+        </figure>
       </div>
     </section>
 

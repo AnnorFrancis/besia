@@ -121,6 +121,46 @@ editorial contrast comes from weight, scale, tracking and layout.
   the page.
 - **`pages.css`** is what only one page needs.
 
+### Layout rules: no dead space (the developer's review of round 2, 7 Oct)
+
+The developer's brief after round 2 was blunt: no words with a void beside them,
+no picture with a void beside it, no squeezed columns, no half-empty rows. These
+rules hold that line; break one and the page looks unfinished.
+
+- **Spreads are two equal halves from 1024px.** `t-spread` and `t-opener` put the
+  copy in one half and whatever is not copy (a photo, a film pair, a list, a map,
+  a second block of copy) in the other. The selectors are `> *` and
+  `> :not(.copy)`, so a new kind of child can never fall into a leftover twelfth
+  of the grid. The gap is `--half-gap`.
+- **Photos fill their half.** Beside copy a photo is 4:5 and capped at
+  `min(80svh, 760px)`, cropped to fit. Under 1024px it runs edge to edge (its
+  width grows by both page margins, or it bleeds on one side only).
+- **Films keep their own shape** (`.reel[data-native]`). Two films share a half
+  through `.film-pair`, each wrapper carrying `--grow` = width / height of its
+  film (9:16 is 0.5625, 2:3 is 0.6667), so both stand the same height. They sit
+  side by side at every width, inside the page margins.
+- **Section heads are two columns on a desktop**: the headline left, the deck
+  right, so a short head never leaves half the screen blank.
+- **Rows must close.** Grids are sized to their content: the shop has 30
+  products in 2/3/5 columns, the gallery 24 photos in 4, the home services grid
+  has Extensions as a 2x2 lead with 12 cards around it. If you add or remove
+  items, change the count or the columns so the last row is full.
+- **Cards go two by two before they go four across**: the treatments, the club
+  cards, the course paths and the certifications are checked at 768, 1024 and
+  1280 so no card is too narrow for its button.
+- **Never crop a picture that has words in it** (mood-board tiles, covers).
+  Cut a text-free region in `tools/image-manifest.js` (`crop`) or lift a still
+  from a film (`at`, seconds).
+- **A frame never shows empty**: the map has the address underneath it, so on
+  slow data it reads as an address card until Google's map paints over it.
+
+How to check: open each page at 320, 375, 414, 768, 1024, 1280, 1440 and 1920,
+force reveals (`is-inview` on `[data-reveal]`, `[data-reveal-stagger]`,
+`[data-split]`), take a full-page capture and look at every section. Measure
+too: no sideways scroll, nothing past the edge, no text box under 140px wide
+holding a sentence, no button wider than its card, every media block touching
+both edges or neither.
+
 Glass is spent on four surfaces and nowhere else: the masthead once it sticks, the
 Menu sheet, the booking sheet and the lightbox chrome. Everything else that
 looks frosted is baked from a blurred still, which costs nothing to scroll.

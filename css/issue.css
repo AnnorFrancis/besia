@@ -55,6 +55,7 @@
   --page: clamp(1rem, 0.12rem + 3.76vw, 3.5rem);
   --section: clamp(3.5rem, 2rem + 4.8vw, 6.5rem);
   --gap: clamp(12px, 0.4rem + 1.1vw, 24px);
+  --half-gap: clamp(2.5rem, 1rem + 3vw, 5rem);   /* between the two halves of a spread */
   --measure: 58ch;
   --container: 1344px;
   --plate-max: 576px;
@@ -345,7 +346,9 @@ hr, .rule { border: 0; height: 1px; background: var(--rule); }
   position: relative; display: inline-block; padding-bottom: 2px;
   font-size: var(--t-label); font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--fg);
 }
-.link::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 1px; background: currentColor; transform-origin: left; transform: scaleX(1); transition: transform var(--d-hover) var(--ease-soft); }
+/* the hit area pads 12px above and below (see 'every link clears 40px'),
+   so the line sits 3px under the words, not 12px down on the next line */
+.link::after { content: ''; position: absolute; left: 0; right: 0; bottom: 9px; height: 1px; background: currentColor; transform-origin: left; transform: scaleX(1); transition: transform var(--d-hover) var(--ease-soft); }
 .text-link { display: inline-block; font-size: var(--t-label); font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--fg); border-bottom: 1px solid var(--rule-ui); padding-bottom: 3px; }
 @media (hover: hover) and (pointer: fine) {
   .link:hover::after { transform: scaleX(0); transform-origin: right; }
@@ -736,6 +739,21 @@ html[data-fx="lite"] .reel .reel-ctl, .reel.is-blocked .reel-ctl, .reel.is-idle 
   --film-h: 86svh;
 }
 @media (min-width: 1024px) { .reel[data-native] { --film-h: min(84svh, 780px); } }
+/* Two films sharing one half of a spread. Each takes a width in
+   proportion to its own shape (--grow is the film's width over its
+   height), so both stand exactly the same height and together fill
+   the half. Side by side at every width: on a phone the pair stands
+   about 260px tall, where stacked it was two full screens of film. */
+.film-pair { display: flex; align-items: flex-start; gap: var(--s-3); }
+.film-pair > * { flex: var(--grow, 1) 1 0; min-width: 0; }
+.film-pair .reel[data-native] { width: 100%; margin-inline: 0; }
+.film-pair .reel-cap { padding-inline: 0; text-align: left; justify-items: start; }
+/* the pair keeps the page margins, so a caption never runs to the edge */
+.t-spread > .plate-wrap.film-pair, .t-opener > .plate-wrap.film-pair { margin-inline: 0; }
+@media (min-width: 768px) { .film-pair { gap: var(--s-4); } }
+@media (min-width: 1024px) {
+  .plate-wrap.film-pair > .reel-cap, .film-pair .reel[data-native] + .reel-cap { text-align: left; justify-items: start; }
+}
 /* In a row of films each one has the same tall frame and is shown whole
    inside it, so the captions under the row sit on one line. */
 .t-rail .reel[data-native] { aspect-ratio: 9 / 16; width: 100%; }
@@ -1036,13 +1054,19 @@ main > .section:not(:first-child):not(.opener) { content-visibility: auto; conta
 .plate-wrap { position: relative; min-width: 0; }
 @media (min-width: 1024px) {
   .plate--cap { max-width: var(--plate-max); }
-  /* Beside copy a plate is a 4:5 page no taller than the screen allows,
-     whatever the film's own shape; the picture is cropped, never the page. */
-  .t-spread > .plate, .t-spread > .plate-wrap > .plate, .t-spread > .plate-wrap > .reel,
-  .t-opener > .plate, .t-opener > .plate-wrap > .plate, .t-opener > .plate-wrap > .reel { --ar: 4 / 5; max-height: min(72vh, 640px); }
-  .t-spread > .plate-wrap, .t-opener > .plate-wrap { max-height: min(72vh, 640px); }
-  /* and narrows with its height, so it stays a 4:5 page rather than a square */
-  .t-spread > .plate, .t-spread > .plate-wrap, .t-opener > .plate, .t-opener > .plate-wrap { max-width: min(var(--plate-max), calc(min(72vh, 640px) * 0.8)); }
+  /* Beside copy a photograph fills its whole half of the spread, no
+     taller than the screen allows: the picture is cropped to fit, so
+     there is never a strip of empty ground beside it. Films keep their
+     own shape (components.css, .reel[data-native]). */
+  .t-spread > .plate, .t-spread > .plate-wrap > .plate:not(.reel),
+  .t-opener > .plate, .t-opener > .plate-wrap > .plate:not(.reel) { --ar: 4 / 5; max-height: min(80svh, 760px); }
+  .t-spread > .plate, .t-spread > .plate-wrap, .t-opener > .plate, .t-opener > .plate-wrap { width: 100%; max-width: none; }
+}
+/* Under 1024px a plate in a spread, opener or plate template runs edge to
+   edge: the negative page margins pull it out on both sides, and its width
+   has to grow by the same two margins or it only bleeds on the left. */
+@media (max-width: 1023.98px) {
+  .t-spread > .plate, .t-opener > .plate, .t-plate > .plate { width: calc(100% + 2 * var(--page)); }
 }
 /* a 9:16 film on a phone is cropped to 4:5 so the page keeps moving */
 @media (max-width: 1023px) { .plate--portrait { --ar: 4 / 5; } }
@@ -1071,14 +1095,24 @@ main > .section:not(:first-child):not(.opener) { content-visibility: auto; conta
 .foot .foot-text p { font-size: var(--t-body); line-height: 1.45; max-width: 36ch; color: var(--p-ivory); }
 @media (min-width: 1024px) { .foot { min-height: 112px; padding: var(--s-5) var(--s-6); } }
 
-/* ---------- t-spread: copy beside a 4:5 plate ---------- */
+/* ---------- t-spread: copy beside a plate ----------
+   From 1024px the spread is two equal halves: the copy in one, and in
+   the other whatever is not copy (a photograph, a film, a pair of
+   films, a list, a map). Anything placed in a spread lands in a half,
+   never in a leftover twelfth of the grid, and the media fills its
+   half, so no block of empty ground sits beside the words. */
 .t-spread > .plate, .t-spread > .plate-wrap { order: -1; margin-inline: calc(-1 * var(--page)); }
 .t-spread > .copy { padding-top: var(--s-6); }
 @media (min-width: 1024px) {
-  .t-spread > .plate, .t-spread > .plate-wrap { order: 0; margin-inline: 0; grid-column: 7 / -1; grid-row: 1; justify-self: end; }
-  .t-spread > .copy { padding-top: 0; grid-column: 1 / 6; grid-row: 1; align-self: center; }
-  .t-spread[data-flip] > .copy { grid-column: 8 / -1; }
-  .t-spread[data-flip] > .plate, .t-spread[data-flip] > .plate-wrap { grid-column: 1 / 7; justify-self: start; }
+  .t-spread { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--half-gap); }
+  .t-spread > * { grid-row: 1; grid-column: 2; }
+  .t-spread > .copy { padding-top: 0; grid-column: 1; align-self: center; }
+  .t-spread > .plate, .t-spread > .plate-wrap { order: 0; margin-inline: 0; justify-self: stretch; align-self: center; }
+  .t-spread[data-flip] > * { grid-column: 1; }
+  .t-spread[data-flip] > .copy { grid-column: 2; }
+  /* two blocks of words side by side: each takes a half */
+  .t-spread > .copy + .copy { grid-column: 2; }
+  .t-spread[data-flip] > .copy + .copy { grid-column: 1; }
 }
 
 /* ---------- t-plate: one film or photograph as the page ---------- */
@@ -1123,12 +1157,13 @@ main > .section:not(:first-child):not(.opener) { content-visibility: auto; conta
   color: var(--fg); opacity: 0.07; font-variant-numeric: tabular-nums;
 }
 @media (min-width: 1024px) {
-  .t-opener { min-height: 70svh; align-items: center; }
+  .t-opener { min-height: 70svh; align-items: center; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--half-gap); }
   .t-opener[data-tall] { min-height: calc(100svh - var(--nav-h)); }
-  .t-opener > .plate, .t-opener > .plate-wrap { order: 0; margin-inline: 0; grid-column: 8 / -1; grid-row: 1; justify-self: end; }
-  .t-opener > .copy { padding-top: 0; grid-column: 1 / 7; grid-row: 1; align-self: center; }
-  .t-opener[data-flip] > .copy { grid-column: 7 / -1; }
-  .t-opener[data-flip] > .plate, .t-opener[data-flip] > .plate-wrap { grid-column: 1 / 6; justify-self: start; }
+  .t-opener > :not(.ghost) { grid-row: 1; grid-column: 2; }
+  .t-opener > .plate, .t-opener > .plate-wrap { order: 0; margin-inline: 0; justify-self: stretch; }
+  .t-opener > .copy { padding-top: 0; grid-column: 1; align-self: center; }
+  .t-opener[data-flip] > :not(.ghost) { grid-column: 1; }
+  .t-opener[data-flip] > .copy { grid-column: 2; }
   .t-opener .ghost { top: 0; font-size: clamp(8rem, 24vw, 22rem); }
   .t-opener[data-flip] .ghost { right: auto; left: 0; }
 }
@@ -1166,8 +1201,9 @@ a.ix-row { transition: background var(--d-hover) var(--ease-soft); }
 /* ---------- t-form: copy beside a form on opaque paper ---------- */
 .t-form > .copy { padding-bottom: var(--s-6); }
 @media (min-width: 1024px) {
-  .t-form > .copy { padding-bottom: 0; grid-column: 1 / 5; grid-row: 1; }
-  .t-form > .form { grid-column: 6 / -1; grid-row: 1; }
+  /* the words stay in view while the longer side (a form, the FAQ) scrolls past */
+  .t-form > .copy { padding-bottom: 0; grid-column: 1 / 5; grid-row: 1; align-self: start; position: sticky; top: calc(var(--nav-h) + var(--offer-h) + var(--s-6)); }
+  .t-form > :not(.copy) { grid-column: 6 / -1; grid-row: 1; }
 }
 
 /* A chapter-sized headline beside a plate wraps too far; a spread caps it. */
@@ -1183,6 +1219,16 @@ a.ix-row { transition: background var(--d-hover) var(--ease-soft); }
 /* ---------- shared bits across pages ---------- */
 .cta-row { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s-3) var(--s-4); }
 .section-head { max-width: 64ch; }
+/* From 1024px a heading uses the full measure: eyebrow and headline in
+   the left half, the line beneath it set in the right half on the
+   headline's last line, so neither sits beside half a page of nothing. */
+@media (min-width: 1024px) {
+  .section-head { max-width: none; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--half-gap); align-items: end; }
+  .section-head > * { grid-column: 1; }
+  .section-head > .eyebrow { grid-row: 1; }
+  .section-head > h1, .section-head > h2 { grid-row: 2; }
+  .section-head > .t-deck { grid-column: 2; grid-row: 2; align-self: end; max-width: 48ch; margin: 0; }
+}
 .sig { display: flex; flex-direction: column; gap: var(--s-1); }
 .sig-name { font-size: var(--t-h3); font-weight: 300; letter-spacing: 0.08em; }
 .plate-wrap { position: relative; }
@@ -1252,7 +1298,8 @@ a.ix-row { transition: background var(--d-hover) var(--ease-soft); }
 @media (min-width: 1024px) {
   .core-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--s-7) var(--s-5); }
   .core-card--lead { grid-column: span 2; grid-row: span 2; }
-  .core-card--lead .core-plate { --ar: auto; aspect-ratio: auto; flex: 1; min-height: 0; }
+  .core-card--lead .core-plate { --ar: auto; aspect-ratio: auto; flex: 1 1 auto; min-height: 0; }
+  .core-card--lead .core-body { flex: none; }
 }
 @media (hover: hover) and (pointer: fine) {
   .core-card:hover .core-plate img { transform: scale(1.04); }
@@ -1275,7 +1322,7 @@ a.ix-row { transition: background var(--d-hover) var(--ease-soft); }
 .ff-more { margin-top: var(--s-6); }
 
 /* The School: the academy's name, set small under the school's. */
-.academy-mark { font-size: var(--t-label); font-weight: 600; letter-spacing: 0.24em; text-transform: uppercase; color: var(--fg-2); margin-top: calc(-1 * var(--s-2)); }
+.academy-mark { font-size: var(--t-label); font-weight: 600; letter-spacing: 0.24em; text-transform: uppercase; color: var(--fg-2); margin-top: 0; }
 
 /* The studio's full mark, where appointments are made. */
 .studio-mark { display: inline-flex; flex-direction: column; align-items: center; gap: 6px; line-height: 1; margin-bottom: var(--s-4); }
@@ -1297,8 +1344,13 @@ a.ix-row { transition: background var(--d-hover) var(--ease-soft); }
 }
 
 /* Packages on the Hair Club band */
+.pkg-row { align-items: stretch; }
 .pkg-row > .pkg-card { grid-column: span 3; }
-@media (max-width: 1023px) { .pkg-row > .pkg-card { grid-column: 1 / -1; } }
+/* a phone stacks them; a tablet and a small laptop set them two by two
+   (four across at 1024 leaves a card too narrow for its button); four
+   across from 1280 */
+@media (max-width: 767.98px) { .pkg-row > .pkg-card { grid-column: 1 / -1; } }
+@media (min-width: 768px) and (max-width: 1279.98px) { .pkg-row { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--s-6); } .pkg-row > .pkg-card { grid-column: auto; } }
 .pkg-card { position: relative; display: flex; flex-direction: column; gap: var(--s-4); padding: var(--s-6) 0; border-top: 1px solid var(--rule); }
 .pkg-card--featured { border-top-color: var(--accent); }
 .pkg-badge { position: absolute; top: calc(-1 * var(--s-3)); left: 0; padding: 2px var(--s-2); font-size: var(--t-label); font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--on-accent); background: var(--accent); }
@@ -1326,7 +1378,7 @@ a.ix-row { transition: background var(--d-hover) var(--ease-soft); }
 .chapter-rail-inner .chips { flex: 1 1 auto; margin-inline: 0; padding-inline: 0; padding-block: var(--s-2); }
 .chapter-rail .chip { min-height: 40px; }
 .chapter-rail .ledger-search { flex: 0 0 auto; width: clamp(140px, 24vw, 260px); margin: 0; }
-.chapter-rail .ledger-search input { min-height: 40px; padding: 0 var(--s-3); font-size: 16px; border: 1px solid var(--rule-ui); }
+.chapter-rail .ledger-search input { width: 100%; min-height: 40px; padding: 0 var(--s-3); font-size: 16px; border: 1px solid var(--rule-ui); }
 .chapter-rail .ledger-search input:focus { border-color: var(--fg); }
 @media (max-width: 639px) { .chapter-rail-inner { flex-wrap: wrap; } .chapter-rail .ledger-search { width: 100%; } }
 .ledger-count { padding-top: var(--s-3); min-height: 0; }
@@ -1372,7 +1424,8 @@ a.ix-row { transition: background var(--d-hover) var(--ease-soft); }
   .chapter-body.has-plate { display: grid; grid-template-columns: 360px minmax(0, 1fr); gap: var(--s-7); align-items: start; }
   .chapter-body.has-plate .price-row { padding-left: 0; }
   .chapter-body.has-plate .price-row:first-child { border-top: 1px solid var(--rule); }
-  .chapter-plate { margin: 0 0 0 4rem; max-width: 360px; }
+  /* the picture stays beside a long price list as it scrolls, below the chapter bar */
+  .chapter-plate { margin: 0 0 0 4rem; max-width: 360px; position: sticky; top: calc(var(--nav-h-stuck) + var(--offer-h) + 72px); }
   .chapter-plate .plate { --ar: 4 / 5; }
   .chapter-body[data-rows="3"] .chapter-plate .plate { --ar: 16 / 10; }
   .chapter-body[data-rows="2"] .chapter-plate .plate, .chapter-body[data-rows="1"] .chapter-plate .plate { --ar: 2 / 1; }
@@ -1442,18 +1495,39 @@ a.ix-row { transition: background var(--d-hover) var(--ease-soft); }
 .form-success p { margin: 0 auto var(--s-3); }
 .co-order-id { font-size: var(--t-h2); font-weight: 300; letter-spacing: 0.06em; margin: var(--s-3) 0 var(--s-4); font-variant-numeric: tabular-nums; }
 .map-frame { aspect-ratio: 16 / 9; max-height: 480px; border: 1px solid var(--rule); background: var(--p-oatmeal); }
-@media (min-width: 1024px) { .map-frame { aspect-ratio: 4 / 5; max-height: min(72vh, 640px); } }
-.map-frame iframe { width: 100%; height: 100%; border: 0; display: block; filter: grayscale(1) contrast(0.95); }
+@media (min-width: 1024px) { .map-frame { aspect-ratio: auto; width: 100%; height: min(72vh, 640px); max-height: none; } }
+/* Call, WhatsApp and email under the quote form: a ruled list on a phone,
+   three across beside the copy so the two halves end together. */
+.form-direct { margin-top: var(--s-7); }
+.form-direct .eyebrow { margin-bottom: var(--s-3); }
+@media (min-width: 768px) {
+  .form-direct .t-index { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: var(--s-5); }
+  .form-direct .ix-row { grid-template-columns: minmax(0, 1fr); align-content: start; gap: var(--s-2); border-top: 1px solid var(--rule); border-bottom: 0; padding-block: var(--s-4) var(--s-2); }
+}
+.map-frame { position: relative; overflow: hidden; }
+.map-frame iframe { position: relative; z-index: 1; width: 100%; height: 100%; border: 0; display: block; filter: grayscale(1) contrast(0.95); }
+/* The address sits under the map, so on slow data the frame reads as an
+   address card while Google's map loads over it, never as an empty box. */
+.map-under { position: absolute; inset: 0; display: grid; place-content: center; justify-items: center; gap: var(--s-2); padding: var(--s-5); text-align: center; }
+.map-pin { width: 18px; height: 18px; border: 2px solid var(--accent); border-radius: 50% 50% 50% 0; transform: rotate(-45deg); margin-bottom: var(--s-3); }
+.map-under-title { font-size: var(--t-h3); font-weight: 500; }
+.map-under-dek { font-size: var(--t-cap); color: var(--fg-3); letter-spacing: 0.1em; text-transform: uppercase; }
 
 /* ============================================================
    SHOP
    ============================================================ */
 .filter-bar { align-items: center; }
+/* on a desktop every filter is visible: the chips wrap rather than run off the page */
+@media (min-width: 1024px) { .filter-bar { flex-wrap: wrap; overflow: visible; margin-inline: 0; padding-inline: 0; } }
+/* five across, the price sits above a full-width button on every card, so no price wraps beside a button */
+@media (min-width: 1280px) { .shop-grid .product-foot { flex-direction: column; align-items: stretch; gap: var(--s-2); } .shop-grid .product-cta .btn { width: 100%; } }
+/* a chip rail that scrolls fades at its edge instead of cutting a word in half */
+.chapter-rail-inner .chips { -webkit-mask-image: linear-gradient(to right, rgb(0 0 0 / 1) calc(100% - 48px), rgb(0 0 0 / 0)); mask-image: linear-gradient(to right, rgb(0 0 0 / 1) calc(100% - 48px), rgb(0 0 0 / 0)); }
 .shop-count { margin-left: auto; white-space: nowrap; }
 @media (max-width: 639px) { .shop-count { display: none; } }
 .shop-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-7) var(--gap); }
 @media (min-width: 768px) { .shop-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
-@media (min-width: 1024px) { .shop-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--s-8) var(--gap); } }
+@media (min-width: 1280px) { .shop-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: var(--s-8) var(--gap); } }
 .product-card { display: flex; flex-direction: column; gap: var(--s-3); min-width: 0; }
 .product-card.is-hidden { display: none; }
 .product-img { background: var(--p-oatmeal); }
@@ -1651,7 +1725,7 @@ a.ix-row { transition: background var(--d-hover) var(--ease-soft); }
 /* footer: one row, the name whole */
 .site-footer { padding: var(--s-7) 0 var(--s-5); }
 .foot-row { display: grid; gap: var(--s-6); }
-@media (min-width: 768px) { .foot-row { grid-template-columns: minmax(0, 2fr) minmax(0, 1fr) minmax(0, 1fr); gap: var(--s-6); } }
+@media (min-width: 768px) { .foot-row { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s-6); } }
 .foot-brand .t-cap { color: var(--fg-2); line-height: 1.6; }
 .foot-links { display: grid; gap: 0; }
 .foot-links li a { display: inline-flex; align-items: center; min-height: 40px; font-size: var(--t-cap); color: var(--fg); }
@@ -1675,7 +1749,7 @@ a.ix-row { transition: background var(--d-hover) var(--ease-soft); }
    ============================================================ */
 .club-row { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--s-5); }
 .club-card, .cert-card, .path-card, .tl-step, .atb, .how-row li { min-width: 0; }
-@media (min-width: 900px) { .club-row { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-6); } }
+@media (min-width: 768px) { .club-row { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-6); } }
 .club-card { display: flex; flex-direction: column; gap: var(--s-3); padding: var(--s-6) var(--s-5); border: 1px solid var(--rule); background: var(--bg); color: var(--fg); }
 .club-card--member { border-color: var(--bg); }
 .club-card .btn { align-self: flex-start; margin-top: auto; }
@@ -1690,12 +1764,12 @@ a.ix-row { transition: background var(--d-hover) var(--ease-soft); }
 .club-list strong { color: var(--fg); font-weight: 600; }
 
 .journey .ix-row { min-height: 60px; }
-/* a list or a second column beside the copy takes the plate's side of the spread */
-@media (min-width: 1024px) {
-  .t-spread > .journey, .t-spread > .copy + .copy { grid-column: 7 / -1; grid-row: 1; align-self: center; }
-}
+
 .timeline { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--s-4); margin-top: var(--s-4); }
-@media (min-width: 768px) { .timeline { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: var(--s-4); } }
+/* five across only where each step gets room; on a tablet each step is one
+   ruled row, the when and the name on the left, the note beside them */
+@media (min-width: 768px) and (max-width: 1023.98px) { .tl-step { grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); column-gap: var(--s-5); } .tl-note { grid-column: 2; grid-row: 1 / span 2; align-self: center; } }
+@media (min-width: 1024px) { .timeline { grid-template-columns: repeat(5, minmax(0, 1fr)); } }
 .tl-step { padding-top: var(--s-4); border-top: 1px solid var(--accent); display: grid; gap: var(--s-2); align-content: start; }
 .tl-when { font-size: var(--t-label); font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); }
 .tl-name { font-size: var(--t-h3); font-weight: 400; line-height: 1.2; }
@@ -1724,9 +1798,15 @@ a.ix-row { transition: background var(--d-hover) var(--ease-soft); }
    THE SCHOOL AT BĒSIA, BĒSIA BEAUTY ACADEMY (classes.html)
    ============================================================ */
 .academy-intro { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--s-5); }
+@media (min-width: 1024px) {
+  .academy-intro { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--half-gap); align-items: end; }
+  .academy-intro > .eyebrow { grid-column: 1 / -1; }
+  .academy-intro > .academy-line { grid-column: 1; }
+  .academy-intro > .academy-copy { grid-column: 2; }
+}
 .academy-line { font-size: clamp(2.5rem, 1.1rem + 6vw, 6rem); font-weight: calc(300 + var(--wc)); line-height: 1; letter-spacing: -0.035em; max-width: 16ch; }
 .academy-copy { display: grid; gap: var(--s-4); max-width: 62ch; }
-@media (min-width: 1024px) { .academy-copy { margin-left: auto; } }
+
 .academy-close { display: grid; gap: var(--s-5); justify-items: start; }
 .academy-close .academy-line { max-width: 20ch; font-size: clamp(2.25rem, 1.1rem + 4.4vw, 4.75rem); }
 
@@ -1734,6 +1814,10 @@ a.ix-row { transition: background var(--d-hover) var(--ease-soft); }
 @media (min-width: 1024px) { .cert-row { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s-6); } }
 .cert-card { display: flex; flex-direction: column; gap: var(--s-4); min-width: 0; }
 .cert-body { display: flex; flex-direction: column; gap: var(--s-2); flex: 1; }
+/* tablet: picture beside the words, so a card is not a tall photo with a
+   short paragraph under it; three across from the desktop up. Kept after
+   the base rule so it wins. */
+@media (min-width: 768px) and (max-width: 1023.98px) { .cert-card { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--s-6); align-items: center; } }
 .cert-n { font-size: var(--t-label); font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--fg-2); }
 .cert-n .n { color: var(--accent); }
 .cert-name { font-size: var(--t-h2); font-weight: calc(300 + var(--wc)); line-height: 1.08; letter-spacing: -0.02em; }
@@ -1743,10 +1827,13 @@ a.ix-row { transition: background var(--d-hover) var(--ease-soft); }
 .cert-fee { margin-top: auto; padding-top: var(--s-3); display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--s-1) var(--s-3); }
 
 .path-row { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--s-4); }
-@media (min-width: 768px) { .path-row { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+/* tablet: the two single paths side by side, the full system across under them */
+@media (min-width: 768px) { .path-row { grid-template-columns: repeat(2, minmax(0, 1fr)); } .path-card--lead { grid-column: 1 / -1; } }
+@media (min-width: 1024px) { .path-row { grid-template-columns: repeat(3, minmax(0, 1fr)); } .path-card--lead { grid-column: auto; } }
 .path-card { display: flex; flex-direction: column; gap: var(--s-2); padding: var(--s-5); border: 1px solid var(--rule); }
 .path-card--lead { border-color: var(--accent); }
-.path-card .btn { align-self: flex-start; margin-top: auto; }
+/* one full-width button per card, so the three line up along the foot */
+.path-card .btn { align-self: stretch; margin-top: auto; padding-inline: var(--s-3); }
 .path-n { font-size: var(--t-label); font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); }
 .path-name { font-size: var(--t-h3); font-weight: 500; }
 .path-fee { font-size: var(--t-cap); font-weight: 600; margin-block: var(--s-2); }
@@ -1781,3 +1868,6 @@ a.ix-row { transition: background var(--d-hover) var(--ease-soft); }
 .faq-item[open] summary::after { content: '\2212'; }
 .faq-item p { padding-bottom: var(--s-4); font-size: var(--t-cap); color: var(--fg-2); line-height: 1.6; max-width: 62ch; }
 .enrol-demo { color: var(--accent); }
+
+/* the recommender's goals wrap onto a second line rather than run off the page */
+.reco-chips { flex-wrap: wrap; overflow: visible; margin-inline: 0; padding-inline: 0; }

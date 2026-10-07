@@ -5,12 +5,14 @@ This folder is **only** for the Bēsia site at **https://annorfrancis.github.io/
 Read README.md for the full system. This file is the short version plus
 the rules learned the hard way.
 
-## Where things stand (6 Oct 2026)
+## Where things stand (7 Oct 2026)
 - The client (Dana, owner of Bēsia Beauty Studio, Cantonments, Accra) has
   chosen this version: the magazine redesign ("The Issue").
 - Round 2 of her feedback (chat + voice notes + PDFs, 6 Oct) is integrated;
   README.md "Round 2" maps every request to where it was done. Her files
   and the voice-note transcript are in `MORE CONTENT/` (gitignored, local).
+- 7 Oct: a full layout pass on every page at 320 to 1920 (no dead space,
+  rule 18), after the developer's review of the round 2 build.
 - Next: she reviews, then the whole system is built properly for production
   (real backend, logins, Paystack payments, encrypted consultation forms).
 - The older pre-magazine version is NOT part of this project. It lives in
@@ -33,7 +35,7 @@ node tools/build-video.js      # rebuilds films from tools/media-manifest.js (ne
 2. **No em dashes or en dashes** anywhere a visitor can read. Use commas,
    colons, full stops, middle dots. build-all checks this.
 3. **Mobile-first**: most clients are on phones on Ghanaian mobile data.
-   Check 320, 375, 414, 768, 1024, 1440. No sideways scroll, nothing past
+   Check 320, 375, 414, 768, 1024, 1280, 1440, 1920. No sideways scroll, nothing past
    the edge, tap targets 40px or more, inputs 16px.
 4. **Readable everywhere**: every section declares `data-ground`; text colour
    comes from that ground's tokens. Never put light text on a light ground.
@@ -69,6 +71,15 @@ node tools/build-video.js      # rebuilds films from tools/media-manifest.js (ne
 16. Do not claim something works until it has been exercised in a browser.
 17. In this Windows Git Bash, heredocs lose backslashes: edit files with the
     Edit/Write tools, not shell heredocs, when the text contains a backslash.
+18. **No dead space** (the developer's review, 7 Oct). No words or picture
+    with a void beside them, no squeezed column, no half-empty row. Spreads
+    are two equal halves from 1024px; photos fill their half; two films share
+    a half via `.film-pair` with `--grow`; grid counts close every row; never
+    crop a picture that has words in it. Check 320 to 1920 with full-page
+    captures. Full rules and method: README, "Layout rules: no dead space".
+19. Run `node tools/build-all.js`, never a single `build-*.js` on its own
+    before you look at a page: a lone page build leaves out the masthead,
+    footer and stylesheet links until the chrome step stamps them back.
 
 ## Open items for the client
 - Hair prices by length (she said "will send pricing"): enter them in the

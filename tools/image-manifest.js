@@ -49,5 +49,7 @@ module.exports = [
   { name: 'still-tools',               src: 'oo.jpeg',                                       crop: '0:565:470:400',   note: 'Scissors and brushes on oatmeal, mood board tile' },
   { name: 'still-dried-flowers',       src: 'oo.jpeg',                                       crop: '480:565:687:599', note: 'Dried flowers on espresso, mood board tile' },
   { name: 'moodboard-model',           src: 'oo.jpeg',                                       crop: '480:0:687:455',   note: 'Blonde balayage profile, mood board tile' },
+  { name: 'still-scissors',            src: 'oo.jpeg',                                       crop: '0:640:470:325',   note: 'Scissors, comb and brush on oatmeal: the tools tile cut below the mood-board lettering' },
+  { name: 'founder-welcome',           src: 'ff.mp4', at: 3.2,                                                        note: 'The owner smiling as she welcomes you in, a still from the entry film' },
   { name: 'still-comb',                src: 'WhatsApp Image 2026-10-05 at 1.01.02 PM.jpeg', crop: '205:0:211:428',   note: 'Wide-tooth comb in hair, lifted from slide 04. Tiny source, phone sizes only' }
 ];

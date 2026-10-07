@@ -32,13 +32,19 @@
 .plate-wrap { position: relative; min-width: 0; }
 @media (min-width: 1024px) {
   .plate--cap { max-width: var(--plate-max); }
-  /* Beside copy a plate is a 4:5 page no taller than the screen allows,
-     whatever the film's own shape; the picture is cropped, never the page. */
-  .t-spread > .plate, .t-spread > .plate-wrap > .plate, .t-spread > .plate-wrap > .reel,
-  .t-opener > .plate, .t-opener > .plate-wrap > .plate, .t-opener > .plate-wrap > .reel { --ar: 4 / 5; max-height: min(72vh, 640px); }
-  .t-spread > .plate-wrap, .t-opener > .plate-wrap { max-height: min(72vh, 640px); }
-  /* and narrows with its height, so it stays a 4:5 page rather than a square */
-  .t-spread > .plate, .t-spread > .plate-wrap, .t-opener > .plate, .t-opener > .plate-wrap { max-width: min(var(--plate-max), calc(min(72vh, 640px) * 0.8)); }
+  /* Beside copy a photograph fills its whole half of the spread, no
+     taller than the screen allows: the picture is cropped to fit, so
+     there is never a strip of empty ground beside it. Films keep their
+     own shape (components.css, .reel[data-native]). */
+  .t-spread > .plate, .t-spread > .plate-wrap > .plate:not(.reel),
+  .t-opener > .plate, .t-opener > .plate-wrap > .plate:not(.reel) { --ar: 4 / 5; max-height: min(80svh, 760px); }
+  .t-spread > .plate, .t-spread > .plate-wrap, .t-opener > .plate, .t-opener > .plate-wrap { width: 100%; max-width: none; }
+}
+/* Under 1024px a plate in a spread, opener or plate template runs edge to
+   edge: the negative page margins pull it out on both sides, and its width
+   has to grow by the same two margins or it only bleeds on the left. */
+@media (max-width: 1023.98px) {
+  .t-spread > .plate, .t-opener > .plate, .t-plate > .plate { width: calc(100% + 2 * var(--page)); }
 }
 /* a 9:16 film on a phone is cropped to 4:5 so the page keeps moving */
 @media (max-width: 1023px) { .plate--portrait { --ar: 4 / 5; } }
@@ -67,14 +73,24 @@
 .foot .foot-text p { font-size: var(--t-body); line-height: 1.45; max-width: 36ch; color: var(--p-ivory); }
 @media (min-width: 1024px) { .foot { min-height: 112px; padding: var(--s-5) var(--s-6); } }
 
-/* ---------- t-spread: copy beside a 4:5 plate ---------- */
+/* ---------- t-spread: copy beside a plate ----------
+   From 1024px the spread is two equal halves: the copy in one, and in
+   the other whatever is not copy (a photograph, a film, a pair of
+   films, a list, a map). Anything placed in a spread lands in a half,
+   never in a leftover twelfth of the grid, and the media fills its
+   half, so no block of empty ground sits beside the words. */
 .t-spread > .plate, .t-spread > .plate-wrap { order: -1; margin-inline: calc(-1 * var(--page)); }
 .t-spread > .copy { padding-top: var(--s-6); }
 @media (min-width: 1024px) {
-  .t-spread > .plate, .t-spread > .plate-wrap { order: 0; margin-inline: 0; grid-column: 7 / -1; grid-row: 1; justify-self: end; }
-  .t-spread > .copy { padding-top: 0; grid-column: 1 / 6; grid-row: 1; align-self: center; }
-  .t-spread[data-flip] > .copy { grid-column: 8 / -1; }
-  .t-spread[data-flip] > .plate, .t-spread[data-flip] > .plate-wrap { grid-column: 1 / 7; justify-self: start; }
+  .t-spread { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--half-gap); }
+  .t-spread > * { grid-row: 1; grid-column: 2; }
+  .t-spread > .copy { padding-top: 0; grid-column: 1; align-self: center; }
+  .t-spread > .plate, .t-spread > .plate-wrap { order: 0; margin-inline: 0; justify-self: stretch; align-self: center; }
+  .t-spread[data-flip] > * { grid-column: 1; }
+  .t-spread[data-flip] > .copy { grid-column: 2; }
+  /* two blocks of words side by side: each takes a half */
+  .t-spread > .copy + .copy { grid-column: 2; }
+  .t-spread[data-flip] > .copy + .copy { grid-column: 1; }
 }
 
 /* ---------- t-plate: one film or photograph as the page ---------- */
@@ -119,12 +135,13 @@
   color: var(--fg); opacity: 0.07; font-variant-numeric: tabular-nums;
 }
 @media (min-width: 1024px) {
-  .t-opener { min-height: 70svh; align-items: center; }
+  .t-opener { min-height: 70svh; align-items: center; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--half-gap); }
   .t-opener[data-tall] { min-height: calc(100svh - var(--nav-h)); }
-  .t-opener > .plate, .t-opener > .plate-wrap { order: 0; margin-inline: 0; grid-column: 8 / -1; grid-row: 1; justify-self: end; }
-  .t-opener > .copy { padding-top: 0; grid-column: 1 / 7; grid-row: 1; align-self: center; }
-  .t-opener[data-flip] > .copy { grid-column: 7 / -1; }
-  .t-opener[data-flip] > .plate, .t-opener[data-flip] > .plate-wrap { grid-column: 1 / 6; justify-self: start; }
+  .t-opener > :not(.ghost) { grid-row: 1; grid-column: 2; }
+  .t-opener > .plate, .t-opener > .plate-wrap { order: 0; margin-inline: 0; justify-self: stretch; }
+  .t-opener > .copy { padding-top: 0; grid-column: 1; align-self: center; }
+  .t-opener[data-flip] > :not(.ghost) { grid-column: 1; }
+  .t-opener[data-flip] > .copy { grid-column: 2; }
   .t-opener .ghost { top: 0; font-size: clamp(8rem, 24vw, 22rem); }
   .t-opener[data-flip] .ghost { right: auto; left: 0; }
 }
@@ -162,8 +179,9 @@ a.ix-row { transition: background var(--d-hover) var(--ease-soft); }
 /* ---------- t-form: copy beside a form on opaque paper ---------- */
 .t-form > .copy { padding-bottom: var(--s-6); }
 @media (min-width: 1024px) {
-  .t-form > .copy { padding-bottom: 0; grid-column: 1 / 5; grid-row: 1; }
-  .t-form > .form { grid-column: 6 / -1; grid-row: 1; }
+  /* the words stay in view while the longer side (a form, the FAQ) scrolls past */
+  .t-form > .copy { padding-bottom: 0; grid-column: 1 / 5; grid-row: 1; align-self: start; position: sticky; top: calc(var(--nav-h) + var(--offer-h) + var(--s-6)); }
+  .t-form > :not(.copy) { grid-column: 6 / -1; grid-row: 1; }
 }
 
 /* A chapter-sized headline beside a plate wraps too far; a spread caps it. */

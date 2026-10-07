@@ -39,7 +39,9 @@
   position: relative; display: inline-block; padding-bottom: 2px;
   font-size: var(--t-label); font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--fg);
 }
-.link::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 1px; background: currentColor; transform-origin: left; transform: scaleX(1); transition: transform var(--d-hover) var(--ease-soft); }
+/* the hit area pads 12px above and below (see 'every link clears 40px'),
+   so the line sits 3px under the words, not 12px down on the next line */
+.link::after { content: ''; position: absolute; left: 0; right: 0; bottom: 9px; height: 1px; background: currentColor; transform-origin: left; transform: scaleX(1); transition: transform var(--d-hover) var(--ease-soft); }
 .text-link { display: inline-block; font-size: var(--t-label); font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--fg); border-bottom: 1px solid var(--rule-ui); padding-bottom: 3px; }
 @media (hover: hover) and (pointer: fine) {
   .link:hover::after { transform: scaleX(0); transform-origin: right; }
@@ -430,6 +432,21 @@ html[data-fx="lite"] .reel .reel-ctl, .reel.is-blocked .reel-ctl, .reel.is-idle 
   --film-h: 86svh;
 }
 @media (min-width: 1024px) { .reel[data-native] { --film-h: min(84svh, 780px); } }
+/* Two films sharing one half of a spread. Each takes a width in
+   proportion to its own shape (--grow is the film's width over its
+   height), so both stand exactly the same height and together fill
+   the half. Side by side at every width: on a phone the pair stands
+   about 260px tall, where stacked it was two full screens of film. */
+.film-pair { display: flex; align-items: flex-start; gap: var(--s-3); }
+.film-pair > * { flex: var(--grow, 1) 1 0; min-width: 0; }
+.film-pair .reel[data-native] { width: 100%; margin-inline: 0; }
+.film-pair .reel-cap { padding-inline: 0; text-align: left; justify-items: start; }
+/* the pair keeps the page margins, so a caption never runs to the edge */
+.t-spread > .plate-wrap.film-pair, .t-opener > .plate-wrap.film-pair { margin-inline: 0; }
+@media (min-width: 768px) { .film-pair { gap: var(--s-4); } }
+@media (min-width: 1024px) {
+  .plate-wrap.film-pair > .reel-cap, .film-pair .reel[data-native] + .reel-cap { text-align: left; justify-items: start; }
+}
 /* In a row of films each one has the same tall frame and is shown whole
    inside it, so the captions under the row sit on one line. */
 .t-rail .reel[data-native] { aspect-ratio: 9 / 16; width: 100%; }

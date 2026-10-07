@@ -50,8 +50,6 @@ const SHEET = [
   ['product-model-blush',        'products',  'Follicle Fuel, on blush'],
   ['product-hair-botox',         'products',  'Hair Botox'],
   ['still-travertine',           'still',     'Travertine'],
-  ['still-tools',                'still',     'The tools'],
-  ['still-dried-flowers',        'still',     'Dried flowers'],
   ['still-comb',                 'still',     'The comb']
 ];
 

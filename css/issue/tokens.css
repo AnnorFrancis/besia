@@ -52,6 +52,7 @@
   --page: clamp(1rem, 0.12rem + 3.76vw, 3.5rem);
   --section: clamp(3.5rem, 2rem + 4.8vw, 6.5rem);
   --gap: clamp(12px, 0.4rem + 1.1vw, 24px);
+  --half-gap: clamp(2.5rem, 1rem + 3vw, 5rem);   /* between the two halves of a spread */
   --measure: 58ch;
   --container: 1344px;
   --plate-max: 576px;

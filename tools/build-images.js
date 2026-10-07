@@ -56,7 +56,9 @@ function cut(row, file) {
   /* manifest says x:y:w:h, ffmpeg's crop wants w:h:x:y */
   const c = row.crop ? row.crop.split(':').map(Number) : null;
   const vf = c ? ['-vf', `crop=${c[2]}:${c[3]}:${c[0]}:${c[1]}`] : [];
-  run('ffmpeg', ['-hide_banner', '-v', 'error', '-y', '-i', path.join(SRC, row.src), ...vf, file]);
+  /* `at`: a still lifted from one of her films, that many seconds in */
+  const seek = row.at != null ? ['-ss', String(row.at)] : [];
+  run('ffmpeg', ['-hide_banner', '-v', 'error', '-y', ...seek, '-i', path.join(SRC, row.src), '-frames:v', '1', ...vf, file]);
 }
 
 function restore(inFile, outFile) {

@@ -87,7 +87,7 @@ function packages() {
     return `          <article class="pkg-card${pk.featured ? ' pkg-card--featured' : ''}">
 ${pk.badge ? '            <div class="pkg-badge">' + esc(pk.badge) + '</div>\n' : ''}            <div class="pkg-tier">${esc(pk.tier)}</div>
             <h3 class="pkg-name">${esc(pk.name)}</h3>
-            <div class="pkg-price">${showFrom ? '<span class="from">From</span>' : ''}<span class="cur">GHS</span><span class="amount" data-count="${amount}">0</span></div>
+            <div class="pkg-price">${showFrom ? '<span class="from">From</span>' : ''}<span class="cur">GHS</span><span class="amount">${Number(amount).toLocaleString('en-GB')}</span></div>
             <ul class="pkg-features">
 ${pk.features.map(f => '              <li>' + f + '</li>').join('\n')}
             </ul>
